@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct Person: IPerson {
+struct Person {
     typealias ID = Tagged<(Person, id: ()), UUID>
     
-    struct PersonName: IPersonName {
+    struct PersonName {
         public private(set) var first: String
         public private(set) var last: String?
     }
     
-    struct SignInData: ISignInData {
+    struct SignInData {
         public private(set) var hashedUserId: String
         public private(set) var signInDate: Date
     }
@@ -24,13 +24,6 @@ struct Person: IPerson {
     public private(set) var name: PersonName
     public private(set) var fineIds: [Fine.ID]
     public private(set) var signInData: SignInData?
-}
-
-extension Person.PersonName {
-    init(_ personName: some IPersonName) {
-        self.first = personName.first
-        self.last = personName.last
-    }
 }
 
 extension Person.PersonName: Equatable {}
@@ -75,13 +68,6 @@ extension Person.PersonName: RandomPlaceholder {
     }
 }
 
-extension Person.SignInData {
-    init(_ signInData: some ISignInData) {
-        self.hashedUserId = signInData.hashedUserId
-        self.signInDate = signInData.signInDate
-    }
-}
-
 extension Person.SignInData: Equatable {}
 
 extension Person.SignInData: Codable {}
@@ -89,18 +75,6 @@ extension Person.SignInData: Codable {}
 extension Person.SignInData: Sendable {}
 
 extension Person.SignInData: Hashable {}
-
-
-extension Person {
-    init(_ person: some IPerson) {
-        self.id = ID(person.id.rawValue)
-        self.name = PersonName(person.name)
-        self.fineIds = person.fineIds.map { Fine.ID($0.rawValue) }
-        if let signInData = person.signInData {
-            self.signInData = SignInData(signInData)
-        }
-    }
-}
 
 extension Person: Equatable {}
 

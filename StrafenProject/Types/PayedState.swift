@@ -7,20 +7,10 @@
 
 import Foundation
 
-enum PayedState: IPayedState {
+enum PayedState {
     case payed(inApp: Bool, payDate: Date)
     case unpayed
     case settled
-    
-    var concrete: PayedState {
-        return self
-    }
-}
-
-extension PayedState {
-    init(_ payedState: some IPayedState) {
-        self = payedState.concrete
-    }
 }
 
 extension PayedState: Equatable {

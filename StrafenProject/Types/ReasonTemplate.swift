@@ -7,22 +7,13 @@
 
 import Foundation
 
-struct ReasonTemplate: IReasonTemplate {
+struct ReasonTemplate {
     typealias ID = Tagged<(ReasonTemplate, id: ()), UUID>
     
     public private(set) var id: ID
     public private(set) var reasonMessage: String
     public private(set) var amount: Amount
     public private(set) var importance: Importance
-}
-
-extension ReasonTemplate {
-    init(_ reasonTemplate: some IReasonTemplate) {
-        self.id = ID(reasonTemplate.id.rawValue)
-        self.reasonMessage = reasonTemplate.reasonMessage
-        self.amount = Amount(reasonTemplate.amount)
-        self.importance = Importance(reasonTemplate.importance)
-    }
 }
 
 extension ReasonTemplate: Equatable {}

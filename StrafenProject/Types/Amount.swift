@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Amount: IAmount {
+struct Amount {
     
     public private(set) var value: UInt
     
@@ -16,13 +16,6 @@ struct Amount: IAmount {
     public init(value: UInt, subUnitValue: UInt) {
         self.value = value
         self.subUnitValue = subUnitValue
-    }
-}
-
-extension Amount {
-    init(_ amount: some IAmount) {
-        self.value = amount.value
-        self.subUnitValue = amount.subUnitValue
     }
 }
 

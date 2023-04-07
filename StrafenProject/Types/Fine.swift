@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Fine: IFine {
+struct Fine {
     typealias ID = Tagged<(Fine, id: ()), UUID>
     
     public private(set) var id: ID
@@ -16,17 +16,6 @@ struct Fine: IFine {
     public private(set) var number: UInt
     public private(set) var date: Date
     public private(set) var fineReason: FineReason
-}
-
-extension Fine {
-    init(_ fine: some IFine) {
-        self.id = ID(fine.id.rawValue)
-        self.personId = Person.ID(fine.personId.rawValue)
-        self.payedState = PayedState(fine.payedState)
-        self.number = fine.number
-        self.date = fine.date
-        self.fineReason = FineReason(fine.fineReason)
-    }
 }
 
 extension Fine: Equatable {

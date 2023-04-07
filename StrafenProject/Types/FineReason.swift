@@ -7,18 +7,10 @@
 
 import Foundation
 
-struct FineReason: IFineReason {
+struct FineReason {
     public private(set) var reasonMessage: String
     public private(set) var amount: Amount
     public private(set) var importance: Importance
-}
-
-extension FineReason {
-    init(_ fineReason: some IFineReason) {
-        self.reasonMessage = fineReason.reasonMessage
-        self.amount = Amount(fineReason.amount)
-        self.importance = Importance(fineReason.importance)
-    }
 }
 
 extension FineReason: Equatable {}

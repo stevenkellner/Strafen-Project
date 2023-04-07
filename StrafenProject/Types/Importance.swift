@@ -7,20 +7,10 @@
 
 import Foundation
 
-enum Importance: IImportance {
+enum Importance {
     case high
     case medium
     case low
-    
-    var concrete: Importance {
-        return self
-    }
-}
-
-extension Importance {
-    init(_ importance: some IImportance) {
-        self = importance.concrete
-    }
 }
 
 extension Importance: Equatable {}
