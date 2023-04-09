@@ -71,7 +71,22 @@ extension PayedState: Sendable {}
 
 extension PayedState: Hashable {}
 
-extension PayedState {
+extension PayedState: FirebaseFunctionParameterType {
+    @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
+        switch self {
+        case .payed(let inApp, let payDate):
+            FirebaseFunctionParameter("payed", for: "state")
+            FirebaseFunctionParameter(inApp, for: "inApp")
+            FirebaseFunctionParameter(payDate, for: "payDate")
+        case .unpayed:
+            FirebaseFunctionParameter("unpayed", for: "state")
+        case .settled:
+            FirebaseFunctionParameter("settled", for: "state")
+        }
+    }
+}
+
+extension PayedState: RandomPlaceholder {
     static func randomPlaceholder(using generator: inout some RandomNumberGenerator) -> PayedState {
         switch UInt.random(in: 0...2, using: &generator) {
         case 0:

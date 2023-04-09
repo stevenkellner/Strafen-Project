@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Importance {
+enum Importance: String {
     case high
     case medium
     case low
@@ -33,6 +33,12 @@ extension Importance: Codable {}
 extension Importance: Sendable {}
 
 extension Importance: Hashable {}
+
+extension Importance: FirebaseFunctionParameterType {
+    var parameter: String {
+        return self.rawValue
+    }
+}
 
 extension Importance: RandomPlaceholder {
     static func randomPlaceholder(using generator: inout some RandomNumberGenerator) -> Importance {

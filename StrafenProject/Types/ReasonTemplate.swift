@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ReasonTemplate {
+struct ReasonTemplate: Identifiable {
     typealias ID = Tagged<(ReasonTemplate, id: ()), UUID>
     
     public private(set) var id: ID
@@ -23,6 +23,14 @@ extension ReasonTemplate: Codable {}
 extension ReasonTemplate: Sendable {}
 
 extension ReasonTemplate: Hashable {}
+
+extension ReasonTemplate: FirebaseFunctionParameterType {
+    @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
+        FirebaseFunctionParameter(self.reasonMessage, for: "reasonMessage")
+        FirebaseFunctionParameter(self.amount, for: "amount")
+        FirebaseFunctionParameter(self.importance, for: "importance")
+    }
+}
 
 extension ReasonTemplate: RandomPlaceholder {
     static let randomPlaceholderReasonMessages = [

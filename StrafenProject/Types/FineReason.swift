@@ -21,6 +21,14 @@ extension FineReason: Sendable {}
 
 extension FineReason: Hashable {}
 
+extension FineReason: FirebaseFunctionParameterType {
+    @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
+        FirebaseFunctionParameter(self.reasonMessage, for: "reasonMessage")
+        FirebaseFunctionParameter(self.amount, for: "amount")
+        FirebaseFunctionParameter(self.importance, for: "importance")
+    }
+}
+
 extension FineReason: RandomPlaceholder {
     static func randomPlaceholder(using generator: inout some RandomNumberGenerator) -> FineReason {
         return FineReason(

@@ -5,7 +5,6 @@
 //  Created by Steven on 06.04.23.
 //
 
-import FirebaseCore
 import SwiftUI
 
 @main
@@ -22,7 +21,7 @@ struct StrafenProjectApp: App {
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        FirebaseApp.configure()
+        FirebaseConfigurator.shared.configure()
         return true
     }
 }

@@ -41,7 +41,58 @@
             </BuildableReference>
             <SkippedTests>
                <Test
+                  Identifier = "BitTests">
+               </Test>
+               <Test
+                  Identifier = "ClubGetIdTests">
+               </Test>
+               <Test
+                  Identifier = "CombineIteratorTests">
+               </Test>
+               <Test
+                  Identifier = "CrypterTests">
+               </Test>
+               <Test
+                  Identifier = "DataToBitIteratorTests">
+               </Test>
+               <Test
+                  Identifier = "FixedLengthTests">
+               </Test>
+               <Test
+                  Identifier = "OtherTests">
+               </Test>
+               <Test
+                  Identifier = "PseudoRandomTests">
+               </Test>
+               <Test
+                  Identifier = "RandomBitIteratorTests">
+               </Test>
+               <Test
                   Identifier = "StrafenProjectTests">
+               </Test>
+               <Test
+                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite10OtherTests">
+               </Test>
+               <Test
+                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite12CrypterTests">
+               </Test>
+               <Test
+                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite16FixedLengthTests">
+               </Test>
+               <Test
+                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite17PseudoRandomTests">
+               </Test>
+               <Test
+                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite20CombineIteratorTests">
+               </Test>
+               <Test
+                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite22DataToBitIteratorTests">
+               </Test>
+               <Test
+                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite22RandomBitIteratorTests">
+               </Test>
+               <Test
+                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite8BitTests">
                </Test>
             </SkippedTests>
          </TestableReference>

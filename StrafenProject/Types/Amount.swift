@@ -78,6 +78,12 @@ extension Amount: Sendable {}
 
 extension Amount: Hashable {}
 
+extension Amount: FirebaseFunctionParameterType {
+    var parameter: Double {
+        return Double(self.value) + Double(self.subUnitValue) / 100
+    }
+}
+
 extension Amount: RandomPlaceholder {
     static func randomPlaceholder(using generator: inout some RandomNumberGenerator) -> Amount {
         let value = UInt.random(in: 0..<100, using: &generator)

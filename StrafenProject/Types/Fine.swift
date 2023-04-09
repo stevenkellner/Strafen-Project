@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Fine {
+struct Fine: Identifiable {
     typealias ID = Tagged<(Fine, id: ()), UUID>
     
     public private(set) var id: ID
@@ -34,6 +34,16 @@ extension Fine: Codable {}
 extension Fine: Sendable {}
 
 extension Fine: Hashable {}
+
+extension Fine: FirebaseFunctionParameterType {
+    @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
+        FirebaseFunctionParameter(self.personId, for: "personId")
+        FirebaseFunctionParameter(self.payedState, for: "payedState")
+        FirebaseFunctionParameter(self.number, for: "number")
+        FirebaseFunctionParameter(self.date, for: "date")
+        FirebaseFunctionParameter(self.fineReason, for: "fineReason")
+    }
+}
 
 extension Fine: RandomPlaceholder {
     static var randomPlaceholderPersonIds: [Person.ID] = []

@@ -24,3 +24,12 @@ extension ClubProperties: Codable {}
 extension ClubProperties: Sendable {}
 
 extension ClubProperties: Hashable {}
+
+extension ClubProperties: FirebaseFunctionParameterType {
+    @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
+        FirebaseFunctionParameter(self.identifier, for: "identifier")
+        FirebaseFunctionParameter(self.name, for: "name")
+        FirebaseFunctionParameter(self.regionCode, for: "regionCode")
+        FirebaseFunctionParameter(self.inAppPaymentActive, for: "inAppPaymentActive")
+    }
+}

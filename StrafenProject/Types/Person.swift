@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Person {
+struct Person: Identifiable {
     typealias ID = Tagged<(Person, id: ()), UUID>
     
     struct PersonName {
@@ -19,7 +19,7 @@ struct Person {
         public private(set) var hashedUserId: String
         public private(set) var signInDate: Date
     }
-    
+        
     public private(set) var id: ID
     public private(set) var name: PersonName
     public private(set) var fineIds: [Fine.ID]
@@ -33,6 +33,13 @@ extension Person.PersonName: Codable {}
 extension Person.PersonName: Sendable {}
 
 extension Person.PersonName: Hashable {}
+
+extension Person.PersonName: FirebaseFunctionParameterType {
+    @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
+        FirebaseFunctionParameter(self.first, for: "first")
+        FirebaseFunctionParameter(self.last, for: "last")
+    }
+}
 
 extension Person.PersonName: RandomPlaceholder {
     private static let randomPlaceholderNames = [
@@ -68,7 +75,11 @@ extension Person.PersonName: RandomPlaceholder {
     }
 }
 
-extension Person.SignInData: Equatable {}
+extension Person.SignInData: Equatable {
+    static func ==(lhs: Person.SignInData, rhs: Person.SignInData) -> Bool {
+        return lhs.hashedUserId == rhs.hashedUserId && Calendar.current.isDate(lhs.signInDate, equalTo: rhs.signInDate, toGranularity: .nanosecond)
+    }
+}
 
 extension Person.SignInData: Codable {}
 
@@ -83,6 +94,12 @@ extension Person: Codable {}
 extension Person: Sendable {}
 
 extension Person: Hashable {}
+
+extension Person: FirebaseFunctionParameterType {
+    @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
+        FirebaseFunctionParameter(self.name, for: "name")
+    }
+}
 
 extension Person: RandomPlaceholder {
     static var randomPlaceholderFineIds: [Fine.ID] = []

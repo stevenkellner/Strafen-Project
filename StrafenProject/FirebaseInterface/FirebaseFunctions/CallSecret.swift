@@ -12,7 +12,7 @@ struct CallSecret {
     let callSecretKey: String
     
     init(key callSecretKey: String) {
-        self.expiresAt = Date()
+        self.expiresAt = Calendar.current.date(byAdding: .minute, value: 1, to: Date()) ?? Date()
         self.callSecretKey = callSecretKey
     }
 }

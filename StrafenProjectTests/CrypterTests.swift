@@ -8,20 +8,6 @@
 import XCTest
 @testable import StrafenProject
 
-func XCTAssertEqualIterator<T>(_ iterator1: some IteratorProtocol<T>, _ iterator2: some IteratorProtocol<T>, _ message: @autoclosure () -> String = "", file: StaticString = #filePath, line: UInt = #line) where T : Equatable {
-    var iterator1 = iterator1
-    var iterator2 = iterator2
-    while let element1 = iterator1.next() {
-        guard let element2 = iterator2.next() else {
-            return XCTFail("Iterator 1 has more elements than iterator 2.", file: file, line: line)
-        }
-        XCTAssertEqual(element1, element2, message(), file: file, line: line)
-    }
-    if iterator2.next() != nil {
-        XCTFail("Iterator 2 has more elements than iterator 1.", file: file, line: line)
-    }
-}
-
 final class CrypterTestSuite: XCTestSuite {
     final class BitTests: XCTestCase {
         func testNot() {
