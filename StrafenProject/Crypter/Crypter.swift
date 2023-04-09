@@ -85,20 +85,27 @@ struct Crypter {
         return try self.decryptVernamCipher(aesDecryptedData)
     }
     
-    func decryptDecode<T>(type: T.Type, _ data: String) throws -> T where T: Decodable {
+    func decryptDecode<T>(type: T.Type, _ data: Data) throws -> T where T: Decodable {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601WithMilliseconds
         decoder.dataDecodingStrategy = .base64
-        let decryptedData = try self.decryptAesAndVernam(Data(unishortString: data))
+        let decryptedData = try self.decryptAesAndVernam(data)
         return try decoder.decode(type, from: decryptedData)
     }
     
-    func encodeEncrypt<T>(_ data: T) throws -> String where T: Encodable {
+    func decryptDecode<T>(type: T.Type, _ data: String) throws -> T where T: Decodable {
+        return try self.decryptDecode(type: type, Data(unishortString: data))
+    }
+    
+    func encodeEncryptToData<T>(_ data: T) throws -> Data where T: Encodable {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         encoder.dataEncodingStrategy = .base64
         let encodedData = try encoder.encode(data)
-        let encryptedData = try self.encryptVernamAndAes(encodedData)
-        return encryptedData.unishortString
+        return try self.encryptVernamAndAes(encodedData)
+    }
+        
+    func encodeEncrypt<T>(_ data: T) throws -> String where T: Encodable {
+        return try self.encodeEncryptToData(data).unishortString
     }
 }
