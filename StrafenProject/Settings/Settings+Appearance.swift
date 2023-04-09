@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension Settings {
-    enum Appearance {
+    enum Appearance: String {
         case system
         case light
         case dark

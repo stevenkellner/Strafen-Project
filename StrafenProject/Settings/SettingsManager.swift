@@ -9,59 +9,46 @@ import Foundation
 
 @dynamicMemberLookup
 struct SettingsManager {
-    
-    private var databaseType: DatabaseType = .default
-    
+        
     private var settings: Settings
     
-    static let shared = SettingsManager()
+    static var shared = SettingsManager()
     
-    private init() {
+    init() {
         self.settings = Settings(appearance: .system, signedInPerson: nil)
-        let _ = self.readSettings()
+        do {
+            try self.readSettings()
+        } catch {
+            print(error)
+        }
     }
     
     private var settingsUrl: URL {
-        let baseUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "secure-setting-group")!
-        return baseUrl.appending(path: self.databaseType.rawValue).appending(path: "settings").appendingPathExtension("json")
+        let baseUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.stevenkellner.StrafenProject.settings")!
+        return baseUrl.appending(path: "settings-\(DatabaseType.current.rawValue)").appendingPathExtension("json")
     }
     
-    mutating func readSettings() -> OperationResult {
-        guard FileManager.default.fileExists(atPath: self.settingsUrl.absoluteString),
-              let encryptedJsonData = FileManager.default.contents(atPath: self.settingsUrl.absoluteString) else {
-            return .failed
-        }
-        let crypter = Crypter(keys: PrivateKeys.current(self.databaseType).cryptionKeys)
-        guard let settings = try? crypter.decryptDecode(type: Settings.self, encryptedJsonData) else {
-            return .failed
-        }
-        return .passed
+    mutating func readSettings() throws {
+        let encryptedJsonData = try Data(contentsOf: self.settingsUrl, options: .uncached)
+        let crypter = Crypter(keys: PrivateKeys.current.cryptionKeys)
+        self.settings = try crypter.decryptDecode(type: Settings.self, encryptedJsonData)
     }
     
-    func saveSettings() {
-        let crypter = Crypter(keys: PrivateKeys.current(self.databaseType).cryptionKeys)
-        guard let encryptedJsonData = try? crypter.encodeEncryptToData(self.settings) else {
-            return
-        }
-        if !FileManager.default.fileExists(atPath: self.settingsUrl.absoluteString) ||
-              (try? encryptedJsonData.write(to: self.settingsUrl, options: .atomic)) == nil {
-            FileManager.default.createFile(atPath: self.settingsUrl.absoluteString, contents: encryptedJsonData)
-        }
+    func saveSettings() throws {
+        let crypter = Crypter(keys: PrivateKeys.current.cryptionKeys)
+        let encryptedJsonData = try crypter.encodeEncryptToData(self.settings)
+        try encryptedJsonData.write(to: self.settingsUrl, options: .atomic)
     }
     
-    subscript<T>(dynamicMember keyPath: WritableKeyPath<Settings, T>) -> T {
+    subscript<T>(dynamicMember keyPath: KeyPath<Settings, T>) -> T {
         get {
             return self.settings[keyPath: keyPath]
         }
-        set {
-            self.settings[keyPath: keyPath] = newValue
-            self.saveSettings()
-        }
     }
     
-    var forTesting: SettingsManager {
-        var manager = self
-        manager.databaseType = .testing
-        return manager
+    mutating func save<T>(_ value: T, at keyPath: WritableKeyPath<Settings, T>) throws {
+        self.settings[keyPath: keyPath] = value
+        try self.saveSettings()
+        
     }
 }

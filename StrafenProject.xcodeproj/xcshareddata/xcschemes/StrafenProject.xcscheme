@@ -56,6 +56,9 @@
                   Identifier = "DataToBitIteratorTests">
                </Test>
                <Test
+                  Identifier = "FirebaseFunctionsTests">
+               </Test>
+               <Test
                   Identifier = "FixedLengthTests">
                </Test>
                <Test

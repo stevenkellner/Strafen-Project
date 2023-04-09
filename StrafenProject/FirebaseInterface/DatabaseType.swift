@@ -19,6 +19,8 @@ enum DatabaseType: String {
         return .release
 #endif
     }
+    
+    static var current: DatabaseType = .default
 }
 
 extension DatabaseType: Codable {}

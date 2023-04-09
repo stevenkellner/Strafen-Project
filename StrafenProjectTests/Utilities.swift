@@ -48,18 +48,18 @@ extension FirebaseAuthenticator {
     private func authenticateTestUser(type authenticationType: String, clubId: ClubProperties.ID) async throws {
         XCTAssertNotNil(self.user)
         let hashedUserId = Crypter.sha512(self.user!.uid)
-        try await Database.database(url: PrivateKeys.current(.testing).databaseUrl).reference(withPath: "clubs/\(clubId.uuidString)/authentication/\(authenticationType)/\(hashedUserId)").setValue("authenticated")
+        try await Database.database(url: PrivateKeys.current.databaseUrl).reference(withPath: "clubs/\(clubId.uuidString)/authentication/\(authenticationType)/\(hashedUserId)").setValue("authenticated")
     }
 }
 
 extension FirebaseConfigurator {
     func createTestClub(id clubId: ClubProperties.ID, type testClubType: ClubNewTestFunction.TestClubType = .default) async throws {
         let clubNewTestFunction = ClubNewTestFunction(clubId: clubId, testClubType: testClubType)
-        try await FirebaseFunctionCaller.shared.forTesting.call(clubNewTestFunction)
+        try await FirebaseFunctionCaller.shared.call(clubNewTestFunction)
     }
     
     func cleanUp() async throws {
         let deleteAllDataFunction = DeleteAllDataFunction()
-        try await FirebaseFunctionCaller.shared.forTesting.call(deleteAllDataFunction)
+        try await FirebaseFunctionCaller.shared.call(deleteAllDataFunction)
     }
 }

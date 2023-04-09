@@ -12,9 +12,7 @@ struct FirebaseFunctionCaller {
     enum Error: Swift.Error {
         case invalidReturnType
     }
-    
-    private var databaseType: DatabaseType = .default
-    
+        
     private var isVerbose = false
     
     static let shared = FirebaseFunctionCaller()
@@ -22,12 +20,12 @@ struct FirebaseFunctionCaller {
     private init() {}
     
     private func createParameters(of function: some FirebaseFunction) throws -> FirebaseFunctionParameters {
-        let crypter = Crypter(keys: PrivateKeys.current(self.databaseType).cryptionKeys)
+        let crypter = Crypter(keys: PrivateKeys.current.cryptionKeys)
         let encryptedParameters = try crypter.encodeEncrypt(function.parameters)
         @FirebaseFunctionParametersBuilder var parameters: FirebaseFunctionParameters {
             FirebaseFunctionParameter(self.isVerbose ? "verbose" : "none", for: "verbose")
-            FirebaseFunctionParameter(self.databaseType, for: "databaseType")
-            FirebaseFunctionParameter(CallSecret(key: PrivateKeys.current(self.databaseType).callSecretKey), for: "callSecret")
+            FirebaseFunctionParameter(DatabaseType.current, for: "databaseType")
+            FirebaseFunctionParameter(CallSecret(key: PrivateKeys.current.callSecretKey), for: "callSecret")
             FirebaseFunctionParameter(encryptedParameters, for: "parameters")
         }
         return parameters
@@ -42,7 +40,7 @@ struct FirebaseFunctionCaller {
         guard let encryptedResult = httpsResult.data as? String else {
             throw Error.invalidReturnType
         }
-        let crypter = Crypter(keys: PrivateKeys.current(self.databaseType).cryptionKeys)
+        let crypter = Crypter(keys: PrivateKeys.current.cryptionKeys)
         let result = try crypter.decryptDecode(type: FirebaseFunctionResult<Function.ReturnType>.self, encryptedResult)
         return try result.value
     }
@@ -50,14 +48,7 @@ struct FirebaseFunctionCaller {
     func call<Function>(_ function: Function) async throws where Function: FirebaseFunction, Function.ReturnType == VoidReturnType {
         let _: Function.ReturnType = try await self.call(function)
     }
-    
-    var forTesting: FirebaseFunctionCaller {
-        var caller = self
-        caller.databaseType = .testing
-        caller.isVerbose = true
-        return caller
-    }
-    
+        
     var verbose: FirebaseFunctionCaller {
         var caller = self
         caller.isVerbose = true

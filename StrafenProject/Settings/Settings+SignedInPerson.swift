@@ -20,7 +20,16 @@ extension Settings {
 
 extension Settings.SignedInPerson: Sendable {}
 
-extension Settings.SignedInPerson: Equatable {}
+extension Settings.SignedInPerson: Equatable {
+    static func ==(lhs: Settings.SignedInPerson, rhs: Settings.SignedInPerson) -> Bool {
+        return lhs.id == rhs.id &&
+            lhs.name == rhs.name &&
+            Calendar.current.isDate(lhs.signInDate, equalTo: rhs.signInDate, toGranularity: .nanosecond) &&
+            lhs.isAdmin == rhs.isAdmin &&
+            lhs.hashedUserId == rhs.hashedUserId &&
+            lhs.club == rhs.club
+    }
+}
 
 extension Settings.SignedInPerson: Hashable {}
 
