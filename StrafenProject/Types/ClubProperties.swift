@@ -11,7 +11,6 @@ struct ClubProperties {
     typealias ID = Tagged<(ClubProperties, id: ()), UUID>
     
     public private(set) var id: ClubProperties.ID
-    public private(set) var identifier: String
     public private(set) var name: String
     public private(set) var regionCode: String
     public private(set) var inAppPaymentActive: Bool
@@ -27,7 +26,6 @@ extension ClubProperties: Hashable {}
 
 extension ClubProperties: FirebaseFunctionParameterType {
     @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
-        FirebaseFunctionParameter(self.identifier, for: "identifier")
         FirebaseFunctionParameter(self.name, for: "name")
         FirebaseFunctionParameter(self.regionCode, for: "regionCode")
         FirebaseFunctionParameter(self.inAppPaymentActive, for: "inAppPaymentActive")

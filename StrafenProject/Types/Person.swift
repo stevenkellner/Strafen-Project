@@ -24,6 +24,7 @@ struct Person: Identifiable {
     public private(set) var name: PersonName
     public private(set) var fineIds: [Fine.ID]
     public private(set) var signInData: SignInData?
+    public private(set) var isInvited: Bool
 }
 
 extension Person.PersonName: Equatable {}
@@ -105,6 +106,6 @@ extension Person: RandomPlaceholder {
     static var randomPlaceholderFineIds: [Fine.ID] = []
     
     static func randomPlaceholder(using generator: inout some RandomNumberGenerator) -> Person {
-        return Person(id: ID(), name: PersonName.randomPlaceholder(using: &generator), fineIds: Person.randomPlaceholderFineIds, signInData: nil)
+        return Person(id: ID(), name: PersonName.randomPlaceholder(using: &generator), fineIds: Person.randomPlaceholderFineIds, signInData: nil, isInvited: Bool.random(using: &generator))
     }
 }

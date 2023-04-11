@@ -86,13 +86,15 @@
 		B0E6A5C329E05F2A0095471B /* PrivateKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5C229E05F290095471B /* PrivateKeys.swift */; };
 		B0E6A5C529E061CE0095471B /* CallSecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5C429E061CE0095471B /* CallSecret.swift */; };
 		B0E6A5C729E067BC0095471B /* FirebaseFunctionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5C629E067BC0095471B /* FirebaseFunctionResult.swift */; };
-		B0E6A5CA29E06B390095471B /* ClubGetIdFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5C929E06B390095471B /* ClubGetIdFunction.swift */; };
 		B0E6A5CC29E06C150095471B /* FirebaseConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5CB29E06C150095471B /* FirebaseConfigurator.swift */; };
 		B0E6A5CE29E06D410095471B /* FirebaseAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5CD29E06D410095471B /* FirebaseAuthenticator.swift */; };
 		B0E6A5D129E06DEF0095471B /* DeleteAllDataFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5D029E06DEF0095471B /* DeleteAllDataFunction.swift */; };
 		B0E6A5D329E06EC70095471B /* ClubNewTestFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5D229E06EC70095471B /* ClubNewTestFunction.swift */; };
 		B0E6A5D529E06FA00095471B /* FirebaseFunctionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5D429E06FA00095471B /* FirebaseFunctionsTests.swift */; };
 		B0E6A5D729E070A80095471B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5D629E070A80095471B /* Utilities.swift */; };
+		B0F5FAA729E55299008C0380 /* InvitationLinkCreateIdFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F5FAA629E55299008C0380 /* InvitationLinkCreateIdFunction.swift */; };
+		B0F5FAA929E55334008C0380 /* InvitationLinkWithdrawFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F5FAA829E55334008C0380 /* InvitationLinkWithdrawFunction.swift */; };
+		B0F5FAAB29E5535B008C0380 /* InvitationLinkGetPersonFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F5FAAA29E5535B008C0380 /* InvitationLinkGetPersonFunction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,13 +180,15 @@
 		B0E6A5C229E05F290095471B /* PrivateKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeys.swift; sourceTree = "<group>"; };
 		B0E6A5C429E061CE0095471B /* CallSecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSecret.swift; sourceTree = "<group>"; };
 		B0E6A5C629E067BC0095471B /* FirebaseFunctionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctionResult.swift; sourceTree = "<group>"; };
-		B0E6A5C929E06B390095471B /* ClubGetIdFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubGetIdFunction.swift; sourceTree = "<group>"; };
 		B0E6A5CB29E06C150095471B /* FirebaseConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConfigurator.swift; sourceTree = "<group>"; };
 		B0E6A5CD29E06D410095471B /* FirebaseAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticator.swift; sourceTree = "<group>"; };
 		B0E6A5D029E06DEF0095471B /* DeleteAllDataFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllDataFunction.swift; sourceTree = "<group>"; };
 		B0E6A5D229E06EC70095471B /* ClubNewTestFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubNewTestFunction.swift; sourceTree = "<group>"; };
 		B0E6A5D429E06FA00095471B /* FirebaseFunctionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctionsTests.swift; sourceTree = "<group>"; };
 		B0E6A5D629E070A80095471B /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		B0F5FAA629E55299008C0380 /* InvitationLinkCreateIdFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationLinkCreateIdFunction.swift; sourceTree = "<group>"; };
+		B0F5FAA829E55334008C0380 /* InvitationLinkWithdrawFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationLinkWithdrawFunction.swift; sourceTree = "<group>"; };
+		B0F5FAAA29E5535B008C0380 /* InvitationLinkGetPersonFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationLinkGetPersonFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -404,7 +408,6 @@
 		B0E6A5C829E06B240095471B /* Functions */ = {
 			isa = PBXGroup;
 			children = (
-				B0E6A5C929E06B390095471B /* ClubGetIdFunction.swift */,
 				B06E9FFA29E1BDCC0034B178 /* CubNewFunction.swift */,
 				B06E9FFE29E1D34D0034B178 /* FineEditFunction.swift */,
 				B06EA00229E1DA610034B178 /* FineEditPayedFunction.swift */,
@@ -415,6 +418,9 @@
 				B05AF42029E2BB5500BA15F0 /* PersonRegisterFunction.swift */,
 				B05AF42229E2E3B300BA15F0 /* ReasonTemplateEditFunction.swift */,
 				B05AF42429E2E6D300BA15F0 /* ReasonTemplateGetFunction.swift */,
+				B0F5FAA629E55299008C0380 /* InvitationLinkCreateIdFunction.swift */,
+				B0F5FAA829E55334008C0380 /* InvitationLinkWithdrawFunction.swift */,
+				B0F5FAAA29E5535B008C0380 /* InvitationLinkGetPersonFunction.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -596,7 +602,6 @@
 				B0E6A5C529E061CE0095471B /* CallSecret.swift in Sources */,
 				B05AF42329E2E3B300BA15F0 /* ReasonTemplateEditFunction.swift in Sources */,
 				B0E6A5C329E05F2A0095471B /* PrivateKeys.swift in Sources */,
-				B0E6A5CA29E06B390095471B /* ClubGetIdFunction.swift in Sources */,
 				B0E6A59429E03D040095471B /* Tagged.swift in Sources */,
 				B05AF42E29E2F56100BA15F0 /* Settings.swift in Sources */,
 				B0E6A58629E035C80095471B /* Amount.swift in Sources */,
@@ -613,6 +618,7 @@
 				B03563C229DEE215000BB7AD /* ContentView.swift in Sources */,
 				B0E6A5B629E052BA0095471B /* FirebaseFunctionInternalParameterType.swift in Sources */,
 				B0E6A58E29E03B050095471B /* RandomPlaceholder.swift in Sources */,
+				B0F5FAA929E55334008C0380 /* InvitationLinkWithdrawFunction.swift in Sources */,
 				B0E6A59229E03CE50095471B /* ClubProperties.swift in Sources */,
 				B0E6A5C729E067BC0095471B /* FirebaseFunctionResult.swift in Sources */,
 				B05AF43229E2F65C00BA15F0 /* Settings+SignedInPerson.swift in Sources */,
@@ -621,6 +627,7 @@
 				B0E6A5BF29E0594E0095471B /* FirebaseFunctionCaller.swift in Sources */,
 				B0E6A5AE29E049960095471B /* ReasonTemplate.swift in Sources */,
 				B05AF43029E2F5CA00BA15F0 /* Settings+Appearance.swift in Sources */,
+				B0F5FAA729E55299008C0380 /* InvitationLinkCreateIdFunction.swift in Sources */,
 				B0E6A58329DF22750095471B /* Array+randomBytes.swift in Sources */,
 				B035641829DEF71F000BB7AD /* CombineIterator.swift in Sources */,
 				B06EA00129E1D3AD0034B178 /* EditType.swift in Sources */,
@@ -638,6 +645,7 @@
 				B03563C029DEE215000BB7AD /* StrafenProjectApp.swift in Sources */,
 				B0E6A5BB29E0565B0095471B /* FirebaseFunctionParametersBuilder.swift in Sources */,
 				B0E6A57F29DF1C080095471B /* JSONDecoder+iso8601WithMilliseconds.swift in Sources */,
+				B0F5FAAB29E5535B008C0380 /* InvitationLinkGetPersonFunction.swift in Sources */,
 				B05AF42129E2BB5600BA15F0 /* PersonRegisterFunction.swift in Sources */,
 				B05AF43429E2F6DF00BA15F0 /* SettingsManager.swift in Sources */,
 				B0E6A58B29E036F70095471B /* Clamping.swift in Sources */,
@@ -803,6 +811,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = StrafenProject/StrafenProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -815,7 +824,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -829,7 +838,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -838,6 +847,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = StrafenProject/StrafenProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -850,7 +860,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -864,7 +874,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
