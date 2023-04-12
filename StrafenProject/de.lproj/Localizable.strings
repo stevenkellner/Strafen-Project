@@ -1,0 +1,15 @@
+/* Starting part of 'By continuing you agree to Terms, Conditions and Privacy Policy', i.e. 'By continuing you agree to'. Don't add trailing space as it's splitted between two lines. */
+"agree-terms-privacy-by-continue|by-continue-agree" = "Durch Fortfahren akzeptierst du";
+
+/* Starting part of 'By continuing you agree to Terms, Conditions and Privacy Policy', i.e. 'Terms, Conditions and Privacy Policy'. */
+"agree-terms-privacy-by-continue|terms-and-privacy" = "AGBs und Datenschutz";
+
+/* Dismiss button on a sheet. */
+"dismiss-sheet" = "Schließen";
+
+/* Login button on start page to get to login page. */
+"start-page|buttons|login" = "Einloggen";
+
+/* Start button on start page to get to register / create club page. */
+"start-page|buttons|start-register-create-club" = "Jetzt starten";
+

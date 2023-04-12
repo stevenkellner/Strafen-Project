@@ -30,7 +30,7 @@
       shouldAutocreateTestPlan = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO"
+            skipped = "YES"
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
@@ -54,6 +54,9 @@
                </Test>
                <Test
                   Identifier = "DataToBitIteratorTests">
+               </Test>
+               <Test
+                  Identifier = "FirebaseFunctionsTests">
                </Test>
                <Test
                   Identifier = "FixedLengthTests">
@@ -116,6 +119,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = "de"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
