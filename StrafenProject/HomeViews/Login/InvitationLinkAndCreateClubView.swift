@@ -1,5 +1,5 @@
 //
-//  RegisterAndCreateClubView.swift
+//  InvitationLinkAndCreateClubView.swift
 //  StrafenProject
 //
 //  Created by Steven on 12.04.23.
@@ -7,31 +7,32 @@
 
 import SwiftUI
 
-struct RegisterAndCreateClubView: View {
-            
+struct InvitationLinkAndCreateClubView: View {
     var body: some View {
         VStack {
             RegisterView()
             // TODO create club
-        }.navigationTitle(String(localized: "register-and-create-club|title", comment: "Title of register and create club view."))
+        }.navigationTitle(String(localized: "invitation-link-and-create-club|title", comment: "Title of register and create club view."))
     }
 }
 
-extension RegisterAndCreateClubView {
+extension InvitationLinkAndCreateClubView {
     struct RegisterView: View {
-        
+                
         @State private var invitationLink: String = "Y8T4Gul9W4cU3BFd" // TODO
                 
-        @State private var buttonDisabled = true
+        @State private var buttonDisabled = false // TODO
         
         @State private var notFoundAlertShown = false
         
         @State private var personToInvite: InvitationLinkGetPersonFunction.ReturnType?
         
+        @State private var isSignInNavigationActive = true // TODO
+            
         var body: some View {
             VStack {
                 Section {
-                    TextField(String(localized: "register-and-create-club|invitation-link|text-field-placeholder", comment: "Title of the invitation link input."), text: self.$invitationLink)
+                    TextField(String(localized: "invitation-link-and-create-club|invitation-link|text-field-placeholder", comment: "Title of the invitation link input."), text: self.$invitationLink)
                         .font(.title3)
                         .padding(5)
                         .background(Color(uiColor: .systemGray6))
@@ -40,13 +41,13 @@ extension RegisterAndCreateClubView {
                             self.validateLink()
                         }
                 } header: {
-                    Text("register-and-create-club|invitation-link|text-field-title", comment: "Placeholder of the invitation link input.")
+                    Text("invitation-link-and-create-club|invitation-link|text-field-title", comment: "Placeholder of the invitation link input.")
                         .foregroundColor(.secondary)
                         .fontWeight(.light)
                         .font(.title3)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 } footer: {
-                    Text("register-and-create-club|invitation-link|text-field-description", comment: "Description of the invitation link input.")
+                    Text("invitation-link-and-create-club|invitation-link|text-field-description", comment: "Description of the invitation link input.")
                         .font(.callout)
                         .foregroundColor(.secondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -58,20 +59,23 @@ extension RegisterAndCreateClubView {
                         await self.handleInvitationLink()
                     }
                 } label: {
-                    Text("register-and-create-club|invitation-link|join-club-button", comment: "Button to join the club after input of invitation link.")
+                    Text("invitation-link-and-create-club|invitation-link|join-club-button", comment: "Button to join the club after input of invitation link.")
                         .font(.title2)
                         .frame(maxWidth: .infinity)
                 }.buttonStyle(.borderedProminent)
                     .disabled(self.buttonDisabled)
                     .padding(.horizontal)
-            }.alert(String(localized: "register-and-create-club|invitation-link|not-found-alert|title", comment: "Title of the alert shown when no person is found with specified invitation link."), isPresented: self.$notFoundAlertShown) {
-                Button(String(localized: "register-and-create-club|invitation-link|not-found-alert|button", comment: "Button of the alert shown when no person is found with specified invitation link.")) {
+            }.alert(String(localized: "invitation-link-and-create-club|invitation-link|not-found-alert|title", comment: "Title of the alert shown when no person is found with specified invitation link."), isPresented: self.$notFoundAlertShown) {
+                Button(String(localized: "invitation-link-and-create-club|invitation-link|not-found-alert|button", comment: "Button of the alert shown when no person is found with specified invitation link.")) {
                     self.invitationLink = ""
                     self.buttonDisabled = true
                 }
             }
             .sheet(item: self.$personToInvite) { person in
-                Text(person.name.description) // TODO
+                InvitationLinkWelcomePersonView(person, isSignInNavigationActive: self.$isSignInNavigationActive)
+            }
+            .navigationDestination(isPresented: self.$isSignInNavigationActive) {
+                Text("TODO")
             }
         }
         

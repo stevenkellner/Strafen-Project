@@ -96,8 +96,9 @@
 		B0F598CD29E6B5500056B871 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0F598CB29E6B5500056B871 /* InfoPlist.strings */; };
 		B0F598D029E6B5500056B871 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0F598CE29E6B5500056B871 /* Localizable.strings */; };
 		B0F598D529E6CC650056B871 /* TermsAndPrivacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F598D429E6CC650056B871 /* TermsAndPrivacyView.swift */; };
-		B0F598D729E6FEB00056B871 /* RegisterAndCreateClubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F598D629E6FEB00056B871 /* RegisterAndCreateClubView.swift */; };
+		B0F598D729E6FEB00056B871 /* InvitationLinkAndCreateClubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F598D629E6FEB00056B871 /* InvitationLinkAndCreateClubView.swift */; };
 		B0F598D929E976810056B871 /* FirebaseFunctionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F598D829E976810056B871 /* FirebaseFunctionError.swift */; };
+		B0F598DB29EA9FEF0056B871 /* InvitationLinkWelcomePersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F598DA29EA9FEF0056B871 /* InvitationLinkWelcomePersonView.swift */; };
 		B0F5FAA729E55299008C0380 /* InvitationLinkCreateIdFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F5FAA629E55299008C0380 /* InvitationLinkCreateIdFunction.swift */; };
 		B0F5FAA929E55334008C0380 /* InvitationLinkWithdrawFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F5FAA829E55334008C0380 /* InvitationLinkWithdrawFunction.swift */; };
 		B0F5FAAB29E5535B008C0380 /* InvitationLinkGetPersonFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F5FAAA29E5535B008C0380 /* InvitationLinkGetPersonFunction.swift */; };
@@ -198,8 +199,9 @@
 		B0F598D129E6B55A0056B871 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B0F598D329E6B5DD0056B871 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B0F598D429E6CC650056B871 /* TermsAndPrivacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndPrivacyView.swift; sourceTree = "<group>"; };
-		B0F598D629E6FEB00056B871 /* RegisterAndCreateClubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAndCreateClubView.swift; sourceTree = "<group>"; };
+		B0F598D629E6FEB00056B871 /* InvitationLinkAndCreateClubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationLinkAndCreateClubView.swift; sourceTree = "<group>"; };
 		B0F598D829E976810056B871 /* FirebaseFunctionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctionError.swift; sourceTree = "<group>"; };
+		B0F598DA29EA9FEF0056B871 /* InvitationLinkWelcomePersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationLinkWelcomePersonView.swift; sourceTree = "<group>"; };
 		B0F5FAA629E55299008C0380 /* InvitationLinkCreateIdFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationLinkCreateIdFunction.swift; sourceTree = "<group>"; };
 		B0F5FAA829E55334008C0380 /* InvitationLinkWithdrawFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationLinkWithdrawFunction.swift; sourceTree = "<group>"; };
 		B0F5FAAA29E5535B008C0380 /* InvitationLinkGetPersonFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationLinkGetPersonFunction.swift; sourceTree = "<group>"; };
@@ -466,7 +468,8 @@
 			children = (
 				B0ED7DFC29E57DD900685778 /* StartPageView.swift */,
 				B0F598D429E6CC650056B871 /* TermsAndPrivacyView.swift */,
-				B0F598D629E6FEB00056B871 /* RegisterAndCreateClubView.swift */,
+				B0F598D629E6FEB00056B871 /* InvitationLinkAndCreateClubView.swift */,
+				B0F598DA29EA9FEF0056B871 /* InvitationLinkWelcomePersonView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F598DB29EA9FEF0056B871 /* InvitationLinkWelcomePersonView.swift in Sources */,
 				B0E6A5AA29E046D80095471B /* Person.swift in Sources */,
 				B05AF42929E2F2E400BA15F0 /* OperationResult.swift in Sources */,
 				B06E9FFB29E1BDCC0034B178 /* CubNewFunction.swift in Sources */,
@@ -665,7 +669,7 @@
 				B05AF42B29E2F43E00BA15F0 /* ValidationResult.swift in Sources */,
 				B0E6A59C29E041740095471B /* Importance.swift in Sources */,
 				B0E6A5BF29E0594E0095471B /* FirebaseFunctionCaller.swift in Sources */,
-				B0F598D729E6FEB00056B871 /* RegisterAndCreateClubView.swift in Sources */,
+				B0F598D729E6FEB00056B871 /* InvitationLinkAndCreateClubView.swift in Sources */,
 				B0E6A5AE29E049960095471B /* ReasonTemplate.swift in Sources */,
 				B05AF43029E2F5CA00BA15F0 /* Settings+Appearance.swift in Sources */,
 				B0F5FAA729E55299008C0380 /* InvitationLinkCreateIdFunction.swift in Sources */,

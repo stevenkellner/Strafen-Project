@@ -8,25 +8,25 @@
 "dismiss-sheet" = "Schließen";
 
 /* Button to join the club after input of invitation link. */
-"register-and-create-club|invitation-link|join-club-button" = "Verein beitreten";
+"invitation-link-and-create-club|invitation-link|join-club-button" = "Verein beitreten";
 
 /* Button of the alert shown when no person is found with specified invitation link. */
-"register-and-create-club|invitation-link|not-found-alert|button" = "Anderen Link eingeben";
+"invitation-link-and-create-club|invitation-link|not-found-alert|button" = "Anderen Link eingeben";
 
 /* Title of the alert shown when no person is found with specified invitation link. */
-"register-and-create-club|invitation-link|not-found-alert|title" = "Es wurde keine Person mit diesem Link eingeladen.";
+"invitation-link-and-create-club|invitation-link|not-found-alert|title" = "Es wurde keine Person mit diesem Link eingeladen.";
 
 /* Description of the invitation link input. */
-"register-and-create-club|invitation-link|text-field-description" = "Dein persönlicher Einladungslink oder deine 16-stellige Kennung vom Einladungslink.";
+"invitation-link-and-create-club|invitation-link|text-field-description" = "Dein persönlicher Einladungslink oder deine 16-stellige Kennung vom Einladungslink.";
 
 /* Title of the invitation link input. */
-"register-and-create-club|invitation-link|text-field-placeholder" = "Deine Kennung";
+"invitation-link-and-create-club|invitation-link|text-field-placeholder" = "Deine Kennung";
 
 /* Placeholder of the invitation link input. */
-"register-and-create-club|invitation-link|text-field-title" = "Einladungslink";
+"invitation-link-and-create-club|invitation-link|text-field-title" = "Einladungslink";
 
 /* Title of register and create club view. */
-"register-and-create-club|title" = "Verein beitreten";
+"invitation-link-and-create-club|title" = "Verein beitreten";
 
 /* Login button on start page to get to login page. */
 "start-page|buttons|login" = "Einloggen";

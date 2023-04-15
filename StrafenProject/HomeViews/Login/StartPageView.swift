@@ -9,10 +9,10 @@ import SwiftUI
 
 struct StartPageView: View {
     
-    @State var isTermsAndPrivacySheetShown = false
+    @State private var isTermsAndPrivacySheetShown = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 self.backgroundImage
                     .ignoresSafeArea(edges: .top)
@@ -37,7 +37,7 @@ struct StartPageView: View {
     
     @ViewBuilder var startAndLoginButtons: some View {
         VStack {
-            NavigationLink(destination: RegisterAndCreateClubView(), isActive: .constant(true)) {
+            NavigationLink(destination: InvitationLinkAndCreateClubView()) {
                 Text("start-page|buttons|start-register-create-club", comment: "Start button on start page to get to register / create club page.")
                     .font(.title2)
                     .frame(maxWidth: .infinity)
