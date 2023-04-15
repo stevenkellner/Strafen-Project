@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StartPageView: View {
+    
     @State var isTermsAndPrivacySheetShown = false
     
     var body: some View {
@@ -36,7 +37,7 @@ struct StartPageView: View {
     
     @ViewBuilder var startAndLoginButtons: some View {
         VStack {
-            NavigationLink(destination: Text("TODO")) {
+            NavigationLink(destination: RegisterAndCreateClubView(), isActive: .constant(true)) {
                 Text("start-page|buttons|start-register-create-club", comment: "Start button on start page to get to register / create club page.")
                     .font(.title2)
                     .frame(maxWidth: .infinity)

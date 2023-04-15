@@ -31,3 +31,5 @@ extension InvitationLinkGetPersonFunction.ReturnType: Decodable {}
 extension InvitationLinkGetPersonFunction.ReturnType: Sendable {}
 
 extension InvitationLinkGetPersonFunction.ReturnType: Hashable {}
+
+extension InvitationLinkGetPersonFunction.ReturnType: Identifiable {}

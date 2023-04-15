@@ -7,6 +7,27 @@
 /* Dismiss button on a sheet. */
 "dismiss-sheet" = "Done";
 
+/* Button to join the club after input of invitation link. */
+"register-and-create-club|invitation-link|join-club-button" = "Join club";
+
+/* Button of the alert shown when no person is found with specified invitation link. */
+"register-and-create-club|invitation-link|not-found-alert|button" = "Enter different link";
+
+/* Title of the alert shown when no person is found with specified invitation link. */
+"register-and-create-club|invitation-link|not-found-alert|title" = "No person is invited with this link.";
+
+/* Description of the invitation link input. */
+"register-and-create-club|invitation-link|text-field-description" = "Your personal invitation link or your 16-digits identifier of the invitation link.";
+
+/* Title of the invitation link input. */
+"register-and-create-club|invitation-link|text-field-placeholder" = "Your identifier";
+
+/* Placeholder of the invitation link input. */
+"register-and-create-club|invitation-link|text-field-title" = "Invitation link";
+
+/* Title of register and create club view. */
+"register-and-create-club|title" = "Join club";
+
 /* Login button on start page to get to login page. */
 "start-page|buttons|login" = "Login";
 

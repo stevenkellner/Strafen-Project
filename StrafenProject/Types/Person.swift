@@ -35,6 +35,13 @@ extension Person.PersonName: Sendable {}
 
 extension Person.PersonName: Hashable {}
 
+extension Person.PersonName: CustomStringConvertible {
+    var description: String {
+        let personNameComponents = PersonNameComponents(givenName: self.first, familyName: self.last)
+        return personNameComponents.formatted(.name(style: .medium))
+    }
+}
+
 extension Person.PersonName: FirebaseFunctionParameterType {
     @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
         FirebaseFunctionParameter(self.first, for: "first")

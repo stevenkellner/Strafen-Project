@@ -8,34 +8,8 @@
 import Foundation
 
 enum FirebaseFunctionResult<T> {
-    struct Error: Swift.Error {
-        enum Code: String {
-            case ok = "ok"
-            case cancelled = "cancelled"
-            case unknown = "unknown"
-            case invalidArgument = "invalid-argument"
-            case deadlineExceeded = "deadline-exceeded"
-            case notFound = "not-found"
-            case alreadyExists = "already-exists"
-            case permissionDenied = "permission-denied"
-            case resourceExhausted = "resource-exhausted"
-            case failedPrecondition = "failed-precondition"
-            case aborted = "aborted"
-            case outOfRange = "out-of-range"
-            case unimplemented = "unimplemented"
-            case `internal` = "`internal`"
-            case unavailable = "unavailable"
-            case dataLoss = "data-loss"
-            case unauthenticated = "unauthenticated"
-        }
-        
-        let code: Code
-        let message: String
-        let stack: String
-    }
-    
     case success(value: T)
-    case failure(error: Error)
+    case failure(error: FirebaseFunctionError)
     
     var value: T {
         get throws {
@@ -49,13 +23,9 @@ enum FirebaseFunctionResult<T> {
     }
 }
 
-extension FirebaseFunctionResult.Error.Code: Decodable {}
+extension FirebaseFunctionResult: Equatable where T: Equatable {}
 
-extension FirebaseFunctionResult.Error.Code: Sendable {}
-
-extension FirebaseFunctionResult.Error: Decodable {}
-
-extension FirebaseFunctionResult.Error: Sendable {}
+extension FirebaseFunctionResult: Hashable where T: Hashable {}
 
 extension FirebaseFunctionResult: Decodable where T: Decodable {
     private enum CodingKeys: String, CodingKey {
@@ -77,7 +47,7 @@ extension FirebaseFunctionResult: Decodable where T: Decodable {
             let value = try container.decode(T.self, forKey: .value)
             self = .success(value: value)
         case .failure:
-            let error = try container.decode(Error.self, forKey: .error)
+            let error = try container.decode(FirebaseFunctionError.self, forKey: .error)
             self = .failure(error: error)
         }
     }

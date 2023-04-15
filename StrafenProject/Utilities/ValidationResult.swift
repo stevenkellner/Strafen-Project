@@ -39,6 +39,12 @@ enum ValidationResult<Failure> {
     }
 }
 
+extension ValidationResult: Equatable where Failure: Equatable {}
+
+extension ValidationResult: Hashable where Failure: Hashable {}
+
+extension ValidationResult: Sendable where Failure: Sendable {}
+
 extension Collection {
     
     func evaluateAll<Failure>(valid evaluate: (Element) throws -> ValidationResult<Failure>) rethrows -> ValidationResult<Failure> {
