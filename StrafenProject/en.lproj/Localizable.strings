@@ -28,6 +28,93 @@
 /* Title of register and create club view. */
 "invitation-link-and-create-club|title" = "Join club";
 
+/* Complete registration button in the welcome person page after invitation link input. */
+"invitation-link-welcome-person|complete-registration-button" = "Complete registration";
+
+/* Invitation to club text in the welcome person page after invitation link input. */
+"invitation-link-welcome-person|invitation-in-club?club=%@" = "You have been invited to the club %@.";
+
+/* Person are not you in the welcome person page after invitation link input. */
+"invitation-link-welcome-person|not-you" = "Are not you?";
+
+/* Ask cashier for a new invitation link if person are not you in the welcome person page after invitation link input. */
+"invitation-link-welcome-person|not-you-ask-cashier-for-new-link" = "Ask your cashier to create a new invitation link for you.";
+
+/* Title of the welcome person page after invitation link input. */
+"invitation-link-welcome-person|title" = "Welcome";
+
+/* Welcome person text in the welcome person page after invitation link input. */
+"invitation-link-welcome-person|welcom-person?person=%@" = "Welcome, %@";
+
+/* Placeholder of the email input textfield. */
+"login|email-textfield-placeholder" = "Email";
+
+/* Button if you have forgot your password. */
+"login|forgot-password" = "Forgot password";
+
+/* Message to confirm that an email for password recovery is send. */
+"login|forgot-password-confirm-message" = "A link to recover your password is send to your email address.";
+
+/* Login with email button. */
+"login|login-button" = "Login now";
+
+/* Login failed alert title. */
+"login|login-failed-alert" = "Login failed";
+
+/* Title of the login page. */
+"login|login-title" = "Login";
+
+/* Login with apple button. */
+"login|login-with-apple-button" = "Login with apple";
+
+/* Login with google button. */
+"login|login-with-google-button" = "Login with google";
+
+/* Or text between login with email and login with apple / google. */
+"login|or" = "or";
+
+/* Placeholder of the password input textfield. */
+"login|password-textfield-placeholder" = "Password";
+
+/* Sign in with email button. */
+"login|sign-in-button" = "Sign in now";
+
+/* Cancel login button on sign in error alert when user is not found. */
+"login|sign-in-error-alert|cancel-login-button" = "Cancel login";
+
+/* Sign in error alert message when the specified email to register is already in use. */
+"login|sign-in-error-alert|email-in-use-message" = "You are already signed in with this email address.";
+
+/* Try again button on sign in error alert when an error occured. */
+"login|sign-in-error-alert|try-again-button" = "Try again";
+
+/* Sign in error alert message when an unknown error occured. */
+"login|sign-in-error-alert|unknown-error-message" = "An unknown error occurred.";
+
+/* Sign in error alert message when the user with specified email doesn't exists. */
+"login|sign-in-error-alert|user-not-found-message" = "Your aren't signed in yet.";
+
+/* Sign in error alert message when the specified password to register is too weak. */
+"login|sign-in-error-alert|weak-password-message" = "The specified password is too weak.";
+
+/* Sign in error alert message when the specified password for login is wrong. */
+"login|sign-in-error-alert|wrong-password-message" = "The specified password is wrong.";
+
+/* Sign in failed alert title */
+"login|sign-in-failed-alert" = "Sign in failed";
+
+/* Title of the sign in page. */
+"login|sign-in-title" = "Sign in";
+
+/* Sign in with apple button. */
+"login|sign-in-with-apple-button" = "Sign in with apple";
+
+/* Sign in with google button. */
+"login|sign-in-with-google-button" = "Sign in with google";
+
+/* Button with ok text. */
+"ok-buttton" = "ok";
+
 /* Login button on start page to get to login page. */
 "start-page|buttons|login" = "Login";
 

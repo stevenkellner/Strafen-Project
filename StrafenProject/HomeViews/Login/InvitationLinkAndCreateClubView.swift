@@ -19,21 +19,23 @@ struct InvitationLinkAndCreateClubView: View {
 extension InvitationLinkAndCreateClubView {
     struct RegisterView: View {
                 
-        @State private var invitationLink: String = "Y8T4Gul9W4cU3BFd" // TODO
+        @State private var invitationLink: String = ""
                 
-        @State private var buttonDisabled = false // TODO
+        @State private var buttonDisabled = true
         
         @State private var notFoundAlertShown = false
         
         @State private var personToInvite: InvitationLinkGetPersonFunction.ReturnType?
         
-        @State private var isSignInNavigationActive = true // TODO
+        @State private var isSignInNavigationActive = false
             
         var body: some View {
             VStack {
                 Section {
                     TextField(String(localized: "invitation-link-and-create-club|invitation-link|text-field-placeholder", comment: "Title of the invitation link input."), text: self.$invitationLink)
                         .font(.title3)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
                         .padding(5)
                         .background(Color(uiColor: .systemGray6))
                         .cornerRadius(5)
@@ -75,7 +77,9 @@ extension InvitationLinkAndCreateClubView {
                 InvitationLinkWelcomePersonView(person, isSignInNavigationActive: self.$isSignInNavigationActive)
             }
             .navigationDestination(isPresented: self.$isSignInNavigationActive) {
-                Text("TODO")
+                LoginView(referrer: .invitationLink, afterSignIn: {
+                    // TODO
+                })
             }
         }
         

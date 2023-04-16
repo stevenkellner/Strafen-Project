@@ -35,10 +35,10 @@ extension Person.PersonName: Sendable {}
 
 extension Person.PersonName: Hashable {}
 
-extension Person.PersonName: CustomStringConvertible {
-    var description: String {
+extension Person.PersonName {
+    func formatted(_ style: PersonNameComponents.FormatStyle.Style = .medium) -> String {
         let personNameComponents = PersonNameComponents(givenName: self.first, familyName: self.last)
-        return personNameComponents.formatted(.name(style: .medium))
+        return personNameComponents.formatted(.name(style: style))
     }
 }
 
