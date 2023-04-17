@@ -8,7 +8,7 @@
 import SwiftUI
 import FirebaseAuth
 
-struct LoginView: View {
+struct LoginView<Destination>: View where Destination: View {
     enum Referrer {
         case login
         case invitationLink
@@ -34,7 +34,21 @@ struct LoginView: View {
     
     private let referrer: Referrer
     
-    private let completionHandler: () -> Void
+    private let completionHandler: ((User) -> Void)?
+    
+    private let createDestination: ((User) -> Destination)?
+    
+    init(referrer: Referrer, @ViewBuilder destination createDestination: @escaping (User) -> Destination) {
+        self.referrer = referrer
+        self.completionHandler = nil
+        self.createDestination = createDestination
+    }
+    
+    init(referrer: Referrer, afterSignIn completionHandler: @escaping (User) -> Void, @ViewBuilder destination createDestination: @escaping (User) -> Destination) {
+        self.referrer = referrer
+        self.completionHandler = completionHandler
+        self.createDestination = createDestination
+    }
     
     @State private var email = ""
     
@@ -49,11 +63,10 @@ struct LoginView: View {
     @State private var isSignInErrorAlertShown = false
     
     @State private var signInErrorCode: SignInErrorCode?
+        
+    @State private var user: User?
     
-    init(referrer: Referrer, afterSignIn completionHandler: @escaping () -> Void) {
-        self.referrer = referrer
-        self.completionHandler = completionHandler
-    }
+    @State private var isDestinationNavigationActive = false
     
     var body: some View {
         VStack {
@@ -100,6 +113,11 @@ struct LoginView: View {
                     Text("login|sign-in-error-alert|user-not-found-message", comment: "Sign in error alert message when the user with specified email doesn't exists.")
                 case .wrongPassword:
                     Text("login|sign-in-error-alert|wrong-password-message", comment: "Sign in error alert message when the specified password for login is wrong.")
+                }
+            }
+            .navigationDestination(isPresented: self.$isDestinationNavigationActive) {
+                if let createDestination = self.createDestination, let user = self.user {
+                    createDestination(user)
                 }
             }
     }
@@ -162,7 +180,7 @@ struct LoginView: View {
     @ViewBuilder private var signInWithAppleButton: some View {
         Button {
             Task {
-                await self.handleSignIn(with: .apple)
+                await self.handleSignIn(with: .apple(scopes: self.referrer == .createClub ? [.fullName] : nil))
             }
         } label: {
             HStack {
@@ -306,8 +324,12 @@ struct LoginView: View {
     
     private func handleSignIn(with method: FirebaseAuthenticator.SignInMethod) async {
         do {
-            try await FirebaseAuthenticator.shared.signIn(with: method, createUser: self.referrer == .invitationLink || self.referrer == .createClub)
-            self.completionHandler()
+            let authResult = try await FirebaseAuthenticator.shared.signIn(with: method, createUser: self.referrer == .invitationLink || self.referrer == .createClub)
+            self.completionHandler?(authResult.user)
+            if self.createDestination != nil {
+                self.user = authResult.user
+                self.isDestinationNavigationActive = true
+            }
         } catch {
             guard (error as NSError).domain == AuthErrorDomain,
                   let errorCode = AuthErrorCode.Code(rawValue: (error as NSError).code) else {
@@ -328,5 +350,19 @@ struct LoginView: View {
             }
             self.isSignInErrorAlertShown = true
         }
+    }
+}
+
+extension LoginView where Destination == EmptyView {
+    init(referrer: Referrer) {
+        self.referrer = referrer
+        self.completionHandler = nil
+        self.createDestination = nil
+    }
+    
+    init(referrer: Referrer, afterSignIn completionHandler: @escaping (User) -> Void) {
+        self.referrer = referrer
+        self.completionHandler = completionHandler
+        self.createDestination = nil
     }
 }

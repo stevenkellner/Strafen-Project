@@ -8,7 +8,7 @@
 import Foundation
 
 enum PayedState {
-    case payed(inApp: Bool, payDate: Date)
+    case payed(payDate: Date)
     case unpayed
     case settled
 }
@@ -16,8 +16,8 @@ enum PayedState {
 extension PayedState: Equatable {
     static func ==(lhs: PayedState, rhs: PayedState) -> Bool {
         switch (lhs, rhs) {
-        case let (.payed(inApp: lhsInApp, payDate: lhsPayDate), .payed(inApp: rhsInApp, payDate: rhsPayDate)):
-            return lhsInApp == rhsInApp && Calendar.current.isDate(lhsPayDate, equalTo: rhsPayDate, toGranularity: .nanosecond)
+        case let (.payed(payDate: lhsPayDate), .payed(payDate: rhsPayDate)):
+            return Calendar.current.isDate(lhsPayDate, equalTo: rhsPayDate, toGranularity: .nanosecond)
         case (.unpayed, .unpayed):
             return true
         case (.settled, .settled):
@@ -31,7 +31,6 @@ extension PayedState: Equatable {
 extension PayedState: Codable {
     private enum CodingKeys: String, CodingKey {
         case state
-        case inApp
         case payDate
     }
     
@@ -40,9 +39,8 @@ extension PayedState: Codable {
         let state = try container.decode(String.self, forKey: .state)
         switch state {
         case "payed":
-            let inApp = try container.decode(Bool.self, forKey: .inApp)
             let payDate = try container.decode(Date.self, forKey: .payDate)
-            self = .payed(inApp: inApp, payDate: payDate)
+            self = .payed(payDate: payDate)
         case "unpayed":
             self = .unpayed
         case "settled":
@@ -55,9 +53,8 @@ extension PayedState: Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
-        case let .payed(inApp: inApp, payDate: payDate):
+        case let .payed(payDate: payDate):
             try container.encode("payed", forKey: .state)
-            try container.encode(inApp, forKey: .inApp)
             try container.encode(payDate, forKey: .payDate)
         case .unpayed:
             try container.encode("unpayed", forKey: .state)
@@ -74,9 +71,8 @@ extension PayedState: Hashable {}
 extension PayedState: FirebaseFunctionParameterType {
     @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
         switch self {
-        case .payed(let inApp, let payDate):
+        case .payed(let payDate):
             FirebaseFunctionParameter("payed", for: "state")
-            FirebaseFunctionParameter(inApp, for: "inApp")
             FirebaseFunctionParameter(payDate, for: "payDate")
         case .unpayed:
             FirebaseFunctionParameter("unpayed", for: "state")
@@ -90,7 +86,7 @@ extension PayedState: RandomPlaceholder {
     static func randomPlaceholder(using generator: inout some RandomNumberGenerator) -> PayedState {
         switch UInt.random(in: 0...2, using: &generator) {
         case 0:
-            return .payed(inApp: Bool.random(using: &generator), payDate: Date())
+            return .payed(payDate: Date())
         case 1:
             return .unpayed
         case 2:

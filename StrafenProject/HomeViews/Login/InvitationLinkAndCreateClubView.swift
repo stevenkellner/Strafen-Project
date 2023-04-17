@@ -6,18 +6,31 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct InvitationLinkAndCreateClubView: View {
     var body: some View {
         VStack {
-            RegisterView()
-            // TODO create club
+            InvitationLinkView()
+            HStack {
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundColor(.secondary)
+                Text("invitation-link-and-create-club|or", comment: "Or text between invitation link input and create club button.")
+                    .font(.callout)
+                    .foregroundColor(.secondary)
+                Rectangle()
+                    .foregroundColor(.secondary)
+                    .frame(height: 1)
+            }.padding(.horizontal)
+                .padding(.vertical, 30)
+            CreateClubButtonView()
         }.navigationTitle(String(localized: "invitation-link-and-create-club|title", comment: "Title of register and create club view."))
     }
 }
 
 extension InvitationLinkAndCreateClubView {
-    struct RegisterView: View {
+    private struct InvitationLinkView: View {
                 
         @State private var invitationLink: String = ""
                 
@@ -55,7 +68,6 @@ extension InvitationLinkAndCreateClubView {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 5)
                 }.padding(.horizontal)
-                
                 Button {
                     Task {
                         await self.handleInvitationLink()
@@ -77,7 +89,7 @@ extension InvitationLinkAndCreateClubView {
                 InvitationLinkWelcomePersonView(person, isSignInNavigationActive: self.$isSignInNavigationActive)
             }
             .navigationDestination(isPresented: self.$isSignInNavigationActive) {
-                LoginView(referrer: .invitationLink, afterSignIn: {
+                LoginView(referrer: .invitationLink, afterSignIn: { _ in
                     // TODO
                 })
             }
@@ -126,6 +138,27 @@ extension InvitationLinkAndCreateClubView {
                     self.notFoundAlertShown = true
                 }
             }
+        }
+    }
+}
+
+extension InvitationLinkAndCreateClubView {
+    private struct CreateClubButtonView: View {
+                
+        var body: some View {
+            VStack {
+                Text("invitation-link-and-create-club|create-club-button-description", comment: "Description of the create club button.")
+                    .font(.callout)
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                NavigationLink(destination: LoginView(referrer: .createClub, destination: { user in
+                    Text(user.displayName ?? "unknown")
+                })) {
+                    Text("invitation-link-and-create-club|create-club-button", comment: "Create new club button.")
+                        .font(.title2)
+                        .frame(maxWidth: .infinity)
+                }.buttonStyle(.bordered)
+            }.padding(.horizontal)
         }
     }
 }

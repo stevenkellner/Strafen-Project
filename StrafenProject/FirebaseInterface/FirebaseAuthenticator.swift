@@ -21,7 +21,7 @@ struct FirebaseAuthenticator {
     
     enum SignInMethod {
         case emailAndPassword(email: String, password: String)
-        case apple
+        case apple(scopes: [ASAuthorization.Scope]?)
         case google
     }
     
@@ -38,16 +38,16 @@ struct FirebaseAuthenticator {
             } else {
                 return try await Auth.auth().signIn(withEmail: email, password: password)
             }
-        case .apple:
-            return try await self.signInWithApple()
+        case .apple(scopes: let requestedScopes):
+            return try await self.signInWithApple(scopes: requestedScopes)
         case .google:
             return try await self.signInWithGoogle()
         }
     }
         
-    private func signInWithApple() async throws -> AuthDataResult {
+    private func signInWithApple(scopes requestedScopes: [ASAuthorization.Scope]?) async throws -> AuthDataResult {
         let controller = SignInWithAppleController()
-        let credential = try await controller.requestCredential()
+        let credential = try await controller.requestCredential(scopes: requestedScopes)
         return try await Auth.auth().signIn(with: credential)
     }
     
@@ -86,10 +86,11 @@ class SignInWithAppleController: NSObject, ASAuthorizationControllerDelegate, AS
     
     private var credentialHandler: ((_ credential: OAuthCredential?, _ error: Error?) -> Void)?
     
-    func requestCredential() async throws -> OAuthCredential {
+    func requestCredential(scopes requestedScopes: [ASAuthorization.Scope]?) async throws -> OAuthCredential {
         self.currentNonce = String.randomNonce()
         let appleIdProvider = ASAuthorizationAppleIDProvider()
         let request = appleIdProvider.createRequest()
+        request.requestedScopes = requestedScopes
         request.nonce = self.currentNonce?.sha256
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self

@@ -12,8 +12,6 @@ struct ClubProperties {
     
     public private(set) var id: ClubProperties.ID
     public private(set) var name: String
-    public private(set) var regionCode: String
-    public private(set) var inAppPaymentActive: Bool
 }
 
 extension ClubProperties: Equatable {}
@@ -27,7 +25,5 @@ extension ClubProperties: Hashable {}
 extension ClubProperties: FirebaseFunctionParameterType {
     @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
         FirebaseFunctionParameter(self.name, for: "name")
-        FirebaseFunctionParameter(self.regionCode, for: "regionCode")
-        FirebaseFunctionParameter(self.inAppPaymentActive, for: "inAppPaymentActive")
     }
 }

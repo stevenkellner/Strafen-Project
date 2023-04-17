@@ -30,7 +30,7 @@
       shouldAutocreateTestPlan = "YES">
       <Testables>
          <TestableReference
-            skipped = "YES"
+            skipped = "NO"
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
@@ -41,37 +41,7 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "BitTests">
-               </Test>
-               <Test
                   Identifier = "ClubGetIdTests">
-               </Test>
-               <Test
-                  Identifier = "CombineIteratorTests">
-               </Test>
-               <Test
-                  Identifier = "CrypterTests">
-               </Test>
-               <Test
-                  Identifier = "DataToBitIteratorTests">
-               </Test>
-               <Test
-                  Identifier = "FirebaseFunctionsTests">
-               </Test>
-               <Test
-                  Identifier = "FixedLengthTests">
-               </Test>
-               <Test
-                  Identifier = "OtherTests">
-               </Test>
-               <Test
-                  Identifier = "PseudoRandomTests">
-               </Test>
-               <Test
-                  Identifier = "RandomBitIteratorTests">
-               </Test>
-               <Test
-                  Identifier = "SettingsTests">
                </Test>
                <Test
                   Identifier = "StrafenProjectTests">

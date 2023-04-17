@@ -26,15 +26,15 @@ final class FirebaseFunctionsTests: XCTestCase {
     }
     
     func testThrowsHttpsError() async {
-        let fineEditPayedFunction = FineEditPayedFunction(clubId: self.clubId, fineId: Fine.ID(), payedState: .payed(inApp: false, payDate: Date()))
+        let fineEditPayedFunction = FineEditPayedFunction(clubId: self.clubId, fineId: Fine.ID(), payedState: .payed(payDate: Date()))
         await XCTAssertThrowsErrorAsync(try await FirebaseFunctionCaller.shared.verbose.call(fineEditPayedFunction)) { error in
-            XCTAssertTrue(error is FirebaseFunctionResult<FineEditPayedFunction.ReturnType>.Error)
-            XCTAssertEqual((error as? FirebaseFunctionResult<FineEditPayedFunction.ReturnType>.Error)?.code, .notFound)
+            XCTAssertTrue(error is FirebaseFunctionError)
+            XCTAssertEqual((error as? FirebaseFunctionError)?.code, .notFound)
         }
     }
         
     func testNewClub() async throws {
-        let clubNewFunction = ClubNewFunction(clubProperties: ClubProperties(id: ClubProperties.ID(), name: "Test Club", regionCode: "DE", inAppPaymentActive: false), personId: Person.ID(), personName: Person.PersonName(first: "asdf"))
+        let clubNewFunction = ClubNewFunction(clubProperties: ClubProperties(id: ClubProperties.ID(), name: "Test Club"), personId: Person.ID(), personName: Person.PersonName(first: "asdf"))
         try await FirebaseFunctionCaller.shared.verbose.call(clubNewFunction)
     }
     
@@ -54,7 +54,7 @@ final class FirebaseFunctionsTests: XCTestCase {
     }
     
     func testFineEditPayed() async throws {
-        let fineEditPayedFunction = FineEditPayedFunction(clubId: self.clubId, fineId: Fine.ID(uuidString: "0B5F958E-9D7D-46E1-8AEE-F52F4370A95A")!, payedState: .payed(inApp: false, payDate: Date()))
+        let fineEditPayedFunction = FineEditPayedFunction(clubId: self.clubId, fineId: Fine.ID(uuidString: "0B5F958E-9D7D-46E1-8AEE-F52F4370A95A")!, payedState: .payed(payDate: Date()))
         try await FirebaseFunctionCaller.shared.verbose.call(fineEditPayedFunction)
     }
     
@@ -67,7 +67,7 @@ final class FirebaseFunctionsTests: XCTestCase {
         XCTAssertEqual(fineList, IdentifiableList(values:[
             Fine(id: Fine.ID(uuidString: "02462A8B-107F-4BAE-A85B-EFF1F727C00F")!, personId: Person.ID(uuidString: "76025DDE-6893-46D2-BC34-9864BB5B8DAD")!, payedState: .settled, number: 1, date: dateFormatter.date(from: "2023-01-24T17:23:45.678Z")!, fineReason: FineReason(reasonMessage: "test_fine_reason_1", amount: Amount(value: 1, subUnitValue: 0), importance: .low)),
             Fine(id: Fine.ID(uuidString: "0B5F958E-9D7D-46E1-8AEE-F52F4370A95A")!, personId: Person.ID(uuidString: "76025DDE-6893-46D2-BC34-9864BB5B8DAD")!, payedState: .unpayed, number: 2, date: dateFormatter.date(from: "2023-01-02T17:23:45.678Z")!, fineReason: FineReason(reasonMessage: "test_fine_reason_2", amount: Amount(value: 2, subUnitValue: 50), importance: .high)),
-            Fine(id: Fine.ID(uuidString: "1B5F958E-9D7D-46E1-8AEE-F52F4370A95A")!, personId: Person.ID(uuidString: "7BB9AB2B-8516-4847-8B5F-1A94B78EC7B7")!, payedState: .payed(inApp: false, payDate: dateFormatter.date(from: "2023-01-22T17:23:45.678Z")!), number: 1, date: dateFormatter.date(from: "2023-01-20T17:23:45.678Z")!, fineReason: FineReason(reasonMessage: "test_fine_reason_3", amount: Amount(value: 2, subUnitValue: 0), importance: .medium))
+            Fine(id: Fine.ID(uuidString: "1B5F958E-9D7D-46E1-8AEE-F52F4370A95A")!, personId: Person.ID(uuidString: "7BB9AB2B-8516-4847-8B5F-1A94B78EC7B7")!, payedState: .payed(payDate: dateFormatter.date(from: "2023-01-22T17:23:45.678Z")!), number: 1, date: dateFormatter.date(from: "2023-01-20T17:23:45.678Z")!, fineReason: FineReason(reasonMessage: "test_fine_reason_3", amount: Amount(value: 2, subUnitValue: 0), importance: .medium))
         ]))
     }
     
@@ -87,8 +87,9 @@ final class FirebaseFunctionsTests: XCTestCase {
     }
     
     func testPersonGetCurrent() async throws {
-        XCTAssertNotNil(FirebaseAuthenticator.shared.user)
-        let hashedUserId = Crypter.sha512(FirebaseAuthenticator.shared.user!.uid)
+        let user = await FirebaseAuthenticator.shared.user
+        XCTAssertNotNil(user)
+        let hashedUserId = Crypter.sha512(user!.uid)
         let personId = Person.ID()
         let crypter = Crypter(keys: PrivateKeys.current.cryptionKeys)
         try await Database.database(url: PrivateKeys.current.databaseUrl).reference(withPath: "users/\(hashedUserId)").setValue(crypter.encodeEncrypt(["clubId": self.clubId.uuidString, "personId": personId.uuidString]))
@@ -96,7 +97,7 @@ final class FirebaseFunctionsTests: XCTestCase {
         try await Database.database(url: PrivateKeys.current.databaseUrl).reference(withPath: "clubs/\(self.clubId.uuidString)/persons/\(personId.uuidString)").setValue(crypter.encodeEncrypt(Person(id: personId, name: Person.PersonName(first: "lkj", last: "asef"), fineIds: [], signInData: Person.SignInData(hashedUserId: hashedUserId, signInDate: signInDate), isInvited: false)))
         let personGetCurrentFunction = PersonGetCurrentFunction()
         let person = try await FirebaseFunctionCaller.shared.verbose.call(personGetCurrentFunction)
-        XCTAssertEqual(person, PersonGetCurrentFunction.ReturnType(id: personId, name: Person.PersonName(first: "lkj", last: "asef"), fineIds: [], signInData: Person.SignInData(hashedUserId: hashedUserId, signInDate: signInDate), isAdmin: true, club: ClubProperties(id: self.clubId, name: "Neuer Verein", regionCode: "DE", inAppPaymentActive: true)))
+        XCTAssertEqual(person, PersonGetCurrentFunction.ReturnType(id: personId, name: Person.PersonName(first: "lkj", last: "asef"), fineIds: [], signInData: Person.SignInData(hashedUserId: hashedUserId, signInDate: signInDate), isAdmin: true, club: ClubProperties(id: self.clubId, name: "Neuer Verein")))
     }
     
     func testPersonGet() async throws {
@@ -113,13 +114,14 @@ final class FirebaseFunctionsTests: XCTestCase {
     }
     
     func testPersonRegister() async throws {
-        XCTAssertNotNil(FirebaseAuthenticator.shared.user)
-        let hashedUserId = Crypter.sha512(FirebaseAuthenticator.shared.user!.uid)
+        let user = await FirebaseAuthenticator.shared.user
+        XCTAssertNotNil(user)
+        let hashedUserId = Crypter.sha512(user!.uid)
         try await Database.database(url: PrivateKeys.current.databaseUrl).reference(withPath: "clubs/\(self.clubId.uuidString)/authentication/clubMember/\(hashedUserId)").removeValue()
         try await Database.database(url: PrivateKeys.current.databaseUrl).reference(withPath: "clubs/\(self.clubId.uuidString)/authentication/clubManager/\(hashedUserId)").removeValue()
         let personRegisterPerson = PersonRegisterFunction(clubId: self.clubId, personId: Person.ID(uuidString: "D1852AC0-A0E2-4091-AC7E-CB2C23F708D9")!)
         let club = try await FirebaseFunctionCaller.shared.verbose.call(personRegisterPerson)
-        XCTAssertEqual(club, ClubProperties(id: self.clubId, name: "Neuer Verein", regionCode: "DE", inAppPaymentActive: true))
+        XCTAssertEqual(club, ClubProperties(id: self.clubId, name: "Neuer Verein"))
     }
     
     func testReasonTemplateEditAdd() async throws {
@@ -164,6 +166,6 @@ final class FirebaseFunctionsTests: XCTestCase {
         let invitationLinkId = try await FirebaseFunctionCaller.shared.verbose.call(invitationLinkCreateIdFunction)
         let invitationLinkGetPersonFunction = InvitationLinkGetPersonFunction(invitationLinkId: invitationLinkId)
         let person = try await FirebaseFunctionCaller.shared.verbose.call(invitationLinkGetPersonFunction)
-        XCTAssertEqual(person, InvitationLinkGetPersonFunction.ReturnType(id: personId, name: Person.PersonName(first: "Jane", last: "Doe"), fineIds: [], club: ClubProperties(id: self.clubId, name: "Neuer Verein", regionCode: "DE", inAppPaymentActive: true)))
+        XCTAssertEqual(person, InvitationLinkGetPersonFunction.ReturnType(id: personId, name: Person.PersonName(first: "Jane", last: "Doe"), fineIds: [], club: ClubProperties(id: self.clubId, name: "Neuer Verein")))
     }
 }

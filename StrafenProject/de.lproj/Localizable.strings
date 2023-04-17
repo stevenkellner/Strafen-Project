@@ -7,6 +7,12 @@
 /* Dismiss button on a sheet. */
 "dismiss-sheet" = "Schließen";
 
+/* Create new club button. */
+"invitation-link-and-create-club|create-club-button" = "Neuen Verein erstellen";
+
+/* Description of the create club button. */
+"invitation-link-and-create-club|create-club-button-description" = "Hat deine Mannschaft noch keinen Account, dann erstelle einen neuen Verein.";
+
 /* Button to join the club after input of invitation link. */
 "invitation-link-and-create-club|invitation-link|join-club-button" = "Verein beitreten";
 
@@ -24,6 +30,9 @@
 
 /* Placeholder of the invitation link input. */
 "invitation-link-and-create-club|invitation-link|text-field-title" = "Einladungslink";
+
+/* Or text between invitation link input and create club button. */
+"invitation-link-and-create-club|or" = "oder";
 
 /* Title of register and create club view. */
 "invitation-link-and-create-club|title" = "Verein beitreten";

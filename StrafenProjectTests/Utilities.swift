@@ -35,7 +35,7 @@ func XCTAssertThrowsErrorAsync<T>(_ expression: @autoclosure () async throws -> 
 
 extension FirebaseAuthenticator {
     func authenticateTestUser(clubId: ClubProperties.ID) async throws {
-        try await self.signIn(email: "functions-tests-user@mail.com", password: "ghQshXA7rnDdGWj8GffSQN7VGrm9Qf3Z")
+        try await self.signIn(with: .emailAndPassword(email: "functions-tests-user@mail.com", password: "ghQshXA7rnDdGWj8GffSQN7VGrm9Qf3Z"))
         await withThrowingTaskGroup(of: Void.self) { taskGroup in
             for authenticationType in ["clubMember", "clubManager"] {
                 taskGroup.addTask {

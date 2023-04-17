@@ -44,7 +44,7 @@ struct StartPageView: View {
                     .frame(height: 35)
             }.buttonStyle(.borderedProminent)
             
-            NavigationLink(destination: LoginView(referrer: .login, afterSignIn: {
+            NavigationLink(destination: LoginView(referrer: .login, afterSignIn: { _ in
                 // TODO
             })) {
                 Text("start-page|buttons|login", comment: "Login button on start page to get to login page.")
