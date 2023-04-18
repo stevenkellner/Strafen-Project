@@ -89,8 +89,8 @@ extension InvitationLinkAndCreateClubView {
                 InvitationLinkWelcomePersonView(person, isSignInNavigationActive: self.$isSignInNavigationActive)
             }
             .navigationDestination(isPresented: self.$isSignInNavigationActive) {
-                LoginView(referrer: .invitationLink, afterSignIn: { _ in
-                    // TODO
+                LoginView(referrer: .invitationLink, afterSignIn: { user in
+                    return await self.registerPerson(user: user)
                 })
             }
         }
@@ -139,6 +139,29 @@ extension InvitationLinkAndCreateClubView {
                 }
             }
         }
+        
+        private func registerPerson(user: User) async -> (message: String, button: String)? {
+            guard let person = self.personToInvite else {
+                return nil
+            }
+            let personRegisterFunction = PersonRegisterFunction(clubId: person.club.id, personId: person.id)
+            do {
+                _ = try await FirebaseFunctionCaller.shared.call(personRegisterFunction)
+                try SettingsManager.shared.save(Settings.SignedInPerson(id: person.id, name: person.name, isAdmin: false, hashedUserId: Crypter.sha512(user.uid), club: person.club), at: \.signedInPerson)
+                return nil
+            } catch {
+                guard let error = error as? FirebaseFunctionError else {
+                    return nil
+                }
+                if error.code == .alreadyExists {
+                    return (
+                        message: String(localized: "login|custom-error-alert|register-person|already-exists-message", comment: "Login failed alert if person try to sign in is already registered."),
+                        button: String(localized: "login|custom-error-alert|register-person|login-instead-button", comment: "Login failed alert if person try to sign in is already registered, button text to login instead.")
+                    )
+                }
+                return nil
+            }
+        }
     }
 }
 
@@ -152,7 +175,7 @@ extension InvitationLinkAndCreateClubView {
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 NavigationLink(destination: LoginView(referrer: .createClub, destination: { user in
-                    Text(user.displayName ?? "unknown")
+                    CreateClubView(user: user)
                 })) {
                     Text("invitation-link-and-create-club|create-club-button", comment: "Create new club button.")
                         .font(.title2)

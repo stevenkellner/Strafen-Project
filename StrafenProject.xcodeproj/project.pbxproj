@@ -55,6 +55,7 @@
 		B05AF43229E2F65C00BA15F0 /* Settings+SignedInPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AF43129E2F65C00BA15F0 /* Settings+SignedInPerson.swift */; };
 		B05AF43429E2F6DF00BA15F0 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AF43329E2F6DF00BA15F0 /* SettingsManager.swift */; };
 		B05AF43629E2FDB700BA15F0 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AF43529E2FDB700BA15F0 /* SettingsTests.swift */; };
+		B0679DDC29EE8BC1005A4109 /* CreateClubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0679DDB29EE8BC1005A4109 /* CreateClubView.swift */; };
 		B06E9FFB29E1BDCC0034B178 /* CubNewFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E9FFA29E1BDCC0034B178 /* CubNewFunction.swift */; };
 		B06E9FFF29E1D34D0034B178 /* FineEditFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E9FFE29E1D34D0034B178 /* FineEditFunction.swift */; };
 		B06EA00129E1D3AD0034B178 /* EditType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06EA00029E1D3AD0034B178 /* EditType.swift */; };
@@ -161,6 +162,7 @@
 		B05AF43529E2FDB700BA15F0 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		B05AF43729E2FDF500BA15F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B05AF43829E2FE2400BA15F0 /* StrafenProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StrafenProject.entitlements; sourceTree = "<group>"; };
+		B0679DDB29EE8BC1005A4109 /* CreateClubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateClubView.swift; sourceTree = "<group>"; };
 		B06E9FFA29E1BDCC0034B178 /* CubNewFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubNewFunction.swift; sourceTree = "<group>"; };
 		B06E9FFE29E1D34D0034B178 /* FineEditFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineEditFunction.swift; sourceTree = "<group>"; };
 		B06EA00029E1D3AD0034B178 /* EditType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditType.swift; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 				B0F598D629E6FEB00056B871 /* InvitationLinkAndCreateClubView.swift */,
 				B0F598DA29EA9FEF0056B871 /* InvitationLinkWelcomePersonView.swift */,
 				B0F598DC29EABD620056B871 /* LoginView.swift */,
+				B0679DDB29EE8BC1005A4109 /* CreateClubView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -667,6 +670,7 @@
 				B06EA00329E1DA610034B178 /* FineEditPayedFunction.swift in Sources */,
 				B035641A29DEF82C000BB7AD /* PseudoRandom.swift in Sources */,
 				B05AF41D29E2B1C500BA15F0 /* PersonGetCurrentFunction.swift in Sources */,
+				B0679DDC29EE8BC1005A4109 /* CreateClubView.swift in Sources */,
 				B0E6A5A629E0447D0095471B /* Fine.swift in Sources */,
 				B0E6A5C129E05E680095471B /* DatabaseType.swift in Sources */,
 				B05AF41F29E2B94300BA15F0 /* PersonGetFunction.swift in Sources */,

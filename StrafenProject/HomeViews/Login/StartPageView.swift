@@ -45,7 +45,8 @@ struct StartPageView: View {
             }.buttonStyle(.borderedProminent)
             
             NavigationLink(destination: LoginView(referrer: .login, afterSignIn: { _ in
-                // TODO
+                await self.loginUser()
+                return nil
             })) {
                 Text("start-page|buttons|login", comment: "Login button on start page to get to login page.")
                     .font(.title2)
@@ -78,5 +79,13 @@ struct StartPageView: View {
                     }
             }
         }
+    }
+    
+    private func loginUser() async {
+        let personGetCurrentFunction = PersonGetCurrentFunction()
+        guard let currentPerson = try? await FirebaseFunctionCaller.shared.call(personGetCurrentFunction) else {
+            return
+        }
+        try? SettingsManager.shared.save(currentPerson.settingsPerson, at: \.signedInPerson)
     }
 }

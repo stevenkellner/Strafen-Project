@@ -4,6 +4,30 @@
 /* Starting part of 'By continuing you agree to Terms, Conditions and Privacy Policy', i.e. 'Terms, Conditions and Privacy Policy'. */
 "agree-terms-privacy-by-continue|terms-and-privacy" = "AGBs und Datenschutz";
 
+/* And text between person name input and club name input. */
+"create-club|and" = "und";
+
+/* Header of the club name input. */
+"create-club|club-name-input|header" = "Vereinsname eingeben";
+
+/* Placeholder of the club name input. */
+"create-club|club-name-input|placeholder" = "Vereinsname";
+
+/* Button to create a new club. */
+"create-club|create-club-button" = "Verein erstellen";
+
+/* Title of the create club view. */
+"create-club|navigation-title" = "Verein erstellen";
+
+/* Header of the person name input to complete your profile. */
+"create-club|person-name-input|complete-profile-header" = "Profil vervollständigen";
+
+/* Placeholder of the first name input. */
+"create-club|person-name-input|first-name-placeholder" = "Vorname";
+
+/* Placeholder of the optionally last name input. */
+"create-club|person-name-input|optional-last-name-placeholder" = "Nachname (optional)";
+
 /* Dismiss button on a sheet. */
 "dismiss-sheet" = "Schließen";
 
@@ -54,6 +78,12 @@
 
 /* Welcome person text in the welcome person page after invitation link input. */
 "invitation-link-welcome-person|welcom-person?person=%@" = "Herzlich Willkommen, %@";
+
+/* Login failed alert if person try to sign in is already registered. */
+"login|custom-error-alert|register-person|already-exists-message" = "Du bist bereit registriert.";
+
+/* Login failed alert if person try to sign in is already registered, button text to login instead. */
+"login|custom-error-alert|register-person|login-instead-button" = "Stattdessen anmelden";
 
 /* Placeholder of the email input textfield. */
 "login|email-textfield-placeholder" = "Email";

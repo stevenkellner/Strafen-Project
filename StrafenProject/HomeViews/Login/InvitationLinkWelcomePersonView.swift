@@ -23,6 +23,7 @@ struct InvitationLinkWelcomePersonView: View {
     var body: some View {
         NavigationView {
             VStack {
+                // TODO person image
                 Text("invitation-link-welcome-person|welcom-person?person=\(self.person.name.formatted())", comment: "Welcome person text in the welcome person page after invitation link input.")
                     .font(.title)
                     .fontWeight(.semibold)

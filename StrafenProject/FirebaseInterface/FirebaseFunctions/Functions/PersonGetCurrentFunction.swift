@@ -31,3 +31,9 @@ extension PersonGetCurrentFunction.ReturnType: Decodable {}
 extension PersonGetCurrentFunction.ReturnType: Sendable {}
 
 extension PersonGetCurrentFunction.ReturnType: Hashable {}
+
+extension PersonGetCurrentFunction.ReturnType {
+    var settingsPerson: Settings.SignedInPerson {
+        return Settings.SignedInPerson(id: self.id, name: self.name, isAdmin: self.isAdmin, hashedUserId: self.signInData.hashedUserId, club: self.club)
+    }
+}

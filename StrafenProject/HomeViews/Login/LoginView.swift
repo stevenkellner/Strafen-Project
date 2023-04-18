@@ -34,7 +34,7 @@ struct LoginView<Destination>: View where Destination: View {
     
     private let referrer: Referrer
     
-    private let completionHandler: ((User) -> Void)?
+    private let completionHandler: ((User) async -> (message: String, button: String)?)?
     
     private let createDestination: ((User) -> Destination)?
     
@@ -44,7 +44,7 @@ struct LoginView<Destination>: View where Destination: View {
         self.createDestination = createDestination
     }
     
-    init(referrer: Referrer, afterSignIn completionHandler: @escaping (User) -> Void, @ViewBuilder destination createDestination: @escaping (User) -> Destination) {
+    init(referrer: Referrer, afterSignIn completionHandler: @escaping (User) async -> (message: String, button: String)?, @ViewBuilder destination createDestination: @escaping (User) -> Destination) {
         self.referrer = referrer
         self.completionHandler = completionHandler
         self.createDestination = createDestination
@@ -63,6 +63,10 @@ struct LoginView<Destination>: View where Destination: View {
     @State private var isSignInErrorAlertShown = false
     
     @State private var signInErrorCode: SignInErrorCode?
+    
+    @State private var isCustomErrorAlertShown = false
+    
+    @State private var customErrorMessage: (message: String, button: String)?
         
     @State private var user: User?
     
@@ -114,6 +118,15 @@ struct LoginView<Destination>: View where Destination: View {
                 case .wrongPassword:
                     Text("login|sign-in-error-alert|wrong-password-message", comment: "Sign in error alert message when the specified password for login is wrong.")
                 }
+            }
+            .alert(self.signInErrorAlertTitle, isPresented: self.$isCustomErrorAlertShown, presenting: self.customErrorMessage) { error in
+                Button {
+                    self.customErrorMessage = nil
+                } label: {
+                    Text(error.button)
+                }
+            } message: { error in
+                Text(error.message)
             }
             .navigationDestination(isPresented: self.$isDestinationNavigationActive) {
                 if let createDestination = self.createDestination, let user = self.user {
@@ -325,7 +338,11 @@ struct LoginView<Destination>: View where Destination: View {
     private func handleSignIn(with method: FirebaseAuthenticator.SignInMethod) async {
         do {
             let authResult = try await FirebaseAuthenticator.shared.signIn(with: method, createUser: self.referrer == .invitationLink || self.referrer == .createClub)
-            self.completionHandler?(authResult.user)
+            if let errorMessage = await self.completionHandler?(authResult.user) {
+                self.customErrorMessage = errorMessage
+                self.isCustomErrorAlertShown = true
+                return
+            }
             if self.createDestination != nil {
                 self.user = authResult.user
                 self.isDestinationNavigationActive = true
@@ -360,7 +377,7 @@ extension LoginView where Destination == EmptyView {
         self.createDestination = nil
     }
     
-    init(referrer: Referrer, afterSignIn completionHandler: @escaping (User) -> Void) {
+    init(referrer: Referrer, afterSignIn completionHandler: @escaping (User) async -> (message: String, button: String)?) {
         self.referrer = referrer
         self.completionHandler = completionHandler
         self.createDestination = nil
