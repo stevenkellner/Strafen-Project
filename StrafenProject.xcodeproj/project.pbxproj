@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B00899FB29EFD8830062054E /* Text+describing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00899FA29EFD8830062054E /* Text+describing.swift */; };
+		B00899FE29F002AA0062054E /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00899FD29F002AA0062054E /* Toolbar.swift */; };
 		B03563C029DEE215000BB7AD /* StrafenProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03563BF29DEE215000BB7AD /* StrafenProjectApp.swift */; };
 		B03563C229DEE215000BB7AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03563C129DEE215000BB7AD /* ContentView.swift */; };
 		B03563C429DEE21A000BB7AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B03563C329DEE21A000BB7AD /* Assets.xcassets */; };
@@ -128,6 +130,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B00899FA29EFD8830062054E /* Text+describing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+describing.swift"; sourceTree = "<group>"; };
+		B00899FD29F002AA0062054E /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 		B03563BC29DEE215000BB7AD /* StrafenProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrafenProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B03563BF29DEE215000BB7AD /* StrafenProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrafenProjectApp.swift; sourceTree = "<group>"; };
 		B03563C129DEE215000BB7AD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -263,6 +267,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B00899FC29F002810062054E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B00899FD29F002AA0062054E /* Toolbar.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B03563B329DEE215000BB7AD = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +309,7 @@
 				B03563BF29DEE215000BB7AD /* StrafenProjectApp.swift */,
 				B03563C129DEE215000BB7AD /* ContentView.swift */,
 				B0ED7DFA29E57D7F00685778 /* HomeViews */,
+				B00899FC29F002810062054E /* Views */,
 				B035641229DEF25F000BB7AD /* Crypter */,
 				B0E6A5AF29E051730095471B /* FirebaseInterface */,
 				B0E6A58429E035AC0095471B /* Types */,
@@ -395,6 +408,7 @@
 				B05AF42A29E2F43E00BA15F0 /* ValidationResult.swift */,
 				B0C75A0A29EACCC6004650BA /* UIApplication+rootViewController.swift */,
 				B0C75A0C29EACFF4004650BA /* String+randomNonce.swift */,
+				B00899FA29EFD8830062054E /* Text+describing.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -668,9 +682,11 @@
 				B0E6A58629E035C80095471B /* Amount.swift in Sources */,
 				B05AF42729E2F2A700BA15F0 /* ConnectionState.swift in Sources */,
 				B06EA00329E1DA610034B178 /* FineEditPayedFunction.swift in Sources */,
+				B00899FE29F002AA0062054E /* Toolbar.swift in Sources */,
 				B035641A29DEF82C000BB7AD /* PseudoRandom.swift in Sources */,
 				B05AF41D29E2B1C500BA15F0 /* PersonGetCurrentFunction.swift in Sources */,
 				B0679DDC29EE8BC1005A4109 /* CreateClubView.swift in Sources */,
+				B00899FB29EFD8830062054E /* Text+describing.swift in Sources */,
 				B0E6A5A629E0447D0095471B /* Fine.swift in Sources */,
 				B0E6A5C129E05E680095471B /* DatabaseType.swift in Sources */,
 				B05AF41F29E2B94300BA15F0 /* PersonGetFunction.swift in Sources */,

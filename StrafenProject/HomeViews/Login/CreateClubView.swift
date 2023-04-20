@@ -10,6 +10,8 @@ import FirebaseAuth
 
 struct CreateClubView: View {
     
+    @EnvironmentObject private var settingsManager: SettingsManager
+    
     private let hashedUserId: String
         
     @State private var firstName: String = ""
@@ -146,7 +148,7 @@ struct CreateClubView: View {
         let clubNewFunction = ClubNewFunction(clubProperties: clubProperties, personId: personId, personName: personName)
         do {
             try await FirebaseFunctionCaller.shared.call(clubNewFunction)
-            try SettingsManager.shared.save(Settings.SignedInPerson(id: personId, name: personName, isAdmin: true, hashedUserId: self.hashedUserId, club: clubProperties), at: \.signedInPerson)
+            try self.settingsManager.save(Settings.SignedInPerson(id: personId, name: personName, isAdmin: true, hashedUserId: self.hashedUserId, club: clubProperties), at: \.signedInPerson)
         } catch {}
     }
 }

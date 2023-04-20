@@ -8,11 +8,9 @@
 import Foundation
 
 @dynamicMemberLookup
-struct SettingsManager {
+class SettingsManager: ObservableObject {
         
-    private var settings: Settings
-    
-    static var shared = SettingsManager()
+    @Published private var settings: Settings
     
     init() {
         self.settings = Settings(appearance: .system, signedInPerson: nil)
@@ -28,7 +26,7 @@ struct SettingsManager {
         return baseUrl.appending(path: "settings-\(DatabaseType.current.rawValue)").appendingPathExtension("json")
     }
     
-    mutating func readSettings() throws {
+    func readSettings() throws {
         let encryptedJsonData = try Data(contentsOf: self.settingsUrl, options: .uncached)
         let crypter = Crypter(keys: PrivateKeys.current.cryptionKeys)
         self.settings = try crypter.decryptDecode(type: Settings.self, encryptedJsonData)
@@ -45,8 +43,8 @@ struct SettingsManager {
             return self.settings[keyPath: keyPath]
         }
     }
-    
-    mutating func save<T>(_ value: T, at keyPath: WritableKeyPath<Settings, T>) throws {
+        
+    func save<T>(_ value: T, at keyPath: WritableKeyPath<Settings, T>) throws {
         self.settings[keyPath: keyPath] = value
         try self.saveSettings()
         

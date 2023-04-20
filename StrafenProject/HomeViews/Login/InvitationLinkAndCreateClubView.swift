@@ -31,6 +31,8 @@ struct InvitationLinkAndCreateClubView: View {
 
 extension InvitationLinkAndCreateClubView {
     private struct InvitationLinkView: View {
+        
+        @EnvironmentObject private var settingsManager: SettingsManager
                 
         @State private var invitationLink: String = ""
                 
@@ -39,6 +41,8 @@ extension InvitationLinkAndCreateClubView {
         @State private var notFoundAlertShown = false
         
         @State private var personToInvite: InvitationLinkGetPersonFunction.ReturnType?
+        
+        @State private var isWelcomePersonSheetShown = false
         
         @State private var isSignInNavigationActive = false
             
@@ -85,8 +89,10 @@ extension InvitationLinkAndCreateClubView {
                     self.buttonDisabled = true
                 }
             }
-            .sheet(item: self.$personToInvite) { person in
-                InvitationLinkWelcomePersonView(person, isSignInNavigationActive: self.$isSignInNavigationActive)
+            .sheet(isPresented: self.$isWelcomePersonSheetShown) {
+                if let person = self.personToInvite {
+                    InvitationLinkWelcomePersonView(person, isSignInNavigationActive: self.$isSignInNavigationActive)
+                }
             }
             .navigationDestination(isPresented: self.$isSignInNavigationActive) {
                 LoginView(referrer: .invitationLink, afterSignIn: { user in
@@ -130,6 +136,7 @@ extension InvitationLinkAndCreateClubView {
             let invitationLinkGetPersonFunction = InvitationLinkGetPersonFunction(invitationLinkId: invitationLinkId)
             do {
                 self.personToInvite = try await FirebaseFunctionCaller.shared.call(invitationLinkGetPersonFunction)
+                self.isWelcomePersonSheetShown = true
             } catch {
                 guard let error = error as? FirebaseFunctionError else {
                     return
@@ -147,7 +154,7 @@ extension InvitationLinkAndCreateClubView {
             let personRegisterFunction = PersonRegisterFunction(clubId: person.club.id, personId: person.id)
             do {
                 _ = try await FirebaseFunctionCaller.shared.call(personRegisterFunction)
-                try SettingsManager.shared.save(Settings.SignedInPerson(id: person.id, name: person.name, isAdmin: false, hashedUserId: Crypter.sha512(user.uid), club: person.club), at: \.signedInPerson)
+                try self.settingsManager.save(Settings.SignedInPerson(id: person.id, name: person.name, isAdmin: false, hashedUserId: Crypter.sha512(user.uid), club: person.club), at: \.signedInPerson)
                 return nil
             } catch {
                 guard let error = error as? FirebaseFunctionError else {

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct StartPageView: View {
     
+    @EnvironmentObject private var settingsManager: SettingsManager
+    
     @State private var isTermsAndPrivacySheetShown = false
     
     var body: some View {
@@ -45,8 +47,7 @@ struct StartPageView: View {
             }.buttonStyle(.borderedProminent)
             
             NavigationLink(destination: LoginView(referrer: .login, afterSignIn: { _ in
-                await self.loginUser()
-                return nil
+                return await self.loginUser()
             })) {
                 Text("start-page|buttons|login", comment: "Login button on start page to get to login page.")
                     .font(.title2)
@@ -81,11 +82,23 @@ struct StartPageView: View {
         }
     }
     
-    private func loginUser() async {
+    private func loginUser() async -> (message: String, button: String)? {
         let personGetCurrentFunction = PersonGetCurrentFunction()
-        guard let currentPerson = try? await FirebaseFunctionCaller.shared.call(personGetCurrentFunction) else {
-            return
+        do {
+            let currentPerson = try await FirebaseFunctionCaller.shared.call(personGetCurrentFunction)
+            try self.settingsManager.save(currentPerson.settingsPerson, at: \.signedInPerson)
+            return nil
+        } catch {
+            guard let error = error as? FirebaseFunctionError else {
+                return nil
+            }
+            if error.code == .notFound {
+                return (
+                    message: String(localized: "login|custom-error-alert|login|not-registerd-message", comment: "Login failed alert if person try to login is not registered."),
+                    button: String(localized: "login|custom-error-alert|login|register-instead-button", comment: "Login failed alert if person try to login is not registered, button text to register instead.")
+                )
+            }
+            return nil
         }
-        try? SettingsManager.shared.save(currentPerson.settingsPerson, at: \.signedInPerson)
     }
 }

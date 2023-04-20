@@ -52,10 +52,12 @@ struct InvitationLinkWelcomePersonView: View {
                 .navigationTitle(String(localized: "invitation-link-welcome-person|title", comment: "Title of the welcome person page after invitation link input."))
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    Button {
-                        self.dismiss()
-                    } label: {
-                        Text("dismiss-sheet", comment: "Dismiss button on a sheet.")
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button {
+                            self.dismiss()
+                        } label: {
+                            Text("dismiss-sheet", comment: "Dismiss button on a sheet.")
+                        }
                     }
                 }
         }

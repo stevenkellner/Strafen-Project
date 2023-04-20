@@ -4,6 +4,21 @@
 /* Starting part of 'By continuing you agree to Terms, Conditions and Privacy Policy', i.e. 'Terms, Conditions and Privacy Policy'. */
 "agree-terms-privacy-by-continue|terms-and-privacy" = "Terms, Conditions and Privacy Policy";
 
+/* Bottom bar add new fine label. */
+"bottom-bar|add-new-fine" = "New fine";
+
+/* Bottom bar person list label. */
+"bottom-bar|person-list" = "Persons";
+
+/* Bottom bar profile label. */
+"bottom-bar|profile" = "Profile";
+
+/* Bottom bar reason list label. */
+"bottom-bar|reason-list" = "Fines";
+
+/* Bottom bar settings label. */
+"bottom-bar|settings" = "Settings";
+
 /* And text between person name input and club name input. */
 "create-club|and" = "and";
 
@@ -78,6 +93,12 @@
 
 /* Welcome person text in the welcome person page after invitation link input. */
 "invitation-link-welcome-person|welcom-person?person=%@" = "Welcome, %@";
+
+/* Login failed alert if person try to login is not registered. */
+"login|custom-error-alert|login|not-registerd-message" = "You are not registered.";
+
+/* Login failed alert if person try to login is not registered, button text to register instead. */
+"login|custom-error-alert|login|register-instead-button" = "Sign in instead";
 
 /* Login failed alert if person try to sign in is already registered. */
 "login|custom-error-alert|register-person|already-exists-message" = "You are already registered.";
