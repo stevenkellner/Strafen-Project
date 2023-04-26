@@ -19,6 +19,15 @@
 /* Bottom bar settings label. */
 "bottom-bar|settings" = "Einstellungen";
 
+/* App loading failed try again button. */
+"content-view|loading-failed|button" = "Erneut versuchen";
+
+/* App loading failed message. */
+"content-view|loading-failed|message" = "Die App konnte nicht korrekt geladen werden. Bitte versuche es erneut. Wenn es wiederholt fehlschlägt, versuche die App neu zu starten oder kontaktiere den Verantwortlichen.";
+
+/* App loading failed title. */
+"content-view|loading-failed|title" = "Laden fehlgeschlagen";
+
 /* And text between person name input and club name input. */
 "create-club|and" = "und";
 

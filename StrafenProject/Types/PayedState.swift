@@ -10,7 +10,6 @@ import Foundation
 enum PayedState {
     case payed(payDate: Date)
     case unpayed
-    case settled
 }
 
 extension PayedState: Equatable {
@@ -19,8 +18,6 @@ extension PayedState: Equatable {
         case let (.payed(payDate: lhsPayDate), .payed(payDate: rhsPayDate)):
             return Calendar.current.isDate(lhsPayDate, equalTo: rhsPayDate, toGranularity: .nanosecond)
         case (.unpayed, .unpayed):
-            return true
-        case (.settled, .settled):
             return true
         default:
             return false
@@ -43,8 +40,6 @@ extension PayedState: Codable {
             self = .payed(payDate: payDate)
         case "unpayed":
             self = .unpayed
-        case "settled":
-            self = .settled
         default:
             throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: container.codingPath + [CodingKeys.state], debugDescription: "Invalid state: \(state)."))
         }
@@ -58,8 +53,6 @@ extension PayedState: Codable {
             try container.encode(payDate, forKey: .payDate)
         case .unpayed:
             try container.encode("unpayed", forKey: .state)
-        case .settled:
-            try container.encode("settled", forKey: .state)
         }
     }
 }
@@ -76,23 +69,12 @@ extension PayedState: FirebaseFunctionParameterType {
             FirebaseFunctionParameter(payDate, for: "payDate")
         case .unpayed:
             FirebaseFunctionParameter("unpayed", for: "state")
-        case .settled:
-            FirebaseFunctionParameter("settled", for: "state")
         }
     }
 }
 
 extension PayedState: RandomPlaceholder {
     static func randomPlaceholder(using generator: inout some RandomNumberGenerator) -> PayedState {
-        switch UInt.random(in: 0...2, using: &generator) {
-        case 0:
-            return .payed(payDate: Date())
-        case 1:
-            return .unpayed
-        case 2:
-            return .settled
-        default:
-            return .unpayed
-        }
+        return Bool.random(using: &generator) ? .payed(payDate: Date()) : .unpayed
     }
 }

@@ -41,9 +41,6 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "ClubGetIdTests">
-               </Test>
-               <Test
                   Identifier = "StrafenProjectTests">
                </Test>
                <Test

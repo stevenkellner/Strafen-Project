@@ -39,12 +39,12 @@ final class FirebaseFunctionsTests: XCTestCase {
     }
     
     func testFineEditAdd() async throws {
-        let fineEditFunction = FineEditFunction.add(clubId: self.clubId, fine: Fine(id: Fine.ID(), personId: Person.ID(), payedState: .unpayed, number: 2, date: Date(), fineReason: FineReason(reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50), importance: .low)))
+        let fineEditFunction = FineEditFunction.add(clubId: self.clubId, fine: Fine(id: Fine.ID(), personId: Person.ID(), payedState: .unpayed, number: 2, date: Date(), fineReason: FineReason(reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50))))
         try await FirebaseFunctionCaller.shared.verbose.call(fineEditFunction)
     }
     
     func testFineEditUpdate() async throws {
-        let fineEditFunction = FineEditFunction.update(clubId: self.clubId, fine: Fine(id: Fine.ID(uuidString: "02462A8B-107F-4BAE-A85B-EFF1F727C00F")!, personId: Person.ID(), payedState: .unpayed, number: 2, date: Date(), fineReason: FineReason(reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50), importance: .low)))
+        let fineEditFunction = FineEditFunction.update(clubId: self.clubId, fine: Fine(id: Fine.ID(uuidString: "02462A8B-107F-4BAE-A85B-EFF1F727C00F")!, personId: Person.ID(), payedState: .unpayed, number: 2, date: Date(), fineReason: FineReason(reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50))))
         try await FirebaseFunctionCaller.shared.verbose.call(fineEditFunction)
     }
     
@@ -65,9 +65,9 @@ final class FirebaseFunctionsTests: XCTestCase {
         dateFormatter.locale = Locale(identifier: "de_DE")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         XCTAssertEqual(fineList, IdentifiableList(values:[
-            Fine(id: Fine.ID(uuidString: "02462A8B-107F-4BAE-A85B-EFF1F727C00F")!, personId: Person.ID(uuidString: "76025DDE-6893-46D2-BC34-9864BB5B8DAD")!, payedState: .settled, number: 1, date: dateFormatter.date(from: "2023-01-24T17:23:45.678Z")!, fineReason: FineReason(reasonMessage: "test_fine_reason_1", amount: Amount(value: 1, subUnitValue: 0), importance: .low)),
-            Fine(id: Fine.ID(uuidString: "0B5F958E-9D7D-46E1-8AEE-F52F4370A95A")!, personId: Person.ID(uuidString: "76025DDE-6893-46D2-BC34-9864BB5B8DAD")!, payedState: .unpayed, number: 2, date: dateFormatter.date(from: "2023-01-02T17:23:45.678Z")!, fineReason: FineReason(reasonMessage: "test_fine_reason_2", amount: Amount(value: 2, subUnitValue: 50), importance: .high)),
-            Fine(id: Fine.ID(uuidString: "1B5F958E-9D7D-46E1-8AEE-F52F4370A95A")!, personId: Person.ID(uuidString: "7BB9AB2B-8516-4847-8B5F-1A94B78EC7B7")!, payedState: .payed(payDate: dateFormatter.date(from: "2023-01-22T17:23:45.678Z")!), number: 1, date: dateFormatter.date(from: "2023-01-20T17:23:45.678Z")!, fineReason: FineReason(reasonMessage: "test_fine_reason_3", amount: Amount(value: 2, subUnitValue: 0), importance: .medium))
+            Fine(id: Fine.ID(uuidString: "02462A8B-107F-4BAE-A85B-EFF1F727C00F")!, personId: Person.ID(uuidString: "76025DDE-6893-46D2-BC34-9864BB5B8DAD")!, payedState: .unpayed, number: 1, date: dateFormatter.date(from: "2023-01-24T17:23:45.678Z")!, fineReason: FineReason(reasonMessage: "test_fine_reason_1", amount: Amount(value: 1, subUnitValue: 0))),
+            Fine(id: Fine.ID(uuidString: "0B5F958E-9D7D-46E1-8AEE-F52F4370A95A")!, personId: Person.ID(uuidString: "76025DDE-6893-46D2-BC34-9864BB5B8DAD")!, payedState: .unpayed, number: 2, date: dateFormatter.date(from: "2023-01-02T17:23:45.678Z")!, fineReason: FineReason(reasonMessage: "test_fine_reason_2", amount: Amount(value: 2, subUnitValue: 50))),
+            Fine(id: Fine.ID(uuidString: "1B5F958E-9D7D-46E1-8AEE-F52F4370A95A")!, personId: Person.ID(uuidString: "7BB9AB2B-8516-4847-8B5F-1A94B78EC7B7")!, payedState: .payed(payDate: dateFormatter.date(from: "2023-01-22T17:23:45.678Z")!), number: 1, date: dateFormatter.date(from: "2023-01-20T17:23:45.678Z")!, fineReason: FineReason(reasonMessage: "test_fine_reason_3", amount: Amount(value: 2, subUnitValue: 0)))
         ]))
     }
     
@@ -125,12 +125,12 @@ final class FirebaseFunctionsTests: XCTestCase {
     }
     
     func testReasonTemplateEditAdd() async throws {
-        let reasonTemplateEditFunction = ReasonTemplateEditFunction.add(clubId: self.clubId, reasonTemplate: ReasonTemplate(id: ReasonTemplate.ID(), reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50), importance: .low))
+        let reasonTemplateEditFunction = ReasonTemplateEditFunction.add(clubId: self.clubId, reasonTemplate: ReasonTemplate(id: ReasonTemplate.ID(), reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50)))
         try await FirebaseFunctionCaller.shared.verbose.call(reasonTemplateEditFunction)
     }
     
     func testReasonTemplateEditUpdate() async throws {
-        let reasonTemplateEditFunction = ReasonTemplateEditFunction.update(clubId: self.clubId, reasonTemplate: ReasonTemplate(id: ReasonTemplate.ID(uuidString: "062FB0CB-F730-497B-BCF5-A4F907A6DCD5")!, reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50), importance: .low))
+        let reasonTemplateEditFunction = ReasonTemplateEditFunction.update(clubId: self.clubId, reasonTemplate: ReasonTemplate(id: ReasonTemplate.ID(uuidString: "062FB0CB-F730-497B-BCF5-A4F907A6DCD5")!, reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50)))
         try await FirebaseFunctionCaller.shared.verbose.call(reasonTemplateEditFunction)
     }
     
@@ -143,9 +143,9 @@ final class FirebaseFunctionsTests: XCTestCase {
         let personGetFunction = ReasonTemplateGetFunction(clubId: self.clubId)
         let reasonTemplateList = try await FirebaseFunctionCaller.shared.verbose.call(personGetFunction)
         XCTAssertEqual(reasonTemplateList, IdentifiableList(values: [
-            ReasonTemplate(id: ReasonTemplate.ID(uuidString: "062FB0CB-F730-497B-BCF5-A4F907A6DCD5")!, reasonMessage: "test_reason_1", amount: Amount(value: 1, subUnitValue: 0), importance: .low),
-            ReasonTemplate(id: ReasonTemplate.ID(uuidString: "16805D21-5E8D-43E9-BB5C-7B4A790F0CE7")!, reasonMessage: "test_reason_2", amount: Amount(value: 2, subUnitValue: 50), importance: .high),
-            ReasonTemplate(id: ReasonTemplate.ID(uuidString: "23A3412E-87DE-4A23-A08F-67214B8A8541")!, reasonMessage: "test_reason_3", amount: Amount(value: 2, subUnitValue: 0), importance: .medium)
+            ReasonTemplate(id: ReasonTemplate.ID(uuidString: "062FB0CB-F730-497B-BCF5-A4F907A6DCD5")!, reasonMessage: "test_reason_1", amount: Amount(value: 1, subUnitValue: 0)),
+            ReasonTemplate(id: ReasonTemplate.ID(uuidString: "16805D21-5E8D-43E9-BB5C-7B4A790F0CE7")!, reasonMessage: "test_reason_2", amount: Amount(value: 2, subUnitValue: 50)),
+            ReasonTemplate(id: ReasonTemplate.ID(uuidString: "23A3412E-87DE-4A23-A08F-67214B8A8541")!, reasonMessage: "test_reason_3", amount: Amount(value: 2, subUnitValue: 0))
         ]))
     }
     

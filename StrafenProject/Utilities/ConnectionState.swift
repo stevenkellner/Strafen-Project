@@ -7,11 +7,11 @@
 
 import Foundation
 
-enum ConnectionState {
+enum ConnectionState<Content, Failure> {
     case notStarted
     case loading
-    case failed
-    case passed
+    case failed(reason: Failure)
+    case passed(value: Content)
     
     mutating func reset() {
         self = .notStarted
@@ -19,7 +19,7 @@ enum ConnectionState {
     
     @discardableResult
     mutating func start() -> OperationResult {
-        guard self == .notStarted else {
+        guard case .notStarted = self else {
             return .failed
         }
         self = .loading
@@ -28,18 +28,30 @@ enum ConnectionState {
     
     @discardableResult
     mutating func restart() -> OperationResult {
-        guard self != .loading else {
+        if case .loading = self {
             return .failed
         }
         self = .loading
         return .passed
     }
     
-    mutating func failed() {
-        self = .failed
+    mutating func failed(reason: Failure) {
+        self = .failed(reason: reason)
     }
     
-    mutating func passed() {
-        self = .passed
+    mutating func passed(value: Content) {
+        self = .passed(value: value)
     }
 }
+
+extension ConnectionState where Failure == Void {
+    mutating func failed() {
+        self = .failed(reason: ())
+    }
+}
+
+extension ConnectionState: Sendable where Content: Sendable, Failure: Sendable {}
+
+extension ConnectionState: Hashable where Content: Hashable, Failure: Hashable {}
+
+extension ConnectionState: Equatable where Content: Equatable, Failure: Equatable {}

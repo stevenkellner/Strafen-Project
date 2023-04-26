@@ -13,7 +13,6 @@ struct ReasonTemplate: Identifiable {
     public private(set) var id: ID
     public private(set) var reasonMessage: String
     public private(set) var amount: Amount
-    public private(set) var importance: Importance
 }
 
 extension ReasonTemplate: Equatable {}
@@ -28,7 +27,6 @@ extension ReasonTemplate: FirebaseFunctionParameterType {
     @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
         FirebaseFunctionParameter(self.reasonMessage, for: "reasonMessage")
         FirebaseFunctionParameter(self.amount, for: "amount")
-        FirebaseFunctionParameter(self.importance, for: "importance")
     }
 }
 
@@ -52,8 +50,7 @@ extension ReasonTemplate: RandomPlaceholder {
         return ReasonTemplate(
             id: ID(),
             reasonMessage: ReasonTemplate.randomPlaceholderReasonMessages.randomElement(using: &generator)!,
-            amount: Amount.randomPlaceholder(using: &generator),
-            importance: Importance.randomPlaceholder(using: &generator)
+            amount: Amount.randomPlaceholder(using: &generator)
         )
     }
 }

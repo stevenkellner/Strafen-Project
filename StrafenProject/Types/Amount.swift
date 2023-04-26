@@ -78,6 +78,13 @@ extension Amount: Sendable {}
 
 extension Amount: Hashable {}
 
+extension Amount {
+    var formatted: String {
+        return (self.value + self.subUnitValue / 100).formatted(.currency(code: "EUR"))
+    }
+}
+
+
 extension Amount: FirebaseFunctionParameterType {
     var parameter: Double {
         return Double(self.value) + Double(self.subUnitValue) / 100

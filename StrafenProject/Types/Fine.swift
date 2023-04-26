@@ -59,3 +59,29 @@ extension Fine: RandomPlaceholder {
         )
     }
 }
+
+extension Sequence where Element == Fine {
+    var totalAmount: Amount {
+        return self.reduce(into: .zero) { result, fine in
+            result += fine.fineReason.amount
+        }
+    }
+    
+    var payedAmount: Amount {
+        return self.reduce(into: .zero) { result, fine in
+            guard case .payed(payDate: _) = fine.payedState else {
+                return
+            }
+            result += fine.fineReason.amount
+        }
+    }
+    
+    var unpayedAmount: Amount {
+        return self.reduce(into: .zero) { result, fine in
+            guard case .unpayed = fine.payedState else {
+                return
+            }
+            result += fine.fineReason.amount
+        }
+    }
+}

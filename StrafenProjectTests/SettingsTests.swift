@@ -20,32 +20,34 @@ final class SettingsTests: XCTestCase {
         let baseUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.stevenkellner.StrafenProject.settings")!
         let settingsUrl = baseUrl.appending(path: "settings-\(DatabaseType.current.rawValue)").appendingPathExtension("json")
         try? FileManager.default.removeItem(at: settingsUrl)
-        SettingsManager.shared = SettingsManager()
     }
     
     func testInitialSettings() {
-        XCTAssertEqual(SettingsManager.shared.appearance, .system)
-        XCTAssertNil(SettingsManager.shared.signedInPerson)
+        let settingsManager = SettingsManager()
+        XCTAssertEqual(settingsManager.appearance, .system)
+        XCTAssertNil(settingsManager.signedInPerson)
     }
     
     func testSaveAndInitialRead() throws {
-        try SettingsManager.shared.save(.dark, at: \.appearance)
+        let settingsManager = SettingsManager()
+        try settingsManager.save(.dark, at: \.appearance)
         let signedInPerson = Settings.SignedInPerson(id: Person.ID(), name: Person.PersonName(first: "asdf"), isAdmin: true, hashedUserId: "ölkj", club: ClubProperties(id: ClubProperties.ID(), name: "ölkmun"))
-        try SettingsManager.shared.save(signedInPerson, at: \.signedInPerson)
+        try settingsManager.save(signedInPerson, at: \.signedInPerson)
         XCTAssertEqual(SettingsManager().appearance, .dark)
         XCTAssertEqual(SettingsManager().signedInPerson, signedInPerson)
     }
     
     func testSaveAndRead() throws {
-        var settingsManager = SettingsManager()
-        try settingsManager.save(.light, at: \.appearance)
+        let settingsManager1 = SettingsManager()
+        let settingsManager2 = SettingsManager()
+        try settingsManager2.save(.light, at: \.appearance)
         let signedInPerson = Settings.SignedInPerson(id: Person.ID(), name: Person.PersonName(first: "mztu", last: "iuw"), isAdmin: false, hashedUserId: "xycbvcnb", club: ClubProperties(id: ClubProperties.ID(), name: "mzru"))
-        try settingsManager.save(signedInPerson, at: \.signedInPerson)
-        XCTAssertEqual(SettingsManager.shared.appearance, .system)
-        XCTAssertEqual(SettingsManager.shared.signedInPerson, nil)
-        try SettingsManager.shared.readSettings()
-        XCTAssertEqual(SettingsManager.shared.appearance, .light)
-        XCTAssertEqual(SettingsManager.shared.signedInPerson, signedInPerson)
+        try settingsManager2.save(signedInPerson, at: \.signedInPerson)
+        XCTAssertEqual(settingsManager1.appearance, .system)
+        XCTAssertEqual(settingsManager1.signedInPerson, nil)
+        try settingsManager1.readSettings()
+        XCTAssertEqual(settingsManager1.appearance, .light)
+        XCTAssertEqual(settingsManager1.signedInPerson, signedInPerson)
         
     }
 }
