@@ -72,6 +72,7 @@
 		B06EA00729E1EC7D0034B178 /* IdentifiableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06EA00629E1EC7D0034B178 /* IdentifiableList.swift */; };
 		B08C850E29F934B70051473E /* PersonAddAndEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08C850D29F934B70051473E /* PersonAddAndEdit.swift */; };
 		B08C851029F938F90051473E /* View+toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08C850F29F938F90051473E /* View+toolbar.swift */; };
+		B08C851429F9860F0051473E /* PersonDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08C851329F9860F0051473E /* PersonDetail.swift */; };
 		B0C75A0B29EACCC6004650BA /* UIApplication+rootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75A0A29EACCC6004650BA /* UIApplication+rootViewController.swift */; };
 		B0C75A0D29EACFF4004650BA /* String+randomNonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75A0C29EACFF4004650BA /* String+randomNonce.swift */; };
 		B0E6A57F29DF1C080095471B /* JSONDecoder+iso8601WithMilliseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A57E29DF1C080095471B /* JSONDecoder+iso8601WithMilliseconds.swift */; };
@@ -188,6 +189,7 @@
 		B06EA00629E1EC7D0034B178 /* IdentifiableList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableList.swift; sourceTree = "<group>"; };
 		B08C850D29F934B70051473E /* PersonAddAndEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonAddAndEdit.swift; sourceTree = "<group>"; };
 		B08C850F29F938F90051473E /* View+toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+toolbar.swift"; sourceTree = "<group>"; };
+		B08C851329F9860F0051473E /* PersonDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetail.swift; sourceTree = "<group>"; };
 		B0C75A0A29EACCC6004650BA /* UIApplication+rootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+rootViewController.swift"; sourceTree = "<group>"; };
 		B0C75A0C29EACFF4004650BA /* String+randomNonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+randomNonce.swift"; sourceTree = "<group>"; };
 		B0E6A57E29DF1C080095471B /* JSONDecoder+iso8601WithMilliseconds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+iso8601WithMilliseconds.swift"; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 			children = (
 				B0089A0229F27BDB0062054E /* PersonList.swift */,
 				B08C850D29F934B70051473E /* PersonAddAndEdit.swift */,
+				B08C851329F9860F0051473E /* PersonDetail.swift */,
 			);
 			path = PersonList;
 			sourceTree = "<group>";
@@ -346,7 +349,6 @@
 				B035641229DEF25F000BB7AD /* Crypter */,
 				B0E6A5AF29E051730095471B /* FirebaseInterface */,
 				B0E6A58429E035AC0095471B /* Types */,
-				B05AF42C29E2F51200BA15F0 /* Settings */,
 				B0E6A58C29E03AE60095471B /* Utilities */,
 			);
 			path = StrafenProject;
@@ -363,6 +365,7 @@
 		B03563CF29DEE21B000BB7AD /* StrafenProjectTests */ = {
 			isa = PBXGroup;
 			children = (
+				B05AF42C29E2F51200BA15F0 /* Settings */,
 				B0E6A5CF29E06DCF0095471B /* FirebaseInterfaceTests */,
 				B035642629DF078A000BB7AD /* CrypterTests.swift */,
 				B0E6A5D629E070A80095471B /* Utilities.swift */,
@@ -775,6 +778,7 @@
 				B0E6A58B29E036F70095471B /* Clamping.swift in Sources */,
 				B0089A0329F27BDB0062054E /* PersonList.swift in Sources */,
 				B0E6A5B829E0537B0095471B /* FirebaseFunctionParameterType.swift in Sources */,
+				B08C851429F9860F0051473E /* PersonDetail.swift in Sources */,
 				B0E6A5BD29E057B30095471B /* FirebaseFunctionParameter.swift in Sources */,
 				B0C75A0D29EACFF4004650BA /* String+randomNonce.swift in Sources */,
 				B0F598DD29EABD620056B871 /* LoginView.swift in Sources */,

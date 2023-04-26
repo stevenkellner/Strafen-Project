@@ -61,6 +61,9 @@
 /* Dismiss button on a sheet. */
 "dismiss-sheet" = "Schließen";
 
+/* Text of the edit button. */
+"edit-button" = "Bearbeiten";
+
 /* Text of a 'got it' button. */
 "got-it-button" = "Verstanden";
 
@@ -219,6 +222,18 @@
 
 /* Cannot save person alert title in person add and edit. */
 "person-add-and-edit|unknown-error-alert|cannot-save-title" = "Person konnte nicht gespeichert werden.";
+
+/* Section text of still open fines. */
+"person-detail|open-fines" = "Offene Strafen";
+
+/* Section text of already payed fines. */
+"person-detail|payed-fines" = "Bereits gezahlt";
+
+/* Text for the fine amount of the person that is still open. */
+"person-detail|still-open-amount" = "Noch offen";
+
+/* Text for the total fine amount of the person. */
+"person-detail|total-amount" = "Gesamt";
 
 /* Message of the cannot delete person alert in person list cause the person is already registered. */
 "person-list|cannot-delete-person-alert|message" = "Diese Person ist bereits registriert und kann nicht gelöscht werden.";

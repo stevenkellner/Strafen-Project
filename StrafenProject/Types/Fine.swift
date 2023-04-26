@@ -16,6 +16,23 @@ struct Fine: Identifiable {
     public private(set) var number: UInt
     public private(set) var date: Date
     public private(set) var fineReason: FineReason
+    
+    var totalAmount: Amount {
+        return self.fineReason.amount * self.number
+    }
+    
+    var formatted: String {
+        return self.fineReason.reasonMessage
+    }
+    
+    var isPayed: Bool {
+        switch self.payedState {
+        case .payed(payDate: _):
+            return true
+        case .unpayed:
+            return false
+        }
+    }
 }
 
 extension Fine: Equatable {
@@ -63,7 +80,7 @@ extension Fine: RandomPlaceholder {
 extension Sequence where Element == Fine {
     var totalAmount: Amount {
         return self.reduce(into: .zero) { result, fine in
-            result += fine.fineReason.amount
+            result += fine.totalAmount
         }
     }
     
@@ -72,7 +89,7 @@ extension Sequence where Element == Fine {
             guard case .payed(payDate: _) = fine.payedState else {
                 return
             }
-            result += fine.fineReason.amount
+            result += fine.totalAmount
         }
     }
     
@@ -81,7 +98,7 @@ extension Sequence where Element == Fine {
             guard case .unpayed = fine.payedState else {
                 return
             }
-            result += fine.fineReason.amount
+            result += fine.totalAmount
         }
     }
 }

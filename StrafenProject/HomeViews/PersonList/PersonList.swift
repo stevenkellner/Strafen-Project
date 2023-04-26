@@ -25,7 +25,7 @@ struct PersonList: View {
         NavigationStack {
             List {
                 let sortedPersons = self.appProperties.sortedPersons
-                let  personsWithUnpayedFines = sortedPersons.personsWithUnpayedFines(searchText: self.searchText)
+                let personsWithUnpayedFines = sortedPersons.personsWithUnpayedFines(searchText: self.searchText)
                 if !personsWithUnpayedFines.isEmpty {
                     Section {
                         ForEach(personsWithUnpayedFines) { person in
@@ -39,7 +39,7 @@ struct PersonList: View {
                             .unredacted()
                     }
                 }
-                let  personsWithAllPayedFines = sortedPersons.personsWithAllPayedFines(searchText: self.searchText)
+                let personsWithAllPayedFines = sortedPersons.personsWithAllPayedFines(searchText: self.searchText)
                 if !personsWithAllPayedFines.isEmpty {
                     Section {
                         ForEach(personsWithAllPayedFines) { person in
@@ -82,7 +82,7 @@ struct PersonList: View {
     
     @ViewBuilder private func personsListRow(person: Person) -> some View {
         NavigationLink {
-            Text(person.name.formatted()) // TODO
+            PersonDetail(person)
         } label: {
             HStack {
                 if let image = self.imageStorge.personImages[person.id] {
@@ -107,7 +107,7 @@ struct PersonList: View {
                 guard !self.redactionReasons.contains(.placeholder) else {
                     return
                 }
-                await self.imageStorge.fetch(.person(clubId: self.appProperties.signedInPerson.club.id, personId: person.id))
+                await self.imageStorge.fetch(.person(clubId: self.appProperties.club.id, personId: person.id))
             }
         }.disabled(self.redactionReasons.contains(.placeholder))
             .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in
@@ -126,7 +126,7 @@ struct PersonList: View {
     
     private func deletePerson(_ person: Person) async {
         do {
-            let personEditFunction = PersonEditFunction.delete(clubId: self.appProperties.signedInPerson.club.id, personId: person.id)
+            let personEditFunction = PersonEditFunction.delete(clubId: self.appProperties.club.id, personId: person.id)
             try await FirebaseFunctionCaller.shared.call(personEditFunction)
             self.appProperties.persons[person.id] = nil
         } catch let error as FirebaseFunctionError {

@@ -11,7 +11,7 @@ extension Settings {
     struct SignedInPerson {
         public private(set) var id: Person.ID
         public private(set) var name: Person.PersonName
-        public var isAdmin: Bool // TODO
+        public private(set) var isAdmin: Bool
         public private(set) var hashedUserId: String
         public private(set) var club: ClubProperties
     }

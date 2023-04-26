@@ -72,6 +72,17 @@ extension Amount: AdditiveArithmetic {
         guard value >= 0 else { return .zero }
         return Amount(value: UInt(value), subUnitValue: UInt(subUnitValue))
     }
+    
+    static func *(lhs: Amount, rhs: UInt) -> Amount {
+        let newSubUnitValue = lhs.subUnitValue * rhs
+        let value = lhs.value * rhs + newSubUnitValue / 100
+        let subUnitValue = newSubUnitValue % 100
+        return Amount(value: value, subUnitValue: subUnitValue)
+    }
+    
+    static func *=(lhs: inout Amount, rhs: UInt) {
+        lhs = lhs * rhs
+    }
 }
 
 extension Amount: Sendable {}

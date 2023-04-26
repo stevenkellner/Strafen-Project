@@ -104,7 +104,7 @@ struct PersonAddAndEdit: View {
     
     @Sendable private func fetchInitialPersonImage() async  {
         if let personToEdit = self.personToEdit {
-            await self.imageStorage.fetch(.person(clubId: self.appProperties.signedInPerson.club.id, personId: personToEdit.id))
+            await self.imageStorage.fetch(.person(clubId: self.appProperties.club.id, personId: personToEdit.id))
             if self.selectedImage == nil {
                 self.selectedImage = self.imageStorage.personImages[personToEdit.id]
             }
@@ -131,14 +131,14 @@ struct PersonAddAndEdit: View {
             let person = Person(id: personId, name: personName, fineIds: [], isInvited: false)
             let personEditFunction: PersonEditFunction
             if self.personToEdit == nil {
-                personEditFunction = .add(clubId: self.appProperties.signedInPerson.club.id, person: person)
+                personEditFunction = .add(clubId: self.appProperties.club.id, person: person)
             } else {
-                personEditFunction = .update(clubId: self.appProperties.signedInPerson.club.id, person: person)
+                personEditFunction = .update(clubId: self.appProperties.club.id, person: person)
             }
             try await FirebaseFunctionCaller.shared.call(personEditFunction)
             self.appProperties.persons[personId] = person
             if let image = self.selectedImage {
-                try? await self.imageStorage.store(image, for: .person(clubId: self.appProperties.signedInPerson.club.id, personId: personId))
+                try? await self.imageStorage.store(image, for: .person(clubId: self.appProperties.club.id, personId: personId))
             }
             self.dismiss()
         } catch {
