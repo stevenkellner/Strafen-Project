@@ -19,6 +19,8 @@ struct PersonList: View {
     
     @State private var isPersonAddSheetShown = false
     
+    @State private var cannotDeletePersonAlertShown = false
+    
     var body: some View {
         NavigationStack {
             List {
@@ -30,7 +32,7 @@ struct PersonList: View {
                             self.personsListRow(person: person)
                         }
                     } header: {
-                        Text("Offene Strafen")
+                        Text("person-list|persons-with-open-fines", comment: "In person list a section title of persons with open fines.")
                             .font(.callout)
                             .foregroundColor(.secondary)
                             .fontWeight(.bold)
@@ -44,7 +46,7 @@ struct PersonList: View {
                             self.personsListRow(person: person)
                         }
                     } header: {
-                        Text("Bereits gezahlt")
+                        Text("person-list|persons-with-all-payed-fines", comment: "In person list a section of persons with all payed fines.")
                             .font(.callout)
                             .foregroundColor(.secondary)
                             .fontWeight(.bold)
@@ -52,7 +54,14 @@ struct PersonList: View {
                     }
                 }
             }.redacted(reason: self.redactionReasons)
-                .navigationTitle("Personen")
+                .navigationTitle(String(localized: "person-list|title", comment: "Navigation title of the person list."))
+                .alert(String(localized: "person-list|cannot-delete-person-alert|title", comment: "Title of the cannot delete person alert in person list."), isPresented: self.$cannotDeletePersonAlertShown) {
+                    Button {} label: {
+                        Text("got-it-button", comment: "Text of a 'got it' button.")
+                    }
+                } message: {
+                    Text("person-list|cannot-delete-person-alert|message", comment: "Message of the cannot delete person alert in person list cause the person is already registered.")
+                }
                 .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in
                     view.toolbar {
                         ToolbarItem(placement: .navigationBarTrailing) {
@@ -67,7 +76,7 @@ struct PersonList: View {
                         PersonAddAndEdit()
                     }
                 }
-        }.searchable(text: self.$searchText, prompt: "Person suchen")
+        }.searchable(text: self.$searchText, prompt: String(localized: "person-list|search-person", comment: "Search person placeholder of search bar in person list."))
             .unredacted()
     }
     
@@ -104,12 +113,26 @@ struct PersonList: View {
             .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in
                 view.swipeActions {
                     Button(role: .destructive) {
-                        // TODO
+                        Task {
+                            await self.deletePerson(person)
+                        }
                     } label: {
-                        Label("Löschen", systemImage: "trash")
+                        Label(String(localized: "delete-button", comment: "Text of delete button."), systemImage: "trash")
                             .unredacted()
                     }
                 }
             }
+    }
+    
+    private func deletePerson(_ person: Person) async {
+        do {
+            let personEditFunction = PersonEditFunction.delete(clubId: self.appProperties.signedInPerson.club.id, personId: person.id)
+            try await FirebaseFunctionCaller.shared.call(personEditFunction)
+            self.appProperties.persons[person.id] = nil
+        } catch let error as FirebaseFunctionError {
+            if error.code == .unavailable {
+                self.cannotDeletePersonAlertShown = true
+            }
+        } catch {}
     }
 }

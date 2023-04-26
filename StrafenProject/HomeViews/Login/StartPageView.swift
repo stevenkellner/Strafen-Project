@@ -88,16 +88,15 @@ struct StartPageView: View {
             let currentPerson = try await FirebaseFunctionCaller.shared.call(personGetCurrentFunction)
             try self.settingsManager.save(currentPerson.settingsPerson, at: \.signedInPerson)
             return nil
-        } catch {
-            guard let error = error as? FirebaseFunctionError else {
-                return nil
-            }
+        } catch let error as FirebaseFunctionError {
             if error.code == .notFound {
                 return (
                     message: String(localized: "login|custom-error-alert|login|not-registerd-message", comment: "Login failed alert if person try to login is not registered."),
                     button: String(localized: "login|custom-error-alert|login|register-instead-button", comment: "Login failed alert if person try to login is not registered, button text to register instead.")
                 )
             }
+            return nil
+        } catch {
             return nil
         }
     }

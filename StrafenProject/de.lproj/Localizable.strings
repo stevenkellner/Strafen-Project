@@ -19,6 +19,9 @@
 /* Bottom bar settings label. */
 "bottom-bar|settings" = "Einstellungen";
 
+/* Text of cancel button. */
+"cancel-button" = "Abbrechen";
+
 /* App loading failed try again button. */
 "content-view|loading-failed|button" = "Erneut versuchen";
 
@@ -52,8 +55,14 @@
 /* Placeholder of the optionally last name input. */
 "create-club|person-name-input|optional-last-name-placeholder" = "Nachname (optional)";
 
+/* Text of delete button. */
+"delete-button" = "Löschen";
+
 /* Dismiss button on a sheet. */
 "dismiss-sheet" = "Schließen";
+
+/* Text of a 'got it' button. */
+"got-it-button" = "Verstanden";
 
 /* Create new club button. */
 "invitation-link-and-create-club|create-club-button" = "Neuen Verein erstellen";
@@ -183,6 +192,51 @@
 
 /* Button with ok text. */
 "ok-buttton" = "Ok";
+
+/* Add person button in person add and edit. */
+"person-add-and-edit|add-button" = "Hinzufügen";
+
+/* First name textfield placeholder in person add and edit. */
+"person-add-and-edit|first-name-textfield" = "Vorname";
+
+/* Optional last name textfield placeholder in person add and edit. */
+"person-add-and-edit|optional-last-name-textfield" = "Nachname (optional)";
+
+/* Remove image button in person add and edit. */
+"person-add-and-edit|remove-image" = "Bild entfernen";
+
+/* Save person button in person add and edit. */
+"person-add-and-edit|save-button" = "Speichern";
+
+/* Select image button in person add and edit. */
+"person-add-and-edit|select-image" = "Bild auswählen";
+
+/* Navigation title of person add and edit. */
+"person-add-and-edit|title" = "Person";
+
+/* Cannot add person alert title in person add and edit. */
+"person-add-and-edit|unknown-error-alert|cannot-add-title" = "Person konnte nicht hinzugefügt werden.";
+
+/* Cannot save person alert title in person add and edit. */
+"person-add-and-edit|unknown-error-alert|cannot-save-title" = "Person konnte nicht gespeichert werden.";
+
+/* Message of the cannot delete person alert in person list cause the person is already registered. */
+"person-list|cannot-delete-person-alert|message" = "Diese Person ist bereits registriert und kann nicht gelöscht werden.";
+
+/* Title of the cannot delete person alert in person list. */
+"person-list|cannot-delete-person-alert|title" = "Person konnte nicht gelöscht werden.";
+
+/* In person list a section of persons with all payed fines. */
+"person-list|persons-with-all-payed-fines" = "Bereits gezahlt";
+
+/* In person list a section title of persons with open fines. */
+"person-list|persons-with-open-fines" = "Offene Strafen";
+
+/* Search person placeholder of search bar in person list. */
+"person-list|search-person" = "Person suchen";
+
+/* Navigation title of the person list. */
+"person-list|title" = "Personen";
 
 /* Login button on start page to get to login page. */
 "start-page|buttons|login" = "Einloggen";

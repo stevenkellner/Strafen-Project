@@ -53,24 +53,24 @@ struct PersonAddAndEdit: View {
                         Button {
                             self.selectedImage = nil
                         } label: {
-                            Text("Bild entfernen")
+                            Text("person-add-and-edit|remove-image", comment: "Remove image button in person add and edit.") 
                         }
                     }
                     PhotosPicker(selection: self.$selectedPhotosPickerItem, matching: .images, photoLibrary: .shared()) {
-                        Text("Bild auswählen")
+                        Text("person-add-and-edit|select-image", comment: "Select image button in person add and edit.")
                     }.onChange(of: self.selectedPhotosPickerItem, perform: self.getSelectedImage)
                 }
                 Section {
-                    TextField("Vorname", text: self.$firstName)
-                    TextField("Nachname (optional)", text: self.$lastName)
+                    TextField(String(localized: "person-add-and-edit|first-name-textfield", comment: "First name textfield placeholder in person add and edit."), text: self.$firstName)
+                    TextField(String(localized: "person-add-and-edit|optional-last-name-textfield", comment: "Optional last name textfield placeholder in person add and edit."), text: self.$lastName)
                 }
-            }.navigationTitle("Person")
+            }.navigationTitle(String(localized: "person-add-and-edit|title", comment: "Navigation title of person add and edit."))
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar(self.toolbar)
         }.task(self.fetchInitialPersonImage)
-            .alert(self.personToEdit == nil ? "Person konnte nicht hinzugefügt werden." : "Person konnte nicht gespeichert werden.", isPresented: self.$showUnknownErrorAlert) {
+            .alert(self.unknownErrorAlertTitle, isPresented: self.$showUnknownErrorAlert) {
                 Button {} label: {
-                    Text("Verstanden")
+                    Text("got-it-button", comment: "Text of a 'got it' button.")
                 }
 
             }
@@ -81,7 +81,7 @@ struct PersonAddAndEdit: View {
             Button {
                 self.dismiss()
             } label: {
-                Text("Abbrechen")
+                Text("cancel-button", comment: "Text of cancel button.")
             }
         }
         ToolbarItem(placement: .navigationBarTrailing) {
@@ -90,9 +90,16 @@ struct PersonAddAndEdit: View {
                     await self.savePerson()
                 }
             } label: {
-                Text(self.personToEdit == nil ? "Hinzufügen" : "Speichern")
+                Text(self.personToEdit == nil ? String(localized: "person-add-and-edit|add-button", comment: "Add person button in person add and edit.") : String(localized: "person-add-and-edit|save-button", comment: "Save person button in person add and edit."))
             }.disabled(self.firstName == "")
         }
+    }
+    
+    private var unknownErrorAlertTitle: String {
+        if self.personToEdit == nil {
+            return String(localized: "person-add-and-edit|unknown-error-alert|cannot-add-title", comment: "Cannot add person alert title in person add and edit.")
+        }
+        return String(localized: "person-add-and-edit|unknown-error-alert|cannot-save-title", comment: "Cannot save person alert title in person add and edit.")
     }
     
     @Sendable private func fetchInitialPersonImage() async  {

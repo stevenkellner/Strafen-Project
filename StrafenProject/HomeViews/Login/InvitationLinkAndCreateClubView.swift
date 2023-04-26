@@ -137,14 +137,11 @@ extension InvitationLinkAndCreateClubView {
             do {
                 self.personToInvite = try await FirebaseFunctionCaller.shared.call(invitationLinkGetPersonFunction)
                 self.isWelcomePersonSheetShown = true
-            } catch {
-                guard let error = error as? FirebaseFunctionError else {
-                    return
-                }
+            } catch let error as FirebaseFunctionError {
                 if error.code == .notFound {
                     self.notFoundAlertShown = true
                 }
-            }
+            } catch {}
         }
         
         private func registerPerson(user: User) async -> (message: String, button: String)? {
@@ -156,16 +153,15 @@ extension InvitationLinkAndCreateClubView {
                 _ = try await FirebaseFunctionCaller.shared.call(personRegisterFunction)
                 try self.settingsManager.save(Settings.SignedInPerson(id: person.id, name: person.name, isAdmin: false, hashedUserId: Crypter.sha512(user.uid), club: person.club), at: \.signedInPerson)
                 return nil
-            } catch {
-                guard let error = error as? FirebaseFunctionError else {
-                    return nil
-                }
+            } catch let error as FirebaseFunctionError {
                 if error.code == .alreadyExists {
                     return (
                         message: String(localized: "login|custom-error-alert|register-person|already-exists-message", comment: "Login failed alert if person try to sign in is already registered."),
                         button: String(localized: "login|custom-error-alert|register-person|login-instead-button", comment: "Login failed alert if person try to sign in is already registered, button text to login instead.")
                     )
                 }
+                return nil
+            } catch {
                 return nil
             }
         }

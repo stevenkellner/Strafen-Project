@@ -19,6 +19,9 @@
 /* Bottom bar settings label. */
 "bottom-bar|settings" = "Settings";
 
+/* Text of cancel button. */
+"cancel-button" = "Cancel";
+
 /* App loading failed try again button. */
 "content-view|loading-failed|button" = "Try again";
 
@@ -52,8 +55,14 @@
 /* Placeholder of the optionally last name input. */
 "create-club|person-name-input|optional-last-name-placeholder" = "Last name (optional)";
 
+/* Text of delete button. */
+"delete-button" = "Delete";
+
 /* Dismiss button on a sheet. */
 "dismiss-sheet" = "Done";
+
+/* Text of a 'got it' button. */
+"got-it-button" = "Got it";
 
 /* Create new club button. */
 "invitation-link-and-create-club|create-club-button" = "Create new club";
@@ -183,6 +192,51 @@
 
 /* Button with ok text. */
 "ok-buttton" = "ok";
+
+/* Add person button in person add and edit. */
+"person-add-and-edit|add-button" = "Add";
+
+/* First name textfield placeholder in person add and edit. */
+"person-add-and-edit|first-name-textfield" = "First name";
+
+/* Optional last name textfield placeholder in person add and edit. */
+"person-add-and-edit|optional-last-name-textfield" = "Last name (optional)";
+
+/* Remove image button in person add and edit. */
+"person-add-and-edit|remove-image" = "Remove image";
+
+/* Save person button in person add and edit. */
+"person-add-and-edit|save-button" = "Save";
+
+/* Select image button in person add and edit. */
+"person-add-and-edit|select-image" = "Select image";
+
+/* Navigation title of person add and edit. */
+"person-add-and-edit|title" = "Person";
+
+/* Cannot add person alert title in person add and edit. */
+"person-add-and-edit|unknown-error-alert|cannot-add-title" = "Person couldn't be added.";
+
+/* Cannot save person alert title in person add and edit. */
+"person-add-and-edit|unknown-error-alert|cannot-save-title" = "Person couldn't be saved.";
+
+/* Message of the cannot delete person alert in person list cause the person is already registered. */
+"person-list|cannot-delete-person-alert|message" = "This person is already registered and couldn't be deleted.";
+
+/* Title of the cannot delete person alert in person list. */
+"person-list|cannot-delete-person-alert|title" = "Person couldn't be deleted.";
+
+/* In person list a section of persons with all payed fines. */
+"person-list|persons-with-all-payed-fines" = "Everything payed";
+
+/* In person list a section title of persons with open fines. */
+"person-list|persons-with-open-fines" = "Open fines";
+
+/* Search person placeholder of search bar in person list. */
+"person-list|search-person" = "Search person";
+
+/* Navigation title of the person list. */
+"person-list|title" = "Persons";
 
 /* Login button on start page to get to login page. */
 "start-page|buttons|login" = "Login";
