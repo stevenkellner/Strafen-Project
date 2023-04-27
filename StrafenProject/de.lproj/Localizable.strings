@@ -64,6 +64,27 @@
 /* Text of the edit button. */
 "edit-button" = "Bearbeiten";
 
+/* Fine is already payed button. */
+"fine-detail|already-payed-button" = "Bereits gezahlt";
+
+/* Text before the date of the fine. */
+"fine-detail|date" = "Datum";
+
+/* Text before the reason message of the fine. */
+"fine-detail|fine" = "Strafe";
+
+/* Text before the person name of the fine. */
+"fine-detail|fine-of-person" = "Strafe von";
+
+/* Mark the fine as payed button. */
+"fine-detail|mark-as-payed-button" = "Als gezahlt markieren";
+
+/* Text before the payed amount of the fine. */
+"fine-detail|payed-amount" = "Gezahlter Betrag";
+
+/* Text before the unpayed amount of the fine. */
+"fine-detail|unpayed-amount" = "Offener Betrag";
+
 /* Text of a 'got it' button. */
 "got-it-button" = "Verstanden";
 

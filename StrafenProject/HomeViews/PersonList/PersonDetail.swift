@@ -39,12 +39,14 @@ struct PersonDetail: View {
                 }
                 HStack {
                     Text("person-detail|still-open-amount", comment: "Text for the fine amount of the person that is still open.")
+                        .unredacted()
                     Spacer()
                     Text(self.appProperties.fines(of: self.person).unpayedAmount.formatted)
                         .foregroundColor(.red)
                 }
                 HStack {
                     Text("person-detail|total-amount", comment: "Text for the total fine amount of the person.")
+                        .unredacted()
                     Spacer()
                     Text(self.appProperties.fines(of: self.person).totalAmount.formatted)
                         .foregroundColor(.green)
@@ -54,25 +56,27 @@ struct PersonDetail: View {
             if !sortedFines.unpayedFines.isEmpty {
                 Section {
                     ForEach(sortedFines.unpayedFines) { fine in
-                        PersonDetail.FineRow(fine)
+                        PersonDetail.FineRow(fine, person: self.person)
                     }
                 } header: {
                     Text("person-detail|open-fines", comment: "Section text of still open fines.")
                         .font(.callout)
                         .foregroundColor(.secondary)
                         .fontWeight(.bold)
+                        .unredacted()
                 }
             }
             if !sortedFines.payedFines.isEmpty {
                 Section {
                     ForEach(sortedFines.payedFines) { fine in
-                        PersonDetail.FineRow(fine)
+                        PersonDetail.FineRow(fine, person: self.person)
                     }
                 } header: {
                     Text("person-detail|payed-fines", comment: "Section text of already payed fines.")
                         .font(.callout)
                         .foregroundColor(.secondary)
                         .fontWeight(.bold)
+                        .unredacted()
                 }
             }
         }.navigationTitle(self.person.name.formatted(.long))
@@ -108,24 +112,27 @@ extension PersonDetail {
 
         private let fine: Fine
         
-        init(_ fine: Fine) {
+        private let person: Person
+        
+        init(_ fine: Fine, person: Person) {
             self.fine = fine
+            self.person = person
         }
         
         var body: some View {
             NavigationLink {
-                Text(self.fine.formatted) // TODO
+                FineDetail(fine, person: self.person)
             } label: {
                 HStack {
                     VStack(alignment: .leading) {
-                        Text(self.fine.formatted)
+                        Text(self.fine.reasonMessage)
                         Text(self.fine.date.formatted(date: .abbreviated, time: .omitted))
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
                     Spacer()
-                    Text(self.fine.totalAmount.formatted)
-                        .foregroundColor(self.fine.isPayed ? .green : .red)
+                    Text(self.fine.amount.formatted)
+                        .foregroundColor(self.fine.payedState == .payed ? .green : .red)
                 }
             }.disabled(self.redactionReasons.contains(.placeholder))
                 .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in

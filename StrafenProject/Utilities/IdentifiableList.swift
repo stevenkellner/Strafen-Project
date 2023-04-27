@@ -80,7 +80,7 @@ extension IdentifiableList: Decodable where Element: Decodable, Element.ID: RawR
     }
 }
 
-fileprivate var identifiableListRandomPlaceholderLength: Range<UInt> = 5..<15
+fileprivate var identifiableListRandomPlaceholderLength: Range<UInt> = 10..<11
 
 extension IdentifiableList: RandomPlaceholder where Element: RandomPlaceholder {
     static var randomPlaceholderLength: Range<UInt> {

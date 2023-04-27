@@ -43,30 +43,6 @@
                <Test
                   Identifier = "StrafenProjectTests">
                </Test>
-               <Test
-                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite10OtherTests">
-               </Test>
-               <Test
-                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite12CrypterTests">
-               </Test>
-               <Test
-                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite16FixedLengthTests">
-               </Test>
-               <Test
-                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite17PseudoRandomTests">
-               </Test>
-               <Test
-                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite20CombineIteratorTests">
-               </Test>
-               <Test
-                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite22DataToBitIteratorTests">
-               </Test>
-               <Test
-                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite22RandomBitIteratorTests">
-               </Test>
-               <Test
-                  Identifier = "_TtCC19StrafenProjectTests16CrypterTestSuite8BitTests">
-               </Test>
             </SkippedTests>
          </TestableReference>
          <TestableReference

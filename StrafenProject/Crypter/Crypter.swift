@@ -53,7 +53,7 @@ struct Crypter {
         
     func decryptAes(_ data: Data) throws -> Data {
         do {
-            let aes = try AES(key: self.cryptionKeys.encryptionKey.value, blockMode: CBC(iv: self.cryptionKeys.initialisationVector.value))
+            let aes = try AES(key: self.cryptionKeys.encryptionKey.value, blockMode: CBC(iv: self.cryptionKeys.initialisationVector.value), padding: .noPadding)
             return try Data(aes.decrypt(Array(data)).removePadding())
         } catch {
             throw CryptionError.decryptAesError

@@ -46,8 +46,11 @@ class AppProperties: ObservableObject {
     }
     
     func fines(of person: Person) -> IdentifiableList<Fine> {
-        return self.fines.filter { fine in
-            return person.fineIds.contains(fine.id)
+        return person.fineIds.reduce(into: IdentifiableList<Fine>()) { fines, fineId in
+            guard let fine = self.fines[fineId] else {
+                return
+            }
+            fines[fineId] = fine
         }
     }
 }
@@ -108,10 +111,10 @@ extension AppProperties {
         
         mutating func sort() {
             self.unpayedFines.sort { lhsFine, rhsFine in
-                return lhsFine.formatted < rhsFine.formatted
+                return lhsFine.reasonMessage < rhsFine.reasonMessage
             }
             self.payedFines.sort { lhsFine, rhsFine in
-                return lhsFine.formatted < rhsFine.formatted
+                return lhsFine.reasonMessage < rhsFine.reasonMessage
             }
         }
         
@@ -121,7 +124,7 @@ extension AppProperties {
             }
             let searchText = searchText.lowercased()
             return self.unpayedFines.filter { fine in
-                return fine.formatted.lowercased().contains(searchText)
+                return fine.reasonMessage.lowercased().contains(searchText)
             }
         }
         
@@ -131,7 +134,7 @@ extension AppProperties {
             }
             let searchText = searchText.lowercased()
             return self.payedFines.filter { fine in
-                return fine.formatted.lowercased().contains(searchText)
+                return fine.reasonMessage.lowercased().contains(searchText)
             }
         }
     }
@@ -141,7 +144,7 @@ extension AppProperties {
             switch fine.payedState {
             case .unpayed:
                 sortedFines.unpayedFines.append(fine)
-            case .payed(payDate: _):
+            case .payed:
                 sortedFines.payedFines.append(fine)
             }
         }

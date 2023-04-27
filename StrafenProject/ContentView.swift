@@ -86,7 +86,6 @@ struct ContentView: View {
     }
     
     private func fetchAppProperties(signedInPerson: Settings.SignedInPerson) async {
-        // return self.appPropertiesConnectionState = .loading // TODO
         guard self.appPropertiesConnectionState.restart() == .passed else {
             return
         }

@@ -26,7 +26,7 @@ final class FirebaseFunctionsTests: XCTestCase {
     }
     
     func testThrowsHttpsError() async {
-        let fineEditPayedFunction = FineEditPayedFunction(clubId: self.clubId, fineId: Fine.ID(), payedState: .payed(payDate: Date()))
+        let fineEditPayedFunction = FineEditPayedFunction(clubId: self.clubId, fineId: Fine.ID(), payedState: .payed)
         await XCTAssertThrowsErrorAsync(try await FirebaseFunctionCaller.shared.verbose.call(fineEditPayedFunction)) { error in
             XCTAssertTrue(error is FirebaseFunctionError)
             XCTAssertEqual((error as? FirebaseFunctionError)?.code, .notFound)
@@ -39,12 +39,12 @@ final class FirebaseFunctionsTests: XCTestCase {
     }
     
     func testFineEditAdd() async throws {
-        let fineEditFunction = FineEditFunction.add(clubId: self.clubId, fine: Fine(id: Fine.ID(), personId: Person.ID(), payedState: .unpayed, number: 2, date: Date(), fineReason: FineReason(reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50))))
+        let fineEditFunction = FineEditFunction.add(clubId: self.clubId, fine: Fine(id: Fine.ID(), personId: Person.ID(), payedState: .unpayed, date: Date(), reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50)))
         try await FirebaseFunctionCaller.shared.verbose.call(fineEditFunction)
     }
     
     func testFineEditUpdate() async throws {
-        let fineEditFunction = FineEditFunction.update(clubId: self.clubId, fine: Fine(id: Fine.ID(uuidString: "02462A8B-107F-4BAE-A85B-EFF1F727C00F")!, personId: Person.ID(), payedState: .unpayed, number: 2, date: Date(), fineReason: FineReason(reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50))))
+        let fineEditFunction = FineEditFunction.update(clubId: self.clubId, fine: Fine(id: Fine.ID(uuidString: "02462A8B-107F-4BAE-A85B-EFF1F727C00F")!, personId: Person.ID(), payedState: .unpayed, date: Date(), reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50)))
         try await FirebaseFunctionCaller.shared.verbose.call(fineEditFunction)
     }
     
@@ -54,7 +54,7 @@ final class FirebaseFunctionsTests: XCTestCase {
     }
     
     func testFineEditPayed() async throws {
-        let fineEditPayedFunction = FineEditPayedFunction(clubId: self.clubId, fineId: Fine.ID(uuidString: "0B5F958E-9D7D-46E1-8AEE-F52F4370A95A")!, payedState: .payed(payDate: Date()))
+        let fineEditPayedFunction = FineEditPayedFunction(clubId: self.clubId, fineId: Fine.ID(uuidString: "0B5F958E-9D7D-46E1-8AEE-F52F4370A95A")!, payedState: .payed)
         try await FirebaseFunctionCaller.shared.verbose.call(fineEditPayedFunction)
     }
     
@@ -65,9 +65,9 @@ final class FirebaseFunctionsTests: XCTestCase {
         dateFormatter.locale = Locale(identifier: "de_DE")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         XCTAssertEqual(fineList, IdentifiableList(values:[
-            Fine(id: Fine.ID(uuidString: "02462A8B-107F-4BAE-A85B-EFF1F727C00F")!, personId: Person.ID(uuidString: "76025DDE-6893-46D2-BC34-9864BB5B8DAD")!, payedState: .unpayed, number: 1, date: dateFormatter.date(from: "2023-01-24T17:23:45.678Z")!, fineReason: FineReason(reasonMessage: "test_fine_reason_1", amount: Amount(value: 1, subUnitValue: 0))),
-            Fine(id: Fine.ID(uuidString: "0B5F958E-9D7D-46E1-8AEE-F52F4370A95A")!, personId: Person.ID(uuidString: "76025DDE-6893-46D2-BC34-9864BB5B8DAD")!, payedState: .unpayed, number: 2, date: dateFormatter.date(from: "2023-01-02T17:23:45.678Z")!, fineReason: FineReason(reasonMessage: "test_fine_reason_2", amount: Amount(value: 2, subUnitValue: 50))),
-            Fine(id: Fine.ID(uuidString: "1B5F958E-9D7D-46E1-8AEE-F52F4370A95A")!, personId: Person.ID(uuidString: "7BB9AB2B-8516-4847-8B5F-1A94B78EC7B7")!, payedState: .payed(payDate: dateFormatter.date(from: "2023-01-22T17:23:45.678Z")!), number: 1, date: dateFormatter.date(from: "2023-01-20T17:23:45.678Z")!, fineReason: FineReason(reasonMessage: "test_fine_reason_3", amount: Amount(value: 2, subUnitValue: 0)))
+            Fine(id: Fine.ID(uuidString: "02462A8B-107F-4BAE-A85B-EFF1F727C00F")!, personId: Person.ID(uuidString: "76025DDE-6893-46D2-BC34-9864BB5B8DAD")!, payedState: .unpayed, date: dateFormatter.date(from: "2023-01-24T17:23:45.678Z")!, reasonMessage: "test_fine_reason_1", amount: Amount(value: 1, subUnitValue: 0)),
+            Fine(id: Fine.ID(uuidString: "0B5F958E-9D7D-46E1-8AEE-F52F4370A95A")!, personId: Person.ID(uuidString: "76025DDE-6893-46D2-BC34-9864BB5B8DAD")!, payedState: .unpayed, date: dateFormatter.date(from: "2023-01-02T17:23:45.678Z")!, reasonMessage: "test_fine_reason_2", amount: Amount(value: 2, subUnitValue: 50)),
+            Fine(id: Fine.ID(uuidString: "1B5F958E-9D7D-46E1-8AEE-F52F4370A95A")!, personId: Person.ID(uuidString: "7BB9AB2B-8516-4847-8B5F-1A94B78EC7B7")!, payedState: .payed, date: dateFormatter.date(from: "2023-01-20T17:23:45.678Z")!, reasonMessage: "test_fine_reason_3", amount: Amount(value: 2, subUnitValue: 0))
         ]))
     }
     
