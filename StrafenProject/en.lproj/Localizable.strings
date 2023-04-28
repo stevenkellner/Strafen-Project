@@ -4,6 +4,15 @@
 /* Starting part of 'By continuing you agree to Terms, Conditions and Privacy Policy', i.e. 'Terms, Conditions and Privacy Policy'. */
 "agree-terms-privacy-by-continue|terms-and-privacy" = "Terms, Conditions and Privacy Policy";
 
+/* Description of the dark appearance. */
+"appearance|dark" = "Dark";
+
+/* Description of the light appearance. */
+"appearance|light" = "Light";
+
+/* Description of the system appearance. */
+"appearance|system" = "System";
+
 /* Bottom bar add new fine label. */
 "bottom-bar|add-new-fine" = "New fine";
 
@@ -360,6 +369,15 @@
 
 /* Placeholder text of search bar in reason template list. */
 "reason-template-list|search-placeholer" = "Search fine";
+
+/* No comment provided by engineer. */
+"settings|appearance" = "Appearance";
+
+/* Sign out button in settings editor. */
+"settings|sign-out" = "Sign out";
+
+/* Navigation title of the settings. */
+"settings|title" = "Settings";
 
 /* Login button on start page to get to login page. */
 "start-page|buttons|login" = "Login";

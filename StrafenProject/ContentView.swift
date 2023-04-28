@@ -11,7 +11,7 @@ struct ContentView: View {
     
     @StateObject private var settingsManager = SettingsManager()
         
-    @State private var activeBottomBarItem: BottomBar.Item = .addNewFine
+    @State private var activeBottomBarItem: BottomBar.Item = .profile
     
     @State private var appPropertiesConnectionState: ConnectionState<AppProperties, Void> = .notStarted
     
@@ -28,7 +28,11 @@ struct ContentView: View {
                         self.mainPages
                             .environmentObject(appProperties)
                     case .failed(reason: _):
-                        self.fetchAppPropertiesFailed(signedInPerson: signedInPerson)
+                        if self.activeBottomBarItem == .settings {
+                            SettingsEditor()
+                        } else {
+                            self.fetchAppPropertiesFailed(signedInPerson: signedInPerson)
+                        }
                     }
                 }.environmentObject(FirebaseImageStorage())
                     .bottomBar(active: self.$activeBottomBarItem)
@@ -67,7 +71,7 @@ struct ContentView: View {
     @ViewBuilder private var mainPages: some View {
         switch self.activeBottomBarItem {
         case .profile:
-            Text(describing: BottomBar.Item.profile)
+            Profile()
         case .personList:
             PersonList()
         case .reasonTemplateList:
@@ -75,13 +79,7 @@ struct ContentView: View {
         case .addNewFine:
             FineAddAndEdit(shownOnSheet: false)
         case .settings:
-            Text(describing: BottomBar.Item.settings)
-            Button {
-                try? self.settingsManager.save(nil, at: \.signedInPerson)
-                try? FirebaseAuthenticator.shared.signOut()
-            } label: {
-                Text("Sign out")
-            }
+            SettingsEditor()
         }
     }
     

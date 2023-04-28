@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 extension Settings {
-    enum Appearance: String {
+    enum Appearance: String, CaseIterable {
         case system
         case light
         case dark
-    
+        
         var uiStyle: UIUserInterfaceStyle {
             switch self {
             case .system:
@@ -22,6 +22,17 @@ extension Settings {
                 return .light
             case .dark:
                 return .dark
+            }
+        }
+        
+        var formatted: String {
+            switch self {
+            case .system:
+                return String(localized: "appearance|system", comment: "Description of the system appearance.")
+            case .light:
+                return String(localized: "appearance|light", comment: "Description of the light appearance.")
+            case .dark:
+                return String(localized: "appearance|dark", comment: "Description of the dark appearance.")
             }
         }
     }
