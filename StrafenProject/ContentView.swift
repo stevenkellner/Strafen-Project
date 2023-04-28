@@ -11,7 +11,7 @@ struct ContentView: View {
     
     @StateObject private var settingsManager = SettingsManager()
         
-    @State private var activeBottomBarItem: BottomBar.Item = .personList
+    @State private var activeBottomBarItem: BottomBar.Item = .reasonTemplateList
     
     @State private var appPropertiesConnectionState: ConnectionState<AppProperties, Void> = .notStarted
     
@@ -70,8 +70,8 @@ struct ContentView: View {
             Text(describing: BottomBar.Item.profile)
         case .personList:
             PersonList()
-        case .reasonList:
-            Text(describing: BottomBar.Item.reasonList)
+        case .reasonTemplateList:
+            ReasonTemplateList()
         case .addNewFine:
             Text(describing: BottomBar.Item.addNewFine)
         case .settings:

@@ -13,9 +13,18 @@ struct Amount {
     
     @Clamping(0...99) public private(set) var subUnitValue: UInt
     
-    public init(value: UInt, subUnitValue: UInt) {
+    init(value: UInt, subUnitValue: UInt) {
         self.value = value
         self.subUnitValue = subUnitValue
+    }
+    
+    init(doubleValue: Double) {
+        self.value = UInt(doubleValue.rounded(.towardZero))
+        self.subUnitValue = UInt((doubleValue * 100).rounded(.towardZero)) - self.value * 100
+    }
+        
+    var doubleValue: Double {
+        return Double(self.value) + Double(self.subUnitValue) / 100
     }
 }
 
@@ -37,19 +46,33 @@ extension Amount: Codable {
         guard rawAmount >= 0 else {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "Amount is negative.")
         }
-        self.value = UInt(rawAmount)
-        self.subUnitValue = UInt(rawAmount * 100) - self.value * 100
+        self.init(doubleValue: rawAmount)
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        try container.encode(Double(self.value) + Double(self.subUnitValue) / 100)
+        try container.encode(self.doubleValue)
     }
 }
 
 extension Amount: CustomDebugStringConvertible {
     var debugDescription: String {
-        return (self.value + self.subUnitValue / 100).formatted(.currency(code: "EUR"))
+        return self.formatted
+    }
+    
+    static var currencySymbol: String {
+        Locale.availableIdentifiers.compactMap { identifier in
+            let locale = Locale(identifier: identifier)
+            guard let code = locale.currency?.identifier else {
+                return nil
+            }
+            guard code == "EUR" else {
+                return nil
+            }
+            return locale.currencySymbol
+        }.sorted {
+            return $0.count < $1.count
+        }.first ?? ""
     }
 }
 
@@ -69,7 +92,9 @@ extension Amount: AdditiveArithmetic {
         let newSubUnitValue = Int(lhs.subUnitValue) - Int(rhs.subUnitValue)
         let value = Int(lhs.value) - Int(rhs.value) - (newSubUnitValue >= 0 ? 0 : 1)
         let subUnitValue = (newSubUnitValue + 100) % 100
-        guard value >= 0 else { return .zero }
+        guard value >= 0 else {
+            return .zero
+        }
         return Amount(value: UInt(value), subUnitValue: UInt(subUnitValue))
     }
     
@@ -91,10 +116,44 @@ extension Amount: Hashable {}
 
 extension Amount {
     var formatted: String {
-        return (self.value + self.subUnitValue / 100).formatted(.currency(code: "EUR"))
+        return self.doubleValue.formatted(.currency(code: "EUR"))
     }
 }
 
+extension Amount {
+    struct Strategy: ParseStrategy {
+        enum FormattingError: Error {
+            case invalidAmount
+        }
+        
+        public func parse(_ value: String) throws -> Amount {
+            let value = value.replacingOccurrences(of: Amount.currencySymbol, with: "")
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .decimal
+            formatter.locale = .current
+            guard let doubleValue = formatter.number(from: value)?.doubleValue else {
+                throw FormattingError.invalidAmount
+            }
+            return Amount(doubleValue: doubleValue)
+        }
+    }
+    
+    struct FormatStyle: ParseableFormatStyle {
+        var parseStrategy: Amount.Strategy {
+            return Amount.Strategy()
+        }
+        
+        func format(_ value: Amount) -> String {
+            return value.formatted
+        }
+    }
+}
+
+extension ParseableFormatStyle where Self == Amount.FormatStyle {
+    static var amount: Amount.FormatStyle {
+        return Amount.FormatStyle()
+    }
+}
 
 extension Amount: FirebaseFunctionParameterType {
     var parameter: Double {

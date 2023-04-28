@@ -72,7 +72,6 @@ struct PersonAddAndEdit: View {
                 Button {} label: {
                     Text("got-it-button", comment: "Text of a 'got it' button.")
                 }
-
             }
     }
     

@@ -53,9 +53,10 @@ struct PersonDetail: View {
                 }
             }
             let sortedFines = self.appProperties.sortedFines(of: self.person)
-            if !sortedFines.unpayedFines.isEmpty {
+            let unpayedFines = sortedFines.sortedList(of: .unpayed)
+            if !unpayedFines.isEmpty {
                 Section {
-                    ForEach(sortedFines.unpayedFines) { fine in
+                    ForEach(unpayedFines) { fine in
                         PersonDetail.FineRow(fine, person: self.person)
                     }
                 } header: {
@@ -66,9 +67,10 @@ struct PersonDetail: View {
                         .unredacted()
                 }
             }
-            if !sortedFines.payedFines.isEmpty {
+            let payedFines = sortedFines.sortedList(of: .payed)
+            if !payedFines.isEmpty {
                 Section {
-                    ForEach(sortedFines.payedFines) { fine in
+                    ForEach(payedFines) { fine in
                         PersonDetail.FineRow(fine, person: self.person)
                     }
                 } header: {

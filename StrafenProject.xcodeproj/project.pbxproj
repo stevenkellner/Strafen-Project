@@ -49,6 +49,9 @@
 		B035642329DEFB5F000BB7AD /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B035642229DEFB5F000BB7AD /* CryptoSwift */; };
 		B035642529DEFCE3000BB7AD /* Data+Unishort.swift in Sources */ = {isa = PBXBuildFile; fileRef = B035642429DEFCE3000BB7AD /* Data+Unishort.swift */; };
 		B035642729DF078A000BB7AD /* CrypterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B035642629DF078A000BB7AD /* CrypterTests.swift */; };
+		B051020329FAC3A9003FA9F6 /* ReasonTemplateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051020229FAC3A9003FA9F6 /* ReasonTemplateList.swift */; };
+		B051020529FBAFA3003FA9F6 /* SortedSearchableListGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051020429FBAFA3003FA9F6 /* SortedSearchableListGroups.swift */; };
+		B051020729FBBA75003FA9F6 /* ReasonTemplateAddAndEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051020629FBBA75003FA9F6 /* ReasonTemplateAddAndEdit.swift */; };
 		B05AF41B29E2ADB000BA15F0 /* PersonEditFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AF41A29E2ADB000BA15F0 /* PersonEditFunction.swift */; };
 		B05AF41D29E2B1C500BA15F0 /* PersonGetCurrentFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AF41C29E2B1C500BA15F0 /* PersonGetCurrentFunction.swift */; };
 		B05AF41F29E2B94300BA15F0 /* PersonGetFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AF41E29E2B94300BA15F0 /* PersonGetFunction.swift */; };
@@ -164,6 +167,9 @@
 		B035641F29DEFABE000BB7AD /* Crypter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypter.swift; sourceTree = "<group>"; };
 		B035642429DEFCE3000BB7AD /* Data+Unishort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Unishort.swift"; sourceTree = "<group>"; };
 		B035642629DF078A000BB7AD /* CrypterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrypterTests.swift; sourceTree = "<group>"; };
+		B051020229FAC3A9003FA9F6 /* ReasonTemplateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonTemplateList.swift; sourceTree = "<group>"; };
+		B051020429FBAFA3003FA9F6 /* SortedSearchableListGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedSearchableListGroups.swift; sourceTree = "<group>"; };
+		B051020629FBBA75003FA9F6 /* ReasonTemplateAddAndEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonTemplateAddAndEdit.swift; sourceTree = "<group>"; };
 		B05AF41A29E2ADB000BA15F0 /* PersonEditFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonEditFunction.swift; sourceTree = "<group>"; };
 		B05AF41C29E2B1C500BA15F0 /* PersonGetCurrentFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonGetCurrentFunction.swift; sourceTree = "<group>"; };
 		B05AF41E29E2B94300BA15F0 /* PersonGetFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonGetFunction.swift; sourceTree = "<group>"; };
@@ -408,6 +414,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B051020129FAC35A003FA9F6 /* ReasonTemplateList */ = {
+			isa = PBXGroup;
+			children = (
+				B051020229FAC3A9003FA9F6 /* ReasonTemplateList.swift */,
+				B051020629FBBA75003FA9F6 /* ReasonTemplateAddAndEdit.swift */,
+			);
+			path = ReasonTemplateList;
+			sourceTree = "<group>";
+		};
 		B05AF42C29E2F51200BA15F0 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -448,6 +463,7 @@
 				B00899FF29F1C6360062054E /* AppProperties.swift */,
 				B0089A0B29F2C32B0062054E /* View+if.swift */,
 				B08C850F29F938F90051473E /* View+toolbar.swift */,
+				B051020429FBAFA3003FA9F6 /* SortedSearchableListGroups.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -525,8 +541,9 @@
 		B0ED7DFA29E57D7F00685778 /* HomeViews */ = {
 			isa = PBXGroup;
 			children = (
-				B0089A0129F27BCC0062054E /* PersonList */,
 				B0ED7DFB29E57DB900685778 /* Login */,
+				B0089A0129F27BCC0062054E /* PersonList */,
+				B051020129FAC35A003FA9F6 /* ReasonTemplateList */,
 			);
 			path = HomeViews;
 			sourceTree = "<group>";
@@ -716,11 +733,13 @@
 				B0089A0829F2AC910062054E /* FirebaseImageStorage.swift in Sources */,
 				B0E6A58129DF1C9B0095471B /* FixedLength.swift in Sources */,
 				B0E6A5C529E061CE0095471B /* CallSecret.swift in Sources */,
+				B051020529FBAFA3003FA9F6 /* SortedSearchableListGroups.swift in Sources */,
 				B0089A0A29F2AD670062054E /* FirebaseStorageCache.swift in Sources */,
 				B08C851029F938F90051473E /* View+toolbar.swift in Sources */,
 				B05AF42329E2E3B300BA15F0 /* ReasonTemplateEditFunction.swift in Sources */,
 				B0E6A5C329E05F2A0095471B /* PrivateKeys.swift in Sources */,
 				B0E6A59429E03D040095471B /* Tagged.swift in Sources */,
+				B051020729FBBA75003FA9F6 /* ReasonTemplateAddAndEdit.swift in Sources */,
 				B05AF42E29E2F56100BA15F0 /* Settings.swift in Sources */,
 				B0E6A58629E035C80095471B /* Amount.swift in Sources */,
 				B05AF42729E2F2A700BA15F0 /* ConnectionState.swift in Sources */,
@@ -776,6 +795,7 @@
 				B05AF42129E2BB5600BA15F0 /* PersonRegisterFunction.swift in Sources */,
 				B05AF43429E2F6DF00BA15F0 /* SettingsManager.swift in Sources */,
 				B0E6A58B29E036F70095471B /* Clamping.swift in Sources */,
+				B051020329FAC3A9003FA9F6 /* ReasonTemplateList.swift in Sources */,
 				B0089A0329F27BDB0062054E /* PersonList.swift in Sources */,
 				B0E6A5B829E0537B0095471B /* FirebaseFunctionParameterType.swift in Sources */,
 				B08C851429F9860F0051473E /* PersonDetail.swift in Sources */,

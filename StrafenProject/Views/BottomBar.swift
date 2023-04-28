@@ -11,7 +11,7 @@ struct BottomBar {
     enum Item {
         case profile
         case personList
-        case reasonList
+        case reasonTemplateList
         case addNewFine
         case settings
     }
@@ -46,11 +46,11 @@ struct BottomBarModifier: ViewModifier {
                             .foregroundColor(bottomBarItem.wrappedValue == .personList ? .secondary : nil)
                     }
                     Button {
-                        bottomBarItem.wrappedValue = .reasonList
+                        bottomBarItem.wrappedValue = .reasonTemplateList
                     } label: {
                         Label(String(localized: "bottom-bar|reason-list", comment: "Bottom bar reason list label."), systemImage: "list.dash")
                             .labelStyle(.verticalIconAndTitle)
-                            .foregroundColor(bottomBarItem.wrappedValue == .reasonList ? .secondary : nil)
+                            .foregroundColor(bottomBarItem.wrappedValue == .reasonTemplateList ? .secondary : nil)
                     }
                     if FirebaseAuthenticator.shared.user != nil,
                        let signedInPerson = self.settingsManager.signedInPerson,

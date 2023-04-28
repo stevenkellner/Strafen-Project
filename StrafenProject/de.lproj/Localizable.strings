@@ -274,6 +274,33 @@
 /* Navigation title of the person list. */
 "person-list|title" = "Personen";
 
+/* Add reason template button in reason template add and edit. */
+"reason-template-add-and-edit|add-button" = "Hinzufügen";
+
+/* Amount textfield placeholder in reason template add and edit. */
+"reason-template-add-and-edit|amount-textfield" = "Betrag";
+
+/* Reason message textfield placeholder in reason template add and edit. */
+"reason-template-add-and-edit|reason-message-textfield" = "Grund";
+
+/* Save reason template button in reason template add and edit. */
+"reason-template-add-and-edit|save-button" = "Speichern";
+
+/* Navigation title of reason template add and edit. */
+"reason-template-add-and-edit|title" = "Strafe";
+
+/* Cannot add reason template alert title in reason template add and edit. */
+"reason-template-add-and-edit|unknown-error-alert|cannot-add-title" = "Strafe konnte nicht hinzugefügt werden.";
+
+/* Cannot save reason template alert title in reason template add and edit. */
+"reason-template-add-and-edit|unknown-error-alert|cannot-save-title" = "Strafe konnte nicht gespeichert werden.";
+
+/* Title of the reason template list. */
+"reason-template-list|navigation-title" = "Strafenkatalog";
+
+/* Placeholder text of search bar in reason template list. */
+"reason-template-list|search-placeholer" = "Strafe suchen";
+
 /* Login button on start page to get to login page. */
 "start-page|buttons|login" = "Einloggen";
 

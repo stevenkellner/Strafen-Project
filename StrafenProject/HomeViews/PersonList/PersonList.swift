@@ -25,7 +25,7 @@ struct PersonList: View {
         NavigationStack {
             List {
                 let sortedPersons = self.appProperties.sortedPersons
-                let personsWithUnpayedFines = sortedPersons.personsWithUnpayedFines(searchText: self.searchText)
+                let personsWithUnpayedFines = sortedPersons.sortedSearchableList(of: .withUnpayedFines, search: self.searchText)
                 if !personsWithUnpayedFines.isEmpty {
                     Section {
                         ForEach(personsWithUnpayedFines) { person in
@@ -39,7 +39,7 @@ struct PersonList: View {
                             .unredacted()
                     }
                 }
-                let personsWithAllPayedFines = sortedPersons.personsWithAllPayedFines(searchText: self.searchText)
+                let personsWithAllPayedFines = sortedPersons.sortedSearchableList(of: .withPayedFines, search: self.searchText)
                 if !personsWithAllPayedFines.isEmpty {
                     Section {
                         ForEach(personsWithAllPayedFines) { person in

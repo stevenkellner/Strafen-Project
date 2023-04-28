@@ -274,6 +274,33 @@
 /* Navigation title of the person list. */
 "person-list|title" = "Persons";
 
+/* Add reason template button in reason template add and edit. */
+"reason-template-add-and-edit|add-button" = "Add";
+
+/* Amount textfield placeholder in reason template add and edit. */
+"reason-template-add-and-edit|amount-textfield" = "Amount";
+
+/* Reason message textfield placeholder in reason template add and edit. */
+"reason-template-add-and-edit|reason-message-textfield" = "Reason";
+
+/* Save reason template button in reason template add and edit. */
+"reason-template-add-and-edit|save-button" = "Save";
+
+/* Navigation title of reason template add and edit. */
+"reason-template-add-and-edit|title" = "Fine";
+
+/* Cannot add reason template alert title in reason template add and edit. */
+"reason-template-add-and-edit|unknown-error-alert|cannot-add-title" = "Fine couldn't be added.";
+
+/* Cannot save reason template alert title in reason template add and edit. */
+"reason-template-add-and-edit|unknown-error-alert|cannot-save-title" = "Fine couldn't be saved.";
+
+/* Title of the reason template list. */
+"reason-template-list|navigation-title" = "Fines katalog";
+
+/* Placeholder text of search bar in reason template list. */
+"reason-template-list|search-placeholer" = "Search fine";
+
 /* Login button on start page to get to login page. */
 "start-page|buttons|login" = "Login";
 
