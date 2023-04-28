@@ -52,6 +52,7 @@
 		B051020329FAC3A9003FA9F6 /* ReasonTemplateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051020229FAC3A9003FA9F6 /* ReasonTemplateList.swift */; };
 		B051020529FBAFA3003FA9F6 /* SortedSearchableListGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051020429FBAFA3003FA9F6 /* SortedSearchableListGroups.swift */; };
 		B051020729FBBA75003FA9F6 /* ReasonTemplateAddAndEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051020629FBBA75003FA9F6 /* ReasonTemplateAddAndEdit.swift */; };
+		B051020929FBD2C4003FA9F6 /* ReasonTemplateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051020829FBD2C4003FA9F6 /* ReasonTemplateDetail.swift */; };
 		B05AF41B29E2ADB000BA15F0 /* PersonEditFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AF41A29E2ADB000BA15F0 /* PersonEditFunction.swift */; };
 		B05AF41D29E2B1C500BA15F0 /* PersonGetCurrentFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AF41C29E2B1C500BA15F0 /* PersonGetCurrentFunction.swift */; };
 		B05AF41F29E2B94300BA15F0 /* PersonGetFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AF41E29E2B94300BA15F0 /* PersonGetFunction.swift */; };
@@ -170,6 +171,7 @@
 		B051020229FAC3A9003FA9F6 /* ReasonTemplateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonTemplateList.swift; sourceTree = "<group>"; };
 		B051020429FBAFA3003FA9F6 /* SortedSearchableListGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedSearchableListGroups.swift; sourceTree = "<group>"; };
 		B051020629FBBA75003FA9F6 /* ReasonTemplateAddAndEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonTemplateAddAndEdit.swift; sourceTree = "<group>"; };
+		B051020829FBD2C4003FA9F6 /* ReasonTemplateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonTemplateDetail.swift; sourceTree = "<group>"; };
 		B05AF41A29E2ADB000BA15F0 /* PersonEditFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonEditFunction.swift; sourceTree = "<group>"; };
 		B05AF41C29E2B1C500BA15F0 /* PersonGetCurrentFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonGetCurrentFunction.swift; sourceTree = "<group>"; };
 		B05AF41E29E2B94300BA15F0 /* PersonGetFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonGetFunction.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 			children = (
 				B051020229FAC3A9003FA9F6 /* ReasonTemplateList.swift */,
 				B051020629FBBA75003FA9F6 /* ReasonTemplateAddAndEdit.swift */,
+				B051020829FBD2C4003FA9F6 /* ReasonTemplateDetail.swift */,
 			);
 			path = ReasonTemplateList;
 			sourceTree = "<group>";
@@ -756,6 +759,7 @@
 				B08C850E29F934B70051473E /* PersonAddAndEdit.swift in Sources */,
 				B035641C29DEF912000BB7AD /* RandomBitIterator.swift in Sources */,
 				B0ED7DFD29E57DD900685778 /* StartPageView.swift in Sources */,
+				B051020929FBD2C4003FA9F6 /* ReasonTemplateDetail.swift in Sources */,
 				B0E6A5B229E051DC0095471B /* FirebaseFunction.swift in Sources */,
 				B03563C229DEE215000BB7AD /* ContentView.swift in Sources */,
 				B0E6A5B629E052BA0095471B /* FirebaseFunctionInternalParameterType.swift in Sources */,

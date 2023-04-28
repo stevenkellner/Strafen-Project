@@ -295,6 +295,12 @@
 /* Cannot save reason template alert title in reason template add and edit. */
 "reason-template-add-and-edit|unknown-error-alert|cannot-save-title" = "Strafe konnte nicht gespeichert werden.";
 
+/* Text before the amount of the reason template. */
+"reason-template-detail|amount" = "Betrag";
+
+/* Text before the reason message of the reason template. */
+"reason-template-detail|reason-message" = "Grund";
+
 /* Title of the reason template list. */
 "reason-template-list|navigation-title" = "Strafenkatalog";
 

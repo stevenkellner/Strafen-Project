@@ -295,6 +295,12 @@
 /* Cannot save reason template alert title in reason template add and edit. */
 "reason-template-add-and-edit|unknown-error-alert|cannot-save-title" = "Fine couldn't be saved.";
 
+/* Text before the amount of the reason template. */
+"reason-template-detail|amount" = "Amount";
+
+/* Text before the reason message of the reason template. */
+"reason-template-detail|reason-message" = "Reason";
+
 /* Title of the reason template list. */
 "reason-template-list|navigation-title" = "Fines katalog";
 

@@ -49,7 +49,7 @@ struct ReasonTemplateList: View {
     
     @ViewBuilder private func reasonTemplatesListRow(reasonTemplate: ReasonTemplate) -> some View {
         NavigationLink {
-            Text(reasonTemplate.reasonMessage) // TODO
+            ReasonTemplateDetail(reasonTemplate)
         } label: {
             HStack {
                 Text(reasonTemplate.reasonMessage)
