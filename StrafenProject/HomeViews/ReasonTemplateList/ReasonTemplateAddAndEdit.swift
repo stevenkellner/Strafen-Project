@@ -89,9 +89,16 @@ struct ReasonTemplateAddAndEdit: View {
                 reasonTemplateEditFunction = .update(clubId: self.appProperties.club.id, reasonTemplate: reasonTemplate)
             }
             try await FirebaseFunctionCaller.shared.call(reasonTemplateEditFunction)
+            self.appProperties.reasonTemplates[reasonTemplateId] = reasonTemplate
+            self.reset()
             self.dismiss()
         } catch {
             self.showUnknownErrorAlert = true
         }
+    }
+    
+    private func reset() {
+        self.reasonMessage = ""
+        self.amount = .zero
     }
 }

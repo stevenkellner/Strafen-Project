@@ -61,7 +61,13 @@ extension AppProperties {
         case withPayedFines
     }
     
-    var sortedPersons: SortedSearchableListGroups<PersonGroupsKey, Person> {
+    var sortedPersons: SortedSearchableListGroups<SingleGroupKey, Person> {
+        return SortedSearchableListGroups(self.persons) { person in
+            return person.name.formatted()
+        }
+    }
+    
+    var sortedPersonsGroups: SortedSearchableListGroups<PersonGroupsKey, Person> {
         return SortedSearchableListGroups(self.persons) { person in
             let unpayedAmount = self.fines(of: person).unpayedAmount
             return unpayedAmount == .zero ?.withPayedFines : .withUnpayedFines
@@ -80,7 +86,7 @@ extension AppProperties {
 }
 
 extension AppProperties {
-    func sortedFines(of person: Person) -> SortedSearchableListGroups<PayedState, Fine> {
+    func sortedFinesGroups(of person: Person) -> SortedSearchableListGroups<PayedState, Fine> {
         return SortedSearchableListGroups(self.fines(of: person)) { fine in
             return fine.payedState
         } sortBy: { fine in

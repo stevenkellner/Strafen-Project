@@ -11,7 +11,7 @@ struct ContentView: View {
     
     @StateObject private var settingsManager = SettingsManager()
         
-    @State private var activeBottomBarItem: BottomBar.Item = .reasonTemplateList
+    @State private var activeBottomBarItem: BottomBar.Item = .addNewFine
     
     @State private var appPropertiesConnectionState: ConnectionState<AppProperties, Void> = .notStarted
     
@@ -73,7 +73,7 @@ struct ContentView: View {
         case .reasonTemplateList:
             ReasonTemplateList()
         case .addNewFine:
-            Text(describing: BottomBar.Item.addNewFine)
+            FineAddAndEdit(shownOnSheet: false)
         case .settings:
             Text(describing: BottomBar.Item.settings)
             Button {

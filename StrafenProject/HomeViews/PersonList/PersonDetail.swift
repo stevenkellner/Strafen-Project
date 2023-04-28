@@ -52,7 +52,7 @@ struct PersonDetail: View {
                         .foregroundColor(.green)
                 }
             }
-            let sortedFines = self.appProperties.sortedFines(of: self.person)
+            let sortedFines = self.appProperties.sortedFinesGroups(of: self.person)
             let unpayedFines = sortedFines.sortedList(of: .unpayed)
             if !unpayedFines.isEmpty {
                 Section {
@@ -123,7 +123,7 @@ extension PersonDetail {
         
         var body: some View {
             NavigationLink {
-                FineDetail(fine, person: self.person)
+                FineDetail(self.fineBinding, person: self.person)
             } label: {
                 HStack {
                     VStack(alignment: .leading) {
@@ -149,6 +149,14 @@ extension PersonDetail {
                         }
                     }
                 }
+        }
+        
+        private var fineBinding: Binding<Fine> {
+            return Binding {
+                return self.fine
+            } set: { fine in
+                self.appProperties.fines[fine.id] = fine
+            }
         }
         
         private func deleteFine() async {

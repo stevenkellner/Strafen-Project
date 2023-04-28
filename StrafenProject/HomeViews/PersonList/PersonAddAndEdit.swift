@@ -139,9 +139,17 @@ struct PersonAddAndEdit: View {
             if let image = self.selectedImage {
                 try? await self.imageStorage.store(image, for: .person(clubId: self.appProperties.club.id, personId: personId))
             }
+            self.reset()
             self.dismiss()
         } catch {
             self.showUnknownErrorAlert = true
         }
+    }
+    
+    private func reset() {
+        self.firstName = ""
+        self.lastName = ""
+        self.selectedPhotosPickerItem = nil
+        self.selectedImage = nil
     }
 }

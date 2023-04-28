@@ -13,7 +13,7 @@ struct PersonList: View {
     
     @EnvironmentObject private var appProperties: AppProperties
     
-    @EnvironmentObject private var imageStorge: FirebaseImageStorage
+    @EnvironmentObject private var imageStorage: FirebaseImageStorage
     
     @State private var searchText = ""
     
@@ -24,7 +24,7 @@ struct PersonList: View {
     var body: some View {
         NavigationStack {
             List {
-                let sortedPersons = self.appProperties.sortedPersons
+                let sortedPersons = self.appProperties.sortedPersonsGroups
                 let personsWithUnpayedFines = sortedPersons.sortedSearchableList(of: .withUnpayedFines, search: self.searchText)
                 if !personsWithUnpayedFines.isEmpty {
                     Section {
@@ -85,7 +85,7 @@ struct PersonList: View {
             PersonDetail(person)
         } label: {
             HStack {
-                if let image = self.imageStorge.personImages[person.id] {
+                if let image = self.imageStorage.personImages[person.id] {
                     Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -107,7 +107,7 @@ struct PersonList: View {
                 guard !self.redactionReasons.contains(.placeholder) else {
                     return
                 }
-                await self.imageStorge.fetch(.person(clubId: self.appProperties.club.id, personId: person.id))
+                await self.imageStorage.fetch(.person(clubId: self.appProperties.club.id, personId: person.id))
             }
         }.disabled(self.redactionReasons.contains(.placeholder))
             .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in

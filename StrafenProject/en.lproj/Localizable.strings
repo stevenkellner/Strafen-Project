@@ -22,6 +22,9 @@
 /* Text of cancel button. */
 "cancel-button" = "Cancel";
 
+/* Text of confirm button. */
+"confirm-button" = "Confirm";
+
 /* App loading failed try again button. */
 "content-view|loading-failed|button" = "Try again";
 
@@ -64,6 +67,42 @@
 /* Text of the edit button. */
 "edit-button" = "Edit";
 
+/* Add fine button in fine add and edit. */
+"fine-add-and-edit|add-button" = "Add";
+
+/* Text before date picker in fine add and edit. */
+"fine-add-and-edit|date-text" = "Date";
+
+/* Text before payed toggle in fine add and edit. */
+"fine-add-and-edit|payed-toggle-text" = "Already payed";
+
+/* Pick person button in fine add and edit. */
+"fine-add-and-edit|pick-person-button" = "Select person";
+
+/* Pick reason template in fine add and edit. */
+"fine-add-and-edit|pick-reason-template-button" = "Select fine";
+
+/* Save fine button in fine add and edit. */
+"fine-add-and-edit|save-button" = "Save";
+
+/* Navigation title of fine add and edit. */
+"fine-add-and-edit|title" = "Fine";
+
+/* Cannot add fine alert title in fine add and edit. */
+"fine-add-and-edit|unknown-error-alert|cannot-add-title" = "Fine couldn't be added.";
+
+/* Cannot save fine alert title in fine add and edit. */
+"fine-add-and-edit|unknown-error-alert|cannot-save-title" = "Fine couldn't be saved.";
+
+/* Amount textfield placeholder in fine custom reason. */
+"fine-custom-reason|amount-textfield" = "Betrag";
+
+/* Reason message textfield placeholder in fine custom reason. */
+"fine-custom-reason|reason-message-textfield" = "Reason";
+
+/* Navigation title of fine custom reason. */
+"fine-custom-reason|title" = "Fine";
+
 /* Fine is already payed button. */
 "fine-detail|already-payed-button" = "Already payed";
 
@@ -84,6 +123,21 @@
 
 /* Text before the unpayed amount of the fine. */
 "fine-detail|unpayed-amount" = "Unpayed amount";
+
+/* Placeholder text of search bar in fine pick person. */
+"fine-pick-person|search-placeholder" = "Search person";
+
+/* Title of fine pick person. */
+"fine-pick-person|title" = "Select person";
+
+/* Custom reason button of fine pick reason template. */
+"fine-pick-reason-template|custom-reason-button" = "Custom fine";
+
+/* Placeholder text of search bar in fine pick reason template. */
+"fine-pick-reason-template|search-placeholder" = "Search fine";
+
+/* Title of fine pick reason template. */
+"fine-pick-reason-template|title" = "Select fine";
 
 /* Text of a 'got it' button. */
 "got-it-button" = "Got it";

@@ -13,14 +13,14 @@ struct FineDetail: View {
     
     @EnvironmentObject private var appProperties: AppProperties
     
-    @State private var fine: Fine
+    @Binding private var fine: Fine
     
     private let person: Person
     
     @State private var isEditFineSheetShown = false
     
-    init(_ fine: Fine, person: Person) {
-        self._fine = State(initialValue: fine)
+    init(_ fine: Binding<Fine>, person: Person) {
+        self._fine = fine
         self.person = person
     }
     
@@ -76,7 +76,7 @@ struct FineDetail: View {
                     }
                 }
                 .sheet(isPresented: self.$isEditFineSheetShown) {
-                    Text(self.fine.reasonMessage) // TODO
+                    FineAddAndEdit(fine: self.fine, shownOnSheet: true)
                 }
             }
     }
@@ -85,12 +85,10 @@ struct FineDetail: View {
         let previousPayedState = self.fine.payedState
         do {
             let payedState: PayedState = self.fine.payedState == .payed ? .unpayed : .payed
-            self.fine.payedState = payedState
             self.appProperties.fines[self.fine.id]?.payedState = payedState
             let fineEditPayedFunction = FineEditPayedFunction(clubId: self.appProperties.club.id, fineId: self.fine.id, payedState: payedState)
             try await FirebaseFunctionCaller.shared.call(fineEditPayedFunction)
         } catch {
-            self.fine.payedState = previousPayedState
             self.appProperties.fines[self.fine.id]?.payedState = previousPayedState
         }
     }

@@ -22,6 +22,9 @@
 /* Text of cancel button. */
 "cancel-button" = "Abbrechen";
 
+/* Text of confirm button. */
+"confirm-button" = "Bestätigen";
+
 /* App loading failed try again button. */
 "content-view|loading-failed|button" = "Erneut versuchen";
 
@@ -64,6 +67,42 @@
 /* Text of the edit button. */
 "edit-button" = "Bearbeiten";
 
+/* Add fine button in fine add and edit. */
+"fine-add-and-edit|add-button" = "Hinzufügen";
+
+/* Text before date picker in fine add and edit. */
+"fine-add-and-edit|date-text" = "Datum";
+
+/* Text before payed toggle in fine add and edit. */
+"fine-add-and-edit|payed-toggle-text" = "Bereits gezahlt";
+
+/* Pick person button in fine add and edit. */
+"fine-add-and-edit|pick-person-button" = "Person auswählen";
+
+/* Pick reason template in fine add and edit. */
+"fine-add-and-edit|pick-reason-template-button" = "Strafe auswählen";
+
+/* Save fine button in fine add and edit. */
+"fine-add-and-edit|save-button" = "Speichern";
+
+/* Navigation title of fine add and edit. */
+"fine-add-and-edit|title" = "Strafe";
+
+/* Cannot add fine alert title in fine add and edit. */
+"fine-add-and-edit|unknown-error-alert|cannot-add-title" = "Strafe konnte nicht hinzugefügt werden.";
+
+/* Cannot save fine alert title in fine add and edit. */
+"fine-add-and-edit|unknown-error-alert|cannot-save-title" = "Strafe konnte nicht gespeichert werden.";
+
+/* Amount textfield placeholder in fine custom reason. */
+"fine-custom-reason|amount-textfield" = "Betrag";
+
+/* Reason message textfield placeholder in fine custom reason. */
+"fine-custom-reason|reason-message-textfield" = "Grund";
+
+/* Navigation title of fine custom reason. */
+"fine-custom-reason|title" = "Strafe";
+
 /* Fine is already payed button. */
 "fine-detail|already-payed-button" = "Bereits gezahlt";
 
@@ -84,6 +123,21 @@
 
 /* Text before the unpayed amount of the fine. */
 "fine-detail|unpayed-amount" = "Offener Betrag";
+
+/* Placeholder text of search bar in fine pick person. */
+"fine-pick-person|search-placeholder" = "Person suchen";
+
+/* Title of fine pick person. */
+"fine-pick-person|title" = "Person auswählen";
+
+/* Custom reason button of fine pick reason template. */
+"fine-pick-reason-template|custom-reason-button" = "Eigene Strafe";
+
+/* Placeholder text of search bar in fine pick reason template. */
+"fine-pick-reason-template|search-placeholder" = "Strafe suchen";
+
+/* Title of fine pick reason template. */
+"fine-pick-reason-template|title" = "Strafe auswählen";
 
 /* Text of a 'got it' button. */
 "got-it-button" = "Verstanden";
