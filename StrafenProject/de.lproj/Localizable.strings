@@ -337,6 +337,18 @@
 /* Navigation title of the person list. */
 "person-list|title" = "Personen";
 
+/* Save profile image button in profile change image. */
+"profile-change-image|save-button" = "Speichern";
+
+/* Title of change profile image. */
+"profile-change-image|title" = "Profilbild ändern";
+
+/* Change profile image button in profile detail. */
+"profile|change-profile-image-button" = "Profilbild";
+
+/* Signed in person not found for profile detail. */
+"profile|person-not-found" = "Du wurdest in diesem Verein nicht gefunden. Bitte kontaktiere den Verantwortlichen der App.";
+
 /* Add reason template button in reason template add and edit. */
 "reason-template-add-and-edit|add-button" = "Hinzufügen";
 

@@ -86,6 +86,7 @@
 		B08C851629FA5DC20051473E /* FineDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08C851529FA5DC20051473E /* FineDetail.swift */; };
 		B0C75A0B29EACCC6004650BA /* UIApplication+rootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75A0A29EACCC6004650BA /* UIApplication+rootViewController.swift */; };
 		B0C75A0D29EACFF4004650BA /* String+randomNonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75A0C29EACFF4004650BA /* String+randomNonce.swift */; };
+		B0D6B19529FD3102002295F7 /* ProfileChangeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D6B19429FD3101002295F7 /* ProfileChangeImage.swift */; };
 		B0E6A57F29DF1C080095471B /* JSONDecoder+iso8601WithMilliseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A57E29DF1C080095471B /* JSONDecoder+iso8601WithMilliseconds.swift */; };
 		B0E6A58129DF1C9B0095471B /* FixedLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A58029DF1C9B0095471B /* FixedLength.swift */; };
 		B0E6A58329DF22750095471B /* Array+randomBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A58229DF22750095471B /* Array+randomBytes.swift */; };
@@ -213,6 +214,7 @@
 		B08C851529FA5DC20051473E /* FineDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineDetail.swift; sourceTree = "<group>"; };
 		B0C75A0A29EACCC6004650BA /* UIApplication+rootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+rootViewController.swift"; sourceTree = "<group>"; };
 		B0C75A0C29EACFF4004650BA /* String+randomNonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+randomNonce.swift"; sourceTree = "<group>"; };
+		B0D6B19429FD3101002295F7 /* ProfileChangeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChangeImage.swift; sourceTree = "<group>"; };
 		B0E6A57E29DF1C080095471B /* JSONDecoder+iso8601WithMilliseconds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+iso8601WithMilliseconds.swift"; sourceTree = "<group>"; };
 		B0E6A58029DF1C9B0095471B /* FixedLength.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedLength.swift; sourceTree = "<group>"; };
 		B0E6A58229DF22750095471B /* Array+randomBytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+randomBytes.swift"; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				B051021929FC068F003FA9F6 /* Profile.swift */,
+				B0D6B19429FD3101002295F7 /* ProfileChangeImage.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -474,6 +477,18 @@
 				B05AF43329E2F6DF00BA15F0 /* SettingsManager.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		B0D6B19629FD3603002295F7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B0C75A0A29EACCC6004650BA /* UIApplication+rootViewController.swift */,
+				B0C75A0C29EACFF4004650BA /* String+randomNonce.swift */,
+				B0089A0B29F2C32B0062054E /* View+if.swift */,
+				B00899FA29EFD8830062054E /* Text+describing.swift */,
+				B08C850F29F938F90051473E /* View+toolbar.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		B0E6A58429E035AC0095471B /* Types */ = {
@@ -492,6 +507,7 @@
 		B0E6A58C29E03AE60095471B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				B0D6B19629FD3603002295F7 /* Extensions */,
 				B0E6A58A29E036F60095471B /* Clamping.swift */,
 				B0E6A58D29E03B050095471B /* RandomPlaceholder.swift */,
 				B06EA00629E1EC7D0034B178 /* IdentifiableList.swift */,
@@ -499,12 +515,7 @@
 				B05AF42629E2F2A700BA15F0 /* ConnectionState.swift */,
 				B05AF42829E2F2E400BA15F0 /* OperationResult.swift */,
 				B05AF42A29E2F43E00BA15F0 /* ValidationResult.swift */,
-				B0C75A0A29EACCC6004650BA /* UIApplication+rootViewController.swift */,
-				B0C75A0C29EACFF4004650BA /* String+randomNonce.swift */,
-				B00899FA29EFD8830062054E /* Text+describing.swift */,
 				B00899FF29F1C6360062054E /* AppProperties.swift */,
-				B0089A0B29F2C32B0062054E /* View+if.swift */,
-				B08C850F29F938F90051473E /* View+toolbar.swift */,
 				B051020429FBAFA3003FA9F6 /* SortedSearchableListGroups.swift */,
 			);
 			path = Utilities;
@@ -830,6 +841,7 @@
 				B035641429DEF2A5000BB7AD /* Bit.swift in Sources */,
 				B06EA00529E1DFCE0034B178 /* FineGetFunction.swift in Sources */,
 				B0E6A5CC29E06C150095471B /* FirebaseConfigurator.swift in Sources */,
+				B0D6B19529FD3102002295F7 /* ProfileChangeImage.swift in Sources */,
 				B05AF42529E2E6D300BA15F0 /* ReasonTemplateGetFunction.swift in Sources */,
 				B0E6A5CE29E06D410095471B /* FirebaseAuthenticator.swift in Sources */,
 				B035642529DEFCE3000BB7AD /* Data+Unishort.swift in Sources */,

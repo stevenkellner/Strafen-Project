@@ -80,6 +80,7 @@ struct ContentView: View {
             FineAddAndEdit(shownOnSheet: false)
         case .settings:
             SettingsEditor()
+                .unredacted()
         }
     }
     

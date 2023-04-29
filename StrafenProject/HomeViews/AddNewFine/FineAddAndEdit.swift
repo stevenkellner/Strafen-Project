@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FineAddAndEdit: View {
     
+    @Environment(\.redactionReasons) private var redactionReasons
+    
     @Environment(\.dismiss) private var dismiss
     
     @EnvironmentObject private var appProperties: AppProperties
@@ -69,8 +71,9 @@ struct FineAddAndEdit: View {
                                 }.foregroundColor(.primary)
                             } else {
                                 Text("fine-add-and-edit|pick-person-button", comment: "Pick person button in fine add and edit.")
+                                    .unredacted()
                             }
-                        }
+                        }.disabled(self.redactionReasons.contains(.placeholder))
                     }.sheet(isPresented: self.$isPickPersonSheetShown) {
                         FinePickPerson(personId: self.$personId)
                     }.task {
@@ -99,8 +102,9 @@ struct FineAddAndEdit: View {
                             }.foregroundColor(.primary)
                         } else {
                             Text("fine-add-and-edit|pick-reason-template-button", comment: "Pick reason template in fine add and edit.")
+                                .unredacted()
                         }
-                    }
+                    }.disabled(self.redactionReasons.contains(.placeholder))
                 }.sheet(isPresented: self.$isPickReasonTemplateSheetShown) {
                     FinePickReasonTemplate(reasonMessage: self.$reasonMessage, amount: self.$amount)
                 }
@@ -111,7 +115,7 @@ struct FineAddAndEdit: View {
                     }
                     DatePicker(String(localized: "fine-add-and-edit|date-text", comment: "Text before date picker in fine add and edit."), selection: self.$date, displayedComponents: .date)
                         .datePickerStyle(.graphical)
-                }
+                }.disabled(self.redactionReasons.contains(.placeholder))
             }.navigationTitle(String(localized: "fine-add-and-edit|title", comment: "Navigation title of fine add and edit."))
                 .navigationBarTitleDisplayMode(self.shownOnSheet ? .inline : .large)
                 .toolbar(self.toolbar)
@@ -139,7 +143,8 @@ struct FineAddAndEdit: View {
                 }
             } label: {
                 Text(self.fineToEdit == nil ? String(localized: "fine-add-and-edit|add-button", comment: "Add fine button in fine add and edit.") : String(localized: "fine-add-and-edit|save-button", comment: "Save fine button in fine add and edit."))
-            }.disabled(self.personId == nil || self.reasonMessage?.isEmpty ?? true || self.amount == nil || self.amount == .zero)
+                    .unredacted()
+            }.disabled(self.redactionReasons.contains(.placeholder) || self.personId == nil || self.reasonMessage?.isEmpty ?? true || self.amount == nil || self.amount == .zero)
         }
     }
     
