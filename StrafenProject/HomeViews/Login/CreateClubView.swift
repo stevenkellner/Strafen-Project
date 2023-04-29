@@ -127,12 +127,12 @@ struct CreateClubView: View {
         }
     }
     
-    private var personName: Person.PersonName? {
+    private var personName: PersonName? {
         guard self.firstName != "" else {
             return nil
         }
         let lastName = self.lastName == "" ? nil : self.lastName
-        return Person.PersonName(first: self.firstName, last: lastName)
+        return PersonName(first: self.firstName, last: lastName)
     }
     
     private func createClub() async {

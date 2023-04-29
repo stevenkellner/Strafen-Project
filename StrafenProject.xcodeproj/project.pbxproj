@@ -86,7 +86,10 @@
 		B08C851629FA5DC20051473E /* FineDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08C851529FA5DC20051473E /* FineDetail.swift */; };
 		B0C75A0B29EACCC6004650BA /* UIApplication+rootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75A0A29EACCC6004650BA /* UIApplication+rootViewController.swift */; };
 		B0C75A0D29EACFF4004650BA /* String+randomNonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75A0C29EACFF4004650BA /* String+randomNonce.swift */; };
+		B0CB453B29FD8D5200F39404 /* PersonName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB453A29FD8D5200F39404 /* PersonName.swift */; };
+		B0CB453D29FD8D5D00F39404 /* SignInData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB453C29FD8D5D00F39404 /* SignInData.swift */; };
 		B0D6B19529FD3102002295F7 /* ProfileChangeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D6B19429FD3101002295F7 /* ProfileChangeImage.swift */; };
+		B0D6B19829FD6B1C002295F7 /* PersonMakeManagerFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D6B19729FD6B1C002295F7 /* PersonMakeManagerFunction.swift */; };
 		B0E6A57F29DF1C080095471B /* JSONDecoder+iso8601WithMilliseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A57E29DF1C080095471B /* JSONDecoder+iso8601WithMilliseconds.swift */; };
 		B0E6A58129DF1C9B0095471B /* FixedLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A58029DF1C9B0095471B /* FixedLength.swift */; };
 		B0E6A58329DF22750095471B /* Array+randomBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A58229DF22750095471B /* Array+randomBytes.swift */; };
@@ -214,7 +217,10 @@
 		B08C851529FA5DC20051473E /* FineDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineDetail.swift; sourceTree = "<group>"; };
 		B0C75A0A29EACCC6004650BA /* UIApplication+rootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+rootViewController.swift"; sourceTree = "<group>"; };
 		B0C75A0C29EACFF4004650BA /* String+randomNonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+randomNonce.swift"; sourceTree = "<group>"; };
+		B0CB453A29FD8D5200F39404 /* PersonName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonName.swift; sourceTree = "<group>"; };
+		B0CB453C29FD8D5D00F39404 /* SignInData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInData.swift; sourceTree = "<group>"; };
 		B0D6B19429FD3101002295F7 /* ProfileChangeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChangeImage.swift; sourceTree = "<group>"; };
+		B0D6B19729FD6B1C002295F7 /* PersonMakeManagerFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonMakeManagerFunction.swift; sourceTree = "<group>"; };
 		B0E6A57E29DF1C080095471B /* JSONDecoder+iso8601WithMilliseconds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+iso8601WithMilliseconds.swift"; sourceTree = "<group>"; };
 		B0E6A58029DF1C9B0095471B /* FixedLength.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedLength.swift; sourceTree = "<group>"; };
 		B0E6A58229DF22750095471B /* Array+randomBytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+randomBytes.swift"; sourceTree = "<group>"; };
@@ -500,6 +506,8 @@
 				B0E6A5A529E0447D0095471B /* Fine.swift */,
 				B0E6A5A929E046D80095471B /* Person.swift */,
 				B0E6A5AD29E049960095471B /* ReasonTemplate.swift */,
+				B0CB453A29FD8D5200F39404 /* PersonName.swift */,
+				B0CB453C29FD8D5D00F39404 /* SignInData.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -569,6 +577,7 @@
 				B06EA00229E1DA610034B178 /* FineEditPayedFunction.swift */,
 				B06EA00429E1DFCD0034B178 /* FineGetFunction.swift */,
 				B05AF41A29E2ADB000BA15F0 /* PersonEditFunction.swift */,
+				B0D6B19729FD6B1C002295F7 /* PersonMakeManagerFunction.swift */,
 				B05AF41C29E2B1C500BA15F0 /* PersonGetCurrentFunction.swift */,
 				B05AF41E29E2B94300BA15F0 /* PersonGetFunction.swift */,
 				B05AF42029E2BB5500BA15F0 /* PersonRegisterFunction.swift */,
@@ -815,6 +824,7 @@
 				B08C850E29F934B70051473E /* PersonAddAndEdit.swift in Sources */,
 				B051021429FBEFC6003FA9F6 /* FineCustomReason.swift in Sources */,
 				B035641C29DEF912000BB7AD /* RandomBitIterator.swift in Sources */,
+				B0CB453D29FD8D5D00F39404 /* SignInData.swift in Sources */,
 				B0ED7DFD29E57DD900685778 /* StartPageView.swift in Sources */,
 				B051020929FBD2C4003FA9F6 /* ReasonTemplateDetail.swift in Sources */,
 				B051021029FBE797003FA9F6 /* FinePickPerson.swift in Sources */,
@@ -830,6 +840,7 @@
 				B05AF42B29E2F43E00BA15F0 /* ValidationResult.swift in Sources */,
 				B0C75A0B29EACCC6004650BA /* UIApplication+rootViewController.swift in Sources */,
 				B0E6A5BF29E0594E0095471B /* FirebaseFunctionCaller.swift in Sources */,
+				B0D6B19829FD6B1C002295F7 /* PersonMakeManagerFunction.swift in Sources */,
 				B0F598D729E6FEB00056B871 /* InvitationLinkAndCreateClubView.swift in Sources */,
 				B0E6A5AE29E049960095471B /* ReasonTemplate.swift in Sources */,
 				B05AF43029E2F5CA00BA15F0 /* Settings+Appearance.swift in Sources */,
@@ -860,6 +871,7 @@
 				B05AF43429E2F6DF00BA15F0 /* SettingsManager.swift in Sources */,
 				B0E6A58B29E036F70095471B /* Clamping.swift in Sources */,
 				B051020329FAC3A9003FA9F6 /* ReasonTemplateList.swift in Sources */,
+				B0CB453B29FD8D5200F39404 /* PersonName.swift in Sources */,
 				B0089A0329F27BDB0062054E /* PersonList.swift in Sources */,
 				B0E6A5B829E0537B0095471B /* FirebaseFunctionParameterType.swift in Sources */,
 				B08C851429F9860F0051473E /* PersonDetail.swift in Sources */,

@@ -15,7 +15,7 @@ struct ClubNewFunction: FirebaseFunction {
     
     public private(set) var personId: Person.ID
     
-    public private(set) var personName: Person.PersonName
+    public private(set) var personName: PersonName
     
     var parameters: FirebaseFunctionParameters {
         FirebaseFunctionParameter(self.clubProperties.id, for: "clubId")

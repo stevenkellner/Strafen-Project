@@ -31,7 +31,7 @@ final class SettingsTests: XCTestCase {
     func testSaveAndInitialRead() throws {
         let settingsManager = SettingsManager()
         try settingsManager.save(.dark, at: \.appearance)
-        let signedInPerson = Settings.SignedInPerson(id: Person.ID(), name: Person.PersonName(first: "asdf"), isAdmin: true, hashedUserId: "ölkj", club: ClubProperties(id: ClubProperties.ID(), name: "ölkmun"))
+        let signedInPerson = Settings.SignedInPerson(id: Person.ID(), name: PersonName(first: "asdf"), isAdmin: true, hashedUserId: "ölkj", club: ClubProperties(id: ClubProperties.ID(), name: "ölkmun"))
         try settingsManager.save(signedInPerson, at: \.signedInPerson)
         XCTAssertEqual(SettingsManager().appearance, .dark)
         XCTAssertEqual(SettingsManager().signedInPerson, signedInPerson)
@@ -41,7 +41,7 @@ final class SettingsTests: XCTestCase {
         let settingsManager1 = SettingsManager()
         let settingsManager2 = SettingsManager()
         try settingsManager2.save(.light, at: \.appearance)
-        let signedInPerson = Settings.SignedInPerson(id: Person.ID(), name: Person.PersonName(first: "mztu", last: "iuw"), isAdmin: false, hashedUserId: "xycbvcnb", club: ClubProperties(id: ClubProperties.ID(), name: "mzru"))
+        let signedInPerson = Settings.SignedInPerson(id: Person.ID(), name: PersonName(first: "mztu", last: "iuw"), isAdmin: false, hashedUserId: "xycbvcnb", club: ClubProperties(id: ClubProperties.ID(), name: "mzru"))
         try settingsManager2.save(signedInPerson, at: \.signedInPerson)
         XCTAssertEqual(settingsManager1.appearance, .system)
         XCTAssertEqual(settingsManager1.signedInPerson, nil)

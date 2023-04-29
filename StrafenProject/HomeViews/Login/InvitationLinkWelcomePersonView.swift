@@ -14,6 +14,8 @@ struct InvitationLinkWelcomePersonView: View {
     private let person: InvitationLinkGetPersonFunction.ReturnType
     
     private var isSignInNavigationActive: Binding<Bool>
+    
+    @StateObject private var imageStorage = FirebaseImageStorage()
         
     init(_ person: InvitationLinkGetPersonFunction.ReturnType, isSignInNavigationActive: Binding<Bool>) {
         self.person = person
@@ -23,7 +25,14 @@ struct InvitationLinkWelcomePersonView: View {
     var body: some View {
         NavigationView {
             VStack {
-                // TODO person image
+                if let image = self.imageStorage.personImages[self.person.id] {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 150, height: 150)
+                        .clipShape(Circle())
+                        .padding(.bottom)
+                }
                 Text("invitation-link-welcome-person|welcom-person?person=\(self.person.name.formatted())", comment: "Welcome person text in the welcome person page after invitation link input.")
                     .font(.title)
                     .fontWeight(.semibold)
@@ -59,6 +68,8 @@ struct InvitationLinkWelcomePersonView: View {
                             Text("dismiss-sheet", comment: "Dismiss button on a sheet.")
                         }
                     }
+                }.task {
+                    await self.imageStorage.fetch(.person(clubId: self.person.club.id, personId: self.person.id))
                 }
         }
     }

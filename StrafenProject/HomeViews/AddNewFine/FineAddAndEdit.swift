@@ -148,7 +148,7 @@ struct FineAddAndEdit: View {
         }
     }
     
-    private var personName: Person.PersonName? {
+    private var personName: PersonName? {
         guard let personId = self.personId else {
             return nil
         }

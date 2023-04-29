@@ -10,7 +10,7 @@ import Foundation
 struct InvitationLinkGetPersonFunction: FirebaseFunction {
     struct ReturnType {
         public private(set) var id: Person.ID
-        public private(set) var name: Person.PersonName
+        public private(set) var name: PersonName
         public private(set) var fineIds: [Fine.ID]
         public private(set) var club: ClubProperties
     }

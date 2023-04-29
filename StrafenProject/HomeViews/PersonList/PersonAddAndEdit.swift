@@ -83,6 +83,13 @@ struct PersonAddAndEdit: View {
                 Text("cancel-button", comment: "Text of cancel button.")
             }
         }
+        if self.personToEdit?.signInData != nil { // TODO no admin
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {} label: {
+                    Text("asdf")
+                }
+            }
+        }
         ToolbarItem(placement: .navigationBarTrailing) {
             Button {
                 Task {
@@ -126,7 +133,7 @@ struct PersonAddAndEdit: View {
     private func savePerson() async {
         do {
             let personId = self.personToEdit?.id ?? Person.ID()
-            let personName = Person.PersonName(first: self.firstName, last: self.lastName == "" ? nil : self.lastName)
+            let personName = PersonName(first: self.firstName, last: self.lastName == "" ? nil : self.lastName)
             let person = Person(id: personId, name: personName, fineIds: [], isInvited: false)
             let personEditFunction: PersonEditFunction
             if self.personToEdit == nil {
