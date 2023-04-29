@@ -307,6 +307,27 @@
 /* Cannot save person alert title in person add and edit. */
 "person-add-and-edit|unknown-error-alert|cannot-save-title" = "Person konnte nicht gespeichert werden.";
 
+/* Message of the invitation alert that is shown after the invite button is pressed and the person is already invited. */
+"person-detail|invitation-alert|already-invited" = "Diese Person ist bereits eingeladen.";
+
+/* Invite button of the invitation alert that is shown after the invite button is pressed. */
+"person-detail|invitation-alert|invite-button" = "Jetzt einladen";
+
+/* Title of the invitation alert that is shown after the invite button is pressed. 'name' parameter is the name of the person to invite. */
+"person-detail|invitation-alert|title?name=%@" = "%@ einladen";
+
+/* Withdraw invitation button of the invitation alert that is shown after the invite button is pressed and the person is already invited. */
+"person-detail|invitation-alert|withdraw-invitation-button" = "Einladung zurückziehen";
+
+/* Invite this person button in person detail. */
+"person-detail|invitation-button" = "Einladen";
+
+/* Message of the alert that is shown after a new invitation link is created. It also says that the link is copied to the paste board. 'invitation-link' parameter is the link of the invitation. */
+"person-detail|invitation-created-alert|message?invitaion-link=%@" = "%@\nDer Link ist auch in deine Zwischenablage kopiert.";
+
+/* Title of the alert that is shown after a new invitation link is created, so this link can be pass to that person. 'name' parameter is the name of the person that is invited. */
+"person-detail|invitation-created-alert|title?name=%@" = "Gebe den Einladungslink an %@ weiter.";
+
 /* Section text of still open fines. */
 "person-detail|open-fines" = "Offene Strafen";
 

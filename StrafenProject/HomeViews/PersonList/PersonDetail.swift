@@ -19,6 +19,12 @@ struct PersonDetail: View {
         
     @State private var isEditPersonSheetShown = false
     
+    @State private var isInvitationAlertShown = false
+    
+    @State private var invitationLink: String?
+    
+    @State private var isCreatedInvitationAlertShown = false
+    
     init(_ person: Person) {
         self.person = person
     }
@@ -88,18 +94,81 @@ struct PersonDetail: View {
             }
             .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in
                 view.toolbar {
+                    if self.person.signInData == nil {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button {
-                                self.isEditPersonSheetShown = true
+                                self.isInvitationAlertShown = true
                             } label: {
-                                Text("edit-button", comment: "Text of the edit button.")
+                                Text("person-detail|invitation-button", comment: "Invite this person button in person detail.")
                             }
                         }
                     }
-                    .sheet(isPresented: self.$isEditPersonSheetShown) {
-                        PersonAddAndEdit(person: self.person)
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            self.isEditPersonSheetShown = true
+                        } label: {
+                            Text("edit-button", comment: "Text of the edit button.")
+                        }
                     }
+                }.sheet(isPresented: self.$isEditPersonSheetShown) {
+                    PersonAddAndEdit(person: self.person)
+                }.alert(String(localized: "person-detail|invitation-alert|title?name=\(self.person.name.formatted())", comment: "Title of the invitation alert that is shown after the invite button is pressed. 'name' parameter is the name of the person to invite."), isPresented: self.$isInvitationAlertShown) {
+                    if self.person.isInvited {
+                        Button(role: .destructive) {
+                            Task {
+                                await self.withdrawInvitation()
+                            }
+                        } label: {
+                            Text("person-detail|invitation-alert|withdraw-invitation-button", comment: "Withdraw invitation button of the invitation alert that is shown after the invite button is pressed and the person is already invited.")
+                        }
+                        Button(role: .cancel) {} label: {
+                            Text("got-it-button", comment: "Text of a 'got it' button.")
+                        }
+                    } else {
+                        Button {
+                            Task {
+                                await self.invitePerson()
+                            }
+                        } label: {
+                            Text("person-detail|invitation-alert|invite-button", comment: "Invite button of the invitation alert that is shown after the invite button is pressed.")
+                        }
+                        Button(role: .cancel) {} label: {
+                            Text("cancel-button", comment: "Text of cancel button.")
+                        }
+                    }
+                } message: {
+                    if self.person.isInvited {
+                        Text("person-detail|invitation-alert|already-invited", comment: "Message of the invitation alert that is shown after the invite button is pressed and the person is already invited.")
+                    }
+                }.alert(String(localized: "person-detail|invitation-created-alert|title?name=\(self.person.name.formatted())", comment: "Title of the alert that is shown after a new invitation link is created, so this link can be pass to that person. 'name' parameter is the name of the person that is invited."), isPresented: self.$isCreatedInvitationAlertShown) {
+                    Button {} label: {
+                        Text("got-it-button", comment: "Text of a 'got it' button.")
+                    }
+                } message: {
+                    if let invitationLink = self.invitationLink {
+                        Text("person-detail|invitation-created-alert|message?invitaion-link=\(invitationLink)", comment: "Message of the alert that is shown after a new invitation link is created. It also says that the link is copied to the paste board. 'invitation-link' parameter is the link of the invitation.")
+                    }
+                }
             }
+    }
+    
+    private func withdrawInvitation() async {
+        do {
+            let invitationLinkWithdrawFunction = InvitationLinkWithdrawFunction(clubId: self.appProperties.club.id, personId: self.person.id)
+            try await FirebaseFunctionCaller.shared.call(invitationLinkWithdrawFunction)
+            self.appProperties.persons[self.person.id]?.isInvited = false
+        } catch {}
+    }
+    
+    private func invitePerson() async {
+        do {
+            let invitationLinkCreateIdFunction = InvitationLinkCreateIdFunction(clubId: self.appProperties.club.id, personId: self.person.id)
+            let invitationLinkId = try await FirebaseFunctionCaller.shared.call(invitationLinkCreateIdFunction)
+            self.invitationLink = "invitation/\(invitationLinkId)"
+            UIPasteboard.general.string = self.invitationLink
+            self.appProperties.persons[self.person.id]?.isInvited = true
+            self.isCreatedInvitationAlertShown = true
+        } catch {}
     }
 }
 

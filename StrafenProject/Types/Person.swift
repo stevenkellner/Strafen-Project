@@ -24,7 +24,7 @@ struct Person: Identifiable {
     public private(set) var name: PersonName
     public var fineIds: [Fine.ID]
     public private(set) var signInData: SignInData?
-    public private(set) var isInvited: Bool
+    public var isInvited: Bool
 }
 
 extension Person.PersonName: Equatable {}
