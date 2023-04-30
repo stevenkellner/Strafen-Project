@@ -13,12 +13,8 @@ class SettingsManager: ObservableObject {
     @Published private var settings: Settings
     
     init() {
-        self.settings = Settings(appearance: .system, signedInPerson: nil)
-        do {
-            try self.readSettings()
-        } catch {
-            print(error)
-        }
+        self.settings = .default
+        try? self.readSettings()
     }
     
     private var settingsUrl: URL {

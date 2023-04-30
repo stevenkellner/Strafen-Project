@@ -82,7 +82,12 @@ struct PersonList: View {
     
     @ViewBuilder private func personsListRow(person: Person) -> some View {
         NavigationLink {
-            PersonDetail(person)
+            let personBinding = Binding {
+                return person
+            } set: { newPerson in
+                self.appProperties.persons[person.id] = newPerson
+            }
+            PersonDetail(personBinding)
         } label: {
             HStack {
                 if let image = self.imageStorage.personImages[person.id] {

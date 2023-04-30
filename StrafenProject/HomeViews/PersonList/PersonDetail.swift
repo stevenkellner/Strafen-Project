@@ -15,7 +15,7 @@ struct PersonDetail: View {
     
     @EnvironmentObject private var imageStorage: FirebaseImageStorage
     
-    private let person: Person
+    @Binding private var person: Person
         
     @State private var isEditPersonSheetShown = false
     
@@ -25,8 +25,10 @@ struct PersonDetail: View {
     
     @State private var isCreatedInvitationAlertShown = false
     
-    init(_ person: Person) {
-        self.person = person
+    @State private var isInviteButtonLoading = false
+    
+    init(_ person: Binding<Person>) {
+        self._person = person
     }
     
     var body: some View {
@@ -96,10 +98,15 @@ struct PersonDetail: View {
                 view.toolbar {
                     if self.person.signInData == nil {
                         ToolbarItem(placement: .navigationBarTrailing) {
-                            Button {
-                                self.isInvitationAlertShown = true
-                            } label: {
-                                Text("person-detail|invitation-button", comment: "Invite this person button in person detail.")
+                            if self.isInviteButtonLoading {
+                                ProgressView()
+                                    .progressViewStyle(.circular)
+                            } else {
+                                Button {
+                                    self.isInvitationAlertShown = true
+                                } label: {
+                                    Text("person-detail|invitation-button", comment: "Invite this person button in person detail.")
+                                }
                             }
                         }
                     }
@@ -111,7 +118,14 @@ struct PersonDetail: View {
                         }
                     }
                 }.sheet(isPresented: self.$isEditPersonSheetShown) {
-                    PersonAddAndEdit(person: self.person)
+                    let personBinding = Binding<Person?> {
+                        return self.appProperties.persons[self.person.id] ?? self.person
+                    } set: { person in
+                        if let person {
+                            self.person = person
+                        }
+                    }
+                    PersonAddAndEdit(person: personBinding)
                 }.alert(String(localized: "person-detail|invitation-alert|title?name=\(self.person.name.formatted())", comment: "Title of the invitation alert that is shown after the invite button is pressed. 'name' parameter is the name of the person to invite."), isPresented: self.$isInvitationAlertShown) {
                     if self.person.isInvited {
                         Button(role: .destructive) {
@@ -153,6 +167,10 @@ struct PersonDetail: View {
     }
     
     private func withdrawInvitation() async {
+        self.isInviteButtonLoading = true
+        defer {
+            self.isInviteButtonLoading = false
+        }
         do {
             let invitationLinkWithdrawFunction = InvitationLinkWithdrawFunction(clubId: self.appProperties.club.id, personId: self.person.id)
             try await FirebaseFunctionCaller.shared.call(invitationLinkWithdrawFunction)
@@ -161,6 +179,10 @@ struct PersonDetail: View {
     }
     
     private func invitePerson() async {
+        self.isInviteButtonLoading = true
+        defer {
+            self.isInviteButtonLoading = false
+        }
         do {
             let invitationLinkCreateIdFunction = InvitationLinkCreateIdFunction(clubId: self.appProperties.club.id, personId: self.person.id)
             let invitationLinkId = try await FirebaseFunctionCaller.shared.call(invitationLinkCreateIdFunction)
@@ -181,7 +203,7 @@ extension PersonDetail {
         
         @EnvironmentObject private var imageStorage: FirebaseImageStorage
 
-        private let fine: Fine
+        private var fine: Fine
         
         private let person: Person
         
@@ -222,7 +244,7 @@ extension PersonDetail {
         
         private var fineBinding: Binding<Fine> {
             return Binding {
-                return self.fine
+                return self.appProperties.fines[self.fine.id] ?? self.fine
             } set: { fine in
                 self.appProperties.fines[fine.id] = fine
             }

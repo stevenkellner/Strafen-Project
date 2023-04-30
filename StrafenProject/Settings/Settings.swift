@@ -12,4 +12,8 @@ struct Settings {
     public var signedInPerson: Settings.SignedInPerson?
 }
 
+extension Settings {
+    static let `default` = Settings(appearance: .system, signedInPerson: nil)
+}
+
 extension Settings: Codable {}

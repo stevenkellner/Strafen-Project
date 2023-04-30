@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject private var settingsManager = SettingsManager()
+    
+    @StateObject private var imageStorage = FirebaseImageStorage()
         
     @State private var activeBottomBarItem: BottomBar.Item = .profile
     
@@ -34,15 +36,19 @@ struct ContentView: View {
                             self.fetchAppPropertiesFailed(signedInPerson: signedInPerson)
                         }
                     }
-                }.environmentObject(FirebaseImageStorage())
-                    .bottomBar(active: self.$activeBottomBarItem)
+                }.bottomBar(active: self.$activeBottomBarItem)
                     .task {
+                        self.activeBottomBarItem = .profile
                         await self.fetchAppProperties(signedInPerson: signedInPerson)
                     }
             } else {
                 StartPageView()
+                    .onAppear {
+                        self.imageStorage.clear()
+                    }
             }
-        }.environmentObject(self.settingsManager)
+        }.environmentObject(self.imageStorage)
+            .environmentObject(self.settingsManager)
     }
     
     @ViewBuilder private func fetchAppPropertiesFailed(signedInPerson: Settings.SignedInPerson) -> some View {

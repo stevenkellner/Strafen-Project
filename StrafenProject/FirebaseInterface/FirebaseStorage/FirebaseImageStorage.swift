@@ -76,4 +76,9 @@ class FirebaseImageStorage: ObservableObject {
             self.saveCache(image: nil, for: imageType)
         } catch {}
     }
+    
+    func clear() {
+        self.clubImage = nil
+        self.personImages.clear()
+    }
 }

@@ -37,6 +37,8 @@ struct FineAddAndEdit: View {
     
     @State private var showUnknownErrorAlert = false
     
+    @State private var isAddAndEditButtonLoading = false
+    
     init(fine fineToEdit: Fine? = nil, shownOnSheet: Bool) {
         self.fineToEdit = fineToEdit
         self.shownOnSheet = shownOnSheet
@@ -137,14 +139,19 @@ struct FineAddAndEdit: View {
             }
         }
         ToolbarItem(placement: .navigationBarTrailing) {
-            Button {
-                Task {
-                    await self.saveFine()
-                }
-            } label: {
-                Text(self.fineToEdit == nil ? String(localized: "fine-add-and-edit|add-button", comment: "Add fine button in fine add and edit.") : String(localized: "fine-add-and-edit|save-button", comment: "Save fine button in fine add and edit."))
-                    .unredacted()
-            }.disabled(self.redactionReasons.contains(.placeholder) || self.personId == nil || self.reasonMessage?.isEmpty ?? true || self.amount == nil || self.amount == .zero)
+            if self.isAddAndEditButtonLoading {
+                ProgressView()
+                    .progressViewStyle(.circular)
+            } else {
+                Button {
+                    Task {
+                        await self.saveFine()
+                    }
+                } label: {
+                    Text(self.fineToEdit == nil ? String(localized: "fine-add-and-edit|add-button", comment: "Add fine button in fine add and edit.") : String(localized: "fine-add-and-edit|save-button", comment: "Save fine button in fine add and edit."))
+                        .unredacted()
+                }.disabled(self.redactionReasons.contains(.placeholder) || self.personId == nil || self.reasonMessage?.isEmpty ?? true || self.amount == nil || self.amount == .zero)
+            }
         }
     }
     
@@ -161,7 +168,6 @@ struct FineAddAndEdit: View {
         } set: { isPayed in
             self.payedState = isPayed ? .payed : .unpayed
         }
-
     }
     
     private var unknownErrorAlertTitle: String {
@@ -172,6 +178,10 @@ struct FineAddAndEdit: View {
     }
     
     private func saveFine() async {
+        self.isAddAndEditButtonLoading = true
+        defer {
+            self.isAddAndEditButtonLoading = false
+        }
         guard let personId = self.personId,
               let reasonMessage = self.reasonMessage,
               let amount = self.amount else {
@@ -188,6 +198,9 @@ struct FineAddAndEdit: View {
             }
             try await FirebaseFunctionCaller.shared.call(fineEditFunction)
             self.appProperties.fines[fineId] = fine
+            if let containsFineId = self.appProperties.persons[personId]?.fineIds.contains(fineId), !containsFineId {
+                self.appProperties.persons[personId]?.fineIds.append(fineId)
+            }
             self.reset()
             self.dismiss()
         } catch {

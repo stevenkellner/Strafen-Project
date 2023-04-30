@@ -21,6 +21,8 @@ struct ReasonTemplateAddAndEdit: View {
         
     @State private var showUnknownErrorAlert = false
     
+    @State private var isAddAndEditButtonLoading = false
+    
     init(reasonTemplate reasonTemplateToEdit: ReasonTemplate? = nil) {
         self.reasonTemplateToEdit = reasonTemplateToEdit
         if let reasonTemplateToEdit {
@@ -61,13 +63,18 @@ struct ReasonTemplateAddAndEdit: View {
             }
         }
         ToolbarItem(placement: .navigationBarTrailing) {
-            Button {
-                Task {
-                    await self.saveReasonTemplate()
-                }
-            } label: {
-                Text(self.reasonTemplateToEdit == nil ? String(localized: "reason-template-add-and-edit|add-button", comment: "Add reason template button in reason template add and edit.") : String(localized: "reason-template-add-and-edit|save-button", comment: "Save reason template button in reason template add and edit."))
-            }.disabled(self.reasonMessage == "" || self.amount == .zero)
+            if self.isAddAndEditButtonLoading {
+                ProgressView()
+                    .progressViewStyle(.circular)
+            } else {
+                Button {
+                    Task {
+                        await self.saveReasonTemplate()
+                    }
+                } label: {
+                    Text(self.reasonTemplateToEdit == nil ? String(localized: "reason-template-add-and-edit|add-button", comment: "Add reason template button in reason template add and edit.") : String(localized: "reason-template-add-and-edit|save-button", comment: "Save reason template button in reason template add and edit."))
+                }.disabled(self.reasonMessage == "" || self.amount == .zero)
+            }
         }
     }
     
@@ -79,6 +86,10 @@ struct ReasonTemplateAddAndEdit: View {
     }
         
     private func saveReasonTemplate() async {
+        self.isAddAndEditButtonLoading = true
+        defer {
+            self.isAddAndEditButtonLoading = false
+        }
         do {
             let reasonTemplateId = self.reasonTemplateToEdit?.id ?? ReasonTemplate.ID()
             let reasonTemplate = ReasonTemplate(id: reasonTemplateId, reasonMessage: self.reasonMessage, amount: self.amount)

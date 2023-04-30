@@ -16,7 +16,7 @@ struct PersonAddAndEdit: View {
     
     @EnvironmentObject private var appProperties: AppProperties
     
-    private let personToEdit: Person?
+    @Binding private var personToEdit: Person?
         
     @State private var firstName = ""
     
@@ -28,9 +28,15 @@ struct PersonAddAndEdit: View {
     
     @State private var showUnknownErrorAlert = false
     
-    init(person personToEdit: Person? = nil) {
-        self.personToEdit = personToEdit
-        if let personToEdit {
+    @State private var isMakePersonAdminAlertShown = false
+    
+    @State private var isMakePersonAdminButtonLoading = false
+    
+    @State private var isAddAndEditButtonLoading = false
+    
+    init(person personToEdit: Binding<Person?> = .constant(nil)) {
+        self._personToEdit = personToEdit
+        if let personToEdit = personToEdit.wrappedValue {
             self._firstName = State(initialValue: personToEdit.name.first)
             self._lastName = State(initialValue: personToEdit.name.last ?? "")
         }
@@ -53,7 +59,7 @@ struct PersonAddAndEdit: View {
                         Button {
                             self.selectedImage = nil
                         } label: {
-                            Text("person-add-and-edit|remove-image", comment: "Remove image button in person add and edit.") 
+                            Text("person-add-and-edit|remove-image", comment: "Remove image button in person add and edit.")
                         }
                     }
                     PhotosPicker(selection: self.$selectedPhotosPickerItem, matching: .images, photoLibrary: .shared()) {
@@ -72,6 +78,19 @@ struct PersonAddAndEdit: View {
                 Button {} label: {
                     Text("got-it-button", comment: "Text of a 'got it' button.")
                 }
+            }.alert("\(self.personToEdit?.name.formatted() ?? "") zum Admin machen.", isPresented: self.$isMakePersonAdminAlertShown) {
+                Button {
+                    Task {
+                        await self.makePersonAdmin()
+                    }
+                } label: {
+                    Text("Zum Admin machen")
+                }
+                Button(role: .cancel) {} label: {
+                    Text("cancel-button", comment: "Text of cancel button.")
+                }
+            } message: {
+                Text("Diese Person hat dann die selben Recht wie du. Es kann nicht mehr rückgängig gemacht werden.")
             }
     }
     
@@ -83,21 +102,33 @@ struct PersonAddAndEdit: View {
                 Text("cancel-button", comment: "Text of cancel button.")
             }
         }
-        if self.personToEdit?.signInData != nil { // TODO no admin
+        if let signInData = self.personToEdit?.signInData, !signInData.authentication.contains(.clubManager) {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {} label: {
-                    Text("asdf")
+                if self.isAddAndEditButtonLoading {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                } else {
+                    Button {
+                        self.isMakePersonAdminAlertShown = true
+                    } label: {
+                        Text("Admin")
+                    }
                 }
             }
         }
         ToolbarItem(placement: .navigationBarTrailing) {
-            Button {
-                Task {
-                    await self.savePerson()
-                }
-            } label: {
-                Text(self.personToEdit == nil ? String(localized: "person-add-and-edit|add-button", comment: "Add person button in person add and edit.") : String(localized: "person-add-and-edit|save-button", comment: "Save person button in person add and edit."))
-            }.disabled(self.firstName == "")
+            if self.isAddAndEditButtonLoading {
+                ProgressView()
+                    .progressViewStyle(.circular)
+            } else {
+                Button {
+                    Task {
+                        await self.savePerson()
+                    }
+                } label: {
+                    Text(self.personToEdit == nil ? String(localized: "person-add-and-edit|add-button", comment: "Add person button in person add and edit.") : String(localized: "person-add-and-edit|save-button", comment: "Save person button in person add and edit."))
+                }.disabled(self.firstName == "")
+            }
         }
     }
     
@@ -130,7 +161,28 @@ struct PersonAddAndEdit: View {
         }
     }
     
+    private func makePersonAdmin() async {
+        self.isMakePersonAdminButtonLoading = true
+        defer {
+            self.isMakePersonAdminButtonLoading = false
+        }
+        guard let person = self.personToEdit else {
+            return
+        }
+        do {
+            let personMakeManagerFunction = PersonMakeManagerFunction(clubId: self.appProperties.club.id, personId: person.id)
+            try await FirebaseFunctionCaller.shared.call(personMakeManagerFunction)
+            if let containsClubMananger = self.appProperties.persons[person.id]?.signInData?.authentication.contains(.clubManager), !containsClubMananger {
+                self.appProperties.persons[person.id]?.signInData?.authentication.append(.clubManager)
+            }
+        } catch {}
+    }
+    
     private func savePerson() async {
+        self.isAddAndEditButtonLoading = true
+        defer {
+            self.isAddAndEditButtonLoading = false
+        }
         do {
             let personId = self.personToEdit?.id ?? Person.ID()
             let personName = PersonName(first: self.firstName, last: self.lastName == "" ? nil : self.lastName)

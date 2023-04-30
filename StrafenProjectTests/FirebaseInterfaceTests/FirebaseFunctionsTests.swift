@@ -157,8 +157,7 @@ final class FirebaseFunctionsTests: XCTestCase {
     
     func testInvitationLinkCreateId() async throws {
         let invitationLinkCreateIdFunction = InvitationLinkCreateIdFunction(clubId: self.clubId, personId: Person.ID(uuidString: "D1852AC0-A0E2-4091-AC7E-CB2C23F708D9")!)
-        let invitationLinkId = try await FirebaseFunctionCaller.shared.verbose.call(invitationLinkCreateIdFunction)
-        print(invitationLinkId)
+        _ = try await FirebaseFunctionCaller.shared.verbose.call(invitationLinkCreateIdFunction)
     }
     
     func testInvitationLinkWithdraw() async throws {

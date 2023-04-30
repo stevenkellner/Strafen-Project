@@ -13,7 +13,7 @@ struct Person: Identifiable {
     public private(set) var id: ID
     public private(set) var name: PersonName
     public var fineIds: [Fine.ID]
-    public private(set) var signInData: SignInData?
+    public var signInData: SignInData?
     public var isInvited: Bool
 }
 

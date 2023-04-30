@@ -15,7 +15,7 @@ struct SignInData {
     
     public private(set) var hashedUserId: String
     public private(set) var signInDate: Date
-    public private(set) var authentication: [UserAuthenticationType]
+    public var authentication: [UserAuthenticationType]
 }
 
 extension SignInData.UserAuthenticationType: Equatable {}
