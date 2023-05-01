@@ -52,7 +52,7 @@ struct ReasonTemplateList: View {
             ReasonTemplateDetail(reasonTemplate)
         } label: {
             HStack {
-                Text(reasonTemplate.reasonMessage)
+                Text(reasonTemplate.formatted)
                 Spacer()
                 Text(reasonTemplate.amount.formatted)
                     .foregroundColor(.red)

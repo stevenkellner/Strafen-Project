@@ -29,6 +29,20 @@ struct ReasonTemplateDetail: View {
                     Text(self.reasonTemplate.reasonMessage)
                         .multilineTextAlignment(.trailing)
                 }
+                if let counts = self.reasonTemplate.counts {
+                    HStack {
+                        Text("reason-template-detail|counts-item", comment: "Text before the counts item of the reason template.")
+                        Spacer()
+                        Text(counts.item.formatted)
+                    }
+                    if let maxCount = counts.maxCount {
+                        HStack {
+                            Text("reason-template-detail|max-count", comment: "Text before the max count of the reason template")
+                            Spacer()
+                            Text("reason-template-detail|max-count-description?max-count=\(maxCount)", comment: "Description of the max count of the reason template. 'max-count' parameter is the number of max count.")
+                        }
+                    }
+                }
                 HStack {
                     Text(String(localized: "reason-template-detail|amount", comment: "Text before the amount of the reason template."))
                     Spacer()
@@ -36,7 +50,7 @@ struct ReasonTemplateDetail: View {
                         .foregroundColor(.red)
                 }
             }
-        }.navigationTitle(self.reasonTemplate.reasonMessage)
+        }.navigationTitle(self.reasonTemplate.formatted)
             .navigationBarTitleDisplayMode(.large)
             .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in
                 view.toolbar {

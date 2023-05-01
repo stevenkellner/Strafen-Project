@@ -98,14 +98,15 @@ extension Amount: AdditiveArithmetic {
         return Amount(value: UInt(value), subUnitValue: UInt(subUnitValue))
     }
     
-    static func *(lhs: Amount, rhs: UInt) -> Amount {
+    static func *(lhs: Amount, rhs: Int) -> Amount {
+        let rhs = rhs < 0 ? .zero : UInt(rhs)
         let newSubUnitValue = lhs.subUnitValue * rhs
         let value = lhs.value * rhs + newSubUnitValue / 100
         let subUnitValue = newSubUnitValue % 100
         return Amount(value: value, subUnitValue: subUnitValue)
     }
     
-    static func *=(lhs: inout Amount, rhs: UInt) {
+    static func *=(lhs: inout Amount, rhs: Int) {
         lhs = lhs * rhs
     }
 }

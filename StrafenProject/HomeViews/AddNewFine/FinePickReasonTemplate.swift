@@ -15,14 +15,17 @@ struct FinePickReasonTemplate: View {
         
     @Binding private var reasonMessage: String?
     
+    @Binding private var counts: ReasonTemplate.Counts?
+    
     @Binding private var amount: Amount?
     
     @State private var searchText = ""
     
     @State private var isCustomReasonSheetShown = false
     
-    init(reasonMessage: Binding<String?>, amount: Binding<Amount?>) {
+    init(reasonMessage: Binding<String?>, amount: Binding<Amount?>, counts: Binding<ReasonTemplate.Counts?>) {
         self._reasonMessage = reasonMessage
+        self._counts = counts
         self._amount = amount
     }
     
@@ -38,6 +41,7 @@ struct FinePickReasonTemplate: View {
                 }.sheet(isPresented: self.$isCustomReasonSheetShown) {
                     FineCustomReason { reasonMessage, amount in
                         self.reasonMessage = reasonMessage
+                        self.counts = nil
                         self.amount = amount
                         self.dismiss()
                     }
@@ -47,11 +51,12 @@ struct FinePickReasonTemplate: View {
                     ForEach(sortedReasonTemplates) { reasonTemplate in
                         Button {
                             self.reasonMessage = reasonTemplate.reasonMessage
+                            self.counts = reasonTemplate.counts
                             self.amount = reasonTemplate.amount
                             self.dismiss()
                         } label: {
                             HStack {
-                                Text(reasonTemplate.reasonMessage)
+                                Text(reasonTemplate.formatted)
                                 Spacer()
                                 Text(reasonTemplate.amount.formatted)
                                     .foregroundColor(.red)

@@ -78,19 +78,19 @@ struct PersonAddAndEdit: View {
                 Button {} label: {
                     Text("got-it-button", comment: "Text of a 'got it' button.")
                 }
-            }.alert("\(self.personToEdit?.name.formatted() ?? "") zum Admin machen.", isPresented: self.$isMakePersonAdminAlertShown) {
+            }.alert(String(localized: "person-add-and-edit|admin-alert|title?name=\(self.personToEdit?.name.formatted() ?? "")", comment: "Title of make person admin alert in person add and edit. 'name' parameter is name of the person to make admin."), isPresented: self.$isMakePersonAdminAlertShown) {
                 Button {
                     Task {
                         await self.makePersonAdmin()
                     }
                 } label: {
-                    Text("Zum Admin machen")
+                    Text("person-add-and-edit|admin-alert|make-admin-button", comment: "Make person admin button of alert in person add and edit.")
                 }
                 Button(role: .cancel) {} label: {
                     Text("cancel-button", comment: "Text of cancel button.")
                 }
             } message: {
-                Text("Diese Person hat dann die selben Recht wie du. Es kann nicht mehr rückgängig gemacht werden.")
+                Text("person-add-and-edit|admin-alert|message", comment: "Message of make person admin alert in person add and edit.")
             }
     }
     
@@ -111,7 +111,7 @@ struct PersonAddAndEdit: View {
                     Button {
                         self.isMakePersonAdminAlertShown = true
                     } label: {
-                        Text("Admin")
+                        Text("person-add-and-edit|admin-button", comment: "Make person to admin button in person add and edit.")
                     }
                 }
             }

@@ -283,6 +283,18 @@
 /* Add person button in person add and edit. */
 "person-add-and-edit|add-button" = "Add";
 
+/* Make person admin button of alert in person add and edit. */
+"person-add-and-edit|admin-alert|make-admin-button" = "Make person admin";
+
+/* Message of make person admin alert in person add and edit. */
+"person-add-and-edit|admin-alert|message" = "This person then has the same rights as you. It can no longer be undone.";
+
+/* Title of make person admin alert in person add and edit. 'name' parameter is name of the person to make admin. */
+"person-add-and-edit|admin-alert|title?name=%@" = "Make %@ admin.";
+
+/* Make person to admin button in person add and edit. */
+"person-add-and-edit|admin-button" = "Admin";
+
 /* First name textfield placeholder in person add and edit. */
 "person-add-and-edit|first-name-textfield" = "First name";
 
@@ -376,6 +388,18 @@
 /* Amount textfield placeholder in reason template add and edit. */
 "reason-template-add-and-edit|amount-textfield" = "Amount";
 
+/* Counts item option for no repetition in reason template add and edit. */
+"reason-template-add-and-edit|counts-item-none" = "None";
+
+/* Counts item picker description in reason template add and edit */
+"reason-template-add-and-edit|counts-item-picker" = "Repeat per";
+
+/* Max count description for reason template counts in reason template add and edit. 'max-count' parameter is the max count. */
+"reason-template-add-and-edit|max-count-desciption?max-count=%lld" = "Repeat %lld times";
+
+/* No max count is specified for reason template counts in reason template add and edit. */
+"reason-template-add-and-edit|max-counts-none" = "No upper bounds";
+
 /* Reason message textfield placeholder in reason template add and edit. */
 "reason-template-add-and-edit|reason-message-textfield" = "Reason";
 
@@ -391,8 +415,26 @@
 /* Cannot save reason template alert title in reason template add and edit. */
 "reason-template-add-and-edit|unknown-error-alert|cannot-save-title" = "Fine couldn't be saved.";
 
+/* Day description of reason template counts item. */
+"reason-template-counts-item|day" = "Day";
+
+/* Item description of reason template counts item. */
+"reason-template-counts-item|item" = "Item";
+
+/* Minute description of reason template counts item. */
+"reason-template-counts-item|minute" = "Minute";
+
 /* Text before the amount of the reason template. */
 "reason-template-detail|amount" = "Amount";
+
+/* Text before the counts item of the reason template. */
+"reason-template-detail|counts-item" = "Repeat per";
+
+/* Text before the max count of the reason template */
+"reason-template-detail|max-count" = "Maximal";
+
+/* Description of the max count of the reason template. 'max-count' parameter is the number of max count. */
+"reason-template-detail|max-count-description?max-count=%lld" = "%lld times";
 
 /* Text before the reason message of the reason template. */
 "reason-template-detail|reason-message" = "Reason";
@@ -402,6 +444,12 @@
 
 /* Placeholder text of search bar in reason template list. */
 "reason-template-list|search-placeholer" = "Search fine";
+
+/* Formatted reason template with message, counts item and max count. 'reason-message' parameter is the message of the reason template. 'item' parameter is the item to repeat. */
+"reason-template|formatted?reason-message=%@&item=%@" = "%@ (per %@)";
+
+/* Formatted reason template with message, counts item and max count. 'reason-message' parameter is the message of the reason template. 'item' parameter is the item to repeat. 'max-count' parameter is the max count to repeat. */
+"reason-template|formatted?reason-message=%@&item=%@&max-count?%lld" = "%@ (per %@, max. %lld times)";
 
 /* No comment provided by engineer. */
 "settings|appearance" = "Appearance";

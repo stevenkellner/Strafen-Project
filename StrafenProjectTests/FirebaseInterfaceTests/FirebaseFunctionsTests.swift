@@ -131,12 +131,12 @@ final class FirebaseFunctionsTests: XCTestCase {
     }
     
     func testReasonTemplateEditAdd() async throws {
-        let reasonTemplateEditFunction = ReasonTemplateEditFunction.add(clubId: self.clubId, reasonTemplate: ReasonTemplate(id: ReasonTemplate.ID(), reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50)))
+        let reasonTemplateEditFunction = ReasonTemplateEditFunction.add(clubId: self.clubId, reasonTemplate: ReasonTemplate(id: ReasonTemplate.ID(), reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50), counts: ReasonTemplate.Counts(item: "Item")))
         try await FirebaseFunctionCaller.shared.verbose.call(reasonTemplateEditFunction)
     }
     
     func testReasonTemplateEditUpdate() async throws {
-        let reasonTemplateEditFunction = ReasonTemplateEditFunction.update(clubId: self.clubId, reasonTemplate: ReasonTemplate(id: ReasonTemplate.ID(uuidString: "062FB0CB-F730-497B-BCF5-A4F907A6DCD5")!, reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50)))
+        let reasonTemplateEditFunction = ReasonTemplateEditFunction.update(clubId: self.clubId, reasonTemplate: ReasonTemplate(id: ReasonTemplate.ID(uuidString: "062FB0CB-F730-497B-BCF5-A4F907A6DCD5")!, reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50), counts: ReasonTemplate.Counts(item: "Minute", maxCount: 2)))
         try await FirebaseFunctionCaller.shared.verbose.call(reasonTemplateEditFunction)
     }
     
@@ -150,8 +150,8 @@ final class FirebaseFunctionsTests: XCTestCase {
         let reasonTemplateList = try await FirebaseFunctionCaller.shared.verbose.call(personGetFunction)
         XCTAssertEqual(reasonTemplateList, IdentifiableList(values: [
             ReasonTemplate(id: ReasonTemplate.ID(uuidString: "062FB0CB-F730-497B-BCF5-A4F907A6DCD5")!, reasonMessage: "test_reason_1", amount: Amount(value: 1, subUnitValue: 0)),
-            ReasonTemplate(id: ReasonTemplate.ID(uuidString: "16805D21-5E8D-43E9-BB5C-7B4A790F0CE7")!, reasonMessage: "test_reason_2", amount: Amount(value: 2, subUnitValue: 50)),
-            ReasonTemplate(id: ReasonTemplate.ID(uuidString: "23A3412E-87DE-4A23-A08F-67214B8A8541")!, reasonMessage: "test_reason_3", amount: Amount(value: 2, subUnitValue: 0))
+            ReasonTemplate(id: ReasonTemplate.ID(uuidString: "16805D21-5E8D-43E9-BB5C-7B4A790F0CE7")!, reasonMessage: "test_reason_2", amount: Amount(value: 2, subUnitValue: 50), counts: ReasonTemplate.Counts(item: "Minute")),
+            ReasonTemplate(id: ReasonTemplate.ID(uuidString: "23A3412E-87DE-4A23-A08F-67214B8A8541")!, reasonMessage: "test_reason_3", amount: Amount(value: 2, subUnitValue: 0), counts: ReasonTemplate.Counts(item: "Item", maxCount: 3))
         ]))
     }
     

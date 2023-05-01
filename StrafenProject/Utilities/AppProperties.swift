@@ -80,7 +80,7 @@ extension AppProperties {
 extension AppProperties {
     var sortedReasonTemplates: SortedSearchableListGroups<SingleGroupKey, ReasonTemplate> {
         return SortedSearchableListGroups(self.reasonTemplates) { reasonTemplate in
-            return reasonTemplate.reasonMessage
+            return reasonTemplate.formatted
         }
     }
 }

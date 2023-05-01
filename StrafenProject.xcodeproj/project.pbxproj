@@ -73,6 +73,7 @@
 		B05AF43229E2F65C00BA15F0 /* Settings+SignedInPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AF43129E2F65C00BA15F0 /* Settings+SignedInPerson.swift */; };
 		B05AF43429E2F6DF00BA15F0 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AF43329E2F6DF00BA15F0 /* SettingsManager.swift */; };
 		B05AF43629E2FDB700BA15F0 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AF43529E2FDB700BA15F0 /* SettingsTests.swift */; };
+		B05F991329FFCC4C00B877D1 /* Plurals.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = B05F991529FFCC4C00B877D1 /* Plurals.stringsdict */; };
 		B0679DDC29EE8BC1005A4109 /* CreateClubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0679DDB29EE8BC1005A4109 /* CreateClubView.swift */; };
 		B06E9FFB29E1BDCC0034B178 /* CubNewFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E9FFA29E1BDCC0034B178 /* CubNewFunction.swift */; };
 		B06E9FFF29E1D34D0034B178 /* FineEditFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E9FFE29E1D34D0034B178 /* FineEditFunction.swift */; };
@@ -204,6 +205,8 @@
 		B05AF43529E2FDB700BA15F0 /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		B05AF43729E2FDF500BA15F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B05AF43829E2FE2400BA15F0 /* StrafenProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StrafenProject.entitlements; sourceTree = "<group>"; };
+		B05F991429FFCC4C00B877D1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Plurals.stringsdict; sourceTree = "<group>"; };
+		B05F991629FFCC4D00B877D1 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Plurals.stringsdict; sourceTree = "<group>"; };
 		B0679DDB29EE8BC1005A4109 /* CreateClubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateClubView.swift; sourceTree = "<group>"; };
 		B06E9FFA29E1BDCC0034B178 /* CubNewFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubNewFunction.swift; sourceTree = "<group>"; };
 		B06E9FFE29E1D34D0034B178 /* FineEditFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineEditFunction.swift; sourceTree = "<group>"; };
@@ -367,6 +370,7 @@
 				B05AF43829E2FE2400BA15F0 /* StrafenProject.entitlements */,
 				B05AF43729E2FDF500BA15F0 /* Info.plist */,
 				B0F598CE29E6B5500056B871 /* Localizable.strings */,
+				B05F991529FFCC4C00B877D1 /* Plurals.stringsdict */,
 				B0F598CB29E6B5500056B871 /* InfoPlist.strings */,
 				B03563C529DEE21A000BB7AD /* Preview Content */,
 				B03563E929DEE9E2000BB7AD /* GoogleService-Info.plist */,
@@ -762,6 +766,7 @@
 			files = (
 				B0F598D029E6B5500056B871 /* Localizable.strings in Resources */,
 				B03563C729DEE21A000BB7AD /* Preview Assets.xcassets in Resources */,
+				B05F991329FFCC4C00B877D1 /* Plurals.stringsdict in Resources */,
 				B0F598CD29E6B5500056B871 /* InfoPlist.strings in Resources */,
 				B03563C429DEE21A000BB7AD /* Assets.xcassets in Resources */,
 				B03563EA29DEE9E2000BB7AD /* GoogleService-Info.plist in Resources */,
@@ -921,6 +926,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B05F991529FFCC4C00B877D1 /* Plurals.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B05F991429FFCC4C00B877D1 /* en */,
+				B05F991629FFCC4D00B877D1 /* de */,
+			);
+			name = Plurals.stringsdict;
+			sourceTree = "<group>";
+		};
 		B0F598CB29E6B5500056B871 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -17,6 +17,10 @@ struct ReasonTemplateAddAndEdit: View {
     
     @State private var reasonMessage = ""
     
+    @State private var countsItem: ReasonTemplate.Counts.Item?
+    
+    @State private var maxCount: Int = 0
+    
     @State private var amount: Amount = .zero
         
     @State private var showUnknownErrorAlert = false
@@ -27,6 +31,8 @@ struct ReasonTemplateAddAndEdit: View {
         self.reasonTemplateToEdit = reasonTemplateToEdit
         if let reasonTemplateToEdit {
             self._reasonMessage = State(initialValue: reasonTemplateToEdit.reasonMessage)
+            self._countsItem = State(initialValue: reasonTemplateToEdit.counts?.item)
+            self._maxCount = State(initialValue: reasonTemplateToEdit.counts?.maxCount ?? 0)
             self._amount = State(initialValue: reasonTemplateToEdit.amount)
         }
     }
@@ -36,13 +42,20 @@ struct ReasonTemplateAddAndEdit: View {
             Form {
                 Section {
                     TextField(String(localized: "reason-template-add-and-edit|reason-message-textfield", comment: "Reason message textfield placeholder in reason template add and edit."), text: self.$reasonMessage)
-                } header: {
-                    Text("reason-template-add-and-edit|reason-message-textfield", comment: "Reason message textfield placeholder in reason template add and edit.")
+                    Picker(String(localized: "reason-template-add-and-edit|counts-item-picker", comment: "Counts item picker description in reason template add and edit"), selection: self.$countsItem) {
+                        Text("reason-template-add-and-edit|counts-item-none", comment: "Counts item option for no repetition in reason template add and edit.")
+                            .tag(nil as ReasonTemplate.Counts.Item?)
+                        ForEach(ReasonTemplate.Counts.Item.allCases, id: \.self) { item in
+                            Text(item.formatted)
+                                .tag(item as ReasonTemplate.Counts.Item?)
+                        }
+                    }
+                    if self.countsItem != nil {
+                        Stepper(self.maxCount == 0 ? String(localized: "reason-template-add-and-edit|max-counts-none", comment: "No max count is specified for reason template counts in reason template add and edit.") : String(localized: "reason-template-add-and-edit|max-count-desciption?max-count=\(self.maxCount)", comment: "Max count description for reason template counts in reason template add and edit. 'max-count' parameter is the max count."), value: self.$maxCount, in: 0...1000)
+                    }
                 }
                 Section {
                     TextField(String(localized: "reason-template-add-and-edit|amount-textfield", comment: "Amount textfield placeholder in reason template add and edit."), value: self.$amount, format: .amount)
-                } header: {
-                    Text("reason-template-add-and-edit|amount-textfield", comment: "Amount textfield placeholder in reason template add and edit.")
                 }
             }.navigationTitle(String(localized: "reason-template-add-and-edit|title", comment: "Navigation title of reason template add and edit."))
                 .navigationBarTitleDisplayMode(.inline)
@@ -92,7 +105,11 @@ struct ReasonTemplateAddAndEdit: View {
         }
         do {
             let reasonTemplateId = self.reasonTemplateToEdit?.id ?? ReasonTemplate.ID()
-            let reasonTemplate = ReasonTemplate(id: reasonTemplateId, reasonMessage: self.reasonMessage, amount: self.amount)
+            var counts: ReasonTemplate.Counts? = nil
+            if let countsItem = self.countsItem {
+                counts = ReasonTemplate.Counts(item: countsItem, maxCount: self.maxCount == 0 ? nil : self.maxCount)
+            }
+            let reasonTemplate = ReasonTemplate(id: reasonTemplateId, reasonMessage: self.reasonMessage, amount: self.amount, counts: counts)
             let reasonTemplateEditFunction: ReasonTemplateEditFunction
             if self.reasonTemplateToEdit == nil {
                 reasonTemplateEditFunction = .add(clubId: self.appProperties.club.id, reasonTemplate: reasonTemplate)

@@ -29,6 +29,10 @@ struct FineAddAndEdit: View {
     
     @State private var reasonMessage: String?
     
+    @State private var counts: ReasonTemplate.Counts?
+    
+    @State private var count = 1
+    
     @State private var amount: Amount?
     
     @State private var isPickPersonSheetShown = false
@@ -99,7 +103,7 @@ struct FineAddAndEdit: View {
                             HStack {
                                 Text(reasonMessage)
                                 Spacer()
-                                Text(amount.formatted)
+                                Text((self.counts == nil ? amount : (amount * self.count)).formatted)
                                     .foregroundColor(.red)
                             }.foregroundColor(.primary)
                         } else {
@@ -107,8 +111,11 @@ struct FineAddAndEdit: View {
                                 .unredacted()
                         }
                     }.disabled(self.redactionReasons.contains(.placeholder))
+                    if let counts = self.counts {
+                        Stepper(counts.item.formatted(count: self.count), value: self.$count, in: 1...(counts.maxCount ?? 1000))
+                    }
                 }.sheet(isPresented: self.$isPickReasonTemplateSheetShown) {
-                    FinePickReasonTemplate(reasonMessage: self.$reasonMessage, amount: self.$amount)
+                    FinePickReasonTemplate(reasonMessage: self.$reasonMessage, amount: self.$amount, counts: self.$counts)
                 }
                 Section {
                     if self.fineToEdit != nil {
@@ -183,9 +190,13 @@ struct FineAddAndEdit: View {
             self.isAddAndEditButtonLoading = false
         }
         guard let personId = self.personId,
-              let reasonMessage = self.reasonMessage,
-              let amount = self.amount else {
+              var reasonMessage = self.reasonMessage,
+              var amount = self.amount else {
             return
+        }
+        if let counts = self.counts {
+            reasonMessage = "\(reasonMessage) (\(counts.item.formatted(count: self.count)))"
+            amount *= self.count
         }
         do {
             let fineId = self.fineToEdit?.id ?? Fine.ID()
@@ -213,6 +224,8 @@ struct FineAddAndEdit: View {
         self.payedState = .unpayed
         self.date = Date()
         self.reasonMessage = nil
+        self.counts = nil
+        self.count = 1
         self.amount = nil
     }
 }
