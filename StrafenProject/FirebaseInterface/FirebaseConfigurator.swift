@@ -28,6 +28,7 @@ struct FirebaseConfigurator {
             return .alreadyConfigured
         }
         FirebaseApp.configure()
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
         self.alreadyConfigured = true
         return .success
     }

@@ -82,6 +82,9 @@
 /* Text before date picker in fine add and edit. */
 "fine-add-and-edit|date-text" = "Datum";
 
+/* Title of the notification send when a new fine is created. 'name' parameter is the name of the person of this fine. */
+"fine-add-and-edit|new-fine-notification|title?name=%@" = "%@, du hast eine neue Strafe";
+
 /* Text before payed toggle in fine add and edit. */
 "fine-add-and-edit|payed-toggle-text" = "Bereits gezahlt";
 

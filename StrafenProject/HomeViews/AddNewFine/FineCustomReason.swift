@@ -26,13 +26,9 @@ struct FineCustomReason: View {
             Form {
                 Section {
                     TextField(String(localized: "fine-custom-reason|reason-message-textfield", comment: "Reason message textfield placeholder in fine custom reason."), text: self.$reasonMessage)
-                } header: {
-                    Text("fine-custom-reason|reason-message-textfield", comment: "Reason message textfield placeholder in fine custom reason.")
                 }
                 Section {
                     TextField(String(localized: "fine-custom-reason|amount-textfield", comment: "Amount textfield placeholder in fine custom reason."), value: self.$amount, format: .amount)
-                } header: {
-                    Text("fine-custom-reason|amount-textfield", comment: "Amount textfield placeholder in fine custom reason.")
                 }
             }.navigationTitle(String(localized: "fine-custom-reason|title", comment: "Navigation title of fine custom reason."))
                 .navigationBarTitleDisplayMode(.inline)

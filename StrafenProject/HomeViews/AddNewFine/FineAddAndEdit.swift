@@ -212,6 +212,13 @@ struct FineAddAndEdit: View {
             if let containsFineId = self.appProperties.persons[personId]?.fineIds.contains(fineId), !containsFineId {
                 self.appProperties.persons[personId]?.fineIds.append(fineId)
             }
+            if self.fineToEdit == nil, let personName = self.personName {
+                Task {
+                    let notificationPayload = NotificationPayload(title: String(localized: "fine-add-and-edit|new-fine-notification|title?name=\(personName.first)", comment: "Title of the notification send when a new fine is created. 'name' parameter is the name of the person of this fine."), body: "\(amount.formatted) | \(reasonMessage)")
+                    let notificationPushFunction = NotificationPushFunction(clubId: self.appProperties.club.id, personId: personId, payload: notificationPayload)
+                    try? await FirebaseFunctionCaller.shared.call(notificationPushFunction)
+                }
+            }
             self.reset()
             self.dismiss()
         } catch {

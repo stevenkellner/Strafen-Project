@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import UserNotifications
+import FirebaseMessaging
 
 struct ContentView: View {
     
@@ -38,8 +40,7 @@ struct ContentView: View {
                     }
                 }.bottomBar(active: self.$activeBottomBarItem)
                     .task {
-                        self.activeBottomBarItem = .profile
-                        await self.fetchAppProperties(signedInPerson: signedInPerson)
+                        await self.onAppearOfMainPages(signedInPerson: signedInPerson)
                     }
             } else {
                 StartPageView()
@@ -90,6 +91,18 @@ struct ContentView: View {
         }
     }
     
+    private func onAppearOfMainPages(signedInPerson: Settings.SignedInPerson) async {
+        self.activeBottomBarItem = .profile
+        await withTaskGroup(of: Void.self) { taskGroup in
+            taskGroup.addTask {
+                await self.fetchAppProperties(signedInPerson: signedInPerson)
+            }
+            taskGroup.addTask {
+                await self.requestNotification(signedInPerson: signedInPerson)
+            }
+        }
+    }
+    
     private func fetchAppProperties(signedInPerson: Settings.SignedInPerson) async {
         guard self.appPropertiesConnectionState.restart() == .passed else {
             return
@@ -100,5 +113,17 @@ struct ContentView: View {
         } catch {
             self.appPropertiesConnectionState.failed()
         }
+    }
+    
+    private func requestNotification(signedInPerson: Settings.SignedInPerson) async {
+        do {
+            let granted = try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])
+            guard granted else {
+                return
+            }
+            let token = try await Messaging.messaging().token()
+            let notificationRegisterFunction = NotificationRegisterFunction(clubId: signedInPerson.club.id, personId: signedInPerson.id, token: token)
+            try await FirebaseFunctionCaller.shared.call(notificationRegisterFunction)
+        } catch {}
     }
 }

@@ -27,8 +27,10 @@ extension DatabaseType: Codable {}
 
 extension DatabaseType: Sendable {}
 
+#if !NOTIFICATION_SERVICE_EXTENSION
 extension DatabaseType: FirebaseFunctionParameterType {
     var parameter: String {
         return self.rawValue
     }
 }
+#endif

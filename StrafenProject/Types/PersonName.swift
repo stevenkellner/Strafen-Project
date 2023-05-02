@@ -27,6 +27,7 @@ extension PersonName {
     }
 }
 
+#if !NOTIFICATION_SERVICE_EXTENSION
 extension PersonName: FirebaseFunctionParameterType {
     @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
         FirebaseFunctionParameter(self.first, for: "first")
@@ -67,3 +68,4 @@ extension PersonName: RandomPlaceholder {
         return PersonName.randomPlaceholderNames.randomElement(using: &generator)!
     }
 }
+#endif

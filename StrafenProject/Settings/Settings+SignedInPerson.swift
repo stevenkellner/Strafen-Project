@@ -32,4 +32,3 @@ extension Settings.SignedInPerson: Equatable {
 extension Settings.SignedInPerson: Hashable {}
 
 extension Settings.SignedInPerson: Codable {}
-

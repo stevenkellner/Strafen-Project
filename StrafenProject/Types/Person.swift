@@ -12,7 +12,9 @@ struct Person: Identifiable {
     
     public private(set) var id: ID
     public private(set) var name: PersonName
+#if !NOTIFICATION_SERVICE_EXTENSION
     public var fineIds: [Fine.ID]
+#endif
     public var signInData: SignInData?
     public var isInvited: Bool
 }
@@ -25,6 +27,7 @@ extension Person: Sendable {}
 
 extension Person: Hashable {}
 
+#if !NOTIFICATION_SERVICE_EXTENSION
 extension Person: FirebaseFunctionParameterType {
     @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
         FirebaseFunctionParameter(self.name, for: "name")
@@ -38,3 +41,4 @@ extension Person: RandomPlaceholder {
         return Person(id: ID(), name: PersonName.randomPlaceholder(using: &generator), fineIds: Person.randomPlaceholderFineIds, signInData: nil, isInvited: Bool.random(using: &generator))
     }
 }
+#endif

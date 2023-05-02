@@ -16,6 +16,7 @@ struct SignInData {
     public private(set) var hashedUserId: String
     public private(set) var signInDate: Date
     public var authentication: [UserAuthenticationType]
+    public var notificationTokens: [String: String]
 }
 
 extension SignInData.UserAuthenticationType: Equatable {}
@@ -28,7 +29,10 @@ extension SignInData.UserAuthenticationType: Hashable {}
 
 extension SignInData: Equatable {
     static func ==(lhs: SignInData, rhs: SignInData) -> Bool {
-        return lhs.hashedUserId == rhs.hashedUserId && Calendar.current.isDate(lhs.signInDate, equalTo: rhs.signInDate, toGranularity: .nanosecond)
+        return lhs.hashedUserId == rhs.hashedUserId &&
+            Calendar.current.isDate(lhs.signInDate, equalTo: rhs.signInDate, toGranularity: .nanosecond) &&
+            lhs.authentication == rhs.authentication &&
+            lhs.notificationTokens == rhs.notificationTokens
     }
 }
 
