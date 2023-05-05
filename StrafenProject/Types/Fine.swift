@@ -35,6 +35,7 @@ extension Fine: Sendable {}
 
 extension Fine: Hashable {}
 
+#if !WIDGET_EXTENSION
 extension Fine: FirebaseFunctionParameterType {
     @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
         FirebaseFunctionParameter(self.personId, for: "personId")
@@ -44,9 +45,25 @@ extension Fine: FirebaseFunctionParameterType {
         FirebaseFunctionParameter(self.amount, for: "amount")
     }
 }
+#endif
 
 extension Fine: RandomPlaceholder {
     static var randomPlaceholderPersonIds: [Person.ID] = []
+    
+    static let randomPlaceholderReasonMessages = [
+        "Lorem ipsum dolor",
+        "sit amet",
+        "consetetur sadipscing elitr",
+        "sed diam nonumy",
+        "eirmod tempor",
+        "invidunt ut labore et dolore magna",
+        "aliquyam erat, sed diam voluptua",
+        "At vero eos et accusam",
+        "et justo duo dolores",
+        "et ea rebum",
+        "Stet clita kasd gubergren",
+        "no sea takimata sanctus est"
+    ]
     
     static func randomPlaceholder(using generator: inout some RandomNumberGenerator) -> Fine {
         return Fine(
@@ -54,7 +71,7 @@ extension Fine: RandomPlaceholder {
             personId: Fine.randomPlaceholderPersonIds.randomElement(using: &generator) ?? Person.ID(),
             payedState: PayedState.randomPlaceholder(using: &generator),
             date: Date(timeIntervalSinceNow: TimeInterval.random(in: -31536000..<0, using: &generator)),
-            reasonMessage: ReasonTemplate.randomPlaceholderReasonMessages.randomElement(using: &generator)!,
+            reasonMessage: Fine.randomPlaceholderReasonMessages.randomElement(using: &generator)!,
             amount: Amount.randomPlaceholder(using: &generator)
         )
     }

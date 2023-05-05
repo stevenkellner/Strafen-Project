@@ -20,66 +20,61 @@ struct Profile: View {
     var body: some View {
         NavigationStack {
             List {
-                if let person = self.appProperties.persons[self.appProperties.signedInPerson.id] {
+                Section {
+                    if let image = self.imageStorage.personImages[self.appProperties.signedInPerson.id] {
+                        HStack {
+                            Spacer()
+                            Image(uiImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 100, height: 100)
+                                .clipShape(Circle())
+                            Spacer()
+                        }
+                    }
+                    HStack {
+                        Text("person-detail|still-open-amount", comment: "Text for the fine amount of the person that is still open.")
+                            .unredacted()
+                        Spacer()
+                        Text(self.appProperties.fines(of: self.appProperties.signedInPerson).unpayedAmount.formatted)
+                            .foregroundColor(.red)
+                    }
+                    HStack {
+                        Text("person-detail|total-amount", comment: "Text for the total fine amount of the person.")
+                            .unredacted()
+                        Spacer()
+                        Text(self.appProperties.fines(of: self.appProperties.signedInPerson).totalAmount.formatted)
+                            .foregroundColor(.green)
+                    }
+                }
+                let sortedFines = self.appProperties.sortedFinesGroups(of: self.appProperties.signedInPerson)
+                let unpayedFines = sortedFines.sortedList(of: .unpayed)
+                if !unpayedFines.isEmpty {
                     Section {
-                        if let image = self.imageStorage.personImages[self.appProperties.signedInPerson.id] {
-                            HStack {
-                                Spacer()
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 100, height: 100)
-                                    .clipShape(Circle())
-                                Spacer()
-                            }
+                        ForEach(unpayedFines) { fine in
+                            PersonDetail.FineRow(fine, personName: self.appProperties.signedInPerson.name)
                         }
-                        HStack {
-                            Text("person-detail|still-open-amount", comment: "Text for the fine amount of the person that is still open.")
-                                .unredacted()
-                            Spacer()
-                            Text(self.appProperties.fines(of: person).unpayedAmount.formatted)
-                                .foregroundColor(.red)
-                        }
-                        HStack {
-                            Text("person-detail|total-amount", comment: "Text for the total fine amount of the person.")
-                                .unredacted()
-                            Spacer()
-                            Text(self.appProperties.fines(of: person).totalAmount.formatted)
-                                .foregroundColor(.green)
-                        }
+                    } header: {
+                        Text("person-detail|open-fines", comment: "Section text of still open fines.")
+                            .font(.callout)
+                            .foregroundColor(.secondary)
+                            .fontWeight(.bold)
+                            .unredacted()
                     }
-                    let sortedFines = self.appProperties.sortedFinesGroups(of: person)
-                    let unpayedFines = sortedFines.sortedList(of: .unpayed)
-                    if !unpayedFines.isEmpty {
-                        Section {
-                            ForEach(unpayedFines) { fine in
-                                PersonDetail.FineRow(fine, person: person)
-                            }
-                        } header: {
-                            Text("person-detail|open-fines", comment: "Section text of still open fines.")
-                                .font(.callout)
-                                .foregroundColor(.secondary)
-                                .fontWeight(.bold)
-                                .unredacted()
+                }
+                let payedFines = sortedFines.sortedList(of: .payed)
+                if !payedFines.isEmpty {
+                    Section {
+                        ForEach(payedFines) { fine in
+                            PersonDetail.FineRow(fine, personName: self.appProperties.signedInPerson.name)
                         }
+                    } header: {
+                        Text("person-detail|payed-fines", comment: "Section text of already payed fines.")
+                            .font(.callout)
+                            .foregroundColor(.secondary)
+                            .fontWeight(.bold)
+                            .unredacted()
                     }
-                    let payedFines = sortedFines.sortedList(of: .payed)
-                    if !payedFines.isEmpty {
-                        Section {
-                            ForEach(payedFines) { fine in
-                                PersonDetail.FineRow(fine, person: person)
-                            }
-                        } header: {
-                            Text("person-detail|payed-fines", comment: "Section text of already payed fines.")
-                                .font(.callout)
-                                .foregroundColor(.secondary)
-                                .fontWeight(.bold)
-                                .unredacted()
-                        }
-                    }
-                } else {
-                    Text("profile|person-not-found", comment: "Signed in person not found for profile detail.")
-                        .foregroundColor(.secondary)
                 }
             }.navigationTitle(self.appProperties.signedInPerson.name.formatted())
                 .navigationBarTitleDisplayMode(.large)

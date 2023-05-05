@@ -12,7 +12,7 @@ struct Person: Identifiable {
     
     public private(set) var id: ID
     public private(set) var name: PersonName
-#if !NOTIFICATION_SERVICE_EXTENSION
+#if !NOTIFICATION_SERVICE_EXTENSION && !WIDGET_EXTENSION
     public var fineIds: [Fine.ID]
 #endif
     public var signInData: SignInData?
@@ -27,7 +27,7 @@ extension Person: Sendable {}
 
 extension Person: Hashable {}
 
-#if !NOTIFICATION_SERVICE_EXTENSION
+#if !NOTIFICATION_SERVICE_EXTENSION && !WIDGET_EXTENSION
 extension Person: FirebaseFunctionParameterType {
     @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
         FirebaseFunctionParameter(self.name, for: "name")

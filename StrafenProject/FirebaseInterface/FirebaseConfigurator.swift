@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseCore
+import FirebaseAuth
 
 struct FirebaseConfigurator {
     enum ConfigurationResult {
@@ -28,9 +29,9 @@ struct FirebaseConfigurator {
             return .alreadyConfigured
         }
         FirebaseApp.configure()
+        try? Auth.auth().useUserAccessGroup("K7NTJ83ZF8.stevenkellner.StrafenProject")
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         self.alreadyConfigured = true
         return .success
     }
 }
-

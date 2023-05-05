@@ -20,6 +20,8 @@ struct ProfileChangeImage: View {
     
     @State private var selectedImage: UIImage?
     
+    @State private var isSaveImageButtonLoading = false
+    
     var body: some View {
         NavigationView {
             Form {
@@ -54,12 +56,17 @@ struct ProfileChangeImage: View {
                         }
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            Task {
-                                await self.saveImage()
+                        if self.isSaveImageButtonLoading {
+                            ProgressView()
+                                .progressViewStyle(.circular)
+                        } else {
+                            Button {
+                                Task {
+                                    await self.saveImage()
+                                }
+                            } label: {
+                                Text("profile-change-image|save-button", comment: "Save profile image button in profile change image.")
                             }
-                        } label: {
-                            Text("profile-change-image|save-button", comment: "Save profile image button in profile change image.")
                         }
                     }
                 }
@@ -83,6 +90,10 @@ struct ProfileChangeImage: View {
     }
     
     private func saveImage() async {
+        self.isSaveImageButtonLoading = true
+        defer {
+            self.isSaveImageButtonLoading = false
+        }
         if let image = self.selectedImage {
             try? await self.imageStorage.store(image, for: .person(clubId: self.appProperties.club.id, personId: self.appProperties.signedInPerson.id))
         } else {

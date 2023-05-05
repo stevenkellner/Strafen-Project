@@ -53,6 +53,18 @@ class AppProperties: ObservableObject {
             fines[fineId] = fine
         }
     }
+    
+    func fines(of person: Settings.SignedInPerson) -> IdentifiableList<Fine> {
+        if let person = self.persons[person.id] {
+            return self.fines(of: person)
+        }
+        return person.fineIds.reduce(into: IdentifiableList<Fine>()) { fines, fineId in
+            guard let fine = self.fines[fineId] else {
+                return
+            }
+            fines[fineId] = fine
+        }
+    }
 }
 
 extension AppProperties {
@@ -87,6 +99,14 @@ extension AppProperties {
 
 extension AppProperties {
     func sortedFinesGroups(of person: Person) -> SortedSearchableListGroups<PayedState, Fine> {
+        return SortedSearchableListGroups(self.fines(of: person)) { fine in
+            return fine.payedState
+        } sortBy: { fine in
+            return fine.reasonMessage
+        }
+    }
+    
+    func sortedFinesGroups(of person: Settings.SignedInPerson) -> SortedSearchableListGroups<PayedState, Fine> {
         return SortedSearchableListGroups(self.fines(of: person)) { fine in
             return fine.payedState
         } sortBy: { fine in

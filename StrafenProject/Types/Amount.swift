@@ -121,6 +121,7 @@ extension Amount {
     }
 }
 
+#if !WIDGET_EXTENSION
 extension Amount {
     struct Strategy: ParseStrategy {
         enum FormattingError: Error {
@@ -161,6 +162,7 @@ extension Amount: FirebaseFunctionParameterType {
         return Double(self.value) + Double(self.subUnitValue) / 100
     }
 }
+#endif
 
 extension Amount: RandomPlaceholder {
     static func randomPlaceholder(using generator: inout some RandomNumberGenerator) -> Amount {

@@ -27,14 +27,16 @@ extension PersonName {
     }
 }
 
-#if !NOTIFICATION_SERVICE_EXTENSION
+#if !NOTIFICATION_SERVICE_EXTENSION && !WIDGET_EXTENSION
 extension PersonName: FirebaseFunctionParameterType {
     @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
         FirebaseFunctionParameter(self.first, for: "first")
         FirebaseFunctionParameter(self.last, for: "last")
     }
 }
+#endif
 
+#if !NOTIFICATION_SERVICE_EXTENSION
 extension PersonName: RandomPlaceholder {
     private static let randomPlaceholderNames = [
         PersonName(first: "Longin", last: "D'Agostino"),

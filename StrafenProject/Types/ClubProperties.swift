@@ -22,7 +22,7 @@ extension ClubProperties: Sendable {}
 
 extension ClubProperties: Hashable {}
 
-#if !NOTIFICATION_SERVICE_EXTENSION
+#if !NOTIFICATION_SERVICE_EXTENSION && !WIDGET_EXTENSION
 extension ClubProperties: FirebaseFunctionParameterType {
     @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
         FirebaseFunctionParameter(self.name, for: "name")

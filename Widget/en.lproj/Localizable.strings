@@ -1,0 +1,30 @@
+/* Displayed name of the widget in widget selector. */
+"widget-display-name" = "Your fines";
+
+/* In fine list, no fines. */
+"widget-view|no-fines" = "No fines";
+
+/* Title if nobody is signed in. */
+"widget-view|nobody-signed-in" = "Nobody is signed in.";
+
+/* Message if nobody is signed in. */
+"widget-view|nobody-signed-in-message" = "Open the app and log in to see your fines.";
+
+/* Text before the total open fines amount. */
+"widget-view|open-fines-amount" = "Open:";
+
+/* Fine list title of payed fines. */
+"widget-view|payed-fines" = "Already payed";
+
+/* Text before the total amount. */
+"widget-view|total-amount" = "Total:";
+
+/* Title if an unknown error is occurred. */
+"widget-view|unknown-error" = "An unknown error occurred.";
+
+/* Message if an unknown error is occurred. */
+"widget-view|unknown-error-message" = "Contact the person responsible for the app if the error occurs frequently.";
+
+/* Fine list title of unpayed fines. */
+"widget-view|unpayed-fines" = "Open fines";
+

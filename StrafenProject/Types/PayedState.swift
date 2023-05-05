@@ -20,11 +20,13 @@ extension PayedState: Sendable {}
 
 extension PayedState: Hashable {}
 
+#if !WIDGET_EXTENSION
 extension PayedState: FirebaseFunctionParameterType {
     var parameter: String {
         return self.rawValue
     }
 }
+#endif
 
 extension PayedState: RandomPlaceholder {
     static func randomPlaceholder(using generator: inout some RandomNumberGenerator) -> PayedState {

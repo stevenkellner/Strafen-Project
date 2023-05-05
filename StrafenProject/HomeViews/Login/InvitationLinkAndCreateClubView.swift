@@ -151,7 +151,7 @@ extension InvitationLinkAndCreateClubView {
             let personRegisterFunction = PersonRegisterFunction(clubId: person.club.id, personId: person.id)
             do {
                 _ = try await FirebaseFunctionCaller.shared.call(personRegisterFunction)
-                try self.settingsManager.save(Settings.SignedInPerson(id: person.id, name: person.name, isAdmin: false, hashedUserId: Crypter.sha512(user.uid), club: person.club), at: \.signedInPerson)
+                try self.settingsManager.save(Settings.SignedInPerson(id: person.id, name: person.name, fineIds: [], isAdmin: false, hashedUserId: Crypter.sha512(user.uid), club: person.club), at: \.signedInPerson)
                 return nil
             } catch let error as FirebaseFunctionError {
                 if error.code == .alreadyExists {

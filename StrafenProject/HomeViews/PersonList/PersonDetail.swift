@@ -65,7 +65,7 @@ struct PersonDetail: View {
             if !unpayedFines.isEmpty {
                 Section {
                     ForEach(unpayedFines) { fine in
-                        PersonDetail.FineRow(fine, person: self.person)
+                        PersonDetail.FineRow(fine, personName: self.person.name)
                     }
                 } header: {
                     Text("person-detail|open-fines", comment: "Section text of still open fines.")
@@ -79,7 +79,7 @@ struct PersonDetail: View {
             if !payedFines.isEmpty {
                 Section {
                     ForEach(payedFines) { fine in
-                        PersonDetail.FineRow(fine, person: self.person)
+                        PersonDetail.FineRow(fine, personName: self.person.name)
                     }
                 } header: {
                     Text("person-detail|payed-fines", comment: "Section text of already payed fines.")
@@ -205,16 +205,16 @@ extension PersonDetail {
 
         private var fine: Fine
         
-        private let person: Person
+        private let personName: PersonName
         
-        init(_ fine: Fine, person: Person) {
+        init(_ fine: Fine, personName: PersonName) {
             self.fine = fine
-            self.person = person
+            self.personName = personName
         }
         
         var body: some View {
             NavigationLink {
-                FineDetail(self.fineBinding, person: self.person)
+                FineDetail(self.fineBinding, personName: self.personName)
             } label: {
                 HStack {
                     VStack(alignment: .leading) {

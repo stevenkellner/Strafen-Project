@@ -15,13 +15,13 @@ struct FineDetail: View {
     
     @Binding private var fine: Fine
     
-    private let person: Person
+    private let personName: PersonName
     
     @State private var isEditFineSheetShown = false
     
-    init(_ fine: Binding<Fine>, person: Person) {
+    init(_ fine: Binding<Fine>, personName: PersonName) {
         self._fine = fine
-        self.person = person
+        self.personName = personName
     }
     
     var body: some View {
@@ -30,7 +30,7 @@ struct FineDetail: View {
                 HStack {
                     Text("fine-detail|fine-of-person", comment: "Text before the person name of the fine.")
                     Spacer()
-                    Text(self.person.name.formatted())
+                    Text(self.personName.formatted())
                         .multilineTextAlignment(.trailing)
                 }
                 HStack {

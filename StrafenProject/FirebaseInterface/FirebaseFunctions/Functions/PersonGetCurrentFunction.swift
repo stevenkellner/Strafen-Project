@@ -33,6 +33,6 @@ extension PersonGetCurrentFunction.ReturnType: Hashable {}
 
 extension PersonGetCurrentFunction.ReturnType {
     var settingsPerson: Settings.SignedInPerson {
-        return Settings.SignedInPerson(id: self.id, name: self.name, isAdmin: self.signInData.authentication.contains(.clubManager), hashedUserId: self.signInData.hashedUserId, club: self.club)
+        return Settings.SignedInPerson(id: self.id, name: self.name, fineIds: self.fineIds, isAdmin: self.signInData.authentication.contains(.clubManager), hashedUserId: self.signInData.hashedUserId, club: self.club)
     }
 }
