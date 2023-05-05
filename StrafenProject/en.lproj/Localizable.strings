@@ -4,6 +4,9 @@
 /* Starting part of 'By continuing you agree to Terms, Conditions and Privacy Policy', i.e. 'Terms, Conditions and Privacy Policy'. */
 "agree-terms-privacy-by-continue|terms-and-privacy" = "Terms, Conditions and Privacy Policy";
 
+/* Title of the share text where sharing persons. */
+"app-properties|share-text-title" = "These are the fines that are still open, please pay until the next training session / game.";
+
 /* Description of the dark appearance. */
 "appearance|dark" = "Dark";
 
@@ -369,6 +372,9 @@
 
 /* Search person placeholder of search bar in person list. */
 "person-list|search-person" = "Search person";
+
+/* Title of share preview when sharing persons. */
+"person-list|share-title" = "Open fines";
 
 /* Navigation title of the person list. */
 "person-list|title" = "Persons";

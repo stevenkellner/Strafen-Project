@@ -64,6 +64,9 @@ struct PersonList: View {
                 }
                 .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in
                     view.toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            ShareLink(item: "", message: Text(self.appProperties.shareText), preview: SharePreview(String(localized: "person-list|share-title", comment: "Title of share preview when sharing persons."))) // Offene Strafen
+                        }
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button {
                                 self.isPersonAddSheetShown = true
