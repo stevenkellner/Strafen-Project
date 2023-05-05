@@ -8,7 +8,7 @@
 import SwiftUI
 
 class AppProperties: ObservableObject {
-    let signedInPerson: Settings.SignedInPerson
+    var signedInPerson: Settings.SignedInPerson
     @Published var persons: IdentifiableList<Person>
     @Published var reasonTemplates: IdentifiableList<ReasonTemplate>
     @Published var fines: IdentifiableList<Fine>
@@ -39,6 +39,22 @@ class AppProperties: ObservableObject {
             reasonTemplates: reasonTemplates,
             fines: fines
         )
+    }
+    
+    func refresh() async {
+        do {
+            let personGetCurrentFunction = PersonGetCurrentFunction()
+            let currentPerson = try await FirebaseFunctionCaller.shared.call(personGetCurrentFunction)
+            self.signedInPerson = currentPerson.settingsPerson
+            let settingsManager = SettingsManager()
+            try settingsManager.save(self.signedInPerson, at: \.signedInPerson)
+            let appProperties = try await AppProperties.fetch(with: self.signedInPerson)
+            await MainActor.run {
+                self.persons = appProperties.persons
+                self.reasonTemplates = appProperties.reasonTemplates
+                self.fines = appProperties.fines
+            }
+        } catch {}
     }
     
     var club: ClubProperties {

@@ -28,6 +28,9 @@ struct ReasonTemplateList: View {
                     }
                 }
             }.redacted(reason: self.redactionReasons)
+                .refreshable {
+                    await self.appProperties.refresh()
+                }
                 .navigationTitle(String(localized: "reason-template-list|navigation-title", comment: "Title of the reason template list."))
                 .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in
                     view.toolbar {

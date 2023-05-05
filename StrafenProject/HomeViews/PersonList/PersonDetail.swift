@@ -89,6 +89,8 @@ struct PersonDetail: View {
                         .unredacted()
                 }
             }
+        }.refreshable {
+            await self.appProperties.refresh()
         }.navigationTitle(self.person.name.formatted(.long))
             .navigationBarTitleDisplayMode(.large)
             .task {

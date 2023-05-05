@@ -54,6 +54,9 @@ struct PersonList: View {
                     }
                 }
             }.redacted(reason: self.redactionReasons)
+                .refreshable {
+                    await self.appProperties.refresh()
+                }
                 .navigationTitle(String(localized: "person-list|title", comment: "Navigation title of the person list."))
                 .alert(String(localized: "person-list|cannot-delete-person-alert|title", comment: "Title of the cannot delete person alert in person list."), isPresented: self.$cannotDeletePersonAlertShown) {
                     Button {} label: {

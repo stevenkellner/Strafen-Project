@@ -15,6 +15,8 @@ struct Profile: View {
     
     @EnvironmentObject private var imageStorage: FirebaseImageStorage
     
+    @EnvironmentObject private var settingsManager: SettingsManager
+    
     @State private var isChangeProfileImageSheetShown = false
     
     var body: some View {
@@ -76,6 +78,8 @@ struct Profile: View {
                             .unredacted()
                     }
                 }
+            }.refreshable {
+                await self.appProperties.refresh()
             }.navigationTitle(self.appProperties.signedInPerson.name.formatted())
                 .navigationBarTitleDisplayMode(.large)
                 .toolbar {
