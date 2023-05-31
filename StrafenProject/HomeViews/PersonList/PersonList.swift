@@ -111,7 +111,7 @@ struct PersonList: View {
                 Spacer()
                 let unpayedAmount = self.appProperties.fines(of: person).unpayedAmount
                 if unpayedAmount != .zero {
-                    Text(unpayedAmount.formatted)
+                    Text(unpayedAmount.formatted(.short))
                         .foregroundColor(.red)
                 }
             }.task {

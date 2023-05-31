@@ -42,7 +42,7 @@ struct FineDetail: View {
                 HStack {
                     Text(self.fine.payedState == .payed ? String(localized: "fine-detail|payed-amount", comment: "Text before the payed amount of the fine.") : String(localized: "fine-detail|unpayed-amount", comment: "Text before the unpayed amount of the fine."))
                     Spacer()
-                    Text(self.fine.amount.formatted)
+                    Text(self.fine.amount.formatted(.short))
                         .foregroundColor(self.fine.payedState == .payed ? .green : .red)
                 }
                 HStack {

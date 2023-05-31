@@ -53,7 +53,9 @@ extension WidgetProperties {
     var sortedFinesGroups: SortedSearchableListGroups<PayedState, Fine> {
         return SortedSearchableListGroups(self.fines) { fine in
             return fine.payedState
-        } sortBy: { fine in
+        } sortBy: { lhsFine, rhsFine in
+            return lhsFine.date > rhsFine.date
+        } searchIn: { fine in
             return fine.reasonMessage
         }
     }

@@ -103,7 +103,7 @@ struct FineAddAndEdit: View {
                             HStack {
                                 Text(reasonMessage)
                                 Spacer()
-                                Text((self.counts == nil ? amount : (amount * self.count)).formatted)
+                                Text((self.counts == nil ? amount : (amount * self.count)).formatted(.short))
                                     .foregroundColor(.red)
                             }.foregroundColor(.primary)
                         } else {
@@ -214,7 +214,7 @@ struct FineAddAndEdit: View {
             }
             if self.fineToEdit == nil, let personName = self.personName {
                 Task {
-                    let notificationPayload = NotificationPayload(title: String(localized: "fine-add-and-edit|new-fine-notification|title?name=\(personName.first)", comment: "Title of the notification send when a new fine is created. 'name' parameter is the name of the person of this fine."), body: "\(amount.formatted) | \(reasonMessage)")
+                    let notificationPayload = NotificationPayload(title: String(localized: "fine-add-and-edit|new-fine-notification|title?name=\(personName.first)", comment: "Title of the notification send when a new fine is created. 'name' parameter is the name of the person of this fine."), body: "\(amount.formatted(.short)) | \(reasonMessage)")
                     let notificationPushFunction = NotificationPushFunction(clubId: self.appProperties.club.id, personId: personId, payload: notificationPayload)
                     try? await FirebaseFunctionCaller.shared.call(notificationPushFunction)
                 }

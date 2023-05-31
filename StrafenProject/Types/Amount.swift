@@ -57,7 +57,7 @@ extension Amount: Codable {
 
 extension Amount: CustomDebugStringConvertible {
     var debugDescription: String {
-        return self.formatted
+        return self.formatted()
     }
     
     static var currencySymbol: String {
@@ -116,12 +116,11 @@ extension Amount: Sendable {}
 extension Amount: Hashable {}
 
 extension Amount {
-    var formatted: String {
-        return self.doubleValue.formatted(.currency(code: "EUR"))
+    func formatted(_ style: Amount.FormatStyle = .standard) -> String {
+        return style.format(self)
     }
 }
 
-#if !WIDGET_EXTENSION
 extension Amount {
     struct Strategy: ParseStrategy {
         enum FormattingError: Error {
@@ -140,23 +139,37 @@ extension Amount {
         }
     }
     
-    struct FormatStyle: ParseableFormatStyle {
+    enum FormatStyle: ParseableFormatStyle {
+        case standard
+        case short
+        
         var parseStrategy: Amount.Strategy {
             return Amount.Strategy()
         }
         
-        func format(_ value: Amount) -> String {
-            return value.formatted
+        func format(_ amount: Amount) -> String {
+                let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            formatter.locale = .current
+            formatter.maximumFractionDigits = 2
+            formatter.minimumFractionDigits = 2
+            formatter.currencyCode = "EUR"
+            if self == .short && amount.subUnitValue == .zero {
+                formatter.maximumFractionDigits = 0
+                formatter.minimumFractionDigits = 0
+            }
+            return formatter.string(from: amount.doubleValue as NSNumber) ?? amount.doubleValue.formatted(.currency(code: "EUR"))
         }
     }
 }
 
 extension ParseableFormatStyle where Self == Amount.FormatStyle {
-    static var amount: Amount.FormatStyle {
-        return Amount.FormatStyle()
+    static func amount(_ style: Amount.FormatStyle) -> Amount.FormatStyle {
+        return style
     }
 }
 
+#if !WIDGET_EXTENSION
 extension Amount: FirebaseFunctionParameterType {
     var parameter: Double {
         return Double(self.value) + Double(self.subUnitValue) / 100

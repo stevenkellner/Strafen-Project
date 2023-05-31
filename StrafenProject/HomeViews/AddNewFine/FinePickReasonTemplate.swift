@@ -58,7 +58,7 @@ struct FinePickReasonTemplate: View {
                             HStack {
                                 Text(reasonTemplate.formatted)
                                 Spacer()
-                                Text(reasonTemplate.amount.formatted)
+                                Text(reasonTemplate.amount.formatted(.short))
                                     .foregroundColor(.red)
                             }.foregroundColor(.primary)
                         }

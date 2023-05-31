@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ReasonTemplateAddAndEdit: View {
+    private enum InputFocus {
+        case reasonMessage
+    }
     
     @Environment(\.dismiss) private var dismiss
         
@@ -27,6 +30,8 @@ struct ReasonTemplateAddAndEdit: View {
     
     @State private var isAddAndEditButtonLoading = false
     
+    @FocusState private var inputFocus: InputFocus?
+    
     init(reasonTemplate reasonTemplateToEdit: ReasonTemplate? = nil) {
         self.reasonTemplateToEdit = reasonTemplateToEdit
         if let reasonTemplateToEdit {
@@ -42,6 +47,7 @@ struct ReasonTemplateAddAndEdit: View {
             Form {
                 Section {
                     TextField(String(localized: "reason-template-add-and-edit|reason-message-textfield", comment: "Reason message textfield placeholder in reason template add and edit."), text: self.$reasonMessage)
+                        .focused(self.$inputFocus, equals: .reasonMessage)
                     Picker(String(localized: "reason-template-add-and-edit|counts-item-picker", comment: "Counts item picker description in reason template add and edit"), selection: self.$countsItem) {
                         Text("reason-template-add-and-edit|counts-item-none", comment: "Counts item option for no repetition in reason template add and edit.")
                             .tag(nil as ReasonTemplate.Counts.Item?)
@@ -55,11 +61,14 @@ struct ReasonTemplateAddAndEdit: View {
                     }
                 }
                 Section {
-                    TextField(String(localized: "reason-template-add-and-edit|amount-textfield", comment: "Amount textfield placeholder in reason template add and edit."), value: self.$amount, format: .amount)
+                    TextField(String(localized: "reason-template-add-and-edit|amount-textfield", comment: "Amount textfield placeholder in reason template add and edit."), value: self.$amount, format: .amount(.short))
                 }
             }.navigationTitle(String(localized: "reason-template-add-and-edit|title", comment: "Navigation title of reason template add and edit."))
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar(self.toolbar)
+                .onChange(of: self.inputFocus) { _ in
+                    self.reasonMessage = self.reasonMessage.trimmingCharacters(in: .whitespacesAndNewlines)
+                }
         }.alert(self.unknownErrorAlertTitle, isPresented: self.$showUnknownErrorAlert) {
             Button {} label: {
                 Text("got-it-button", comment: "Text of a 'got it' button.")
@@ -103,6 +112,7 @@ struct ReasonTemplateAddAndEdit: View {
         defer {
             self.isAddAndEditButtonLoading = false
         }
+        self.reasonMessage = self.reasonMessage.trimmingCharacters(in: .whitespacesAndNewlines)
         do {
             let reasonTemplateId = self.reasonTemplateToEdit?.id ?? ReasonTemplate.ID()
             var counts: ReasonTemplate.Counts? = nil

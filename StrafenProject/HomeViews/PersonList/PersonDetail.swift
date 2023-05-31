@@ -49,14 +49,14 @@ struct PersonDetail: View {
                     Text("person-detail|still-open-amount", comment: "Text for the fine amount of the person that is still open.")
                         .unredacted()
                     Spacer()
-                    Text(self.appProperties.fines(of: self.person).unpayedAmount.formatted)
+                    Text(self.appProperties.fines(of: self.person).unpayedAmount.formatted(.short))
                         .foregroundColor(.red)
                 }
                 HStack {
                     Text("person-detail|total-amount", comment: "Text for the total fine amount of the person.")
                         .unredacted()
                     Spacer()
-                    Text(self.appProperties.fines(of: self.person).totalAmount.formatted)
+                    Text(self.appProperties.fines(of: self.person).totalAmount.formatted(.short))
                         .foregroundColor(.green)
                 }
             }
@@ -226,7 +226,7 @@ extension PersonDetail {
                             .foregroundColor(.secondary)
                     }
                     Spacer()
-                    Text(self.fine.amount.formatted)
+                    Text(self.fine.amount.formatted(.short))
                         .foregroundColor(self.fine.payedState == .payed ? .green : .red)
                 }
             }.disabled(self.redactionReasons.contains(.placeholder))

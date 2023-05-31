@@ -46,7 +46,7 @@ struct ReasonTemplateDetail: View {
                 HStack {
                     Text(String(localized: "reason-template-detail|amount", comment: "Text before the amount of the reason template."))
                     Spacer()
-                    Text(self.reasonTemplate.amount.formatted)
+                    Text(self.reasonTemplate.amount.formatted(.short))
                         .foregroundColor(.red)
                 }
             }

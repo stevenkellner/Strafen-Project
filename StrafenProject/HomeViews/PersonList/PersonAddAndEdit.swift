@@ -9,6 +9,10 @@ import SwiftUI
 import PhotosUI
 
 struct PersonAddAndEdit: View {
+    private enum InputFocus {
+        case firstName
+        case lastName
+    }
     
     @Environment(\.dismiss) private var dismiss
     
@@ -33,6 +37,8 @@ struct PersonAddAndEdit: View {
     @State private var isMakePersonAdminButtonLoading = false
     
     @State private var isAddAndEditButtonLoading = false
+    
+    @FocusState private var inputFocus: InputFocus?
     
     init(person personToEdit: Binding<Person?> = .constant(nil)) {
         self._personToEdit = personToEdit
@@ -68,7 +74,12 @@ struct PersonAddAndEdit: View {
                 }
                 Section {
                     TextField(String(localized: "person-add-and-edit|first-name-textfield", comment: "First name textfield placeholder in person add and edit."), text: self.$firstName)
+                        .focused(self.$inputFocus, equals: .firstName)
                     TextField(String(localized: "person-add-and-edit|optional-last-name-textfield", comment: "Optional last name textfield placeholder in person add and edit."), text: self.$lastName)
+                        .focused(self.$inputFocus, equals: .lastName)
+                }.onChange(of: self.inputFocus) { _ in
+                    self.firstName = self.firstName.trimmingCharacters(in: .whitespacesAndNewlines)
+                    self.lastName = self.lastName.trimmingCharacters(in: .whitespacesAndNewlines)
                 }
             }.navigationTitle(String(localized: "person-add-and-edit|title", comment: "Navigation title of person add and edit."))
                 .navigationBarTitleDisplayMode(.inline)
@@ -183,6 +194,8 @@ struct PersonAddAndEdit: View {
         defer {
             self.isAddAndEditButtonLoading = false
         }
+        self.firstName = self.firstName.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.lastName = self.lastName.trimmingCharacters(in: .whitespacesAndNewlines)
         do {
             let personId = self.personToEdit?.id ?? Person.ID()
             let personName = PersonName(first: self.firstName, last: self.lastName == "" ? nil : self.lastName)
@@ -197,6 +210,8 @@ struct PersonAddAndEdit: View {
             self.appProperties.persons[personId] = person
             if let image = self.selectedImage {
                 try? await self.imageStorage.store(image, for: .person(clubId: self.appProperties.club.id, personId: personId))
+            } else {
+                await self.imageStorage.delete(.person(clubId: self.appProperties.club.id, personId: personId))
             }
             self.reset()
             self.dismiss()

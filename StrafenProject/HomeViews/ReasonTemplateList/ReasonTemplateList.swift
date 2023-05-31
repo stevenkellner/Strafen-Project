@@ -57,7 +57,7 @@ struct ReasonTemplateList: View {
             HStack {
                 Text(reasonTemplate.formatted)
                 Spacer()
-                Text(reasonTemplate.amount.formatted)
+                Text(reasonTemplate.amount.formatted(.short))
                     .foregroundColor(.red)
             }
         }.disabled(self.redactionReasons.contains(.placeholder))

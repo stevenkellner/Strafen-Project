@@ -9,6 +9,11 @@ import SwiftUI
 import FirebaseAuth
 
 struct CreateClubView: View {
+    private enum InputFocus {
+        case firstName
+        case lastName
+        case clubName
+    }
     
     @EnvironmentObject private var settingsManager: SettingsManager
     
@@ -21,6 +26,8 @@ struct CreateClubView: View {
     @State private var clubName: String = ""
     
     @State private var isCreateClubButtonDisabled = true
+    
+    @FocusState private var inputFocus: InputFocus?
     
     init(user signedInUser: User) {
         self.hashedUserId = Crypter.sha512(signedInUser.uid)
@@ -49,6 +56,11 @@ struct CreateClubView: View {
             self.clubNameInputAndCreateButton
         }.navigationTitle(String(localized: "create-club|navigation-title", comment: "Title of the create club view."))
             .navigationBarTitleDisplayMode(.inline)
+            .onChange(of: self.inputFocus) { _ in
+                self.firstName = self.firstName.trimmingCharacters(in: .whitespacesAndNewlines)
+                self.lastName = self.lastName.trimmingCharacters(in: .whitespacesAndNewlines)
+                self.clubName = self.clubName.trimmingCharacters(in: .whitespacesAndNewlines)
+            }
     }
     
     @ViewBuilder private var personNameInput: some View {
@@ -58,6 +70,7 @@ struct CreateClubView: View {
                     .font(.title3)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.words)
+                    .focused(self.$inputFocus, equals: .firstName)
                     .padding(5)
                     .background(Color(uiColor: .systemGray6))
                     .cornerRadius(5)
@@ -68,6 +81,7 @@ struct CreateClubView: View {
                     .font(.title3)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.words)
+                    .focused(self.$inputFocus, equals: .lastName)
                     .padding(5)
                     .background(Color(uiColor: .systemGray6))
                     .cornerRadius(5)
@@ -90,6 +104,7 @@ struct CreateClubView: View {
                 .font(.title3)
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
+                .focused(self.$inputFocus, equals: .clubName)
                 .padding(5)
                 .background(Color(uiColor: .systemGray6))
                 .cornerRadius(5)
@@ -140,6 +155,9 @@ struct CreateClubView: View {
         defer {
             self.isCreateClubButtonDisabled = false
         }
+        self.firstName = self.firstName.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.lastName = self.lastName.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.clubName = self.clubName.trimmingCharacters(in: .whitespacesAndNewlines)
         guard let personName = self.personName else {
             return
         }
