@@ -9,7 +9,8 @@ import UserNotifications
 
 class NotificationService: UNNotificationServiceExtension {
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
-        guard let requestPersonIdString = request.content.userInfo["personId"] as? String, let requestPersonId = Person.ID(uuidString: requestPersonIdString) else {
+        guard let requestPersonIdString = request.content.userInfo["personId"] as? String,
+              let requestPersonId = Person.ID(uuidString: requestPersonIdString) else {
             return
         }
         let settingsManager = SettingsManager()

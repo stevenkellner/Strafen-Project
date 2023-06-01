@@ -50,7 +50,8 @@ struct ReasonTemplateDetail: View {
                         .foregroundColor(.red)
                 }
             }
-        }.navigationTitle(self.reasonTemplate.formatted)
+        }.dismissHandler
+            .navigationTitle(self.reasonTemplate.formatted)
             .navigationBarTitleDisplayMode(.large)
             .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in
                 view.toolbar {

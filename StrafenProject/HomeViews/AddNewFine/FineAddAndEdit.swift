@@ -55,6 +55,12 @@ struct FineAddAndEdit: View {
         }
     }
     
+    init(personId: Person.ID, shownOnSheet: Bool) {
+        self.fineToEdit = nil
+        self.shownOnSheet = shownOnSheet
+        self._personId = State(initialValue: personId)
+    }
+    
     var body: some View {
         NavigationView {
             Form {

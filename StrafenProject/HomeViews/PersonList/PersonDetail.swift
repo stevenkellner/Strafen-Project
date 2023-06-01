@@ -27,6 +27,8 @@ struct PersonDetail: View {
     
     @State private var isInviteButtonLoading = false
     
+    @State private var isAddNewFineSheetShown = false
+    
     init(_ person: Binding<Person>) {
         self._person = person
     }
@@ -59,6 +61,17 @@ struct PersonDetail: View {
                     Text(self.appProperties.fines(of: self.person).totalAmount.formatted(.short))
                         .foregroundColor(.green)
                 }
+                if self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder) {
+                    Button {
+                        self.isAddNewFineSheetShown = true
+                    } label: {
+                        HStack {
+                            Text("person-detail|add-new-fine-button", comment: "Text of add new fine button.")
+                            Spacer()
+                            Image(systemName: "plus.viewfinder")
+                        }
+                    }
+                }
             }
             let sortedFines = self.appProperties.sortedFinesGroups(of: self.person)
             let unpayedFines = sortedFines.sortedList(of: .unpayed)
@@ -89,83 +102,86 @@ struct PersonDetail: View {
                         .unredacted()
                 }
             }
-        }.refreshable {
-            await self.appProperties.refresh()
-        }.navigationTitle(self.person.name.formatted(.long))
-            .navigationBarTitleDisplayMode(.large)
-            .task {
-                await self.imageStorage.fetch(.person(clubId: self.appProperties.club.id, personId: self.person.id))
-            }
-            .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in
-                view.toolbar {
-                    if self.person.signInData == nil {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            if self.isInviteButtonLoading {
-                                ProgressView()
-                                    .progressViewStyle(.circular)
-                            } else {
-                                Button {
-                                    self.isInvitationAlertShown = true
-                                } label: {
-                                    Text("person-detail|invitation-button", comment: "Invite this person button in person detail.")
+        }.dismissHandler
+            .refreshable {
+                await self.appProperties.refresh()
+            }.navigationTitle(self.person.name.formatted(.long))
+                .navigationBarTitleDisplayMode(.large)
+                .task {
+                    await self.imageStorage.fetch(.person(clubId: self.appProperties.club.id, personId: self.person.id))
+                }
+                .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in
+                    view.toolbar {
+                        if self.person.signInData == nil {
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                if self.isInviteButtonLoading {
+                                    ProgressView()
+                                        .progressViewStyle(.circular)
+                                } else {
+                                    Button {
+                                        self.isInvitationAlertShown = true
+                                    } label: {
+                                        Text("person-detail|invitation-button", comment: "Invite this person button in person detail.")
+                                    }
                                 }
                             }
                         }
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            self.isEditPersonSheetShown = true
-                        } label: {
-                            Text("edit-button", comment: "Text of the edit button.")
-                        }
-                    }
-                }.sheet(isPresented: self.$isEditPersonSheetShown) {
-                    let personBinding = Binding<Person?> {
-                        return self.appProperties.persons[self.person.id] ?? self.person
-                    } set: { person in
-                        if let person {
-                            self.person = person
-                        }
-                    }
-                    PersonAddAndEdit(person: personBinding)
-                }.alert(String(localized: "person-detail|invitation-alert|title?name=\(self.person.name.formatted())", comment: "Title of the invitation alert that is shown after the invite button is pressed. 'name' parameter is the name of the person to invite."), isPresented: self.$isInvitationAlertShown) {
-                    if self.person.isInvited {
-                        Button(role: .destructive) {
-                            Task {
-                                await self.withdrawInvitation()
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button {
+                                self.isEditPersonSheetShown = true
+                            } label: {
+                                Text("edit-button", comment: "Text of the edit button.")
                             }
-                        } label: {
-                            Text("person-detail|invitation-alert|withdraw-invitation-button", comment: "Withdraw invitation button of the invitation alert that is shown after the invite button is pressed and the person is already invited.")
                         }
-                        Button(role: .cancel) {} label: {
+                    }.sheet(isPresented: self.$isEditPersonSheetShown) {
+                        let personBinding = Binding<Person?> {
+                            return self.appProperties.persons[self.person.id] ?? self.person
+                        } set: { person in
+                            if let person {
+                                self.person = person
+                            }
+                        }
+                        PersonAddAndEdit(person: personBinding)
+                    }.sheet(isPresented: self.$isAddNewFineSheetShown) {
+                        FineAddAndEdit(personId: self.person.id, shownOnSheet: true)
+                    }.alert(String(localized: "person-detail|invitation-alert|title?name=\(self.person.name.formatted())", comment: "Title of the invitation alert that is shown after the invite button is pressed. 'name' parameter is the name of the person to invite."), isPresented: self.$isInvitationAlertShown) {
+                        if self.person.isInvited {
+                            Button(role: .destructive) {
+                                Task {
+                                    await self.withdrawInvitation()
+                                }
+                            } label: {
+                                Text("person-detail|invitation-alert|withdraw-invitation-button", comment: "Withdraw invitation button of the invitation alert that is shown after the invite button is pressed and the person is already invited.")
+                            }
+                            Button(role: .cancel) {} label: {
+                                Text("got-it-button", comment: "Text of a 'got it' button.")
+                            }
+                        } else {
+                            Button {
+                                Task {
+                                    await self.invitePerson()
+                                }
+                            } label: {
+                                Text("person-detail|invitation-alert|invite-button", comment: "Invite button of the invitation alert that is shown after the invite button is pressed.")
+                            }
+                            Button(role: .cancel) {} label: {
+                                Text("cancel-button", comment: "Text of cancel button.")
+                            }
+                        }
+                    } message: {
+                        if self.person.isInvited {
+                            Text("person-detail|invitation-alert|already-invited", comment: "Message of the invitation alert that is shown after the invite button is pressed and the person is already invited.")
+                        }
+                    }.alert(String(localized: "person-detail|invitation-created-alert|title?name=\(self.person.name.formatted())", comment: "Title of the alert that is shown after a new invitation link is created, so this link can be pass to that person. 'name' parameter is the name of the person that is invited."), isPresented: self.$isCreatedInvitationAlertShown) {
+                        Button {} label: {
                             Text("got-it-button", comment: "Text of a 'got it' button.")
                         }
-                    } else {
-                        Button {
-                            Task {
-                                await self.invitePerson()
-                            }
-                        } label: {
-                            Text("person-detail|invitation-alert|invite-button", comment: "Invite button of the invitation alert that is shown after the invite button is pressed.")
+                    } message: {
+                        if let invitationLink = self.invitationLink {
+                            Text("person-detail|invitation-created-alert|message?invitaion-link=\(invitationLink)", comment: "Message of the alert that is shown after a new invitation link is created. It also says that the link is copied to the paste board. 'invitation-link' parameter is the link of the invitation.")
                         }
-                        Button(role: .cancel) {} label: {
-                            Text("cancel-button", comment: "Text of cancel button.")
-                        }
-                    }
-                } message: {
-                    if self.person.isInvited {
-                        Text("person-detail|invitation-alert|already-invited", comment: "Message of the invitation alert that is shown after the invite button is pressed and the person is already invited.")
-                    }
-                }.alert(String(localized: "person-detail|invitation-created-alert|title?name=\(self.person.name.formatted())", comment: "Title of the alert that is shown after a new invitation link is created, so this link can be pass to that person. 'name' parameter is the name of the person that is invited."), isPresented: self.$isCreatedInvitationAlertShown) {
-                    Button {} label: {
-                        Text("got-it-button", comment: "Text of a 'got it' button.")
-                    }
-                } message: {
-                    if let invitationLink = self.invitationLink {
-                        Text("person-detail|invitation-created-alert|message?invitaion-link=\(invitationLink)", comment: "Message of the alert that is shown after a new invitation link is created. It also says that the link is copied to the paste board. 'invitation-link' parameter is the link of the invitation.")
                     }
                 }
-            }
     }
     
     private func withdrawInvitation() async {

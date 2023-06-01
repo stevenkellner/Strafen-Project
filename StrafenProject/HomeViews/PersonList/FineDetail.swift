@@ -63,7 +63,8 @@ struct FineDetail: View {
                         .frame(maxWidth: .infinity)
                 }.disabled(self.fine.payedState == .payed)
             }
-        }.navigationTitle(self.fine.reasonMessage)
+        }.dismissHandler
+            .navigationTitle(self.fine.reasonMessage)
             .navigationBarTitleDisplayMode(.large)
             .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in
                 view.toolbar {

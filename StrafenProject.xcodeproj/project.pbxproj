@@ -15,6 +15,7 @@
 		B0089A0829F2AC910062054E /* FirebaseImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0089A0729F2AC910062054E /* FirebaseImageStorage.swift */; };
 		B0089A0A29F2AD670062054E /* FirebaseStorageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0089A0929F2AD670062054E /* FirebaseStorageCache.swift */; };
 		B0089A0C29F2C32C0062054E /* View+if.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0089A0B29F2C32B0062054E /* View+if.swift */; };
+		B02E5D242A2879FB007584F3 /* DismissHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02E5D232A2879FA007584F3 /* DismissHandler.swift */; };
 		B03563C029DEE215000BB7AD /* StrafenProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03563BF29DEE215000BB7AD /* StrafenProjectApp.swift */; };
 		B03563C229DEE215000BB7AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03563C129DEE215000BB7AD /* ContentView.swift */; };
 		B03563C429DEE21A000BB7AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B03563C329DEE21A000BB7AD /* Assets.xcassets */; };
@@ -277,6 +278,7 @@
 		B0089A0729F2AC910062054E /* FirebaseImageStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImageStorage.swift; sourceTree = "<group>"; };
 		B0089A0929F2AD670062054E /* FirebaseStorageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageCache.swift; sourceTree = "<group>"; };
 		B0089A0B29F2C32B0062054E /* View+if.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+if.swift"; sourceTree = "<group>"; };
+		B02E5D232A2879FA007584F3 /* DismissHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissHandler.swift; sourceTree = "<group>"; };
 		B03563BC29DEE215000BB7AD /* StrafenProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrafenProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B03563BF29DEE215000BB7AD /* StrafenProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrafenProjectApp.swift; sourceTree = "<group>"; };
 		B03563C129DEE215000BB7AD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -747,6 +749,7 @@
 				B05AF42A29E2F43E00BA15F0 /* ValidationResult.swift */,
 				B00899FF29F1C6360062054E /* AppProperties.swift */,
 				B051020429FBAFA3003FA9F6 /* SortedSearchableListGroups.swift */,
+				B02E5D232A2879FA007584F3 /* DismissHandler.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1117,6 +1120,7 @@
 				B05AF41F29E2B94300BA15F0 /* PersonGetFunction.swift in Sources */,
 				B051021A29FC0690003FA9F6 /* Profile.swift in Sources */,
 				B08C850E29F934B70051473E /* PersonAddAndEdit.swift in Sources */,
+				B02E5D242A2879FB007584F3 /* DismissHandler.swift in Sources */,
 				B051021429FBEFC6003FA9F6 /* FineCustomReason.swift in Sources */,
 				B035641C29DEF912000BB7AD /* RandomBitIterator.swift in Sources */,
 				B0CB453D29FD8D5D00F39404 /* SignInData.swift in Sources */,

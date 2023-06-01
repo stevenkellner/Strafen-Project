@@ -14,6 +14,8 @@ struct ContentView: View {
     @StateObject private var settingsManager = SettingsManager()
     
     @StateObject private var imageStorage = FirebaseImageStorage()
+    
+    @StateObject private var dismissHandler = DismissHandler()
         
     @State private var activeBottomBarItem: BottomBar.Item = .profile
     
@@ -39,6 +41,7 @@ struct ContentView: View {
                         }
                     }
                 }.bottomBar(active: self.$activeBottomBarItem)
+                    .environmentObject(self.dismissHandler)
                     .task {
                         await self.onAppearOfMainPages(signedInPerson: signedInPerson)
                     }

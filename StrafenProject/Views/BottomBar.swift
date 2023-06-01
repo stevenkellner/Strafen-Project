@@ -19,6 +19,8 @@ struct BottomBar {
 
 struct BottomBarModifier: ViewModifier {
     
+    @EnvironmentObject private var dismissHandler: DismissHandler
+    
     @StateObject private var settingsManager = SettingsManager()
     
     private var bottomBarItem: Binding<BottomBar.Item>
@@ -31,47 +33,28 @@ struct BottomBarModifier: ViewModifier {
         content.toolbar {
             ToolbarItem(placement: .bottomBar) {
                 HStack {
-                    Button {
-                        bottomBarItem.wrappedValue = .profile
-                    } label: {
-                        Label(String(localized: "bottom-bar|profile", comment: "Bottom bar profile label."), systemImage: "person")
-                            .labelStyle(.verticalIconAndTitle)
-                            .foregroundColor(bottomBarItem.wrappedValue == .profile ? .secondary : nil)
-                    }
-                    Button {
-                        bottomBarItem.wrappedValue = .personList
-                    } label: {
-                        Label(String(localized: "bottom-bar|person-list", comment: "Bottom bar person list label."), systemImage: "person.2")
-                            .labelStyle(.verticalIconAndTitle)
-                            .foregroundColor(bottomBarItem.wrappedValue == .personList ? .secondary : nil)
-                    }
-                    Button {
-                        bottomBarItem.wrappedValue = .reasonTemplateList
-                    } label: {
-                        Label(String(localized: "bottom-bar|reason-list", comment: "Bottom bar reason list label."), systemImage: "list.dash")
-                            .labelStyle(.verticalIconAndTitle)
-                            .foregroundColor(bottomBarItem.wrappedValue == .reasonTemplateList ? .secondary : nil)
-                    }
+                    self.barButton(item: .profile, image: "person", label: String(localized: "bottom-bar|profile", comment: "Bottom bar profile label."))
+                    self.barButton(item: .personList, image: "person.2", label: String(localized: "bottom-bar|person-list", comment: "Bottom bar person list label."))
+                    self.barButton(item: .reasonTemplateList, image: "list.dash", label: String(localized: "bottom-bar|reason-list", comment: "Bottom bar reason list label."))
                     if FirebaseAuthenticator.shared.user != nil,
                        let signedInPerson = self.settingsManager.signedInPerson,
                        signedInPerson.isAdmin {
-                        Button {
-                            bottomBarItem.wrappedValue = .addNewFine
-                        } label: {
-                            Label(String(localized: "bottom-bar|add-new-fine", comment: "Bottom bar add new fine label."), systemImage: "plus")
-                                .labelStyle(.verticalIconAndTitle)
-                                .foregroundColor(bottomBarItem.wrappedValue == .addNewFine ? .secondary : nil)
-                        }
+                        self.barButton(item: .addNewFine, image: "plus", label: String(localized: "bottom-bar|add-new-fine", comment: "Bottom bar add new fine label."))
                     }
-                    Button {
-                        bottomBarItem.wrappedValue = .settings
-                    } label: {
-                        Label(String(localized: "bottom-bar|settings", comment: "Bottom bar settings label."), systemImage: "gear")
-                            .labelStyle(.verticalIconAndTitle)
-                            .foregroundColor(bottomBarItem.wrappedValue == .settings ? .secondary : nil)
-                    }
+                    self.barButton(item: .settings, image: "gear", label: String(localized: "bottom-bar|settings", comment: "Bottom bar settings label."))
                 }
             }
+        }
+    }
+    
+    @ViewBuilder private func barButton(item bottomBarItem: BottomBar.Item, image systemName: String, label: String) -> some View {
+        Button {
+            self.dismissHandler.dismiss()
+            self.bottomBarItem.wrappedValue = bottomBarItem
+        } label: {
+            Label(label, systemImage: systemName)
+                .labelStyle(.verticalIconAndTitle)
+                .foregroundColor(self.bottomBarItem.wrappedValue == bottomBarItem ? .secondary : nil)
         }
     }
 }

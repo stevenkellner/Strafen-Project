@@ -143,9 +143,8 @@ extension AppProperties {
 
 extension AppProperties {
     var shareText: String {
-        let titleText = String(localized: "app-properties|share-text-title", comment: "Title of the share text where sharing persons.")
         let sortedPersonsWithUnpayedFines = self.sortedPersonsGroups.sortedList(of: .withUnpayedFines)
-        let personsText = sortedPersonsWithUnpayedFines.map { person in
+        return sortedPersonsWithUnpayedFines.map { person in
             let fines = self.fines(of: person)
             let nameText = "\(person.name.formatted()): \(fines.unpayedAmount.formatted(.short))"
             let finesText = fines.compactMap { fine in
@@ -156,7 +155,6 @@ extension AppProperties {
             }.joined(separator: "\n")
             return "\(nameText)\n\(finesText)"
         }.joined(separator: "\n\n")
-        return "\(titleText)\n\n\(personsText)"
     }
 }
 
