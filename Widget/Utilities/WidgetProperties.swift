@@ -10,26 +10,30 @@ import UIKit.UIImage
 
 struct WidgetProperties {
     let signedInPerson: Settings.SignedInPerson
+    let sorting: Settings.Sorting
     let personImage: UIImage?
     private let allFines: IdentifiableList<Fine>
     
     private init(
         signedInPerson: Settings.SignedInPerson,
+        sorting: Settings.Sorting,
         personImage: UIImage?,
         allFines: IdentifiableList<Fine>
     ) {
         self.signedInPerson = signedInPerson
+        self.sorting = sorting
         self.personImage = personImage
         self.allFines = allFines
     }
     
-    static func fetch(with signedInPerson: Settings.SignedInPerson) async throws -> WidgetProperties {
+    static func fetch(with signedInPerson: Settings.SignedInPerson, sorting: Settings.Sorting) async throws -> WidgetProperties {
         let clubId = signedInPerson.club.id
         let fineGetFunction = FineGetFunction(clubId: clubId)
         async let image = ImageFetcher.shared.fetch(clubId: clubId, personId: signedInPerson.id)
         async let allFines = FirebaseFunctionCaller.shared.call(fineGetFunction)
         return try await WidgetProperties(
             signedInPerson: signedInPerson,
+            sorting: sorting,
             personImage: image,
             allFines: allFines
         )
@@ -51,11 +55,9 @@ struct WidgetProperties {
 
 extension WidgetProperties {
     var sortedFinesGroups: SortedSearchableListGroups<PayedState, Fine> {
-        return SortedSearchableListGroups(self.fines) { fine in
+        return SortedSearchableListGroups(self.fines, groupBy: { fine in
             return fine.payedState
-        } sortBy: { lhsFine, rhsFine in
-            return lhsFine.date > rhsFine.date
-        } searchIn: { fine in
+        }, sortBy: self.sorting.fineSorting.areInAscendingOrder(lhs:rhs:)) { fine in
             return fine.reasonMessage
         }
     }
@@ -68,6 +70,7 @@ extension WidgetProperties {
         signedInPerson.fineIds = allFines.map(\.id)
         return WidgetProperties(
             signedInPerson: signedInPerson,
+            sorting: Settings.Sorting.default,
             personImage: UIImage(named: "profile_placeholder"),
             allFines: allFines
         )

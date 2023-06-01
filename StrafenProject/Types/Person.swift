@@ -42,3 +42,75 @@ extension Person: RandomPlaceholder {
     }
 }
 #endif
+
+#if !NOTIFICATION_SERVICE_EXTENSION && !WIDGET_EXTENSION
+extension Person: Sortable {
+    enum SortingKey: String, CaseIterable, SortingKeyProtocolWithContext {
+        case name
+        case amount
+        
+        func areInAscendingOrder(lhs lhsPerson: Person, rhs rhsPerson: Person, context appProperties: AppProperties) -> Bool {
+            switch self {
+            case .name:
+                return lhsPerson.name.formatted().lowercased() < rhsPerson.name.formatted().lowercased()
+            case .amount:
+                let lhsAmount = appProperties.fines(of: lhsPerson).unpayedAmount
+                let rhsAmount = appProperties.fines(of: rhsPerson).unpayedAmount
+                guard lhsAmount != .zero && rhsAmount != .zero else {
+                    return SortingKey.name.areInAscendingOrder(lhs: lhsPerson, rhs: rhsPerson, context: appProperties)
+                }
+                guard lhsAmount != .zero else {
+                    return false
+                }
+                guard rhsAmount != .zero else {
+                    return true
+                }
+                return lhsAmount < rhsAmount
+            }
+        }
+        
+        func formatted(order: SortingOrder) -> String {
+            switch (self, order) {
+            case (.name, .ascending):
+                return String(localized: "person|sorting-key|name-ascending", comment: "Sorting key of person sorted ascending by name.")
+            case (.name, .descending):
+                return String(localized: "person|sorting-key|name-descending", comment: "Sorting key of person sorted descending by name.")
+            case (.amount, .ascending):
+                return String(localized: "person|sorting-key|amount-ascending", comment: "Sorting key of person sorted ascending by amount.")
+            case (.amount, .descending):
+                return String(localized: "person|sorting-key|amount-descending", comment: "Sorting key of person sorted descending by amount.")
+            }
+        }
+    }
+}
+#else
+extension Person: Sortable {
+    enum SortingKey: String, SortingKeyProtocol {
+        case name
+        
+        func areInAscendingOrder(lhs lhsPerson: Person, rhs rhsPerson: Person) -> Bool {
+            switch self {
+            case .name:
+                return lhsPerson.name.formatted().lowercased() < rhsPerson.name.formatted().lowercased()
+            }
+        }
+        
+        func formatted(order: SortingOrder) -> String {
+            switch (self, order) {
+            case (.name, .ascending):
+                return String(localized: "person|sorting-key|name-ascending", comment: "Sorting key of person sorted ascending by name.")
+            case (.name, .descending):
+                return String(localized: "person|sorting-key|name-descending", comment: "Sorting key of person sorted descending by name.")
+            }
+        }
+    }
+}
+#endif
+
+extension Person.SortingKey: Sendable {}
+
+extension Person.SortingKey: Equatable {}
+
+extension Person.SortingKey: Hashable {}
+
+extension Person.SortingKey: Codable {}

@@ -15,6 +15,8 @@ struct FinePickPerson: View {
     
     @EnvironmentObject private var imageStorage: FirebaseImageStorage
     
+    @EnvironmentObject private var settingsManager: SettingsManager
+    
     @Binding private var personId: Person.ID?
     
     @State private var searchText = ""
@@ -26,7 +28,7 @@ struct FinePickPerson: View {
     var body: some View {
         NavigationView {
             List {
-                let sortedPersons = self.appProperties.sortedPersons.sortedSearchableList(search: self.searchText)
+                let sortedPersons = self.appProperties.sortedPersons(by: self.settingsManager.sorting.personSorting).sortedSearchableList(search: self.searchText)
                 ForEach(sortedPersons) { person in
                     Button {
                         self.personId = person.id

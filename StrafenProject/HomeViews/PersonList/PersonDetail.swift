@@ -15,6 +15,8 @@ struct PersonDetail: View {
     
     @EnvironmentObject private var imageStorage: FirebaseImageStorage
     
+    @EnvironmentObject private var settingsManager: SettingsManager
+    
     @Binding private var person: Person
         
     @State private var isEditPersonSheetShown = false
@@ -73,7 +75,7 @@ struct PersonDetail: View {
                     }
                 }
             }
-            let sortedFines = self.appProperties.sortedFinesGroups(of: self.person)
+            let sortedFines = self.appProperties.sortedFinesGroups(of: self.person, by: self.settingsManager.sorting.fineSorting)
             let unpayedFines = sortedFines.sortedList(of: .unpayed)
             if !unpayedFines.isEmpty {
                 Section {

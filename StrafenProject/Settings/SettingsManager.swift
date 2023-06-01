@@ -28,16 +28,17 @@ class SettingsManager: ObservableObject {
         self.settings = try crypter.decryptDecode(type: Settings.self, encryptedJsonData)
     }
     
-    func saveSettings() throws {
-        let crypter = Crypter(keys: PrivateKeys.current.cryptionKeys)
-        let encryptedJsonData = try crypter.encodeEncryptToData(self.settings)
-        try encryptedJsonData.write(to: self.settingsUrl, options: .atomic)
-    }
-    
     subscript<T>(dynamicMember keyPath: KeyPath<Settings, T>) -> T {
         get {
             return self.settings[keyPath: keyPath]
         }
+    }
+    
+    #if !NOTIFICATION_SERVICE_EXTENSION && !WIDGET_EXTENSION
+    func saveSettings() throws {
+        let crypter = Crypter(keys: PrivateKeys.current.cryptionKeys)
+        let encryptedJsonData = try crypter.encodeEncryptToData(self.settings)
+        try encryptedJsonData.write(to: self.settingsUrl, options: .atomic)
     }
         
     func save<T>(_ value: T, at keyPath: WritableKeyPath<Settings, T>) throws {
@@ -45,4 +46,5 @@ class SettingsManager: ObservableObject {
         try self.saveSettings()
         
     }
+    #endif
 }

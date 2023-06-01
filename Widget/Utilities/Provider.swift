@@ -35,7 +35,7 @@ struct Provider: TimelineProvider {
             let widgetEntry: WidgetEntry
             if let signedInPerson = settingsManager.signedInPerson {
                 do {
-                    let widgetProperties = try await WidgetProperties.fetch(with: signedInPerson)
+                    let widgetProperties = try await WidgetProperties.fetch(with: signedInPerson, sorting: settingsManager.sorting)
                     widgetEntry = WidgetEntry(date: Date(timeIntervalSinceNow: Provider.timeIntervalToUpdate), style: .default, widgetProperties: .success(widgetProperties))
                 } catch {
                     widgetEntry = WidgetEntry(date: Date(timeIntervalSinceNow: Provider.timeIntervalToUpdateAfterError), style: .default, widgetProperties: .failure(.unknown))

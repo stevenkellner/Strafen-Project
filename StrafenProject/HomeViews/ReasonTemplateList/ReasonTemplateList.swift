@@ -13,6 +13,8 @@ struct ReasonTemplateList: View {
     
     @EnvironmentObject private var appProperties: AppProperties
     
+    @EnvironmentObject private var settingsManager: SettingsManager
+    
     @State private var searchText = ""
     
     @State private var isReasonTemplateAddSheetShown = false
@@ -20,7 +22,7 @@ struct ReasonTemplateList: View {
     var body: some View {
         NavigationStack {
             List {
-                let sortedReasonTemplates = self.appProperties.sortedReasonTemplates
+                let sortedReasonTemplates = self.appProperties.sortedReasonTemplates(by: self.settingsManager.sorting.reasonTemplateSorting)
                 let reasonTemplates = sortedReasonTemplates.sortedSearchableList(search: self.searchText)
                 if !reasonTemplates.isEmpty {
                     ForEach(reasonTemplates) { reasonTemplate in

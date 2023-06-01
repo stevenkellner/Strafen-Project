@@ -15,6 +15,8 @@ struct PersonList: View {
     
     @EnvironmentObject private var imageStorage: FirebaseImageStorage
     
+    @EnvironmentObject private var settingsManager: SettingsManager
+    
     @State private var searchText = ""
     
     @State private var isPersonAddSheetShown = false
@@ -24,7 +26,7 @@ struct PersonList: View {
     var body: some View {
         NavigationStack {
             List {
-                let sortedPersons = self.appProperties.sortedPersonsGroups
+                let sortedPersons = self.appProperties.sortedPersonsGroups(by: self.settingsManager.sorting.personSorting)
                 let personsWithUnpayedFines = sortedPersons.sortedSearchableList(of: .withUnpayedFines, search: self.searchText)
                 if !personsWithUnpayedFines.isEmpty {
                     Section {
@@ -68,7 +70,7 @@ struct PersonList: View {
                 .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in
                     view.toolbar {
                         ToolbarItem(placement: .navigationBarLeading) {
-                            ShareLink(item: "", message: Text(self.appProperties.shareText), preview: SharePreview(String(localized: "person-list|share-title", comment: "Title of share preview when sharing persons."))) // Offene Strafen
+                            ShareLink(item: "", message: Text(self.appProperties.shareText(sorting: self.settingsManager.sorting)), preview: SharePreview(String(localized: "person-list|share-title", comment: "Title of share preview when sharing persons."))) // Offene Strafen
                         }
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button {

@@ -49,7 +49,7 @@ struct Profile: View {
                             .foregroundColor(.green)
                     }
                 }
-                let sortedFines = self.appProperties.sortedFinesGroups(of: self.appProperties.signedInPerson)
+                let sortedFines = self.appProperties.sortedFinesGroups(of: self.appProperties.signedInPerson, by: self.settingsManager.sorting.fineSorting)
                 let unpayedFines = sortedFines.sortedList(of: .unpayed)
                 if !unpayedFines.isEmpty {
                     Section {

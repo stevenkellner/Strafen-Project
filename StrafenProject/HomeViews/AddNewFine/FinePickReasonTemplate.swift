@@ -12,6 +12,8 @@ struct FinePickReasonTemplate: View {
     @Environment(\.dismiss) private var dismiss
     
     @EnvironmentObject private var appProperties: AppProperties
+    
+    @EnvironmentObject private var settingsManager: SettingsManager
         
     @Binding private var reasonMessage: String?
     
@@ -47,7 +49,7 @@ struct FinePickReasonTemplate: View {
                     }
                 }
                 Section {
-                    let sortedReasonTemplates = self.appProperties.sortedReasonTemplates.sortedSearchableList(search: self.searchText)
+                    let sortedReasonTemplates = self.appProperties.sortedReasonTemplates(by: self.settingsManager.sorting.reasonTemplateSorting).sortedSearchableList(search: self.searchText)
                     ForEach(sortedReasonTemplates) { reasonTemplate in
                         Button {
                             self.reasonMessage = reasonTemplate.reasonMessage

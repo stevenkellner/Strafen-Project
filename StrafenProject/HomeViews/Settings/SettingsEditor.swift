@@ -13,6 +13,8 @@ struct SettingsEditor: View {
     
     @State private var appearance: Settings.Appearance = .system
     
+    @State private var sorting: Settings.Sorting = Settings.Sorting.default
+    
     var body: some View {
         NavigationStack {
             List {
@@ -25,6 +27,17 @@ struct SettingsEditor: View {
                         try? self.settingsManager.save(appearance, at: \.appearance)
                         UIApplication.shared.rootViewController?.overrideUserInterfaceStyle = appearance.uiStyle
                     }
+                }
+                Section {
+                    self.sortingPicker(String(localized: "settings|sorting|person-title", comment: "Title of the person sorting in settings."), selection: self.$sorting.personSorting)
+                    self.sortingPicker(String(localized: "settings|sorting|reason-template-title", comment: "Title of the person sorting in settings."), selection: self.$sorting.reasonTemplateSorting)
+                    self.sortingPicker(String(localized: "settings|sorting|fine-title", comment: "Title of the fine sorting in settings."), selection: self.$sorting.fineSorting)
+                } header: {
+                    Text(String(localized: "settings|sorting|title", comment: "Title of the sorting section in settings."))
+                        .foregroundColor(.secondary)
+                        .font(.callout)
+                }.onChange(of: self.sorting) { sorting in
+                    try? self.settingsManager.save(sorting, at: \.sorting)
                 }
                 Section {
                     Button(role: .destructive) {
@@ -41,7 +54,19 @@ struct SettingsEditor: View {
             }.navigationTitle(String(localized: "settings|title", comment: "Navigation title of the settings."))
                 .onAppear {
                     self.appearance = self.settingsManager.appearance
+                    self.sorting = self.settingsManager.sorting
                 }
+        }
+    }
+    
+    @ViewBuilder private func sortingPicker<T>(_ title: String, selection: Binding<Settings.Sorting.SortingKeyAndOrder<T>>) -> some View where T: Sortable {
+        Picker(title, selection: selection) {
+            ForEach(T.SortingKey.allCases, id: \.self) { sortingKey in
+                Text(sortingKey.formatted(order: .ascending))
+                    .tag(Settings.Sorting.SortingKeyAndOrder<T>(sortingKey: sortingKey, order: .ascending))
+                Text(sortingKey.formatted(order: .descending))
+                    .tag(Settings.Sorting.SortingKeyAndOrder<T>(sortingKey: sortingKey, order: .descending))
+            }
         }
     }
 }

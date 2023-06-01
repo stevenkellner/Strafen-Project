@@ -76,6 +76,12 @@
 		B05AF43629E2FDB700BA15F0 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AF43529E2FDB700BA15F0 /* SettingsTests.swift */; };
 		B05F991329FFCC4C00B877D1 /* Plurals.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = B05F991529FFCC4C00B877D1 /* Plurals.stringsdict */; };
 		B05F991829FFDF5900B877D1 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = B05F991729FFDF5900B877D1 /* FirebaseMessaging */; };
+		B05FC7392A28A13100736370 /* Settings+Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05FC7382A28A13100736370 /* Settings+Sorting.swift */; };
+		B05FC73B2A28A98800736370 /* Sortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05FC73A2A28A98800736370 /* Sortable.swift */; };
+		B05FC73C2A28A9FF00736370 /* Sortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05FC73A2A28A98800736370 /* Sortable.swift */; };
+		B05FC73D2A28A9FF00736370 /* Sortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05FC73A2A28A98800736370 /* Sortable.swift */; };
+		B05FC73E2A28AA7B00736370 /* Settings+Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05FC7382A28A13100736370 /* Settings+Sorting.swift */; };
+		B05FC73F2A28AA7B00736370 /* Settings+Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05FC7382A28A13100736370 /* Settings+Sorting.swift */; };
 		B0679DDC29EE8BC1005A4109 /* CreateClubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0679DDB29EE8BC1005A4109 /* CreateClubView.swift */; };
 		B06E9FFB29E1BDCC0034B178 /* CubNewFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E9FFA29E1BDCC0034B178 /* CubNewFunction.swift */; };
 		B06E9FFF29E1D34D0034B178 /* FineEditFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E9FFE29E1D34D0034B178 /* FineEditFunction.swift */; };
@@ -325,6 +331,8 @@
 		B05AF43829E2FE2400BA15F0 /* StrafenProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StrafenProject.entitlements; sourceTree = "<group>"; };
 		B05F991429FFCC4C00B877D1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Plurals.stringsdict; sourceTree = "<group>"; };
 		B05F991629FFCC4D00B877D1 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Plurals.stringsdict; sourceTree = "<group>"; };
+		B05FC7382A28A13100736370 /* Settings+Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+Sorting.swift"; sourceTree = "<group>"; };
+		B05FC73A2A28A98800736370 /* Sortable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sortable.swift; sourceTree = "<group>"; };
 		B0679DDB29EE8BC1005A4109 /* CreateClubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateClubView.swift; sourceTree = "<group>"; };
 		B06E9FFA29E1BDCC0034B178 /* CubNewFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubNewFunction.swift; sourceTree = "<group>"; };
 		B06E9FFE29E1D34D0034B178 /* FineEditFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineEditFunction.swift; sourceTree = "<group>"; };
@@ -656,6 +664,7 @@
 				B05AF42F29E2F5CA00BA15F0 /* Settings+Appearance.swift */,
 				B05AF43129E2F65C00BA15F0 /* Settings+SignedInPerson.swift */,
 				B05AF43329E2F6DF00BA15F0 /* SettingsManager.swift */,
+				B05FC7382A28A13100736370 /* Settings+Sorting.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -750,6 +759,7 @@
 				B00899FF29F1C6360062054E /* AppProperties.swift */,
 				B051020429FBAFA3003FA9F6 /* SortedSearchableListGroups.swift */,
 				B02E5D232A2879FA007584F3 /* DismissHandler.swift */,
+				B05FC73A2A28A98800736370 /* Sortable.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1105,6 +1115,7 @@
 				B0E6A5C329E05F2A0095471B /* PrivateKeys.swift in Sources */,
 				B0E6A59429E03D040095471B /* Tagged.swift in Sources */,
 				B051020729FBBA75003FA9F6 /* ReasonTemplateAddAndEdit.swift in Sources */,
+				B05FC7392A28A13100736370 /* Settings+Sorting.swift in Sources */,
 				B05AF42E29E2F56100BA15F0 /* Settings.swift in Sources */,
 				B0E6A58629E035C80095471B /* Amount.swift in Sources */,
 				B05AF42729E2F2A700BA15F0 /* ConnectionState.swift in Sources */,
@@ -1149,6 +1160,7 @@
 				B06EA00129E1D3AD0034B178 /* EditType.swift in Sources */,
 				B0089A0629F2AB010062054E /* FirebaseStorageImageType.swift in Sources */,
 				B035641429DEF2A5000BB7AD /* Bit.swift in Sources */,
+				B05FC73B2A28A98800736370 /* Sortable.swift in Sources */,
 				B06EA00529E1DFCE0034B178 /* FineGetFunction.swift in Sources */,
 				B0E6A5CC29E06C150095471B /* FirebaseConfigurator.swift in Sources */,
 				B0D6B19529FD3102002295F7 /* ProfileChangeImage.swift in Sources */,
@@ -1221,6 +1233,7 @@
 				B0A3F0842A004C6E00160C0D /* CombineIterator.swift in Sources */,
 				B0A3F0832A004C6B00160C0D /* DataToBitIterator.swift in Sources */,
 				B0A3F0802A004C3C00160C0D /* DatabaseType.swift in Sources */,
+				B05FC73C2A28A9FF00736370 /* Sortable.swift in Sources */,
 				B0A3F07E2A004BE500160C0D /* SignInData.swift in Sources */,
 				B0A3F0862A004C7500160C0D /* RandomBitIterator.swift in Sources */,
 				B0A3F07A2A0048E400160C0D /* Settings+SignedInPerson.swift in Sources */,
@@ -1228,6 +1241,7 @@
 				B0A3F08B2A004C8A00160C0D /* Crypter.swift in Sources */,
 				B0A3F0822A004C6800160C0D /* Bit.swift in Sources */,
 				B0A3F06F2A0040B700160C0D /* NotificationService.swift in Sources */,
+				B05FC73E2A28AA7B00736370 /* Settings+Sorting.swift in Sources */,
 				B0A3F0872A004C7800160C0D /* Data+Unishort.swift in Sources */,
 				B0A3F0852A004C7100160C0D /* PseudoRandom.swift in Sources */,
 				B0A3F0892A004C7F00160C0D /* FixedLength.swift in Sources */,
@@ -1252,6 +1266,7 @@
 				B09C693D2A0124F400930BCB /* PersonName.swift in Sources */,
 				B09C694E2A0126BC00930BCB /* CallSecret.swift in Sources */,
 				B09C694A2A01265C00930BCB /* FirebaseFunctionParameterType.swift in Sources */,
+				B05FC73D2A28A9FF00736370 /* Sortable.swift in Sources */,
 				B09C69492A01265900930BCB /* FirebaseFunctionParameters.swift in Sources */,
 				B09C696B2A03C2B500930BCB /* LargeWidgetView.swift in Sources */,
 				B09C692D2A01236100930BCB /* Settings+Appearance.swift in Sources */,
@@ -1269,6 +1284,7 @@
 				B09C69582A012E9700930BCB /* FirebaseConfigurator.swift in Sources */,
 				B09C69342A01237900930BCB /* Crypter.swift in Sources */,
 				B09C692C2A01235D00930BCB /* Settings+SignedInPerson.swift in Sources */,
+				B05FC73F2A28AA7B00736370 /* Settings+Sorting.swift in Sources */,
 				B09C692F2A01236A00930BCB /* Bit.swift in Sources */,
 				B09C694F2A0126C400930BCB /* FirebaseFunctionCaller.swift in Sources */,
 				B09C69402A01253000930BCB /* PayedState.swift in Sources */,

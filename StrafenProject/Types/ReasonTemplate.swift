@@ -146,3 +146,40 @@ extension ReasonTemplate: RandomPlaceholder {
         )
     }
 }
+
+extension ReasonTemplate: Sortable {
+    enum SortingKey: String, SortingKeyProtocol {
+        case reasonMessage
+        case amount
+        
+        func areInAscendingOrder(lhs lhsReasonTemplate: ReasonTemplate, rhs rhsReasonTemplate: ReasonTemplate) -> Bool {
+            switch self {
+            case .reasonMessage:
+                return lhsReasonTemplate.formatted.lowercased() < rhsReasonTemplate.formatted.lowercased()
+            case .amount:
+                return lhsReasonTemplate.amount < rhsReasonTemplate.amount
+            }
+        }
+        
+        func formatted(order: SortingOrder) -> String {
+            switch (self, order) {
+            case (.reasonMessage, .ascending):
+                return String(localized: "reason-template|sorting-key|reason-message-ascending", comment: "Sorting key of reason template sorted ascending by reason message.")
+            case (.reasonMessage, .descending):
+                return String(localized: "reason-template|sorting-key|reason-message-descending", comment: "Sorting key of reason template sorted descending by reason message.")
+            case (.amount, .ascending):
+                return String(localized: "reason-template|sorting-key|amount-ascending", comment: "Sorting key of reason template sorted ascending by amount.")
+            case (.amount, .descending):
+                return String(localized: "reason-template|sorting-key|amount-descending", comment: "Sorting key of reason template sorted descending by amount.")
+            }
+        }
+    }
+}
+
+extension ReasonTemplate.SortingKey: Sendable {}
+
+extension ReasonTemplate.SortingKey: Equatable {}
+
+extension ReasonTemplate.SortingKey: Hashable {}
+
+extension ReasonTemplate.SortingKey: Codable {}

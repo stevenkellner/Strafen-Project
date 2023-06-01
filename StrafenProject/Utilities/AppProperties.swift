@@ -89,20 +89,20 @@ extension AppProperties {
         case withPayedFines
     }
     
-    var sortedPersons: SortedSearchableListGroups<SingleGroupKey, Person> {
+    func sortedPersons(by sorting: Settings.Sorting.SortingKeyAndOrder<Person>) -> SortedSearchableListGroups<SingleGroupKey, Person> {
         return SortedSearchableListGroups(self.persons) { lhsPerson, rhsPerson in
-            return lhsPerson.name.formatted().lowercased() < rhsPerson.name.formatted().lowercased()
+            return sorting.areInAscendingOrder(lhs: lhsPerson, rhs: rhsPerson, context: self)
         } searchIn: { person in
             return person.name.formatted()
         }
     }
     
-    var sortedPersonsGroups: SortedSearchableListGroups<PersonGroupsKey, Person> {
+    func sortedPersonsGroups(by sorting: Settings.Sorting.SortingKeyAndOrder<Person>) -> SortedSearchableListGroups<PersonGroupsKey, Person> {
         return SortedSearchableListGroups(self.persons) { person in
             let unpayedAmount = self.fines(of: person).unpayedAmount
             return unpayedAmount == .zero ?.withPayedFines : .withUnpayedFines
         } sortBy: { lhsPerson, rhsPerson in
-            return lhsPerson.name.formatted().lowercased() < rhsPerson.name.formatted().lowercased()
+            return sorting.areInAscendingOrder(lhs: lhsPerson, rhs: rhsPerson, context: self)
         } searchIn: { person in
             return person.name.formatted()
         }
@@ -110,47 +110,38 @@ extension AppProperties {
 }
 
 extension AppProperties {
-    var sortedReasonTemplates: SortedSearchableListGroups<SingleGroupKey, ReasonTemplate> {
-        return SortedSearchableListGroups(self.reasonTemplates) { lhsReasonTemplate, rhsReasonTemplate in
-            return lhsReasonTemplate.formatted.lowercased() < rhsReasonTemplate.formatted.lowercased()
-        } searchIn: { reasonTemplate in
+    func sortedReasonTemplates(by sorting: Settings.Sorting.SortingKeyAndOrder<ReasonTemplate>) -> SortedSearchableListGroups<SingleGroupKey, ReasonTemplate> {
+        return SortedSearchableListGroups(self.reasonTemplates, sortBy: sorting.areInAscendingOrder(lhs:rhs:)) { reasonTemplate in
             return reasonTemplate.formatted
         }
     }
 }
 
 extension AppProperties {
-    func sortedFinesGroups(of person: Person) -> SortedSearchableListGroups<PayedState, Fine> {
-        return SortedSearchableListGroups(self.fines(of: person)) { fine in
+    func sortedFinesGroups(of person: Person, by sorting: Settings.Sorting.SortingKeyAndOrder<Fine>) -> SortedSearchableListGroups<PayedState, Fine> {
+        return SortedSearchableListGroups(self.fines(of: person), groupBy: { fine in
             return fine.payedState
-        } sortBy: { lhsFine, rhsFine in
-            return lhsFine.date > rhsFine.date
-        } searchIn: { fine in
+        }, sortBy: sorting.areInAscendingOrder(lhs:rhs:)) { fine in
             return fine.reasonMessage
         }
     }
     
-    func sortedFinesGroups(of person: Settings.SignedInPerson) -> SortedSearchableListGroups<PayedState, Fine> {
-        return SortedSearchableListGroups(self.fines(of: person)) { fine in
+    func sortedFinesGroups(of person: Settings.SignedInPerson, by sorting: Settings.Sorting.SortingKeyAndOrder<Fine>) -> SortedSearchableListGroups<PayedState, Fine> {
+        return SortedSearchableListGroups(self.fines(of: person), groupBy: { fine in
             return fine.payedState
-        } sortBy: { lhsFine, rhsFine in
-            return lhsFine.date > rhsFine.date
-        } searchIn: { fine in
+        }, sortBy: sorting.areInAscendingOrder(lhs:rhs:)) { fine in
             return fine.reasonMessage
         }
     }
 }
 
 extension AppProperties {
-    var shareText: String {
-        let sortedPersonsWithUnpayedFines = self.sortedPersonsGroups.sortedList(of: .withUnpayedFines)
-        return sortedPersonsWithUnpayedFines.map { person in
-            let fines = self.fines(of: person)
-            let nameText = "\(person.name.formatted()): \(fines.unpayedAmount.formatted(.short))"
-            let finesText = fines.compactMap { fine in
-                guard fine.payedState == .unpayed else {
-                    return nil
-                }
+    func shareText(sorting: Settings.Sorting) -> String {
+        let sortedPersons = self.sortedPersonsGroups(by: sorting.personSorting).sortedList(of: .withUnpayedFines)
+        return sortedPersons.map { person in
+            let sortedFines = self.sortedFinesGroups(of: person, by: sorting.fineSorting)
+            let nameText = "\(person.name.formatted()): \(sortedFines.sortedList(of: .unpayed).totalAmount.formatted(.short))"
+            let finesText = sortedFines.sortedList(of: .unpayed).map { fine in
                 return "\t- \(fine.reasonMessage), \(fine.date.formatted(date: .abbreviated, time: .omitted)): \(fine.amount.formatted(.short))"
             }.joined(separator: "\n")
             return "\(nameText)\n\(finesText)"
