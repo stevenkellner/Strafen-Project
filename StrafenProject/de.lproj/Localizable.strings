@@ -152,10 +152,10 @@
 "fine-pick-reason-template|title" = "Strafe auswählen";
 
 /* Sorting key of fine sorted ascending by amount. */
-"fine|sorting-key|amount-ascending" = "Höchster Betrag zuerst";
+"fine|sorting-key|amount-ascending" = "Niedrigster Betrag zuerst";
 
 /* Sorting key of fine sorted descending by amount. */
-"fine|sorting-key|amount-descending" = "Niedrigster Betrag zuerst";
+"fine|sorting-key|amount-descending" = "Höchster Betrag zuerst";
 
 /* Sorting key of fine sorted ascending by date. */
 "fine|sorting-key|date-ascending" = "Älteste zuerst";
@@ -398,10 +398,10 @@
 "person-list|title" = "Personen";
 
 /* Sorting key of person sorted ascending by amount. */
-"person|sorting-key|amount-ascending" = "Höchster Betrag zuerst";
+"person|sorting-key|amount-ascending" = "Niedrigster Betrag zuerst";
 
 /* Sorting key of person sorted descending by amount. */
-"person|sorting-key|amount-descending" = "Niedrigster Betrag zuerst";
+"person|sorting-key|amount-descending" = "Höchster Betrag zuerst";
 
 /* Sorting key of person sorted ascending by name. */
 "person|sorting-key|name-ascending" = "Name A-Z";
@@ -491,10 +491,10 @@
 "reason-template|formatted?reason-message=%@&item=%@&max-count?%lld" = "%@ (pro %@, max. %lld mal)";
 
 /* Sorting key of reason template sorted ascending by amount. */
-"reason-template|sorting-key|amount-ascending" = "Höchster Betrag zuerst";
+"reason-template|sorting-key|amount-ascending" = "Niedrigster Betrag zuerst";
 
 /* Sorting key of reason template sorted descending by amount. */
-"reason-template|sorting-key|amount-descending" = "Niedrigster Betrag zuerst";
+"reason-template|sorting-key|amount-descending" = "Höchster Betrag zuerst";
 
 /* Sorting key of reason template sorted ascending by reason message. */
 "reason-template|sorting-key|reason-message-ascending" = "Name A-Z";

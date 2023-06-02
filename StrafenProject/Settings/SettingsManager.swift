@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WidgetKit
 
 @dynamicMemberLookup
 class SettingsManager: ObservableObject {
@@ -39,6 +40,7 @@ class SettingsManager: ObservableObject {
         let crypter = Crypter(keys: PrivateKeys.current.cryptionKeys)
         let encryptedJsonData = try crypter.encodeEncryptToData(self.settings)
         try encryptedJsonData.write(to: self.settingsUrl, options: .atomic)
+        WidgetCenter.shared.reloadAllTimelines()
     }
         
     func save<T>(_ value: T, at keyPath: WritableKeyPath<Settings, T>) throws {
