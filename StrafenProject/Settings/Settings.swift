@@ -6,26 +6,19 @@
 //
 
 import Foundation
+import StrafenProjectMacros
 
-struct Settings {
+@DefaultDecodable
+struct Settings: Encodable {
     static let `default` = Settings(appearance: .system, sorting: Settings.Sorting.default, signedInPerson: nil)
     
     public var appearance: Settings.Appearance
     public var sorting: Settings.Sorting
     public var signedInPerson: Settings.SignedInPerson?
-}
-
-extension Settings: Codable { // TODO macro
-    private struct OptionalSettings: Decodable {
-        let appearance: Settings.Appearance?
-        public var sorting: Settings.Sorting?
-        let signedInPerson: Settings.SignedInPerson?
-    }
     
-    init(from decoder: Decoder) throws {
-        let optionalSettings = try? OptionalSettings(from: decoder)
-        self.appearance = optionalSettings?.appearance ?? Settings.default.appearance
-        self.sorting = optionalSettings?.sorting ?? Settings.default.sorting
-        self.signedInPerson = optionalSettings?.signedInPerson ?? Settings.default.signedInPerson
+    init(appearance: Settings.Appearance, sorting: Settings.Sorting, signedInPerson: Settings.SignedInPerson?) {
+        self.appearance = appearance
+        self.sorting = sorting
+        self.signedInPerson = signedInPerson
     }
 }

@@ -11,14 +11,14 @@ enum ValidationResult<Failure> {
     case valid
     case invalid(Failure)
     
-    static func &&<Failure>(lhs: ValidationResult<Failure>, rhs: @autoclosure () throws -> ValidationResult<Failure>) rethrows -> ValidationResult<Failure> {
+    static func &&(lhs: ValidationResult<Failure>, rhs: @autoclosure () throws -> ValidationResult<Failure>) rethrows -> ValidationResult<Failure> {
         if case .invalid(let failure) = lhs {
             return .invalid(failure)
         }
         return try rhs()
     }
     
-    static func ||<Failure>(lhs: ValidationResult<Failure>, rhs: @autoclosure () throws -> ValidationResult<Failure>) rethrows -> ValidationResult<Failure> {
+    static func ||(lhs: ValidationResult<Failure>, rhs: @autoclosure () throws -> ValidationResult<Failure>) rethrows -> ValidationResult<Failure> {
         if case .valid = lhs {
             return .valid
         }

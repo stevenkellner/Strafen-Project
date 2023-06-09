@@ -17,25 +17,23 @@ struct ReasonTemplate: Identifiable {
             var formatted: String {
                 switch self {
                 case .minute:
-                    return String(localized: "reason-template-counts-item|minute", comment: "Minute description of reason template counts item.") // Minute
+                    return String(localized: "reason-template-counts-item|minute", comment: "Minute description of reason template counts item.")
                 case .day:
-                    return String(localized: "reason-template-counts-item|day", comment: "Day description of reason template counts item.") // Tag
+                    return String(localized: "reason-template-counts-item|day", comment: "Day description of reason template counts item.")
                 case .item:
-                    return String(localized: "reason-template-counts-item|item", comment: "Item description of reason template counts item.") // Teil
+                    return String(localized: "reason-template-counts-item|item", comment: "Item description of reason template counts item.")
                 }
             }
             
             func formatted(count: Int) -> String {
-                let localized: String
                 switch self {
                 case .minute:
-                    localized = String(localized: "reason-template-counts-item|minute", table: "Plurals", comment: "Minute description of reason template counts item.")
+                    return String(localized: "reason-template-counts-item|minutes?count=\(count)", comment: "Minute description of reason template counts item.")
                 case .day:
-                    localized = String(localized: "reason-template-counts-item|day", table: "Plurals", comment: "day description of reason template counts item.")
+                    return String(localized: "reason-template-counts-item|days?count=\(count)", comment: "Day description of reason template counts item.")
                 case .item:
-                    localized = String(localized: "reason-template-counts-item|item", table: "Plurals", comment: "Item description of reason template counts item.")
+                    return String(localized: "reason-template-counts-item|items?count=\(count)", comment: "Item description of reason template counts item.")
                 }
-                return String(format: localized, count)
             }
         }
         

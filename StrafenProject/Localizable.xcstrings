@@ -1,0 +1,3138 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "agree-terms-privacy-by-continue|by-continue-agree" : {
+      "comment" : "Starting part of 'By continuing you agree to Terms, Conditions and Privacy Policy', i.e. 'By continuing you agree to'. Don't add trailing space as it's splitted between two lines.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durch Fortfahren akzeptierst du"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By continuing you agree to"
+          }
+        }
+      }
+    },
+    "agree-terms-privacy-by-continue|terms-and-privacy" : {
+      "comment" : "Starting part of 'By continuing you agree to Terms, Conditions and Privacy Policy', i.e. 'Terms, Conditions and Privacy Policy'.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AGBs und Datenschutz"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms, Conditions and Privacy Policy"
+          }
+        }
+      }
+    },
+    "appearance|dark" : {
+      "comment" : "Description of the dark appearance.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dunkel"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dark"
+          }
+        }
+      }
+    },
+    "appearance|light" : {
+      "comment" : "Description of the light appearance.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hell"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light"
+          }
+        }
+      }
+    },
+    "appearance|system" : {
+      "comment" : "Description of the system appearance.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System"
+          }
+        }
+      }
+    },
+    "bottom-bar|add-new-fine" : {
+      "comment" : "Bottom bar add new fine label.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafe"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New fine"
+          }
+        }
+      }
+    },
+    "bottom-bar|person-list" : {
+      "comment" : "Bottom bar person list label.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Persons"
+          }
+        }
+      }
+    },
+    "bottom-bar|profile" : {
+      "comment" : "Bottom bar profile label.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profil"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile"
+          }
+        }
+      }
+    },
+    "bottom-bar|reason-list" : {
+      "comment" : "Bottom bar reason list label.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafenkatalog"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fines"
+          }
+        }
+      }
+    },
+    "bottom-bar|settings" : {
+      "comment" : "Bottom bar settings label.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
+    },
+    "cancel-button" : {
+      "comment" : "Text of cancel button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbrechen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "confirm-button" : {
+      "comment" : "Text of confirm button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestätigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm"
+          }
+        }
+      }
+    },
+    "content-view|loading-failed|button" : {
+      "comment" : "App loading failed try again button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erneut versuchen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try again"
+          }
+        }
+      }
+    },
+    "content-view|loading-failed|message" : {
+      "comment" : "App loading failed message.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die App konnte nicht korrekt geladen werden. Bitte versuche es erneut. Wenn es wiederholt fehlschlägt, versuche die App neu zu starten oder kontaktiere den Verantwortlichen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The app isn't loaded correctly. Please try again. If it keeps failing, try restarting the app or contact the person responsible."
+          }
+        }
+      }
+    },
+    "content-view|loading-failed|title" : {
+      "comment" : "App loading failed title.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laden fehlgeschlagen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading failed"
+          }
+        }
+      }
+    },
+    "create-club|and" : {
+      "comment" : "And text between person name input and club name input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "und"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "and"
+          }
+        }
+      }
+    },
+    "create-club|club-name-input|header" : {
+      "comment" : "Header of the club name input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vereinsname eingeben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Club name"
+          }
+        }
+      }
+    },
+    "create-club|club-name-input|placeholder" : {
+      "comment" : "Placeholder of the club name input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vereinsname"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Club name"
+          }
+        }
+      }
+    },
+    "create-club|create-club-button" : {
+      "comment" : "Button to create a new club.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verein erstellen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create club"
+          }
+        }
+      }
+    },
+    "create-club|navigation-title" : {
+      "comment" : "Title of the create club view.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verein erstellen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create club"
+          }
+        }
+      }
+    },
+    "create-club|person-name-input|complete-profile-header" : {
+      "comment" : "Header of the person name input to complete your profile.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profil vervollständigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Complete your profile"
+          }
+        }
+      }
+    },
+    "create-club|person-name-input|first-name-placeholder" : {
+      "comment" : "Placeholder of the first name input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorname"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First name"
+          }
+        }
+      }
+    },
+    "create-club|person-name-input|optional-last-name-placeholder" : {
+      "comment" : "Placeholder of the optionally last name input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nachname (optional)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last name (optional)"
+          }
+        }
+      }
+    },
+    "delete-button" : {
+      "comment" : "Text of delete button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Löschen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        }
+      }
+    },
+    "dismiss-sheet" : {
+      "comment" : "Dismiss button on a sheet.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schließen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        }
+      }
+    },
+    "edit-button" : {
+      "comment" : "Text of the edit button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bearbeiten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit"
+          }
+        }
+      }
+    },
+    "fine-add-and-edit|add-button" : {
+      "comment" : "Add fine button in fine add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        }
+      }
+    },
+    "fine-add-and-edit|date-text" : {
+      "comment" : "Text before date picker in fine add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
+          }
+        }
+      }
+    },
+    "fine-add-and-edit|new-fine-notification|title?name=%@" : {
+      "comment" : "Title of the notification send when a new fine is created. 'name' parameter is the name of the person of this fine.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, du hast eine neue Strafe"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, you got a new fine"
+          }
+        }
+      }
+    },
+    "fine-add-and-edit|payed-toggle-text" : {
+      "comment" : "Text before payed toggle in fine add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bereits gezahlt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Already payed"
+          }
+        }
+      }
+    },
+    "fine-add-and-edit|pick-person-button" : {
+      "comment" : "Pick person button in fine add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Person auswählen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select person"
+          }
+        }
+      }
+    },
+    "fine-add-and-edit|pick-reason-template-button" : {
+      "comment" : "Pick reason template in fine add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafe auswählen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select fine"
+          }
+        }
+      }
+    },
+    "fine-add-and-edit|save-button" : {
+      "comment" : "Save fine button in fine add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speichern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        }
+      }
+    },
+    "fine-add-and-edit|title" : {
+      "comment" : "Navigation title of fine add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafe"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fine"
+          }
+        }
+      }
+    },
+    "fine-add-and-edit|unknown-error-alert|cannot-add-title" : {
+      "comment" : "Cannot add fine alert title in fine add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafe konnte nicht hinzugefügt werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fine couldn't be added."
+          }
+        }
+      }
+    },
+    "fine-add-and-edit|unknown-error-alert|cannot-save-title" : {
+      "comment" : "Cannot save fine alert title in fine add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafe konnte nicht gespeichert werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fine couldn't be saved."
+          }
+        }
+      }
+    },
+    "fine-custom-reason|amount-textfield" : {
+      "comment" : "Amount textfield placeholder in fine custom reason.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betrag"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betrag"
+          }
+        }
+      }
+    },
+    "fine-custom-reason|reason-message-textfield" : {
+      "comment" : "Reason message textfield placeholder in fine custom reason.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grund"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reason"
+          }
+        }
+      }
+    },
+    "fine-custom-reason|title" : {
+      "comment" : "Navigation title of fine custom reason.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafe"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fine"
+          }
+        }
+      }
+    },
+    "fine-detail|already-payed-button" : {
+      "comment" : "Fine is already payed button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bereits gezahlt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Already payed"
+          }
+        }
+      }
+    },
+    "fine-detail|date" : {
+      "comment" : "Text before the date of the fine.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
+          }
+        }
+      }
+    },
+    "fine-detail|fine" : {
+      "comment" : "Text before the reason message of the fine.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafe"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fine"
+          }
+        }
+      }
+    },
+    "fine-detail|fine-of-person" : {
+      "comment" : "Text before the person name of the fine.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafe von"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fine of"
+          }
+        }
+      }
+    },
+    "fine-detail|mark-as-payed-button" : {
+      "comment" : "Mark the fine as payed button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Als gezahlt markieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mark as payed"
+          }
+        }
+      }
+    },
+    "fine-detail|payed-amount" : {
+      "comment" : "Text before the payed amount of the fine.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gezahlter Betrag"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Payed amount"
+          }
+        }
+      }
+    },
+    "fine-detail|unpayed-amount" : {
+      "comment" : "Text before the unpayed amount of the fine.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offener Betrag"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unpayed amount"
+          }
+        }
+      }
+    },
+    "fine-pick-person|search-placeholder" : {
+      "comment" : "Placeholder text of search bar in fine pick person.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Person suchen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search person"
+          }
+        }
+      }
+    },
+    "fine-pick-person|title" : {
+      "comment" : "Title of fine pick person.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Person auswählen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select person"
+          }
+        }
+      }
+    },
+    "fine-pick-reason-template|custom-reason-button" : {
+      "comment" : "Custom reason button of fine pick reason template.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigene Strafe"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom fine"
+          }
+        }
+      }
+    },
+    "fine-pick-reason-template|search-placeholder" : {
+      "comment" : "Placeholder text of search bar in fine pick reason template.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafe suchen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search fine"
+          }
+        }
+      }
+    },
+    "fine-pick-reason-template|title" : {
+      "comment" : "Title of fine pick reason template.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafe auswählen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select fine"
+          }
+        }
+      }
+    },
+    "fine|sorting-key|amount-ascending" : {
+      "comment" : "Sorting key of fine sorted ascending by amount.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niedrigster Betrag zuerst"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lowest amount first"
+          }
+        }
+      }
+    },
+    "fine|sorting-key|amount-descending" : {
+      "comment" : "Sorting key of fine sorted descending by amount.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Höchster Betrag zuerst"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Highest amount first"
+          }
+        }
+      }
+    },
+    "fine|sorting-key|date-ascending" : {
+      "comment" : "Sorting key of fine sorted ascending by date.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Älteste zuerst"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oldest first"
+          }
+        }
+      }
+    },
+    "fine|sorting-key|date-descending" : {
+      "comment" : "Sorting key of fine sorted descending by date.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuste zuerst"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Newest first"
+          }
+        }
+      }
+    },
+    "fine|sorting-key|reason-message-ascending" : {
+      "comment" : "Sorting key of fine sorted ascending by reason message.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name A-Z"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name A-Z"
+          }
+        }
+      }
+    },
+    "fine|sorting-key|reason-message-descending" : {
+      "comment" : "Sorting key of fine sorted descending by reason message.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name Z-A"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name Z-A"
+          }
+        }
+      }
+    },
+    "got-it-button" : {
+      "comment" : "Text of a 'got it' button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verstanden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Got it"
+          }
+        }
+      }
+    },
+    "invitation-link-and-create-club|create-club-button" : {
+      "comment" : "Create new club button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuen Verein erstellen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create new club"
+          }
+        }
+      }
+    },
+    "invitation-link-and-create-club|create-club-button-description" : {
+      "comment" : "Description of the create club button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hat deine Mannschaft noch keinen Account, dann erstelle einen neuen Verein."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your team doesn't have an account, then create a new one."
+          }
+        }
+      }
+    },
+    "invitation-link-and-create-club|invitation-link|join-club-button" : {
+      "comment" : "Button to join the club after input of invitation link.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verein beitreten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join club"
+          }
+        }
+      }
+    },
+    "invitation-link-and-create-club|invitation-link|not-found-alert|button" : {
+      "comment" : "Button of the alert shown when no person is found with specified invitation link.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anderen Link eingeben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter different link"
+          }
+        }
+      }
+    },
+    "invitation-link-and-create-club|invitation-link|not-found-alert|title" : {
+      "comment" : "Title of the alert shown when no person is found with specified invitation link.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es wurde keine Person mit diesem Link eingeladen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No person is invited with this link."
+          }
+        }
+      }
+    },
+    "invitation-link-and-create-club|invitation-link|text-field-description" : {
+      "comment" : "Description of the invitation link input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein persönlicher Einladungslink oder deine 16-stellige Kennung vom Einladungslink."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your personal invitation link or your 16-digits identifier of the invitation link."
+          }
+        }
+      }
+    },
+    "invitation-link-and-create-club|invitation-link|text-field-placeholder" : {
+      "comment" : "Title of the invitation link input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Kennung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your identifier"
+          }
+        }
+      }
+    },
+    "invitation-link-and-create-club|invitation-link|text-field-title" : {
+      "comment" : "Placeholder of the invitation link input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einladungslink"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invitation link"
+          }
+        }
+      }
+    },
+    "invitation-link-and-create-club|or" : {
+      "comment" : "Or text between invitation link input and create club button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "oder"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "or"
+          }
+        }
+      }
+    },
+    "invitation-link-and-create-club|title" : {
+      "comment" : "Title of register and create club view.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verein beitreten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join club"
+          }
+        }
+      }
+    },
+    "invitation-link-welcome-person|complete-registration-button" : {
+      "comment" : "Complete registration button in the welcome person page after invitation link input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrierung abschließen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Complete registration"
+          }
+        }
+      }
+    },
+    "invitation-link-welcome-person|invitation-in-club?club=%@" : {
+      "comment" : "Invitation to club text in the welcome person page after invitation link input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du wurdest in den Verein %@ eingeladen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have been invited to the club %@."
+          }
+        }
+      }
+    },
+    "invitation-link-welcome-person|not-you" : {
+      "comment" : "Person are not you in the welcome person page after invitation link input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das bist nicht du?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are not you?"
+          }
+        }
+      }
+    },
+    "invitation-link-welcome-person|not-you-ask-cashier-for-new-link" : {
+      "comment" : "Ask cashier for a new invitation link if person are not you in the welcome person page after invitation link input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitte deinen Kassier, dir einen neuen Einladungslink zu erstellen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ask your cashier to create a new invitation link for you."
+          }
+        }
+      }
+    },
+    "invitation-link-welcome-person|title" : {
+      "comment" : "Title of the welcome person page after invitation link input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Willkommen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome"
+          }
+        }
+      }
+    },
+    "invitation-link-welcome-person|welcom-person?person=%@" : {
+      "comment" : "Welcome person text in the welcome person page after invitation link input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herzlich Willkommen, %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome, %@"
+          }
+        }
+      }
+    },
+    "login|custom-error-alert|login|not-registerd-message" : {
+      "comment" : "Login failed alert if person try to login is not registered.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du bist noch nicht registriert."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are not registered."
+          }
+        }
+      }
+    },
+    "login|custom-error-alert|login|register-instead-button" : {
+      "comment" : "Login failed alert if person try to login is not registered, button text to register instead.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stattdessen registrieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in instead"
+          }
+        }
+      }
+    },
+    "login|custom-error-alert|register-person|already-exists-message" : {
+      "comment" : "Login failed alert if person try to sign in is already registered.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du bist bereit registriert."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are already registered."
+          }
+        }
+      }
+    },
+    "login|custom-error-alert|register-person|login-instead-button" : {
+      "comment" : "Login failed alert if person try to sign in is already registered, button text to login instead.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stattdessen anmelden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login instead"
+          }
+        }
+      }
+    },
+    "login|email-textfield-placeholder" : {
+      "comment" : "Placeholder of the email input textfield.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        }
+      }
+    },
+    "login|forgot-password" : {
+      "comment" : "Button if you have forgot your password.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passwort vergessen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forgot password"
+          }
+        }
+      }
+    },
+    "login|forgot-password-confirm-message" : {
+      "comment" : "Message to confirm that an email for password recovery is send.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Link zur Passwortwiederherstellung an deine Email-Adresse versendet."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A link to recover your password is send to your email address."
+          }
+        }
+      }
+    },
+    "login|login-button" : {
+      "comment" : "Login with email button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jetzt anmelden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login now"
+          }
+        }
+      }
+    },
+    "login|login-failed-alert" : {
+      "comment" : "Login failed alert title.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anmeldung fehlgeschlagen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login failed"
+          }
+        }
+      }
+    },
+    "login|login-title" : {
+      "comment" : "Title of the login page.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anmelden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login"
+          }
+        }
+      }
+    },
+    "login|login-with-apple-button" : {
+      "comment" : "Login with apple button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit Apple anmelden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login with apple"
+          }
+        }
+      }
+    },
+    "login|login-with-google-button" : {
+      "comment" : "Login with google button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit Google anmelden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login with google"
+          }
+        }
+      }
+    },
+    "login|or" : {
+      "comment" : "Or text between login with email and login with apple / google.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "oder"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "or"
+          }
+        }
+      }
+    },
+    "login|password-textfield-placeholder" : {
+      "comment" : "Placeholder of the password input textfield.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passwort"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password"
+          }
+        }
+      }
+    },
+    "login|sign-in-button" : {
+      "comment" : "Sign in with email button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jetzt registrieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in now"
+          }
+        }
+      }
+    },
+    "login|sign-in-error-alert|cancel-login-button" : {
+      "comment" : "Cancel login button on sign in error alert when user is not found.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anmeldung abbrechen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel login"
+          }
+        }
+      }
+    },
+    "login|sign-in-error-alert|email-in-use-message" : {
+      "comment" : "Sign in error alert message when the specified email to register is already in use.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du bist bereit mit dieser Email-Adresse registriert."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are already signed in with this email address."
+          }
+        }
+      }
+    },
+    "login|sign-in-error-alert|try-again-button" : {
+      "comment" : "Try again button on sign in error alert when an error occured.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erneut versuchen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try again"
+          }
+        }
+      }
+    },
+    "login|sign-in-error-alert|unknown-error-message" : {
+      "comment" : "Sign in error alert message when an unknown error occured.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein unbekannten Fehler ist aufgetreten."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An unknown error occurred."
+          }
+        }
+      }
+    },
+    "login|sign-in-error-alert|user-not-found-message" : {
+      "comment" : "Sign in error alert message when the user with specified email doesn't exists.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du bist noch nicht registriert."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your aren't signed in yet."
+          }
+        }
+      }
+    },
+    "login|sign-in-error-alert|weak-password-message" : {
+      "comment" : "Sign in error alert message when the specified password to register is too weak.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das eingegebene Passwort ist zu schwach."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The specified password is too weak."
+          }
+        }
+      }
+    },
+    "login|sign-in-error-alert|wrong-password-message" : {
+      "comment" : "Sign in error alert message when the specified password for login is wrong.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Passwort ist inkorrect."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The specified password is wrong."
+          }
+        }
+      }
+    },
+    "login|sign-in-failed-alert" : {
+      "comment" : "Sign in failed alert title",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrierung fehlgeschlagen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in failed"
+          }
+        }
+      }
+    },
+    "login|sign-in-title" : {
+      "comment" : "Title of the sign in page.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in"
+          }
+        }
+      }
+    },
+    "login|sign-in-with-apple-button" : {
+      "comment" : "Sign in with apple button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit Apple registrieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in with apple"
+          }
+        }
+      }
+    },
+    "login|sign-in-with-google-button" : {
+      "comment" : "Sign in with google button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit Google registrieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in with google"
+          }
+        }
+      }
+    },
+    "ok-buttton" : {
+      "comment" : "Button with ok text.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ok"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ok"
+          }
+        }
+      }
+    },
+    "person-add-and-edit|add-button" : {
+      "comment" : "Add person button in person add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        }
+      }
+    },
+    "person-add-and-edit|admin-alert|make-admin-button" : {
+      "comment" : "Make person admin button of alert in person add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zum Admin machen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make person admin"
+          }
+        }
+      }
+    },
+    "person-add-and-edit|admin-alert|message" : {
+      "comment" : "Message of make person admin alert in person add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Person hat dann die selben Recht wie du. Es kann nicht mehr rückgängig gemacht werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This person then has the same rights as you. It can no longer be undone."
+          }
+        }
+      }
+    },
+    "person-add-and-edit|admin-alert|title?name=%@" : {
+      "comment" : "Title of make person admin alert in person add and edit. 'name' parameter is name of the person to make admin.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ zum Admin machen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make %@ admin."
+          }
+        }
+      }
+    },
+    "person-add-and-edit|admin-button" : {
+      "comment" : "Make person to admin button in person add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Admin"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Admin"
+          }
+        }
+      }
+    },
+    "person-add-and-edit|first-name-textfield" : {
+      "comment" : "First name textfield placeholder in person add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorname"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First name"
+          }
+        }
+      }
+    },
+    "person-add-and-edit|optional-last-name-textfield" : {
+      "comment" : "Optional last name textfield placeholder in person add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nachname (optional)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last name (optional)"
+          }
+        }
+      }
+    },
+    "person-add-and-edit|remove-image" : {
+      "comment" : "Remove image button in person add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bild entfernen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove image"
+          }
+        }
+      }
+    },
+    "person-add-and-edit|save-button" : {
+      "comment" : "Save person button in person add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speichern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        }
+      }
+    },
+    "person-add-and-edit|select-image" : {
+      "comment" : "Select image button in person add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bild auswählen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select image"
+          }
+        }
+      }
+    },
+    "person-add-and-edit|title" : {
+      "comment" : "Navigation title of person add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Person"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Person"
+          }
+        }
+      }
+    },
+    "person-add-and-edit|unknown-error-alert|cannot-add-title" : {
+      "comment" : "Cannot add person alert title in person add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Person konnte nicht hinzugefügt werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Person couldn't be added."
+          }
+        }
+      }
+    },
+    "person-add-and-edit|unknown-error-alert|cannot-save-title" : {
+      "comment" : "Cannot save person alert title in person add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Person konnte nicht gespeichert werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Person couldn't be saved."
+          }
+        }
+      }
+    },
+    "person-detail|add-new-fine-button" : {
+      "comment" : "Text of add new fine button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafe hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add fine"
+          }
+        }
+      }
+    },
+    "person-detail|invitation-alert|already-invited" : {
+      "comment" : "Message of the invitation alert that is shown after the invite button is pressed and the person is already invited.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Person ist bereits eingeladen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This person is already invited."
+          }
+        }
+      }
+    },
+    "person-detail|invitation-alert|invite-button" : {
+      "comment" : "Invite button of the invitation alert that is shown after the invite button is pressed.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jetzt einladen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invite now"
+          }
+        }
+      }
+    },
+    "person-detail|invitation-alert|title?name=%@" : {
+      "comment" : "Title of the invitation alert that is shown after the invite button is pressed. 'name' parameter is the name of the person to invite.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ einladen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invite %@"
+          }
+        }
+      }
+    },
+    "person-detail|invitation-alert|withdraw-invitation-button" : {
+      "comment" : "Withdraw invitation button of the invitation alert that is shown after the invite button is pressed and the person is already invited.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einladung zurückziehen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Withdraw invitation"
+          }
+        }
+      }
+    },
+    "person-detail|invitation-button" : {
+      "comment" : "Invite this person button in person detail.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einladen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invite"
+          }
+        }
+      }
+    },
+    "person-detail|invitation-created-alert|message?invitaion-link=%@" : {
+      "comment" : "Message of the alert that is shown after a new invitation link is created. It also says that the link is copied to the paste board. 'invitation-link' parameter is the link of the invitation.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@\nDer Link ist auch in deine Zwischenablage kopiert."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@\nThe link is also copied to the clipboard."
+          }
+        }
+      }
+    },
+    "person-detail|invitation-created-alert|title?name=%@" : {
+      "comment" : "Title of the alert that is shown after a new invitation link is created, so this link can be pass to that person. 'name' parameter is the name of the person that is invited.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebe den Einladungslink an %@ weiter."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pass the invite link on to %@."
+          }
+        }
+      }
+    },
+    "person-detail|open-fines" : {
+      "comment" : "Section text of still open fines.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offene Strafen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open fines"
+          }
+        }
+      }
+    },
+    "person-detail|payed-fines" : {
+      "comment" : "Section text of already payed fines.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bereits gezahlt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Payed fines"
+          }
+        }
+      }
+    },
+    "person-detail|still-open-amount" : {
+      "comment" : "Text for the fine amount of the person that is still open.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch offen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Still open"
+          }
+        }
+      }
+    },
+    "person-detail|total-amount" : {
+      "comment" : "Text for the total fine amount of the person.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesamt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total"
+          }
+        }
+      }
+    },
+    "person-list|cannot-delete-person-alert|message" : {
+      "comment" : "Message of the cannot delete person alert in person list cause the person is already registered.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Person ist bereits registriert und kann nicht gelöscht werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This person is already registered and couldn't be deleted."
+          }
+        }
+      }
+    },
+    "person-list|cannot-delete-person-alert|title" : {
+      "comment" : "Title of the cannot delete person alert in person list.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Person konnte nicht gelöscht werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Person couldn't be deleted."
+          }
+        }
+      }
+    },
+    "person-list|persons-with-all-payed-fines" : {
+      "comment" : "In person list a section of persons with all payed fines.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bereits gezahlt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Everything payed"
+          }
+        }
+      }
+    },
+    "person-list|persons-with-open-fines" : {
+      "comment" : "In person list a section title of persons with open fines.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offene Strafen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open fines"
+          }
+        }
+      }
+    },
+    "person-list|search-person" : {
+      "comment" : "Search person placeholder of search bar in person list.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Person suchen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search person"
+          }
+        }
+      }
+    },
+    "person-list|share-title" : {
+      "comment" : "Title of share preview when sharing persons.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offene Strafen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open fines"
+          }
+        }
+      }
+    },
+    "person-list|title" : {
+      "comment" : "Navigation title of the person list.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Persons"
+          }
+        }
+      }
+    },
+    "person|sorting-key|amount-ascending" : {
+      "comment" : "Sorting key of person sorted ascending by amount.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niedrigster Betrag zuerst"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lowest amount first"
+          }
+        }
+      }
+    },
+    "person|sorting-key|amount-descending" : {
+      "comment" : "Sorting key of person sorted descending by amount.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Höchster Betrag zuerst"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Highest amount first"
+          }
+        }
+      }
+    },
+    "person|sorting-key|name-ascending" : {
+      "comment" : "Sorting key of person sorted ascending by name.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name A-Z"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name A-Z"
+          }
+        }
+      }
+    },
+    "person|sorting-key|name-descending" : {
+      "comment" : "Sorting key of person sorted descending by name.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name Z-A"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name Z-A"
+          }
+        }
+      }
+    },
+    "profile-change-image|save-button" : {
+      "comment" : "Save profile image button in profile change image.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speichern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        }
+      }
+    },
+    "profile-change-image|title" : {
+      "comment" : "Title of change profile image.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profilbild ändern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change profile image"
+          }
+        }
+      }
+    },
+    "profile|change-profile-image-button" : {
+      "comment" : "Change profile image button in profile detail.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profilbild"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile image"
+          }
+        }
+      }
+    },
+    "profile|person-not-found" : {
+      "comment" : "Signed in person not found for profile detail.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du wurdest in diesem Verein nicht gefunden. Bitte kontaktiere den Verantwortlichen der App."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You were not found in this club. Please contact the person responsible for this app."
+          }
+        }
+      }
+    },
+    "reason-template-add-and-edit|add-button" : {
+      "comment" : "Add reason template button in reason template add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        }
+      }
+    },
+    "reason-template-add-and-edit|amount-textfield" : {
+      "comment" : "Amount textfield placeholder in reason template add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betrag"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amount"
+          }
+        }
+      }
+    },
+    "reason-template-add-and-edit|counts-item-none" : {
+      "comment" : "Counts item option for no repetition in reason template add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None"
+          }
+        }
+      }
+    },
+    "reason-template-add-and-edit|counts-item-picker" : {
+      "comment" : "Counts item picker description in reason template add and edit",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wiederholen pro"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repeat per"
+          }
+        }
+      }
+    },
+    "reason-template-add-and-edit|max-count-desciption?max-count=%lld" : {
+      "comment" : "Max count description for reason template counts in reason template add and edit. 'max-count' parameter is the max count.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximal %lld mal wiederholen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repeat %lld times"
+          }
+        }
+      }
+    },
+    "reason-template-add-and-edit|max-counts-none" : {
+      "comment" : "No max count is specified for reason template counts in reason template add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine obere Grenze"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No upper bounds"
+          }
+        }
+      }
+    },
+    "reason-template-add-and-edit|reason-message-textfield" : {
+      "comment" : "Reason message textfield placeholder in reason template add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grund"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reason"
+          }
+        }
+      }
+    },
+    "reason-template-add-and-edit|save-button" : {
+      "comment" : "Save reason template button in reason template add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speichern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        }
+      }
+    },
+    "reason-template-add-and-edit|title" : {
+      "comment" : "Navigation title of reason template add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafe"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fine"
+          }
+        }
+      }
+    },
+    "reason-template-add-and-edit|unknown-error-alert|cannot-add-title" : {
+      "comment" : "Cannot add reason template alert title in reason template add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafe konnte nicht hinzugefügt werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fine couldn't be added."
+          }
+        }
+      }
+    },
+    "reason-template-add-and-edit|unknown-error-alert|cannot-save-title" : {
+      "comment" : "Cannot save reason template alert title in reason template add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafe konnte nicht gespeichert werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fine couldn't be saved."
+          }
+        }
+      }
+    },
+    "reason-template-counts-item|day" : {
+      "comment" : "Day description of reason template counts item.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tag"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Day"
+          }
+        }
+      }
+    },
+    "reason-template-counts-item|days?count=%lld" : {
+      "comment" : "Day description of reason template counts item.",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "1 Tag"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Tage"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "1 day"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld days"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reason-template-counts-item|item" : {
+      "comment" : "Item description of reason template counts item.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teil"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Item"
+          }
+        }
+      }
+    },
+    "reason-template-counts-item|items?count=%lld" : {
+      "comment" : "Item description of reason template counts item.",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "1 Teil"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Teile"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "1 item"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld items"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reason-template-counts-item|minute" : {
+      "comment" : "Minute description of reason template counts item.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minute"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minute"
+          }
+        }
+      }
+    },
+    "reason-template-counts-item|minutes?count=%lld" : {
+      "comment" : "Minute description of reason template counts item.",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "1 Minute"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Minuten"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "1 minute"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minutes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reason-template-detail|amount" : {
+      "comment" : "Text before the amount of the reason template.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betrag"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amount"
+          }
+        }
+      }
+    },
+    "reason-template-detail|counts-item" : {
+      "comment" : "Text before the counts item of the reason template.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wiederholen pro"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repeat per"
+          }
+        }
+      }
+    },
+    "reason-template-detail|max-count" : {
+      "comment" : "Text before the max count of the reason template",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximal"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximal"
+          }
+        }
+      }
+    },
+    "reason-template-detail|max-count-description?max-count=%lld" : {
+      "comment" : "Description of the max count of the reason template. 'max-count' parameter is the number of max count.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld mal"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld times"
+          }
+        }
+      }
+    },
+    "reason-template-detail|reason-message" : {
+      "comment" : "Text before the reason message of the reason template.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grund"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reason"
+          }
+        }
+      }
+    },
+    "reason-template-list|navigation-title" : {
+      "comment" : "Title of the reason template list.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafenkatalog"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fines katalog"
+          }
+        }
+      }
+    },
+    "reason-template-list|search-placeholer" : {
+      "comment" : "Placeholder text of search bar in reason template list.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafe suchen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search fine"
+          }
+        }
+      }
+    },
+    "reason-template|formatted?reason-message=%@&item=%@" : {
+      "comment" : "Formatted reason template with message, counts item and max count. 'reason-message' parameter is the message of the reason template. 'item' parameter is the item to repeat.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ (pro %@)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ (per %@)"
+          }
+        }
+      }
+    },
+    "reason-template|formatted?reason-message=%@&item=%@&max-count?%lld" : {
+      "comment" : "Formatted reason template with message, counts item and max count. 'reason-message' parameter is the message of the reason template. 'item' parameter is the item to repeat. 'max-count' parameter is the max count to repeat.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ (pro %@, max. %lld mal)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ (per %@, max. %lld times)"
+          }
+        }
+      }
+    },
+    "reason-template|sorting-key|amount-ascending" : {
+      "comment" : "Sorting key of reason template sorted ascending by amount.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niedrigster Betrag zuerst"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lowest amount first"
+          }
+        }
+      }
+    },
+    "reason-template|sorting-key|amount-descending" : {
+      "comment" : "Sorting key of reason template sorted descending by amount.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Höchster Betrag zuerst"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Highest amount first"
+          }
+        }
+      }
+    },
+    "reason-template|sorting-key|reason-message-ascending" : {
+      "comment" : "Sorting key of reason template sorted ascending by reason message.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name A-Z"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name A-Z"
+          }
+        }
+      }
+    },
+    "reason-template|sorting-key|reason-message-descending" : {
+      "comment" : "Sorting key of reason template sorted descending by reason message.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name Z-A"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name Z-A"
+          }
+        }
+      }
+    },
+    "settings|appearance" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aussehen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appearance"
+          }
+        }
+      }
+    },
+    "settings|sign-out" : {
+      "comment" : "Sign out button in settings editor.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abmelden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign out"
+          }
+        }
+      }
+    },
+    "settings|sorting|fine-title" : {
+      "comment" : "Title of the fine sorting in settings.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fines"
+          }
+        }
+      }
+    },
+    "settings|sorting|person-title" : {
+      "comment" : "Title of the person sorting in settings.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Persons"
+          }
+        }
+      }
+    },
+    "settings|sorting|reason-template-title" : {
+      "comment" : "Title of the person sorting in settings.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strafenkatalog"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fines katalog"
+          }
+        }
+      }
+    },
+    "settings|sorting|title" : {
+      "comment" : "Title of the sorting section in settings.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortierung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorting"
+          }
+        }
+      }
+    },
+    "settings|title" : {
+      "comment" : "Navigation title of the settings.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
+    },
+    "start-page|buttons|login" : {
+      "comment" : "Login button on start page to get to login page.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einloggen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login"
+          }
+        }
+      }
+    },
+    "start-page|buttons|start-register-create-club" : {
+      "comment" : "Start button on start page to get to register / create club page.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jetzt starten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start now"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
