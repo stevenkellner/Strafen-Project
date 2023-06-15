@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import PhotosUI
 
 struct PersonAddAndEdit: View {
     private enum InputFocus {
@@ -25,9 +24,7 @@ struct PersonAddAndEdit: View {
     @State private var firstName = ""
     
     @State private var lastName = ""
-    
-    @State private var selectedPhotosPickerItem: PhotosPickerItem?
-    
+        
     @State private var selectedImage: UIImage?
     
     @State private var showUnknownErrorAlert = false
@@ -51,27 +48,7 @@ struct PersonAddAndEdit: View {
     var body: some View {
         NavigationView {
             Form {
-                Section {
-                    if let image = self.selectedImage {
-                        HStack {
-                            Spacer()
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 100, height: 100)
-                                .clipShape(Circle())
-                            Spacer()
-                        }
-                        Button {
-                            self.selectedImage = nil
-                        } label: {
-                            Text("person-add-and-edit|remove-image", comment: "Remove image button in person add and edit.")
-                        }
-                    }
-                    PhotosPicker(selection: self.$selectedPhotosPickerItem, matching: .images, photoLibrary: .shared()) {
-                        Text("person-add-and-edit|select-image", comment: "Select image button in person add and edit.")
-                    }.onChange(of: self.selectedPhotosPickerItem, perform: self.getSelectedImage)
-                }
+                ImageSelectorSection(self.$selectedImage)
                 Section {
                     TextField(String(localized: "person-add-and-edit|first-name-textfield", comment: "First name textfield placeholder in person add and edit."), text: self.$firstName)
                         .focused(self.$inputFocus, equals: .firstName)
@@ -81,75 +58,52 @@ struct PersonAddAndEdit: View {
                     self.firstName = self.firstName.trimmingCharacters(in: .whitespacesAndNewlines)
                     self.lastName = self.lastName.trimmingCharacters(in: .whitespacesAndNewlines)
                 }
-            }.navigationTitle(String(localized: "person-add-and-edit|title", comment: "Navigation title of person add and edit."))
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar(self.toolbar)
-        }.task(self.fetchInitialPersonImage)
-            .alert(self.unknownErrorAlertTitle, isPresented: self.$showUnknownErrorAlert) {
-                Button {} label: {
-                    Text("got-it-button", comment: "Text of a 'got it' button.")
-                }
-            }.alert(String(localized: "person-add-and-edit|admin-alert|title?name=\(self.personToEdit?.name.formatted() ?? "")", comment: "Title of make person admin alert in person add and edit. 'name' parameter is name of the person to make admin."), isPresented: self.$isMakePersonAdminAlertShown) {
-                Button {
-                    Task {
-                        await self.makePersonAdmin()
-                    }
-                } label: {
-                    Text("person-add-and-edit|admin-alert|make-admin-button", comment: "Make person admin button of alert in person add and edit.")
-                }
-                Button(role: .cancel) {} label: {
-                    Text("cancel-button", comment: "Text of cancel button.")
-                }
-            } message: {
-                Text("person-add-and-edit|admin-alert|message", comment: "Message of make person admin alert in person add and edit.")
-            }
+            }.modifier(self.rootModifiers)
+        }
     }
     
-    @ToolbarContentBuilder var toolbar: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarLeading) {
+    @ModifierBuilder private var rootModifiers: some ViewModifier {
+        NavigationTitleModifier(localized: LocalizedStringResource("person-add-and-edit|title", comment: "Navigation title of person add and edit."), displayMode: .inline)
+        ToolbarModifier(content: self.toolbar)
+        TaskModifier(self.fetchInitialPersonImage)
+        let unknownErrorAlertTitle = self.personToEdit == nil ?
+            String(localized: "person-add-and-edit|unknown-error-alert|cannot-add-title", comment: "Cannot add person alert title in person add and edit.") :
+            String(localized: "person-add-and-edit|unknown-error-alert|cannot-save-title", comment: "Cannot save person alert title in person add and edit.")
+        AlertModifier(unknownErrorAlertTitle, isPresented: self.$showUnknownErrorAlert) {
+            Button {} label: {
+                Text("got-it-button", comment: "Text of a 'got it' button.")
+            }
+        }
+        let makePersonAdminAlertTitle = String(localized: "person-add-and-edit|admin-alert|title?name=\(self.personToEdit?.name.formatted() ?? "")", comment: "Title of make person admin alert in person add and edit. 'name' parameter is name of the person to make admin.")
+        AlertModifier(makePersonAdminAlertTitle, isPresented: self.$isMakePersonAdminAlertShown) {
             Button {
-                self.dismiss()
+                await self.makePersonAdmin()
             } label: {
+                Text("person-add-and-edit|admin-alert|make-admin-button", comment: "Make person admin button of alert in person add and edit.")
+            }
+            Button(role: .cancel) {} label: {
                 Text("cancel-button", comment: "Text of cancel button.")
             }
+        } message: {
+            Text("person-add-and-edit|admin-alert|message", comment: "Message of make person admin alert in person add and edit.")
+        }
+    }
+    
+    @ToolbarContentBuilder private var toolbar: some ToolbarContent {
+        ToolbarButton(placement: .topBarLeading, localized: LocalizedStringResource("cancel-button", comment: "Text of cancel button.")) {
+            self.dismiss()
         }
         if let signInData = self.personToEdit?.signInData, !signInData.authentication.contains(.clubManager) {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                if self.isAddAndEditButtonLoading {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                } else {
-                    Button {
-                        self.isMakePersonAdminAlertShown = true
-                    } label: {
-                        Text("person-add-and-edit|admin-button", comment: "Make person to admin button in person add and edit.")
-                    }
-                }
-            }
+            ToolbarButton(placement: .topBarTrailing, localized: LocalizedStringResource("person-add-and-edit|admin-button", comment: "Make person to admin button in person add and edit.")) {
+                self.isMakePersonAdminAlertShown = true
+            }.loading(self.isAddAndEditButtonLoading)
         }
-        ToolbarItem(placement: .navigationBarTrailing) {
-            if self.isAddAndEditButtonLoading {
-                ProgressView()
-                    .progressViewStyle(.circular)
-            } else {
-                Button {
-                    Task {
-                        await self.savePerson()
-                    }
-                } label: {
-                    Text(self.personToEdit == nil ? String(localized: "person-add-and-edit|add-button", comment: "Add person button in person add and edit.") : String(localized: "person-add-and-edit|save-button", comment: "Save person button in person add and edit."))
-                }.disabled(self.firstName == "")
-            }
-        }
+        ToolbarButton(placement: .topBarLeading, localized: self.personToEdit == nil ? LocalizedStringResource("person-add-and-edit|add-button", comment: "Add person button in person add and edit.") : LocalizedStringResource("person-add-and-edit|save-button", comment: "Save person button in person add and edit.")) {
+            await self.savePerson()
+        }.loading(self.isAddAndEditButtonLoading)
+            .disabled(self.firstName == "")
     }
-    
-    private var unknownErrorAlertTitle: String {
-        if self.personToEdit == nil {
-            return String(localized: "person-add-and-edit|unknown-error-alert|cannot-add-title", comment: "Cannot add person alert title in person add and edit.")
-        }
-        return String(localized: "person-add-and-edit|unknown-error-alert|cannot-save-title", comment: "Cannot save person alert title in person add and edit.")
-    }
-    
+        
     @Sendable private func fetchInitialPersonImage() async  {
         if let personToEdit = self.personToEdit {
             await self.imageStorage.fetch(.person(clubId: self.appProperties.club.id, personId: personToEdit.id))
@@ -158,20 +112,7 @@ struct PersonAddAndEdit: View {
             }
         }
     }
-    
-    private func getSelectedImage(_ photosPickerItem: PhotosPickerItem?) {
-        guard let photosPickerItem else {
-            return
-        }
-        Task {
-            guard let imageData = try await photosPickerItem.loadTransferable(type: Data.self),
-                  let image = UIImage(data: imageData) else {
-                return
-            }
-            self.selectedImage = image
-        }
-    }
-    
+        
     private func makePersonAdmin() async {
         self.isMakePersonAdminButtonLoading = true
         defer {
@@ -223,7 +164,6 @@ struct PersonAddAndEdit: View {
     private func reset() {
         self.firstName = ""
         self.lastName = ""
-        self.selectedPhotosPickerItem = nil
         self.selectedImage = nil
     }
 }

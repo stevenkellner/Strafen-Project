@@ -63,23 +63,22 @@ struct FineDetail: View {
                         .frame(maxWidth: .infinity)
                 }.disabled(self.fine.payedState == .payed)
             }
-        }.dismissHandler
-            .navigationTitle(self.fine.reasonMessage)
-            .navigationBarTitleDisplayMode(.large)
-            .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in
-                view.toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            self.isEditFineSheetShown = true
-                        } label: {
-                            Text("edit-button", comment: "Text of the edit button.")
-                        }
-                    }
-                }
-                .sheet(isPresented: self.$isEditFineSheetShown) {
-                    FineAddAndEdit(fine: self.fine, shownOnSheet: true)
+        }.modifier(self.rootModifiers)
+    }
+    
+    @ModifierBuilder private var rootModifiers: some ViewModifier {
+        DismissHandlerModifier()
+        NavigationTitleModifier(self.fine.reasonMessage, displayMode: .large)
+        if self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder) {
+            ToolbarModifier {
+                ToolbarButton(placement: .topBarTrailing, localized: LocalizedStringResource("edit-button", comment: "Text of the edit button.")) {
+                    self.isEditFineSheetShown = true
                 }
             }
+            SheetModifier(isPresented: self.$isEditFineSheetShown) {
+                FineAddAndEdit(fine: self.fine, shownOnSheet: true)
+            }
+        }
     }
     
     private func editPayedState() async {

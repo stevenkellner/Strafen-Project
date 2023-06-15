@@ -48,6 +48,9 @@ struct ReasonTemplateAddAndEdit: View {
                 Section {
                     TextField(String(localized: "reason-template-add-and-edit|reason-message-textfield", comment: "Reason message textfield placeholder in reason template add and edit."), text: self.$reasonMessage)
                         .focused(self.$inputFocus, equals: .reasonMessage)
+                        .onChange(of: self.inputFocus) { _ in
+                            self.reasonMessage = self.reasonMessage.trimmingCharacters(in: .whitespacesAndNewlines)
+                        }
                     Picker(String(localized: "reason-template-add-and-edit|counts-item-picker", comment: "Counts item picker description in reason template add and edit"), selection: self.$countsItem) {
                         Text("reason-template-add-and-edit|counts-item-none", comment: "Counts item option for no repetition in reason template add and edit.")
                             .tag(nil as ReasonTemplate.Counts.Item?)
@@ -63,50 +66,33 @@ struct ReasonTemplateAddAndEdit: View {
                 Section {
                     TextField(String(localized: "reason-template-add-and-edit|amount-textfield", comment: "Amount textfield placeholder in reason template add and edit."), value: self.$amount, format: .amount(.short))
                 }
-            }.navigationTitle(String(localized: "reason-template-add-and-edit|title", comment: "Navigation title of reason template add and edit."))
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar(self.toolbar)
-                .onChange(of: self.inputFocus) { _ in
-                    self.reasonMessage = self.reasonMessage.trimmingCharacters(in: .whitespacesAndNewlines)
-                }
-        }.alert(self.unknownErrorAlertTitle, isPresented: self.$showUnknownErrorAlert) {
+            }.modifier(self.rootModifiers)
+        }
+    }
+    
+    @ModifierBuilder private var rootModifiers: some ViewModifier {
+        NavigationTitleModifier(localized: LocalizedStringResource("reason-template-add-and-edit|title", comment: "Navigation title of reason template add and edit."), displayMode: .inline)
+        ToolbarModifier(content: self.toolbar)
+        let unknownErrorAlertTitle = self.reasonTemplateToEdit == nil ?
+            String(localized: "reason-template-add-and-edit|unknown-error-alert|cannot-add-title", comment: "Cannot add reason template alert title in reason template add and edit.") :
+            String(localized: "reason-template-add-and-edit|unknown-error-alert|cannot-save-title", comment: "Cannot save reason template alert title in reason template add and edit.")
+        AlertModifier(unknownErrorAlertTitle, isPresented: self.$showUnknownErrorAlert) {
             Button {} label: {
                 Text("got-it-button", comment: "Text of a 'got it' button.")
-            }            
+            }
         }
     }
     
-    @ToolbarContentBuilder var toolbar: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarLeading) {
-            Button {
+    @ToolbarContentBuilder private var toolbar: some ToolbarContent {
+        ToolbarButton(placement: .topBarLeading, localized: LocalizedStringResource("cancel-button", comment: "Text of cancel button.")) {
                 self.dismiss()
-            } label: {
-                Text("cancel-button", comment: "Text of cancel button.")
-            }
         }
-        ToolbarItem(placement: .navigationBarTrailing) {
-            if self.isAddAndEditButtonLoading {
-                ProgressView()
-                    .progressViewStyle(.circular)
-            } else {
-                Button {
-                    Task {
-                        await self.saveReasonTemplate()
-                    }
-                } label: {
-                    Text(self.reasonTemplateToEdit == nil ? String(localized: "reason-template-add-and-edit|add-button", comment: "Add reason template button in reason template add and edit.") : String(localized: "reason-template-add-and-edit|save-button", comment: "Save reason template button in reason template add and edit."))
-                }.disabled(self.reasonMessage == "" || self.amount == .zero)
-            }
-        }
+        ToolbarButton(placement: .topBarTrailing, localized: self.reasonTemplateToEdit == nil ? LocalizedStringResource("reason-template-add-and-edit|add-button", comment: "Add reason template button in reason template add and edit.") : LocalizedStringResource("reason-template-add-and-edit|save-button", comment: "Save reason template button in reason template add and edit.")) {
+            await self.saveReasonTemplate()
+        }.loading(self.isAddAndEditButtonLoading)
+            .disabled(self.reasonMessage == "" || self.amount == .zero)
     }
-    
-    private var unknownErrorAlertTitle: String {
-        if self.reasonTemplateToEdit == nil {
-            return String(localized: "reason-template-add-and-edit|unknown-error-alert|cannot-add-title", comment: "Cannot add reason template alert title in reason template add and edit.")
-        }
-        return String(localized: "reason-template-add-and-edit|unknown-error-alert|cannot-save-title", comment: "Cannot save reason template alert title in reason template add and edit.")
-    }
-        
+            
     private func saveReasonTemplate() async {
         self.isAddAndEditButtonLoading = true
         defer {

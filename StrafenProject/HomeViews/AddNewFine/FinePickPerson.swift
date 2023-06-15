@@ -13,8 +13,6 @@ struct FinePickPerson: View {
     
     @EnvironmentObject private var appProperties: AppProperties
     
-    @EnvironmentObject private var imageStorage: FirebaseImageStorage
-    
     @EnvironmentObject private var settingsManager: SettingsManager
     
     @Binding private var personId: Person.ID?
@@ -28,43 +26,28 @@ struct FinePickPerson: View {
     var body: some View {
         NavigationView {
             List {
-                let sortedPersons = self.appProperties.sortedPersons(by: self.settingsManager.sorting.personSorting).sortedSearchableList(search: self.searchText)
+                let sortedPersons = self.appProperties.sortedPersons(by: self.settingsManager.sorting.personSorting).searchableGroup(search: self.searchText)
                 ForEach(sortedPersons) { person in
                     Button {
                         self.personId = person.id
                         self.dismiss()
                     } label: {
-                        HStack {
-                            if let image = self.imageStorage.personImages[person.id] {
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 30, height: 30)
-                                    .clipShape(Circle())
-                            } else {
-                                Image(systemName: "person")
-                                    .frame(width: 30, height: 30)
-                                    .unredacted()
-                            }
-                            Text(person.name.formatted())
-                        }.foregroundColor(.primary)
-                            .task {
-                                await self.imageStorage.fetch(.person(clubId: self.appProperties.club.id, personId: person.id))
-                            }
+                        PersonListView.PersonRow(person)
+                            .amountHidden
+                            .foregroundColor(.primary)
                     }
                 }
-            }.navigationTitle(String(localized: "fine-pick-person|title", comment: "Title of fine pick person."))
-                .navigationBarTitleDisplayMode(.large)
-                .searchable(text: self.$searchText, prompt: String(localized: "fine-pick-person|search-placeholder", comment: "Placeholder text of search bar in fine pick person."))
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            self.dismiss()
-                        } label: {
-                            Text("cancel-button", comment: "Text of cancel button.")
-                        }
-                    }
-                }
+            }.modifier(self.rootModifiers)
+        }
+    }
+    
+    @ModifierBuilder private var rootModifiers: some ViewModifier {
+        NavigationTitleModifier(localized: LocalizedStringResource("fine-pick-person|title", comment: "Title of fine pick person."), displayMode: .large)
+        SearchableModifier(text: self.$searchText, prompt: String(localized: "fine-pick-person|search-placeholder", comment: "Placeholder text of search bar in fine pick person."))
+        ToolbarModifier {
+            ToolbarButton(placement: .topBarTrailing, localized: LocalizedStringResource("cancel-button", comment: "Text of cancel button.")) {
+                self.dismiss()
+            }
         }
     }
 }

@@ -114,3 +114,14 @@ extension Person.SortingKey: Equatable {}
 extension Person.SortingKey: Hashable {}
 
 extension Person.SortingKey: Codable {}
+
+#if !NOTIFICATION_SERVICE_EXTENSION && !WIDGET_EXTENSION
+protocol PersonWithFines {
+    var id: Person.ID { get }
+    var name: PersonName { get }
+    var fineIds: [Fine.ID] { get }
+    
+}
+
+extension Person: PersonWithFines {}
+#endif

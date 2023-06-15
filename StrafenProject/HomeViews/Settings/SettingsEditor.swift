@@ -19,7 +19,7 @@ struct SettingsEditor: View {
         NavigationStack {
             List {
                 Section {
-                    Picker("settings|appearance", selection: self.$appearance) {
+                    Picker(String(localized: "settings|appearance", comment: "Title of the appearance section in settings."), selection: self.$appearance) {
                         ForEach(Settings.Appearance.allCases, id: \.self) { appearance in
                             Text(appearance.formatted)
                         }

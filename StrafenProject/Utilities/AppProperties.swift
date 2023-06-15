@@ -61,16 +61,7 @@ class AppProperties: ObservableObject {
         return self.signedInPerson.club
     }
     
-    func fines(of person: Person) -> IdentifiableList<Fine> {
-        return person.fineIds.reduce(into: IdentifiableList<Fine>()) { fines, fineId in
-            guard let fine = self.fines[fineId] else {
-                return
-            }
-            fines[fineId] = fine
-        }
-    }
-    
-    func fines(of person: Settings.SignedInPerson) -> IdentifiableList<Fine> {
+    func fines(of person: some PersonWithFines) -> IdentifiableList<Fine> {
         if let person = self.persons[person.id] {
             return self.fines(of: person)
         }
@@ -118,15 +109,7 @@ extension AppProperties {
 }
 
 extension AppProperties {
-    func sortedFinesGroups(of person: Person, by sorting: Settings.Sorting.SortingKeyAndOrder<Fine>) -> SortedSearchableListGroups<PayedState, Fine> {
-        return SortedSearchableListGroups(self.fines(of: person), groupBy: { fine in
-            return fine.payedState
-        }, sortBy: sorting.areInAscendingOrder(lhs:rhs:)) { fine in
-            return fine.reasonMessage
-        }
-    }
-    
-    func sortedFinesGroups(of person: Settings.SignedInPerson, by sorting: Settings.Sorting.SortingKeyAndOrder<Fine>) -> SortedSearchableListGroups<PayedState, Fine> {
+    func sortedFinesGroups(of person: some PersonWithFines, by sorting: Settings.Sorting.SortingKeyAndOrder<Fine>) -> SortedSearchableListGroups<PayedState, Fine> {
         return SortedSearchableListGroups(self.fines(of: person), groupBy: { fine in
             return fine.payedState
         }, sortBy: sorting.areInAscendingOrder(lhs:rhs:)) { fine in
@@ -137,11 +120,11 @@ extension AppProperties {
 
 extension AppProperties {
     func shareText(sorting: Settings.Sorting) -> String {
-        let sortedPersons = self.sortedPersonsGroups(by: sorting.personSorting).sortedList(of: .withUnpayedFines)
+        let sortedPersons = self.sortedPersonsGroups(by: sorting.personSorting).group(of: .withUnpayedFines)
         return sortedPersons.map { person in
             let sortedFines = self.sortedFinesGroups(of: person, by: sorting.fineSorting)
-            let nameText = "\(person.name.formatted()): \(sortedFines.sortedList(of: .unpayed).totalAmount.formatted(.short))"
-            let finesText = sortedFines.sortedList(of: .unpayed).map { fine in
+            let nameText = "\(person.name.formatted()): \(sortedFines.group(of: .unpayed).totalAmount.formatted(.short))"
+            let finesText = sortedFines.group(of: .unpayed).map { fine in
                 return "\t- \(fine.reasonMessage), \(fine.date.formatted(date: .abbreviated, time: .omitted)): \(fine.amount.formatted(.short))"
             }.joined(separator: "\n")
             return "\(nameText)\n\(finesText)"

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ReasonTemplateDetail: View {
+    
     @Environment(\.redactionReasons) private var redactionReasons
     
     @EnvironmentObject private var appProperties: AppProperties
@@ -50,22 +51,21 @@ struct ReasonTemplateDetail: View {
                         .foregroundColor(.red)
                 }
             }
-        }.dismissHandler
-            .navigationTitle(self.reasonTemplate.formatted)
-            .navigationBarTitleDisplayMode(.large)
-            .if(self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder)) { view in
-                view.toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            self.isEditReasonTemplateSheetShown = true
-                        } label: {
-                            Text("edit-button", comment: "Text of the edit button.")
-                        }
-                    }
-                }
-                .sheet(isPresented: self.$isEditReasonTemplateSheetShown) {
-                    ReasonTemplateAddAndEdit(reasonTemplate: self.reasonTemplate)
+        }.modifier(self.rootModifiers)
+    }
+    
+    @ModifierBuilder private var rootModifiers: some ViewModifier {
+        DismissHandlerModifier()
+        NavigationTitleModifier(self.reasonTemplate.formatted, displayMode: .large)
+        if self.appProperties.signedInPerson.isAdmin && !self.redactionReasons.contains(.placeholder) {
+            ToolbarModifier {
+                ToolbarButton(placement: .topBarTrailing, localized: LocalizedStringResource("edit-button", comment: "Text of the edit button.")) {
+                    self.isEditReasonTemplateSheetShown = true
                 }
             }
+            SheetModifier(isPresented: self.$isEditReasonTemplateSheetShown) {
+                ReasonTemplateAddAndEdit(reasonTemplate: self.reasonTemplate)
+            }
+        }
     }
 }

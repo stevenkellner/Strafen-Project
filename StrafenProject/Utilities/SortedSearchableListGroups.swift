@@ -10,17 +10,16 @@ import Foundation
 struct SortedSearchableListGroups<Key, Element> where Key: Hashable {
     
     private let groups: [Key: [Element]]
-    
-    private let sortByIncreasingOrder: (Element, Element) -> Bool
-    
+        
     private let searchInValues: (Element) -> [String]
         
     init(_ list: some Sequence<Element>, groupBy groupElementKey: (Element) -> Key, sortBy areInIncreasingOrder: @escaping (Element, Element) -> Bool, searchIn searchInValues: @escaping (Element) -> [String]) {
         self.groups = list.reduce(into: [Key: [Element]]()) { groups, element in
             let key = groupElementKey(element)
             groups[key, default: []].append(element)
+        }.mapValues { group in
+            return group.sorted(by: areInIncreasingOrder)
         }
-        self.sortByIncreasingOrder = areInIncreasingOrder
         self.searchInValues = searchInValues
     }
     
@@ -28,18 +27,16 @@ struct SortedSearchableListGroups<Key, Element> where Key: Hashable {
         self.init(list, groupBy: groupElementKey, sortBy: areInIncreasingOrder, searchIn: { [searchInValue($0)] })
     }
     
-    func sortedList(of key: Key) -> [Element] {
-        return self.groups[key, default: []].sorted { lhsElement, rhsElement in
-            return self.sortByIncreasingOrder(lhsElement, rhsElement)
-        }
+    func group(of key: Key) -> [Element] {
+        return self.groups[key, default: []]
     }
     
-    func sortedSearchableList(of key: Key, search searchText: String) -> [Element] {
+    func searchableGroup(of key: Key, search searchText: String) -> [Element] {
         guard !searchText.isEmpty else {
-            return self.sortedList(of: key)
+            return self.group(of: key)
         }
         let searchText = searchText.lowercased()
-        return self.sortedList(of: key).filter { element in
+        return self.group(of: key).filter { element in
             return self.searchInValues(element).contains { value in
                 return value.lowercased().contains(searchText)
             }
@@ -60,12 +57,12 @@ extension SortedSearchableListGroups where Key == SingleGroupKey {
         self.init(list, groupBy: { _ in .defaultKey }, sortBy: areInIncreasingOrder, searchIn: searchInValue)
     }
     
-    var sortedList: [Element] {
-        return self.sortedList(of: .defaultKey)
+    var group: [Element] {
+        return self.group(of: .defaultKey)
     }
     
-    func sortedSearchableList(search searchText: String) -> [Element] {
-        return self.sortedSearchableList(of: .defaultKey, search: searchText)
+    func searchableGroup(search searchText: String) -> [Element] {
+        return self.searchableGroup(of: .defaultKey, search: searchText)
     }
 }
 

@@ -49,7 +49,7 @@ struct FinePickReasonTemplate: View {
                     }
                 }
                 Section {
-                    let sortedReasonTemplates = self.appProperties.sortedReasonTemplates(by: self.settingsManager.sorting.reasonTemplateSorting).sortedSearchableList(search: self.searchText)
+                    let sortedReasonTemplates = self.appProperties.sortedReasonTemplates(by: self.settingsManager.sorting.reasonTemplateSorting).searchableGroup(search: self.searchText)
                     ForEach(sortedReasonTemplates) { reasonTemplate in
                         Button {
                             self.reasonMessage = reasonTemplate.reasonMessage
@@ -66,18 +66,17 @@ struct FinePickReasonTemplate: View {
                         }
                     }
                 }
-            }.navigationTitle(String(localized: "fine-pick-reason-template|title", comment: "Title of fine pick reason template."))
-                .navigationBarTitleDisplayMode(.large)
-                .searchable(text: self.$searchText, prompt: String(localized: "fine-pick-reason-template|search-placeholder", comment: "Placeholder text of search bar in fine pick reason template."))
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            self.dismiss()
-                        } label: {
-                            Text("cancel-button", comment: "Text of cancel button.")
-                        }
-                    }
-                }
+            }.modifier(self.rootModifiers)
+        }
+    }
+    
+    @ModifierBuilder private var rootModifiers: some ViewModifier {
+        NavigationTitleModifier(localized: LocalizedStringResource("fine-pick-reason-template|title", comment: "Title of fine pick reason template."), displayMode: .large)
+        SearchableModifier(text: self.$searchText, prompt: String(localized: "fine-pick-reason-template|search-placeholder", comment: "Placeholder text of search bar in fine pick reason template."))
+        ToolbarModifier {
+            ToolbarButton(placement: .topBarTrailing, localized: LocalizedStringResource("cancel-button", comment: "Text of cancel button.")) {
+                self.dismiss()
+            }
         }
     }
 }

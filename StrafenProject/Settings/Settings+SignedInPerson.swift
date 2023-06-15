@@ -38,3 +38,7 @@ extension Settings.SignedInPerson: Equatable {
 extension Settings.SignedInPerson: Hashable {}
 
 extension Settings.SignedInPerson: Codable {}
+
+#if !NOTIFICATION_SERVICE_EXTENSION && !WIDGET_EXTENSION
+extension Settings.SignedInPerson: PersonWithFines {}
+#endif

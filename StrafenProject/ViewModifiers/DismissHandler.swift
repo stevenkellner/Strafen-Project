@@ -20,7 +20,7 @@ class DismissHandler: ObservableObject {
     }
 }
 
-struct SetDismissHandlerViewModifier: ViewModifier {
+struct DismissHandlerModifier: ViewModifier {
     
     @Environment(\.dismiss) private var dismiss
     
@@ -35,7 +35,8 @@ struct SetDismissHandlerViewModifier: ViewModifier {
 }
 
 extension View {
+    @available(*, deprecated, message: "Use DismissHandlerModifier instead.")
     @ViewBuilder var dismissHandler: some View {
-        ModifiedContent(content: self, modifier: SetDismissHandlerViewModifier())
+        ModifiedContent(content: self, modifier: DismissHandlerModifier())
     }
 }

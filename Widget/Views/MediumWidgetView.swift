@@ -24,8 +24,8 @@ struct MediumWidgetView: View {
                     .frame(width: geometry.size.width / 2)
                 HStack {
                     let sortedFines = self.widgetProperties.sortedFinesGroups
-                    let unpayedFines = sortedFines.sortedList(of: .unpayed)
-                    let payedFines = sortedFines.sortedList(of: .unpayed)
+                    let unpayedFines = sortedFines.group(of: .unpayed)
+                    let payedFines = sortedFines.group(of: .unpayed)
                     if !unpayedFines.isEmpty {
                         self.fineList(title: String(localized: "widget-view|unpayed-fines", comment: "Fine list title of unpayed fines."), fines: unpayedFines)
                     } else if !payedFines.isEmpty {

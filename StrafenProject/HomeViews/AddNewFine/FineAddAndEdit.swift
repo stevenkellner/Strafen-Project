@@ -131,41 +131,34 @@ struct FineAddAndEdit: View {
                     DatePicker(String(localized: "fine-add-and-edit|date-text", comment: "Text before date picker in fine add and edit."), selection: self.$date, displayedComponents: .date)
                         .datePickerStyle(.graphical)
                 }.disabled(self.redactionReasons.contains(.placeholder))
-            }.navigationTitle(String(localized: "fine-add-and-edit|title", comment: "Navigation title of fine add and edit."))
-                .navigationBarTitleDisplayMode(self.shownOnSheet ? .inline : .large)
-                .toolbar(self.toolbar)
-        }.alert(self.unknownErrorAlertTitle, isPresented: self.$showUnknownErrorAlert) {
+            }.modifier(self.rootModifiers)
+        }
+    }
+    
+    @ModifierBuilder private var rootModifiers: some ViewModifier {
+        NavigationTitleModifier(localized: LocalizedStringResource("fine-add-and-edit|title", comment: "Navigation title of fine add and edit."), displayMode: self.shownOnSheet ? .inline : .large)
+        ToolbarModifier(content: self.toolbar)
+        let unknownErrorAlertTitle = self.fineToEdit == nil ?
+            String(localized: "fine-add-and-edit|unknown-error-alert|cannot-add-title", comment: "Cannot add fine alert title in fine add and edit.") :
+            String(localized: "fine-add-and-edit|unknown-error-alert|cannot-save-title", comment: "Cannot save fine alert title in fine add and edit.")
+        AlertModifier(unknownErrorAlertTitle, isPresented: self.$showUnknownErrorAlert) {
             Button {} label: {
                 Text("got-it-button", comment: "Text of a 'got it' button.")
             }
         }
     }
     
-    @ToolbarContentBuilder var toolbar: some ToolbarContent {
+    @ToolbarContentBuilder private var toolbar: some ToolbarContent {
         if self.shownOnSheet {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    self.dismiss()
-                } label: {
-                    Text("cancel-button", comment: "Text of cancel button.")
-                }
+            ToolbarButton(placement: .topBarLeading, localized: LocalizedStringResource("cancel-button", comment: "Text of cancel button.")) {
+                self.dismiss()
             }
         }
-        ToolbarItem(placement: .navigationBarTrailing) {
-            if self.isAddAndEditButtonLoading {
-                ProgressView()
-                    .progressViewStyle(.circular)
-            } else {
-                Button {
-                    Task {
-                        await self.saveFine()
-                    }
-                } label: {
-                    Text(self.fineToEdit == nil ? String(localized: "fine-add-and-edit|add-button", comment: "Add fine button in fine add and edit.") : String(localized: "fine-add-and-edit|save-button", comment: "Save fine button in fine add and edit."))
-                        .unredacted()
-                }.disabled(self.redactionReasons.contains(.placeholder) || self.personId == nil || self.reasonMessage?.isEmpty ?? true || self.amount == nil || self.amount == .zero)
-            }
-        }
+        ToolbarButton(placement: .topBarTrailing, localized: self.fineToEdit == nil ? LocalizedStringResource("fine-add-and-edit|add-button", comment: "Add fine button in fine add and edit.") : LocalizedStringResource("fine-add-and-edit|save-button", comment: "Save fine button in fine add and edit.")) {
+            await self.saveFine()
+        }.loading(self.isAddAndEditButtonLoading)
+            .disabled(self.redactionReasons.contains(.placeholder) || self.personId == nil || self.reasonMessage?.isEmpty ?? true || self.amount == nil || self.amount == .zero)
+            .unredacted
     }
     
     private var personName: PersonName? {
@@ -182,14 +175,7 @@ struct FineAddAndEdit: View {
             self.payedState = isPayed ? .payed : .unpayed
         }
     }
-    
-    private var unknownErrorAlertTitle: String {
-        if self.fineToEdit == nil {
-            return String(localized: "fine-add-and-edit|unknown-error-alert|cannot-add-title", comment: "Cannot add fine alert title in fine add and edit.")
-        }
-        return String(localized: "fine-add-and-edit|unknown-error-alert|cannot-save-title", comment: "Cannot save fine alert title in fine add and edit.")
-    }
-    
+        
     private func saveFine() async {
         self.isAddAndEditButtonLoading = true
         defer {
