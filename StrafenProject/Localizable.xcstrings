@@ -1022,10 +1022,38 @@
       }
     },
     "image-selector|remove-image" : {
-      "comment" : "Remove image button in person add and edit."
+      "comment" : "Remove image button in person add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bild entfernen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove image"
+          }
+        }
+      }
     },
     "image-selector|select-image" : {
-      "comment" : "Select image button in person add and edit."
+      "comment" : "Select image button in person add and edit.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bild auswählen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select image"
+          }
+        }
+      }
     },
     "invitation-button|alert-already-invited" : {
       "comment" : "Message of the invitation alert that is shown after the invite button is pressed and the person is already invited.",

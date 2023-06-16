@@ -10,6 +10,7 @@ import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
 import AuthenticationServices
+import OSLog
 
 @MainActor
 struct FirebaseAuthenticator {
@@ -19,29 +20,51 @@ struct FirebaseAuthenticator {
         case invalidIdToken
     }
     
-    enum SignInMethod {
+    enum SignInMethod: CustomStringConvertible {
         case emailAndPassword(email: String, password: String)
         case apple(scopes: [ASAuthorization.Scope]?)
         case google
+        
+        var description: String {
+            switch self {
+            case  .emailAndPassword(email: let email, password: _):
+                return "Email \(email)"
+            case .apple(scopes: _):
+                return "Apple"
+            case .google:
+                return "Google"
+            }
+        }
     }
     
     static let shared = FirebaseAuthenticator()
+    
+    private static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "StrafenProject", category: String(describing: FirebaseAuthenticator.self))
     
     private init() {}
     
     @discardableResult
     func signIn(with method: SignInMethod, createUser: Bool = false) async throws -> AuthDataResult {
-        switch method {
-        case .emailAndPassword(email: let email, password: let password):
-            if createUser {
-                return try await Auth.auth().createUser(withEmail: email, password: password)
-            } else {
-                return try await Auth.auth().signIn(withEmail: email, password: password)
+        FirebaseAuthenticator.logger.log("Sign in with \(method.description).")
+        do {
+            let result: AuthDataResult
+            switch method {
+            case .emailAndPassword(email: let email, password: let password):
+                if createUser {
+                    result = try await Auth.auth().createUser(withEmail: email, password: password)
+                } else {
+                    result = try await Auth.auth().signIn(withEmail: email, password: password)
+                }
+            case .apple(scopes: let requestedScopes):
+                result = try await self.signInWithApple(scopes: requestedScopes)
+            case .google:
+                result = try await self.signInWithGoogle()
             }
-        case .apple(scopes: let requestedScopes):
-            return try await self.signInWithApple(scopes: requestedScopes)
-        case .google:
-            return try await self.signInWithGoogle()
+            FirebaseAuthenticator.logger.log("Sign in with \(method.description) succeeded.")
+            return result
+        } catch {
+            FirebaseAuthenticator.logger.log(level: .error, "Sign in with \(method.description) failed: \(error.localizedDescription).")
+            throw error
         }
     }
         

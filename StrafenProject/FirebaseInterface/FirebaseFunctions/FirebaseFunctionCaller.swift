@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFunctions
+import OSLog
 
 struct FirebaseFunctionCaller {
     enum Error: Swift.Error {
@@ -16,6 +17,8 @@ struct FirebaseFunctionCaller {
     private var isVerbose = false
     
     static let shared = FirebaseFunctionCaller()
+    
+    private static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "StrafenProject", category: String(describing: FirebaseFunctionCaller.self))
     
     private init() {}
     
@@ -32,17 +35,25 @@ struct FirebaseFunctionCaller {
     }
     
     func call<Function>(_ function: Function) async throws -> Function.ReturnType where Function: FirebaseFunction {
-        let parameters = try self.createParameters(of: function).firebaseFunctionParameters
-        let httpsResult = try await Functions
-            .functions(region: "europe-west1")
-            .httpsCallable(Function.functionName)
-            .call(parameters)
-        guard let encryptedResult = httpsResult.data as? String else {
-            throw Error.invalidReturnType
+        FirebaseFunctionCaller.logger.log("Call firebase function \(Function.functionName).")
+        do {
+            let parameters = try self.createParameters(of: function).firebaseFunctionParameters
+            let httpsResult = try await Functions
+                .functions(region: "europe-west1")
+                .httpsCallable(Function.functionName)
+                .call(parameters)
+            guard let encryptedResult = httpsResult.data as? String else {
+                throw Error.invalidReturnType
+            }
+            let crypter = Crypter(keys: PrivateKeys.current.cryptionKeys)
+            let result = try crypter.decryptDecode(type: FirebaseFunctionResult<Function.ReturnType>.self, encryptedResult)
+            let value = try result.value
+            FirebaseFunctionCaller.logger.log("Call firebase function \(Function.functionName) succeeded.")
+            return value
+        } catch {
+            FirebaseFunctionCaller.logger.log(level: .error, "Call firebase function \(Function.functionName) failed: \(error.localizedDescription).")
+            throw error
         }
-        let crypter = Crypter(keys: PrivateKeys.current.cryptionKeys)
-        let result = try crypter.decryptDecode(type: FirebaseFunctionResult<Function.ReturnType>.self, encryptedResult)
-        return try result.value
     }
     
     func call<Function>(_ function: Function) async throws where Function: FirebaseFunction, Function.ReturnType == VoidReturnType {
