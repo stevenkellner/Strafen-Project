@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import OSLog
 
 class AppProperties: ObservableObject {
     var signedInPerson: Settings.SignedInPerson
     @Published var persons: IdentifiableList<Person>
     @Published var reasonTemplates: IdentifiableList<ReasonTemplate>
     @Published var fines: IdentifiableList<Fine>
+    
+    private static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "StrafenProject", category: String(describing: AppProperties.self))
     
     private init(
         signedInPerson: Settings.SignedInPerson,
@@ -26,6 +29,7 @@ class AppProperties: ObservableObject {
     }
     
     static func fetch(with signedInPerson: Settings.SignedInPerson) async throws -> AppProperties {
+        AppProperties.logger.log("Fetch app properties for \(signedInPerson.club.name) (\(signedInPerson.club.id)).")
         let clubId = signedInPerson.club.id
         let personGetFunction = PersonGetFunction(clubId: clubId)
         let reasonTemplateGetFunction = ReasonTemplateGetFunction(clubId: clubId)
@@ -33,15 +37,23 @@ class AppProperties: ObservableObject {
         async let persons = FirebaseFunctionCaller.shared.call(personGetFunction)
         async let reasonTemplates = FirebaseFunctionCaller.shared.call(reasonTemplateGetFunction)
         async let fines = FirebaseFunctionCaller.shared.call(fineGetFunction)
-        return try await AppProperties(
-            signedInPerson: signedInPerson,
-            persons: persons,
-            reasonTemplates: reasonTemplates,
-            fines: fines
-        )
+        do {
+            let appProperties = try await AppProperties(
+                signedInPerson: signedInPerson,
+                persons: persons,
+                reasonTemplates: reasonTemplates,
+                fines: fines
+            )
+            AppProperties.logger.log("Fetch app properties succeeded.")
+            return appProperties
+        } catch {
+            AppProperties.logger.log(level: .error, "Fetch app properties failed: \(error.localizedDescription).")
+            throw error
+        }
     }
     
     func refresh() async {
+        AppProperties.logger.log("Refresh app properties for \(self.signedInPerson.club.name) (\(self.signedInPerson.club.id)).")
         do {
             let personGetCurrentFunction = PersonGetCurrentFunction()
             let currentPerson = try await FirebaseFunctionCaller.shared.call(personGetCurrentFunction)
@@ -54,7 +66,9 @@ class AppProperties: ObservableObject {
                 self.reasonTemplates = appProperties.reasonTemplates
                 self.fines = appProperties.fines
             }
-        } catch {}
+        } catch {
+            AppProperties.logger.log(level: .error, "Refresh app properties failed: \(error.localizedDescription).")
+        }
     }
     
     var club: ClubProperties {
