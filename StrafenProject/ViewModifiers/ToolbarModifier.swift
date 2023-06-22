@@ -17,7 +17,23 @@ struct ToolbarModifier<ViewContent, ToolbarContent, CustomizableToolbarContent>:
     private let toolbarType: ToolbarType
     
     func body(content: Content) -> some View {
-        content
+        switch self.toolbarType {
+        case .view(let toolbarContent):
+            content
+                .toolbar {
+                    toolbarContent
+                }
+        case .toolbar(let toolbarContent):
+            content
+                .toolbar {
+                    toolbarContent
+                }
+        case .customizableToolbar(let id, let toolbarContent):
+            content
+                .toolbar(id: id) {
+                    toolbarContent
+                }
+        }
     }
 }
 

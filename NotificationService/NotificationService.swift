@@ -8,6 +8,8 @@
 import UserNotifications
 
 class NotificationService: UNNotificationServiceExtension {
+    
+    @MainActor
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         guard let requestPersonIdString = request.content.userInfo["personId"] as? String,
               let requestPersonId = Person.ID(uuidString: requestPersonIdString) else {

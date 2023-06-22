@@ -35,7 +35,7 @@ struct FirebaseFunctionCaller {
     }
     
     func call<Function>(_ function: Function) async throws -> Function.ReturnType where Function: FirebaseFunction {
-        FirebaseFunctionCaller.logger.log("Call firebase function \(Function.functionName).")
+        FirebaseFunctionCaller.logger.log("Call firebase function \(Function.functionName, privacy: .public).")
         do {
             let parameters = try self.createParameters(of: function).firebaseFunctionParameters
             let httpsResult = try await Functions
@@ -48,10 +48,10 @@ struct FirebaseFunctionCaller {
             let crypter = Crypter(keys: PrivateKeys.current.cryptionKeys)
             let result = try crypter.decryptDecode(type: FirebaseFunctionResult<Function.ReturnType>.self, encryptedResult)
             let value = try result.value
-            FirebaseFunctionCaller.logger.log("Call firebase function \(Function.functionName) succeeded.")
+            FirebaseFunctionCaller.logger.log("Call firebase function \(Function.functionName, privacy: .public) succeeded.")
             return value
         } catch {
-            FirebaseFunctionCaller.logger.log(level: .error, "Call firebase function \(Function.functionName) failed: \(error.localizedDescription).")
+            FirebaseFunctionCaller.logger.log(level: .error, "Call firebase function \(Function.functionName, privacy: .public) failed: \(error.localizedDescription, privacy: .public).")
             throw error
         }
     }

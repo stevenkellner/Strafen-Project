@@ -45,7 +45,7 @@ struct FirebaseAuthenticator {
     
     @discardableResult
     func signIn(with method: SignInMethod, createUser: Bool = false) async throws -> AuthDataResult {
-        FirebaseAuthenticator.logger.log("Sign in with \(method.description).")
+        FirebaseAuthenticator.logger.log("Sign in with \(method.description, privacy: .sensitive(mask: ._mailAddress)).")
         do {
             let result: AuthDataResult
             switch method {
@@ -60,10 +60,10 @@ struct FirebaseAuthenticator {
             case .google:
                 result = try await self.signInWithGoogle()
             }
-            FirebaseAuthenticator.logger.log("Sign in with \(method.description) succeeded.")
+            FirebaseAuthenticator.logger.log("Sign in with \(method.description, privacy: .sensitive(mask: ._mailAddress)) succeeded.")
             return result
         } catch {
-            FirebaseAuthenticator.logger.log(level: .error, "Sign in with \(method.description) failed: \(error.localizedDescription).")
+            FirebaseAuthenticator.logger.log(level: .error, "Sign in with \(method.description, privacy: .sensitive(mask: ._mailAddress)) failed: \(error.localizedDescription, privacy: .public).")
             throw error
         }
     }

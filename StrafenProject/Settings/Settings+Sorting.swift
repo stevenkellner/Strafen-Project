@@ -33,6 +33,8 @@ extension Settings {
 }
 
 extension Settings.Sorting.SortingKeyAndOrder {
+    
+    @MainActor
     func areInAscendingOrder(lhs lhsValue: T, rhs rhsValue: T, context: T.SortingKey.Context) -> Bool {
         switch self.order {
         case .ascending:
@@ -44,6 +46,8 @@ extension Settings.Sorting.SortingKeyAndOrder {
 }
 
 extension Settings.Sorting.SortingKeyAndOrder where T.SortingKey: SortingKeyProtocol {
+    
+    @MainActor
     func areInAscendingOrder(lhs lhsValue: T, rhs rhsValue: T) -> Bool {
         switch self.order {
         case .ascending:

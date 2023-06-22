@@ -11,17 +11,22 @@ protocol SortingKeyProtocolWithContext: CaseIterable, Hashable where AllCases: R
     associatedtype Value
     associatedtype Context
     
+    @MainActor
     func areInAscendingOrder(lhs lhsValue: Value, rhs rhsValue: Value, context: Context) -> Bool
+    
     func formatted(order: SortingOrder) -> String
 }
 
 protocol SortingKeyProtocol: SortingKeyProtocolWithContext {
     associatedtype Value
     
+    @MainActor
     func areInAscendingOrder(lhs lhsValue: Value, rhs rhsValue: Value) -> Bool
 }
 
 extension SortingKeyProtocol {
+    
+    @MainActor
     func areInAscendingOrder(lhs lhsValue: Value, rhs rhsValue: Value, context: Void) -> Bool {
         return self.areInAscendingOrder(lhs: lhsValue, rhs: rhsValue)
     }

@@ -27,10 +27,8 @@ struct Provider: TimelineProvider {
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<WidgetEntry>) -> Void) {
-        Task {
-            await MainActor.run {
-                _ = FirebaseConfigurator.shared.configure()
-            }
+        Task { @MainActor in
+            FirebaseConfigurator.shared.configure()
             let settingsManager = SettingsManager()
             let widgetEntry: WidgetEntry
             if let signedInPerson = settingsManager.signedInPerson {
@@ -44,7 +42,7 @@ struct Provider: TimelineProvider {
                 widgetEntry = WidgetEntry(date: Date(timeIntervalSinceNow: Provider.timeIntervalToUpdateAfterNobodySignedIn), style: .default, widgetProperties: .failure(.nobodySignedIn))
             }
             let widgetEntryNow = WidgetEntry(date: Date(), style: widgetEntry.style, widgetProperties: widgetEntry.widgetProperties)
-            return completion(Timeline(entries: [widgetEntryNow, widgetEntry], policy: .atEnd))
+            completion(Timeline(entries: [widgetEntryNow, widgetEntry], policy: .atEnd))
         }
     }
 }

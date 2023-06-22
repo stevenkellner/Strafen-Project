@@ -8,6 +8,7 @@
 import Foundation
 import WidgetKit
 
+@MainActor
 @dynamicMemberLookup
 class SettingsManager: ObservableObject {
         

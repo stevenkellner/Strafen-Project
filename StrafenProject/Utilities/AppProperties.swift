@@ -8,6 +8,7 @@
 import SwiftUI
 import OSLog
 
+@MainActor
 class AppProperties: ObservableObject {
     var signedInPerson: Settings.SignedInPerson
     @Published var persons: IdentifiableList<Person>
@@ -29,7 +30,7 @@ class AppProperties: ObservableObject {
     }
     
     static func fetch(with signedInPerson: Settings.SignedInPerson) async throws -> AppProperties {
-        AppProperties.logger.log("Fetch app properties for \(signedInPerson.club.name) (\(signedInPerson.club.id)).")
+        AppProperties.logger.log("Fetch app properties for \(signedInPerson.club.name, privacy: .public) (\(signedInPerson.club.id, privacy: .public)).")
         let clubId = signedInPerson.club.id
         let personGetFunction = PersonGetFunction(clubId: clubId)
         let reasonTemplateGetFunction = ReasonTemplateGetFunction(clubId: clubId)
@@ -47,13 +48,13 @@ class AppProperties: ObservableObject {
             AppProperties.logger.log("Fetch app properties succeeded.")
             return appProperties
         } catch {
-            AppProperties.logger.log(level: .error, "Fetch app properties failed: \(error.localizedDescription).")
+            AppProperties.logger.log(level: .error, "Fetch app properties failed: \(error.localizedDescription, privacy: .public).")
             throw error
         }
     }
     
     func refresh() async {
-        AppProperties.logger.log("Refresh app properties for \(self.signedInPerson.club.name) (\(self.signedInPerson.club.id)).")
+        AppProperties.logger.log("Refresh app properties for \(self.signedInPerson.club.name, privacy: .public) (\(self.signedInPerson.club.id, privacy: .public)).")
         do {
             let personGetCurrentFunction = PersonGetCurrentFunction()
             let currentPerson = try await FirebaseFunctionCaller.shared.call(personGetCurrentFunction)
@@ -61,13 +62,11 @@ class AppProperties: ObservableObject {
             let settingsManager = SettingsManager()
             try settingsManager.save(self.signedInPerson, at: \.signedInPerson)
             let appProperties = try await AppProperties.fetch(with: self.signedInPerson)
-            await MainActor.run {
-                self.persons = appProperties.persons
-                self.reasonTemplates = appProperties.reasonTemplates
-                self.fines = appProperties.fines
-            }
+            self.persons = appProperties.persons
+            self.reasonTemplates = appProperties.reasonTemplates
+            self.fines = appProperties.fines
         } catch {
-            AppProperties.logger.log(level: .error, "Refresh app properties failed: \(error.localizedDescription).")
+            AppProperties.logger.log(level: .error, "Refresh app properties failed: \(error.localizedDescription, privacy: .public).")
         }
     }
     
@@ -77,8 +76,12 @@ class AppProperties: ObservableObject {
     
     func fines(of person: some PersonWithFines) -> IdentifiableList<Fine> {
         if let person = self.persons[person.id] {
-            return self.fines(of: person)
+            return self.fines(ofFinesList: person)
         }
+        return self.fines(ofFinesList: person)
+    }
+    
+    private func fines(ofFinesList person: some PersonWithFines) -> IdentifiableList<Fine> {
         return person.fineIds.reduce(into: IdentifiableList<Fine>()) { fines, fineId in
             guard let fine = self.fines[fineId] else {
                 return
