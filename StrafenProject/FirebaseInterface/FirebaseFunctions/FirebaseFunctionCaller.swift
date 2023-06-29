@@ -34,22 +34,31 @@ struct FirebaseFunctionCaller {
         return parameters
     }
     
+    private func functionName<Function>(of function: Function) -> String where Function: FirebaseFunction {
+        switch DatabaseType.current {
+        case .release:
+            return Function.functionName
+        case .debug, .testing:
+            return "debug-\(Function.functionName)"
+        }
+    }
+    
     func call<Function>(_ function: Function) async throws -> Function.ReturnType where Function: FirebaseFunction {
         FirebaseFunctionCaller.logger.log("Call firebase function \(Function.functionName, privacy: .public).")
         do {
             let parameters = try self.createParameters(of: function).firebaseFunctionParameters
             let httpsResult = try await Functions
                 .functions(region: "europe-west1")
-                .httpsCallable(Function.functionName)
+                .httpsCallable(self.functionName(of: function))
                 .call(parameters)
-            guard let encryptedResult = httpsResult.data as? String else {
+            guard let response = httpsResult.data as? [String: Any],
+                  let encryptedResult = response["result"] as? String else {
                 throw Error.invalidReturnType
             }
             let crypter = Crypter(keys: PrivateKeys.current.cryptionKeys)
-            let result = try crypter.decryptDecode(type: FirebaseFunctionResult<Function.ReturnType>.self, encryptedResult)
-            let value = try result.value
+            let result = try crypter.decryptDecode(type: FirebaseFunctionResult<Function.ReturnType>.self, encryptedResult).value
             FirebaseFunctionCaller.logger.log("Call firebase function \(Function.functionName, privacy: .public) succeeded.")
-            return value
+            return result
         } catch {
             FirebaseFunctionCaller.logger.log(level: .error, "Call firebase function \(Function.functionName, privacy: .public) failed: \(error.localizedDescription, privacy: .public).")
             throw error

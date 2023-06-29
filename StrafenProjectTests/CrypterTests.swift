@@ -212,12 +212,6 @@ final class CrypterTestSuite: XCTestSuite {
             XCTAssertEqual(decryptedData, originalData)
         }
         
-        func testDecryptDecode() throws {
-            let encrypted = Data(testData.encodedEncrypted).unishortString
-            let decrypted = try crypter.decryptDecode(type: String.self, encrypted)
-            XCTAssertEqual(decrypted, testData.decryptedDecoded)
-        }
-        
         func testDecryptDecodeEncodeEncrypt() throws {
             let encrypted = try crypter.encodeEncrypt(testData.decryptedDecoded)
             let decrypted = try crypter.decryptDecode(type: String.self, encrypted)

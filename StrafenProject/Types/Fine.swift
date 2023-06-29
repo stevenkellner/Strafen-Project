@@ -23,7 +23,7 @@ extension Fine: Equatable {
         return lhs.id == rhs.id &&
             lhs.personId == rhs.personId &&
             lhs.payedState == rhs.payedState &&
-            Calendar.current.isDate(lhs.date, equalTo: rhs.date, toGranularity: .nanosecond) &&
+            lhs.date.timeIntervalSinceReferenceDate.rounded(.down) == rhs.date.timeIntervalSinceReferenceDate.rounded(.down) && 
             lhs.reasonMessage == rhs.reasonMessage &&
             lhs.amount == rhs.amount
     }

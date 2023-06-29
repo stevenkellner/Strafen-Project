@@ -18,6 +18,7 @@ struct Crypter {
     enum CryptionError: Error {
         case encryptAesError
         case decryptAesError
+        case decodeBase64Error
     }
     
     static func sha512(_ value: String, key: String? = nil) -> String {
@@ -94,7 +95,10 @@ struct Crypter {
     }
     
     func decryptDecode<T>(type: T.Type, _ data: String) throws -> T where T: Decodable {
-        return try self.decryptDecode(type: type, Data(unishortString: data))
+        guard let data = data.base64UrlUnescaped else {
+            throw CryptionError.decodeBase64Error
+        }
+        return try self.decryptDecode(type: type, data)
     }
     
     func encodeEncryptToData<T>(_ data: T) throws -> Data where T: Encodable {
@@ -106,6 +110,6 @@ struct Crypter {
     }
         
     func encodeEncrypt<T>(_ data: T) throws -> String where T: Encodable {
-        return try self.encodeEncryptToData(data).unishortString
+        return try self.encodeEncryptToData(data).base64UrlEscaped
     }
 }

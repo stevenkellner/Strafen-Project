@@ -30,7 +30,7 @@ extension SignInData.UserAuthenticationType: Hashable {}
 extension SignInData: Equatable {
     static func ==(lhs: SignInData, rhs: SignInData) -> Bool {
         return lhs.hashedUserId == rhs.hashedUserId &&
-            Calendar.current.isDate(lhs.signInDate, equalTo: rhs.signInDate, toGranularity: .nanosecond) &&
+            lhs.signInDate.timeIntervalSinceReferenceDate.rounded(.down) == rhs.signInDate.timeIntervalSinceReferenceDate.rounded(.down) && 
             lhs.authentication == rhs.authentication &&
             lhs.notificationTokens == rhs.notificationTokens
     }
