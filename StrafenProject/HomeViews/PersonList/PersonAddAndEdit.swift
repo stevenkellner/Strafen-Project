@@ -141,13 +141,13 @@ struct PersonAddAndEdit: View {
             let personId = self.personToEdit?.id ?? Person.ID()
             let personName = PersonName(first: self.firstName, last: self.lastName == "" ? nil : self.lastName)
             let person = Person(id: personId, name: personName, fineIds: [], isInvited: false)
-            let personEditFunction: PersonEditFunction
             if self.personToEdit == nil {
-                personEditFunction = .add(clubId: self.appProperties.club.id, person: person)
+                let personAddFunction = PersonAddFunction(clubId: self.appProperties.club.id, person: person)
+                try await FirebaseFunctionCaller.shared.call(personAddFunction)
             } else {
-                personEditFunction = .update(clubId: self.appProperties.club.id, person: person)
+                let personUpdateFunction = PersonUpdateFunction(clubId: self.appProperties.club.id, person: person)
+                try await FirebaseFunctionCaller.shared.call(personUpdateFunction)
             }
-            try await FirebaseFunctionCaller.shared.call(personEditFunction)
             self.appProperties.persons[personId] = person
             if let image = self.selectedImage {
                 try? await self.imageStorage.store(image, for: .person(clubId: self.appProperties.club.id, personId: personId))

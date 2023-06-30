@@ -100,8 +100,8 @@ struct FineListView<Person>: View where Person: PersonWithFines {
         
         private func deleteFine() async {
             do {
-                let fineEditFunction = FineEditFunction.delete(clubId: self.appProperties.club.id, fineId: self.fine.id)
-                try await FirebaseFunctionCaller.shared.call(fineEditFunction)
+                let fineDeleteFunction = FineDeleteFunction(clubId: self.appProperties.club.id, fineId: self.fine.id)
+                try await FirebaseFunctionCaller.shared.call(fineDeleteFunction)
                 self.appProperties.fines[self.fine.id] = nil
                 self.appProperties.persons[self.fine.personId]?.fineIds.removeAll { $0 == fine.id }
             } catch {}

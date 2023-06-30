@@ -38,19 +38,19 @@ final class FirebaseFunctionsTests: XCTestCase {
         try await FirebaseFunctionCaller.shared.verbose.call(clubNewFunction)
     }
     
-    func testFineEditAdd() async throws {
-        let fineEditFunction = FineEditFunction.add(clubId: self.clubId, fine: Fine(id: Fine.ID(), personId: Person.ID(), payedState: .unpayed, date: Date(), reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50)))
-        try await FirebaseFunctionCaller.shared.verbose.call(fineEditFunction)
+    func testFinetAdd() async throws {
+        let fineAddFunction = FineAddFunction(clubId: self.clubId, fine: Fine(id: Fine.ID(), personId: Person.ID(), payedState: .unpayed, date: Date(), reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50)))
+        try await FirebaseFunctionCaller.shared.verbose.call(fineAddFunction)
     }
     
-    func testFineEditUpdate() async throws {
-        let fineEditFunction = FineEditFunction.update(clubId: self.clubId, fine: Fine(id: Fine.ID(uuidString: "02462A8B-107F-4BAE-A85B-EFF1F727C00F")!, personId: Person.ID(), payedState: .unpayed, date: Date(), reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50)))
-        try await FirebaseFunctionCaller.shared.verbose.call(fineEditFunction)
+    func testFineUpdate() async throws {
+        let fineUpdateFunction = FineUpdateFunction(clubId: self.clubId, fine: Fine(id: Fine.ID(uuidString: "02462A8B-107F-4BAE-A85B-EFF1F727C00F")!, personId: Person.ID(), payedState: .unpayed, date: Date(), reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50)))
+        try await FirebaseFunctionCaller.shared.verbose.call(fineUpdateFunction)
     }
     
-    func testFineEditDelete() async throws {
-        let fineEditFunction = FineEditFunction.delete(clubId: self.clubId, fineId: Fine.ID(uuidString: "02462A8B-107F-4BAE-A85B-EFF1F727C00F")!)
-        try await FirebaseFunctionCaller.shared.verbose.call(fineEditFunction)
+    func testFineDelete() async throws {
+        let fineDeleteFunction = FineDeleteFunction(clubId: self.clubId, fineId: Fine.ID(uuidString: "02462A8B-107F-4BAE-A85B-EFF1F727C00F")!)
+        try await FirebaseFunctionCaller.shared.verbose.call(fineDeleteFunction)
     }
     
     func testFineEditPayed() async throws {
@@ -71,19 +71,19 @@ final class FirebaseFunctionsTests: XCTestCase {
         ]))
     }
     
-    func testPersonEditAdd() async throws {
-        let personEditFunction = PersonEditFunction.add(clubId: self.clubId, person: Person(id: Person.ID(), name: PersonName(first: "ölkm", last: "poikm"), fineIds: [], signInData: nil, isInvited: false))
-        try await FirebaseFunctionCaller.shared.verbose.call(personEditFunction)
+    func testPersonAdd() async throws {
+        let personAddFunction = PersonAddFunction(clubId: self.clubId, person: Person(id: Person.ID(), name: PersonName(first: "ölkm", last: "poikm"), fineIds: [], signInData: nil, isInvited: false))
+        try await FirebaseFunctionCaller.shared.verbose.call(personAddFunction)
     }
     
-    func testPersonEditUpdate() async throws {
-        let personEditFunction = PersonEditFunction.update(clubId: self.clubId, person: Person(id: Person.ID(uuidString: "D1852AC0-A0E2-4091-AC7E-CB2C23F708D9")!, name: PersonName(first: "poiunzg"), fineIds: [], signInData: nil, isInvited: true))
-        try await FirebaseFunctionCaller.shared.verbose.call(personEditFunction)
+    func testPersonUpdate() async throws {
+        let personUpdateFunction = PersonUpdateFunction(clubId: self.clubId, person: Person(id: Person.ID(uuidString: "D1852AC0-A0E2-4091-AC7E-CB2C23F708D9")!, name: PersonName(first: "poiunzg"), fineIds: [], signInData: nil, isInvited: true))
+        try await FirebaseFunctionCaller.shared.verbose.call(personUpdateFunction)
     }
     
-    func testPersonEditDelete() async throws {
-        let personEditFunction = PersonEditFunction.delete(clubId: self.clubId, personId: Person.ID(uuidString: "D1852AC0-A0E2-4091-AC7E-CB2C23F708D9")!)
-        try await FirebaseFunctionCaller.shared.verbose.call(personEditFunction)
+    func testPersonDelete() async throws {
+        let personDeleteFunction = PersonDeleteFunction(clubId: self.clubId, personId: Person.ID(uuidString: "D1852AC0-A0E2-4091-AC7E-CB2C23F708D9")!)
+        try await FirebaseFunctionCaller.shared.verbose.call(personDeleteFunction)
     }
     
     func testPersonGetCurrent() async throws {
@@ -130,19 +130,19 @@ final class FirebaseFunctionsTests: XCTestCase {
         try await FirebaseFunctionCaller.shared.verbose.call(personMakeManagerFunction)
     }
     
-    func testReasonTemplateEditAdd() async throws {
-        let reasonTemplateEditFunction = ReasonTemplateEditFunction.add(clubId: self.clubId, reasonTemplate: ReasonTemplate(id: ReasonTemplate.ID(), reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50), counts: ReasonTemplate.Counts(item: .item)))
-        try await FirebaseFunctionCaller.shared.verbose.call(reasonTemplateEditFunction)
+    func testReasonTemplateAdd() async throws {
+        let reasonTemplateAddFunction = ReasonTemplateAddFunction(clubId: self.clubId, reasonTemplate: ReasonTemplate(id: ReasonTemplate.ID(), reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50), counts: ReasonTemplate.Counts(item: .item)))
+        try await FirebaseFunctionCaller.shared.verbose.call(reasonTemplateAddFunction)
     }
     
-    func testReasonTemplateEditUpdate() async throws {
-        let reasonTemplateEditFunction = ReasonTemplateEditFunction.update(clubId: self.clubId, reasonTemplate: ReasonTemplate(id: ReasonTemplate.ID(uuidString: "062FB0CB-F730-497B-BCF5-A4F907A6DCD5")!, reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50), counts: ReasonTemplate.Counts(item: .minute, maxCount: 2)))
-        try await FirebaseFunctionCaller.shared.verbose.call(reasonTemplateEditFunction)
+    func testReasonTemplateUpdate() async throws {
+        let reasonTemplateUpdateFunction = ReasonTemplateUpdateFunction(clubId: self.clubId, reasonTemplate: ReasonTemplate(id: ReasonTemplate.ID(uuidString: "062FB0CB-F730-497B-BCF5-A4F907A6DCD5")!, reasonMessage: "asdf", amount: Amount(value: 10, subUnitValue: 50), counts: ReasonTemplate.Counts(item: .minute, maxCount: 2)))
+        try await FirebaseFunctionCaller.shared.verbose.call(reasonTemplateUpdateFunction)
     }
     
-    func testReasonTemplateEditDelete() async throws {
-        let reasonTemplateEditFunction = ReasonTemplateEditFunction.delete(clubId: self.clubId, reasonTemplateId: ReasonTemplate.ID(uuidString: "062FB0CB-F730-497B-BCF5-A4F907A6DCD5")!)
-        try await FirebaseFunctionCaller.shared.verbose.call(reasonTemplateEditFunction)
+    func testReasonTemplateDelete() async throws {
+        let reasonTemplateDeleteFunction = ReasonTemplateDeleteFunction(clubId: self.clubId, reasonTemplateId: ReasonTemplate.ID(uuidString: "062FB0CB-F730-497B-BCF5-A4F907A6DCD5")!)
+        try await FirebaseFunctionCaller.shared.verbose.call(reasonTemplateDeleteFunction)
     }
     
     func testReasonTemplateGet() async throws {

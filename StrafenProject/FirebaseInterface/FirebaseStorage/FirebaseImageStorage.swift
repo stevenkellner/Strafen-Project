@@ -54,7 +54,7 @@ class FirebaseImageStorage: ObservableObject {
         guard !useCachedImage || self.getCache(for: imageType) == nil else {
             return
         }
-        let maxSize: Int64 = 64 * 1024 * 1024 // 64 MB
+        let maxSize: Int64 = 1024 * 1024 // 1MB
         do {
             let imageData = try await Storage
                 .storage(url: FirebaseImageStorage.storageBucketUrl)

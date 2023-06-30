@@ -87,7 +87,7 @@ struct ContentView: View {
         case .reasonTemplateList:
             ReasonTemplateList()
         case .addNewFine:
-            FineAddAndEdit(shownOnSheet: false)
+            FineAddAndEdit(referrer: .addNewTab)
         case .settings:
             SettingsEditor()
                 .unredacted()

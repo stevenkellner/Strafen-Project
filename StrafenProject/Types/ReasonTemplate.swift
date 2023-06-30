@@ -113,6 +113,7 @@ extension ReasonTemplate: Hashable {}
 
 extension ReasonTemplate: FirebaseFunctionParameterType {
     @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
+        FirebaseFunctionParameter(self.id, for: "id")
         FirebaseFunctionParameter(self.reasonMessage, for: "reasonMessage")
         FirebaseFunctionParameter(self.amount, for: "amount")
         FirebaseFunctionParameter(self.counts, for: "counts")

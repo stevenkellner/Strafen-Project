@@ -138,8 +138,8 @@ struct PersonListView: View {
                 return
             }
             do {
-                let personEditFunction = PersonEditFunction.delete(clubId: self.appProperties.club.id, personId: self.person.id)
-                try await FirebaseFunctionCaller.shared.call(personEditFunction)
+                let personDeleteFunction = PersonDeleteFunction(clubId: self.appProperties.club.id, personId: self.person.id)
+                try await FirebaseFunctionCaller.shared.call(personDeleteFunction)
                 self.appProperties.persons[self.person.id] = nil
             } catch let error as FirebaseFunctionError {
                 if error.code == .unavailable {

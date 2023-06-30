@@ -61,7 +61,7 @@ struct PersonDetail: View {
                 PersonAddAndEdit(person: self.personBinding)
             }
             SheetModifier(isPresented: self.$isAddNewFineSheetShown) {
-                FineAddAndEdit(personId: self.person.id, shownOnSheet: true)
+                FineAddAndEdit(personId: self.person.id, referrer: .addNewFineList)
             }
         }
     }

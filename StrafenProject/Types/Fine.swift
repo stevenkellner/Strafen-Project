@@ -38,6 +38,7 @@ extension Fine: Hashable {}
 #if !WIDGET_EXTENSION
 extension Fine: FirebaseFunctionParameterType {
     @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
+        FirebaseFunctionParameter(self.id, for: "id")
         FirebaseFunctionParameter(self.personId, for: "personId")
         FirebaseFunctionParameter(self.payedState, for: "payedState")
         FirebaseFunctionParameter(self.date, for: "date")

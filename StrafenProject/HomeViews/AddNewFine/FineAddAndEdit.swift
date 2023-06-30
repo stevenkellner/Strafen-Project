@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct FineAddAndEdit: View {
+    enum Referrer {
+        case addNewTab
+        case addNewFineList
+        case updateFine
+    }
     
     @Environment(\.redactionReasons) private var redactionReasons
     
@@ -19,9 +24,9 @@ struct FineAddAndEdit: View {
     
     private let fineToEdit: Fine?
     
-    private let shownOnSheet: Bool
+    private let referrer: Referrer
     
-    @State private var personId: Person.ID?
+    @State private var personIds: [Person.ID] = []
     
     @State private var payedState: PayedState = .unpayed
     
@@ -43,11 +48,11 @@ struct FineAddAndEdit: View {
     
     @State private var isAddAndEditButtonLoading = false
     
-    init(fine fineToEdit: Fine? = nil, shownOnSheet: Bool) {
+    init(fine fineToEdit: Fine? = nil, referrer: Referrer) {
         self.fineToEdit = fineToEdit
-        self.shownOnSheet = shownOnSheet
+        self.referrer = referrer
         if let fineToEdit {
-            self._personId = State(initialValue: fineToEdit.personId)
+            self._personIds = State(initialValue: [fineToEdit.personId])
             self._payedState = State(initialValue: fineToEdit.payedState)
             self._date = State(initialValue: fineToEdit.date)
             self._reasonMessage = State(initialValue: fineToEdit.reasonMessage)
@@ -55,22 +60,22 @@ struct FineAddAndEdit: View {
         }
     }
     
-    init(personId: Person.ID, shownOnSheet: Bool) {
+    init(personId: Person.ID, referrer: Referrer) {
         self.fineToEdit = nil
-        self.shownOnSheet = shownOnSheet
-        self._personId = State(initialValue: personId)
+        self.referrer = referrer
+        self._personIds = State(initialValue: [personId])
     }
     
     var body: some View {
         NavigationView {
             Form {
-                if self.fineToEdit == nil {
+                if self.referrer != .updateFine {
                     Section {
                         Button {
                             self.isPickPersonSheetShown = true
                         } label: {
-                            if let personId = self.personId,
-                               let personName = self.personName {
+                            if let personId = self.personIds.first,
+                               let personName = self.personName(of: personId) {
                                 HStack {
                                     if let image = self.imageStorage.personImages[personId] {
                                         Image(uiImage: image)
@@ -79,22 +84,26 @@ struct FineAddAndEdit: View {
                                             .frame(width: 30, height: 30)
                                             .clipShape(Circle())
                                     }
-                                    Text(personName.formatted())
+                                    if self.personIds.count >= 2, let secondPersonName = self.personName(of: self.personIds[1]) {
+                                        Text("fine-add-and-edit|multiple-persons-selected?first-person-name=\(personName.formatted())&second-person-name=\(secondPersonName.formatted())&other-persons-count\(self.personIds.count - 2)", comment: "Multiple persons selected text in fine add and edit.")
+                                    } else {
+                                        Text(personName.formatted())
+                                    }
                                 }.foregroundColor(.primary)
                             } else {
                                 Text("fine-add-and-edit|pick-person-button", comment: "Pick person button in fine add and edit.")
                                     .unredacted()
                             }
-                        }.disabled(self.redactionReasons.contains(.placeholder))
+                        }.disabled(self.referrer == .addNewFineList || self.redactionReasons.contains(.placeholder))
                     }.sheet(isPresented: self.$isPickPersonSheetShown) {
-                        FinePickPerson(personId: self.$personId)
+                        FinePickPerson(personIds: self.$personIds)
                     }.task {
-                        if let personId = self.personId {
+                        if let personId = self.personIds.first {
                             await self.imageStorage.fetch(.person(clubId: self.appProperties.club.id, personId: personId))
                         }
-                    }.onChange(of: self.personId) { personId in
+                    }.onChange(of: self.personIds) { personIds in
                         Task {
-                            if let personId {
+                            if let personId = personIds.first {
                                 await self.imageStorage.fetch(.person(clubId: self.appProperties.club.id, personId: personId))
                             }
                         }
@@ -124,7 +133,7 @@ struct FineAddAndEdit: View {
                     FinePickReasonTemplate(reasonMessage: self.$reasonMessage, amount: self.$amount, counts: self.$counts)
                 }
                 Section {
-                    if self.fineToEdit != nil {
+                    if self.referrer == .updateFine {
                         Toggle(String(localized: "fine-add-and-edit|payed-toggle-text", comment: "Text before payed toggle in fine add and edit."), isOn: self.isFinePayed)
                             .toggleStyle(.switch)
                     }
@@ -136,7 +145,7 @@ struct FineAddAndEdit: View {
     }
     
     @ModifierBuilder private var rootModifiers: some ViewModifier {
-        NavigationTitleModifier(localized: LocalizedStringResource("fine-add-and-edit|title", comment: "Navigation title of fine add and edit."), displayMode: self.shownOnSheet ? .inline : .large)
+        NavigationTitleModifier(localized: LocalizedStringResource("fine-add-and-edit|title", comment: "Navigation title of fine add and edit."), displayMode: self.referrer == .addNewTab ? .large : .inline)
         ToolbarModifier(content: self.toolbar)
         let unknownErrorAlertTitle = self.fineToEdit == nil ?
             String(localized: "fine-add-and-edit|unknown-error-alert|cannot-add-title", comment: "Cannot add fine alert title in fine add and edit.") :
@@ -149,7 +158,7 @@ struct FineAddAndEdit: View {
     }
     
     @ToolbarContentBuilder private var toolbar: some ToolbarContent {
-        if self.shownOnSheet {
+        if self.referrer != .addNewTab {
             ToolbarButton(placement: .topBarLeading, localized: LocalizedStringResource("cancel-button", comment: "Text of cancel button.")) {
                 self.dismiss()
             }
@@ -157,14 +166,11 @@ struct FineAddAndEdit: View {
         ToolbarButton(placement: .topBarTrailing, localized: self.fineToEdit == nil ? LocalizedStringResource("fine-add-and-edit|add-button", comment: "Add fine button in fine add and edit.") : LocalizedStringResource("fine-add-and-edit|save-button", comment: "Save fine button in fine add and edit.")) {
             await self.saveFine()
         }.loading(self.isAddAndEditButtonLoading)
-            .disabled(self.redactionReasons.contains(.placeholder) || self.personId == nil || self.reasonMessage?.isEmpty ?? true || self.amount == nil || self.amount == .zero)
+            .disabled(self.redactionReasons.contains(.placeholder) || self.personIds == [] || self.reasonMessage?.isEmpty ?? true || self.amount == nil || self.amount == .zero)
             .unredacted
     }
     
-    private var personName: PersonName? {
-        guard let personId = self.personId else {
-            return nil
-        }
+    private func personName(of personId: Person.ID) -> PersonName? {
         return self.appProperties.persons[personId]?.name
     }
     
@@ -181,7 +187,7 @@ struct FineAddAndEdit: View {
         defer {
             self.isAddAndEditButtonLoading = false
         }
-        guard let personId = self.personId,
+        guard !self.personIds.isEmpty,
               var reasonMessage = self.reasonMessage,
               var amount = self.amount else {
             return
@@ -191,25 +197,13 @@ struct FineAddAndEdit: View {
             amount *= self.count
         }
         do {
-            let fineId = self.fineToEdit?.id ?? Fine.ID()
-            let fine = Fine(id: fineId, personId: personId, payedState: self.payedState, date: self.date, reasonMessage: reasonMessage, amount: amount)
-            let fineEditFunction: FineEditFunction
-            if self.fineToEdit == nil {
-                fineEditFunction = .add(clubId: self.appProperties.club.id, fine: fine)
-            } else {
-                fineEditFunction = .update(clubId: self.appProperties.club.id, fine: fine)
-            }
-            try await FirebaseFunctionCaller.shared.call(fineEditFunction)
-            self.appProperties.fines[fineId] = fine
-            if let containsFineId = self.appProperties.persons[personId]?.fineIds.contains(fineId), !containsFineId {
-                self.appProperties.persons[personId]?.fineIds.append(fineId)
-            }
-            if self.fineToEdit == nil, let personName = self.personName {
-                Task {
-                    let notificationPayload = NotificationPayload(title: String(localized: "fine-add-and-edit|new-fine-notification|title?name=\(personName.first)", comment: "Title of the notification send when a new fine is created. 'name' parameter is the name of the person of this fine."), body: "\(amount.formatted(.short)) | \(reasonMessage)")
-                    let notificationPushFunction = NotificationPushFunction(clubId: self.appProperties.club.id, personId: personId, payload: notificationPayload)
-                    try? await FirebaseFunctionCaller.shared.call(notificationPushFunction)
+            try await withThrowingTaskGroup(of: Void.self) { [reasonMessage, amount] taskGroup in
+                for personId in self.personIds {
+                    taskGroup.addTask {
+                        try await self.saveFine(personId: personId, reasonMessage: reasonMessage, amount: amount)
+                    }
                 }
+                try await taskGroup.waitForAll()
             }
             self.reset()
             self.dismiss()
@@ -218,13 +212,42 @@ struct FineAddAndEdit: View {
         }
     }
     
+    private func saveFine(personId: Person.ID, reasonMessage: String, amount: Amount) async throws {
+        let fineId = self.fineToEdit?.id ?? Fine.ID()
+        let fine = Fine(id: fineId, personId: personId, payedState: self.payedState, date: self.date, reasonMessage: reasonMessage, amount: amount)
+        if self.fineToEdit == nil {
+            let fineAddFunction = FineAddFunction(clubId: self.appProperties.club.id, fine: fine)
+            try await FirebaseFunctionCaller.shared.call(fineAddFunction)
+        } else {
+            let fineUpdateFunction = FineUpdateFunction(clubId: self.appProperties.club.id, fine: fine)
+            try await FirebaseFunctionCaller.shared.call(fineUpdateFunction)
+        }
+        self.personIds = self.personIds.filter { $0 != personId }
+        self.appProperties.fines[fineId] = fine
+        if let containsFineId = self.appProperties.persons[personId]?.fineIds.contains(fineId), !containsFineId {
+            self.appProperties.persons[personId]?.fineIds.append(fineId)
+        }
+        if self.fineToEdit == nil, let personName = self.personName(of: personId) {
+            Task {
+                let notificationPayload = NotificationPayload(title: String(localized: "fine-add-and-edit|new-fine-notification|title?name=\(personName.first)", comment: "Title of the notification send when a new fine is created. 'name' parameter is the name of the person of this fine."), body: "\(amount.formatted(.short)) | \(reasonMessage)")
+                let notificationPushFunction = NotificationPushFunction(clubId: self.appProperties.club.id, personId: personId, payload: notificationPayload)
+                try? await FirebaseFunctionCaller.shared.call(notificationPushFunction)
+            }
+        }
+    }
+    
     private func reset() {
-        self.personId = nil
-        self.payedState = .unpayed
-        self.date = Date()
-        self.reasonMessage = nil
+        if referrer == .addNewTab {
+            self.personIds = []
+        }
+        if referrer == .updateFine {
+            self.payedState = .unpayed
+        } else {
+            self.date = Date()
+            self.reasonMessage = nil
+            self.amount = nil
+        }
         self.counts = nil
         self.count = 1
-        self.amount = nil
     }
 }

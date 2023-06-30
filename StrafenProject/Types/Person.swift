@@ -30,6 +30,7 @@ extension Person: Hashable {}
 #if !NOTIFICATION_SERVICE_EXTENSION && !WIDGET_EXTENSION
 extension Person: FirebaseFunctionParameterType {
     @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
+        FirebaseFunctionParameter(self.id, for: "id")
         FirebaseFunctionParameter(self.name, for: "name")
     }
 }

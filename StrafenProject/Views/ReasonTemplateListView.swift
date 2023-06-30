@@ -70,8 +70,8 @@ struct ReasonTemplateListView: View {
         
         private func deleteReasonTemplate(_ reasonTemplate: ReasonTemplate) async {
             do {
-                let reasonTemplateEditFunction = ReasonTemplateEditFunction.delete(clubId: self.appProperties.club.id, reasonTemplateId: reasonTemplate.id)
-                try await FirebaseFunctionCaller.shared.call(reasonTemplateEditFunction)
+                let reasonTemplateDeleteFunction = ReasonTemplateDeleteFunction(clubId: self.appProperties.club.id, reasonTemplateId: reasonTemplate.id)
+                try await FirebaseFunctionCaller.shared.call(reasonTemplateDeleteFunction)
                 self.appProperties.reasonTemplates[reasonTemplate.id] = nil
             } catch {}
         }

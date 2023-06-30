@@ -76,7 +76,7 @@ struct FineDetail: View {
                 }
             }
             SheetModifier(isPresented: self.$isEditFineSheetShown) {
-                FineAddAndEdit(fine: self.fine, shownOnSheet: true)
+                FineAddAndEdit(fine: self.fine, referrer: .updateFine)
             }
         }
     }

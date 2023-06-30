@@ -15,12 +15,15 @@ struct FinePickPerson: View {
     
     @EnvironmentObject private var settingsManager: SettingsManager
     
-    @Binding private var personId: Person.ID?
+    @Binding private var personIds: [Person.ID]
+    
+    @State private var isFirstPersonSelect: Bool
     
     @State private var searchText = ""
     
-    init(personId: Binding<Person.ID?>) {
-        self._personId = personId
+    init(personIds: Binding<[Person.ID]>) {
+        self._personIds = personIds
+        self._isFirstPersonSelect = State(initialValue: personIds.wrappedValue.isEmpty)
     }
     
     var body: some View {
@@ -29,12 +32,18 @@ struct FinePickPerson: View {
                 let sortedPersons = self.appProperties.sortedPersons(by: self.settingsManager.sorting.personSorting).searchableGroup(search: self.searchText)
                 ForEach(sortedPersons) { person in
                     Button {
-                        self.personId = person.id
-                        self.dismiss()
+                        if !self.personIds.contains(person.id) {
+                            self.personIds.append(person.id)
+                        } else {
+                            self.personIds = self.personIds.filter { $0 != person.id }
+                        }
+                        if self.isFirstPersonSelect {
+                            self.dismiss()
+                        }
                     } label: {
                         PersonListView.PersonRow(person)
                             .amountHidden
-                            .foregroundColor(.primary)
+                            .foregroundColor(self.personIds.contains(person.id) ? .green : .primary)
                     }
                 }
             }.modifier(self.rootModifiers)
@@ -45,7 +54,7 @@ struct FinePickPerson: View {
         NavigationTitleModifier(localized: LocalizedStringResource("fine-pick-person|title", comment: "Title of fine pick person."), displayMode: .large)
         SearchableModifier(text: self.$searchText, prompt: String(localized: "fine-pick-person|search-placeholder", comment: "Placeholder text of search bar in fine pick person."))
         ToolbarModifier {
-            ToolbarButton(placement: .topBarTrailing, localized: LocalizedStringResource("cancel-button", comment: "Text of cancel button.")) {
+            ToolbarButton(placement: .topBarTrailing, localized: self.isFirstPersonSelect ?  LocalizedStringResource("cancel-button", comment: "Text of cancel button.") : LocalizedStringResource("fine-pick-person|select-button", comment: "Text of select button.")) {
                 self.dismiss()
             }
         }

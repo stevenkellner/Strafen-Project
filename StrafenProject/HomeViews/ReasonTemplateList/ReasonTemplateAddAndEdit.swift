@@ -106,13 +106,13 @@ struct ReasonTemplateAddAndEdit: View {
                 counts = ReasonTemplate.Counts(item: countsItem, maxCount: self.maxCount == 0 ? nil : self.maxCount)
             }
             let reasonTemplate = ReasonTemplate(id: reasonTemplateId, reasonMessage: self.reasonMessage, amount: self.amount, counts: counts)
-            let reasonTemplateEditFunction: ReasonTemplateEditFunction
             if self.reasonTemplateToEdit == nil {
-                reasonTemplateEditFunction = .add(clubId: self.appProperties.club.id, reasonTemplate: reasonTemplate)
+                let reasonTemplateAddFunction = ReasonTemplateAddFunction(clubId: self.appProperties.club.id, reasonTemplate: reasonTemplate)
+                try await FirebaseFunctionCaller.shared.call(reasonTemplateAddFunction)
             } else {
-                reasonTemplateEditFunction = .update(clubId: self.appProperties.club.id, reasonTemplate: reasonTemplate)
+                let reasonTemplateUpdateFunction = ReasonTemplateUpdateFunction(clubId: self.appProperties.club.id, reasonTemplate: reasonTemplate)
+                try await FirebaseFunctionCaller.shared.call(reasonTemplateUpdateFunction)
             }
-            try await FirebaseFunctionCaller.shared.call(reasonTemplateEditFunction)
             self.appProperties.reasonTemplates[reasonTemplateId] = reasonTemplate
             self.reset()
             self.dismiss()

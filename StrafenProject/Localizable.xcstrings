@@ -477,6 +477,59 @@
         }
       }
     },
+    "fine-add-and-edit|multiple-persons-selected?first-person-name=%@&second-person-name=%@&other-persons-count%lld" : {
+      "comment" : "Multiple persons selected text in fine add and edit.",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%1$@, %2$@ und 1 weiterer"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%1$@, %2$@ und %3$lld weitere"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%1$@ und %2$@"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%1$@, %2$@ and 1 more"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%1$@, %2$@ and %3$lld"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%1$@ and %2$@"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "fine-add-and-edit|new-fine-notification|title?name=%@" : {
       "comment" : "Title of the notification send when a new fine is created. 'name' parameter is the name of the person of this fine.",
       "localizations" : {
@@ -830,6 +883,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Search person"
+          }
+        }
+      }
+    },
+    "fine-pick-person|select-button" : {
+      "comment" : "Text of select button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auswählen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select"
           }
         }
       }
@@ -2024,24 +2094,6 @@
         }
       }
     },
-    "person-add-and-edit|remove-image" : {
-      "comment" : "Remove image button in person add and edit.",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bild entfernen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remove image"
-          }
-        }
-      }
-    },
     "person-add-and-edit|save-button" : {
       "comment" : "Save person button in person add and edit.",
       "localizations" : {
@@ -2055,24 +2107,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Save"
-          }
-        }
-      }
-    },
-    "person-add-and-edit|select-image" : {
-      "comment" : "Select image button in person add and edit.",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bild auswählen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Select image"
           }
         }
       }
@@ -2141,204 +2175,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Add fine"
-          }
-        }
-      }
-    },
-    "person-detail|invitation-alert|already-invited" : {
-      "comment" : "Message of the invitation alert that is shown after the invite button is pressed and the person is already invited.",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Diese Person ist bereits eingeladen."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This person is already invited."
-          }
-        }
-      }
-    },
-    "person-detail|invitation-alert|invite-button" : {
-      "comment" : "Invite button of the invitation alert that is shown after the invite button is pressed.",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jetzt einladen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Invite now"
-          }
-        }
-      }
-    },
-    "person-detail|invitation-alert|title?name=%@" : {
-      "comment" : "Title of the invitation alert that is shown after the invite button is pressed. 'name' parameter is the name of the person to invite.",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ einladen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Invite %@"
-          }
-        }
-      }
-    },
-    "person-detail|invitation-alert|withdraw-invitation-button" : {
-      "comment" : "Withdraw invitation button of the invitation alert that is shown after the invite button is pressed and the person is already invited.",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einladung zurückziehen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Withdraw invitation"
-          }
-        }
-      }
-    },
-    "person-detail|invitation-button" : {
-      "comment" : "Invite this person button in person detail.",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einladen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Invite"
-          }
-        }
-      }
-    },
-    "person-detail|invitation-created-alert|message?invitaion-link=%@" : {
-      "comment" : "Message of the alert that is shown after a new invitation link is created. It also says that the link is copied to the paste board. 'invitation-link' parameter is the link of the invitation.",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@\nDer Link ist auch in deine Zwischenablage kopiert."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@\nThe link is also copied to the clipboard."
-          }
-        }
-      }
-    },
-    "person-detail|invitation-created-alert|title?name=%@" : {
-      "comment" : "Title of the alert that is shown after a new invitation link is created, so this link can be pass to that person. 'name' parameter is the name of the person that is invited.",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gebe den Einladungslink an %@ weiter."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pass the invite link on to %@."
-          }
-        }
-      }
-    },
-    "person-detail|open-fines" : {
-      "comment" : "Section text of still open fines.",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Offene Strafen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open fines"
-          }
-        }
-      }
-    },
-    "person-detail|payed-fines" : {
-      "comment" : "Section text of already payed fines.",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bereits gezahlt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Payed fines"
-          }
-        }
-      }
-    },
-    "person-detail|still-open-amount" : {
-      "comment" : "Text for the fine amount of the person that is still open.",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noch offen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Still open"
-          }
-        }
-      }
-    },
-    "person-detail|total-amount" : {
-      "comment" : "Text for the total fine amount of the person.",
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gesamt"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total"
           }
         }
       }
