@@ -56,6 +56,7 @@
 		B035642329DEFB5F000BB7AD /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B035642229DEFB5F000BB7AD /* CryptoSwift */; };
 		B035642729DF078A000BB7AD /* CrypterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B035642629DF078A000BB7AD /* CrypterTests.swift */; };
 		B039A6552A51BD8D006A6A1C /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039A6542A51BD8D006A6A1C /* WebView.swift */; };
+		B039A6572A51D7C9006A6A1C /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039A6562A51D7C9006A6A1C /* AsyncButton.swift */; };
 		B04C7A342A3508BB00133731 /* FineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04C7A332A3508BB00133731 /* FineListView.swift */; };
 		B04C7A362A38438300133731 /* SearchableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04C7A352A38438300133731 /* SearchableModifier.swift */; };
 		B04C7A382A3848A100133731 /* AlertModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04C7A372A3848A100133731 /* AlertModifier.swift */; };
@@ -328,6 +329,7 @@
 		B035641F29DEFABE000BB7AD /* Crypter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypter.swift; sourceTree = "<group>"; };
 		B035642629DF078A000BB7AD /* CrypterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrypterTests.swift; sourceTree = "<group>"; };
 		B039A6542A51BD8D006A6A1C /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		B039A6562A51D7C9006A6A1C /* AsyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
 		B04C7A332A3508BB00133731 /* FineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineListView.swift; sourceTree = "<group>"; };
 		B04C7A352A38438300133731 /* SearchableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableModifier.swift; sourceTree = "<group>"; };
 		B04C7A372A3848A100133731 /* AlertModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModifier.swift; sourceTree = "<group>"; };
@@ -790,6 +792,7 @@
 				B0719B422A389F8B005971CD /* ReasonTemplateListView.swift */,
 				B0300E7D2A51A97600984127 /* PaypalMeButton.swift */,
 				B039A6542A51BD8D006A6A1C /* WebView.swift */,
+				B039A6562A51D7C9006A6A1C /* AsyncButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1193,6 +1196,7 @@
 				B05FC7392A28A13100736370 /* Settings+Sorting.swift in Sources */,
 				B05AF42E29E2F56100BA15F0 /* Settings.swift in Sources */,
 				B0E6A58629E035C80095471B /* Amount.swift in Sources */,
+				B039A6572A51D7C9006A6A1C /* AsyncButton.swift in Sources */,
 				B05AF42729E2F2A700BA15F0 /* ConnectionState.swift in Sources */,
 				B06EA00329E1DA610034B178 /* FineEditPayedFunction.swift in Sources */,
 				B0E1A6DB2A5167F800C79D4C /* PaypalMeSetFunction.swift in Sources */,

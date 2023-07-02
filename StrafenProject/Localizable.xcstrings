@@ -1,12 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%@ ändern" : {
-
-    },
-    "Abbrechen" : {
-
-    },
     "agree-terms-privacy-by-continue|by-continue-agree" : {
       "comment" : "Starting part of 'By continuing you agree to Terms, Conditions and Privacy Policy', i.e. 'By continuing you agree to'. Don't add trailing space as it's splitted between two lines.",
       "localizations" : {
@@ -190,6 +184,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "close-button" : {
+      "comment" : "Text of close button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schließen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
           }
         }
       }
@@ -1080,9 +1091,6 @@
         }
       }
     },
-    "Füge einen PayPal.me Link hinzu, um Strafen mit PayPal zu zahlen." : {
-
-    },
     "got-it-button" : {
       "comment" : "Text of a 'got it' button.",
       "localizations" : {
@@ -1524,9 +1532,6 @@
           }
         }
       }
-    },
-    "Jetzt zahlen mit PayPal" : {
-
     },
     "login|custom-error-alert|login|not-registerd-message" : {
       "comment" : "Login failed alert if person try to login is not registered.",
@@ -1987,20 +1992,22 @@
         }
       }
     },
-    "paypal.me" : {
-
-    },
-    "Paypal.me ändern" : {
-
-    },
-    "Paypal.me entfernen" : {
-
-    },
-    "paypal.me hinzufügen" : {
-
-    },
-    "Paypal.me hinzufügen" : {
-
+    "paypal-me-button|text" : {
+      "comment" : "Text of paypal.me button",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jetzt zahlen mit PayPal"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pay now with PayPal"
+          }
+        }
+      }
     },
     "person-add-and-edit|add-button" : {
       "comment" : "Add person button in person add and edit.",
@@ -3078,6 +3085,23 @@
         }
       }
     },
+    "save-button" : {
+      "comment" : "Text of save button.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speichern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        }
+      }
+    },
     "settings|appearance" : {
       "comment" : "Title of the appearance section in settings.",
       "localizations" : {
@@ -3091,6 +3115,118 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Appearance"
+          }
+        }
+      }
+    },
+    "settings|paypal-me|add-link-button" : {
+      "comment" : "Add new paypal.me link button in settings editor.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "paypal.me hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add paypal.me"
+          }
+        }
+      }
+    },
+    "settings|paypal-me|alert-message" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Füge einen PayPal.me Link hinzu, um Strafen mit PayPal zu zahlen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a paypal.me link to pay fines with PayPal."
+          }
+        }
+      }
+    },
+    "settings|paypal-me|alert-title-add-link" : {
+      "comment" : "Add paypal.me link alert title.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paypal.me hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add paypal.me"
+          }
+        }
+      }
+    },
+    "settings|paypal-me|alert-title-change-link" : {
+      "comment" : "Change paypal.me link alert title.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paypal.me ändern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change paypal.me "
+          }
+        }
+      }
+    },
+    "settings|paypal-me|change-link-button?old-link=%@" : {
+      "comment" : "Change old paypal.me link button in settings editor.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ändern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change %@"
+          }
+        }
+      }
+    },
+    "settings|paypal-me|delete-button" : {
+      "comment" : "Delete button in paypal.me change alert in settings editor.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "paypal.me entfernen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete paypal.me"
+          }
+        }
+      }
+    },
+    "settings|paypal-me|input-placeholder" : {
+      "comment" : "paypal.me textfield input placeholder in settings editor.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "paypal.me"
           }
         }
       }
@@ -3196,9 +3332,6 @@
           }
         }
       }
-    },
-    "Speichern" : {
-
     },
     "start-page|buttons|login" : {
       "comment" : "Login button on start page to get to login page.",

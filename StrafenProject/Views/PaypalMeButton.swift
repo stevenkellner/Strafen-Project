@@ -30,7 +30,7 @@ struct PaypalMeButton: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 30, height: 30)
-                    Text("Jetzt zahlen mit PayPal")
+                    Text("paypal-me-button|text", comment: "Text of paypal.me button")
                 }
             }.sheet(isPresented: self.$isWebSheetShown) {
                 NavigationView {
@@ -38,7 +38,7 @@ struct PaypalMeButton: View {
                         .navigationTitle(paypalMeLink)
                         .navigationBarTitleDisplayMode(.inline)
                         .toolbar {
-                            ToolbarButton(placement: .topBarTrailing, label: "Schließen") {
+                            ToolbarButton(placement: .topBarTrailing, label: String(localized: "close-button", comment: "Text of close button.")) {
                                 self.isWebSheetShown = false
                             }
                         }

@@ -86,9 +86,9 @@ struct SettingsEditor: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 30, height: 30)
                         if let paypalMeLink = self.appProperties.club.paypalMeLink {
-                            Text("\(paypalMeLink) ändern")
+                            Text("settings|paypal-me|change-link-button?old-link=\(paypalMeLink)", comment: "Change old paypal.me link button in settings editor.")
                         } else {
-                            Text("paypal.me hinzufügen")
+                            Text("settings|paypal-me|add-link-button", comment: "Add new paypal.me link button in settings editor.")
                         }
                     }
                 }
@@ -98,31 +98,27 @@ struct SettingsEditor: View {
                 } else {
                     self.paypalMeLink = ""
                 }
-            }.alert(self.appProperties.club.paypalMeLink == nil ? "Paypal.me hinzufügen" : "Paypal.me ändern", isPresented: self.$isPaypalMeAlertShown) {
-                TextField("paypal.me", text: self.$paypalMeLink)
+            }.alert(self.appProperties.club.paypalMeLink == nil ? String(localized: "settings|paypal-me|alert-title-add-link", comment: "Add paypal.me link alert title.") : String(localized: "settings|paypal-me|alert-title-change-link", comment: "Change paypal.me link alert title."), isPresented: self.$isPaypalMeAlertShown) {
+                TextField(String(localized: "settings|paypal-me|input-placeholder", comment: "paypal.me textfield input placeholder in settings editor."), text: self.$paypalMeLink)
                     .keyboardType(.URL)
                     .textInputAutocapitalization(.never)
-                Button {
-                    Task {
-                        await self.setPaypalMe()
-                    }
+                AsyncButton {
+                    await self.setPaypalMe()
                 } label: {
-                    Text("Speichern")
+                    Text("save-button", comment: "Text of save button.")
                 }.disabled(self.parsedPaypalMeName == nil)
                 if appProperties.club.paypalMeLink != nil {
-                    Button(role: .destructive) {
-                        Task {
-                            await self.deletePaypalMe()
-                        }
+                    AsyncButton(role: .destructive) {
+                        await self.deletePaypalMe()
                     } label: {
-                        Text("Paypal.me entfernen")
+                        Text("settings|paypal-me|delete-button", comment: "Delete button in paypal.me change alert in settings editor.")
                     }
                 }
                 Button(role: .cancel) {} label: {
-                    Text("Abbrechen")
+                    Text("cancel-button", comment: "Text of cancel button.")
                 }
             } message: {
-                Text("Füge einen PayPal.me Link hinzu, um Strafen mit PayPal zu zahlen.")
+                Text("settings|paypal-me|alert-message")
             }
         }
     }
