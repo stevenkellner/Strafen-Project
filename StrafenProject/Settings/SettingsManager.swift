@@ -31,9 +31,7 @@ class SettingsManager: ObservableObject {
     }
     
     subscript<T>(dynamicMember keyPath: KeyPath<Settings, T>) -> T {
-        get {
-            return self.settings[keyPath: keyPath]
-        }
+        return self.settings[keyPath: keyPath]
     }
     
     #if !NOTIFICATION_SERVICE_EXTENSION && !WIDGET_EXTENSION

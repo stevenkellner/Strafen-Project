@@ -7,50 +7,40 @@
 
 import Foundation
 
-enum ValidationResult<Failure> {
+enum ValidationResult {
     case valid
-    case invalid(Failure)
-    
-    static func &&(lhs: ValidationResult<Failure>, rhs: @autoclosure () throws -> ValidationResult<Failure>) rethrows -> ValidationResult<Failure> {
-        if case .invalid(let failure) = lhs {
-            return .invalid(failure)
+    case invalid
+    static func &&(lhs: ValidationResult, rhs: @autoclosure () throws -> ValidationResult) rethrows -> ValidationResult {
+        if lhs == .invalid {
+            return .invalid
         }
         return try rhs()
     }
     
-    static func ||(lhs: ValidationResult<Failure>, rhs: @autoclosure () throws -> ValidationResult<Failure>) rethrows -> ValidationResult<Failure> {
-        if case .valid = lhs {
+    static func ||(lhs: ValidationResult, rhs: @autoclosure () throws -> ValidationResult) rethrows -> ValidationResult {
+        if lhs == .valid {
             return .valid
         }
         return try rhs()
     }
-    
-    func mapFailure<NewFailure>(_ transform: (Failure) throws -> NewFailure) rethrows -> ValidationResult<NewFailure> {
-        switch self {
-        case .valid:
-            return .valid
-        case .invalid(let failure):
-            return .invalid(try transform(failure))
-        }
-    }
-    
-    static func evaluate(@ValidationResultEvaluator<Failure> _ evaluator: () -> ValidationResult<Failure>) -> ValidationResult<Failure> {
+        
+    static func evaluate(@ValidationResultEvaluator _ evaluator: () -> ValidationResult) -> ValidationResult {
         return evaluator()
     }
 }
 
-extension ValidationResult: Equatable where Failure: Equatable {}
+extension ValidationResult: Equatable {}
 
-extension ValidationResult: Hashable where Failure: Hashable {}
+extension ValidationResult: Hashable {}
 
-extension ValidationResult: Sendable where Failure: Sendable {}
+extension ValidationResult: Sendable {}
 
 extension Collection {
     
-    func evaluateAll<Failure>(valid evaluate: (Element) throws -> ValidationResult<Failure>) rethrows -> ValidationResult<Failure> {
+    func evaluateAll(valid evaluate: (Element) throws -> ValidationResult) rethrows -> ValidationResult {
         for result in try self.map(evaluate) {
-            if case .invalid(let failure) = result {
-                return .invalid(failure)
+            if result == .invalid {
+                return .invalid
             }
         }
         return .valid
@@ -58,25 +48,25 @@ extension Collection {
 }
 
 @resultBuilder
-struct ValidationResultEvaluator<Failure> {
+struct ValidationResultEvaluator {
     
-    static func buildBlock(_ results: ValidationResult<Failure>...) -> ValidationResult<Failure> {
+    static func buildBlock(_ results: ValidationResult...) -> ValidationResult {
         return results.evaluateAll { $0 }
     }
     
-    static func buildArray(_ results: [ValidationResult<Failure>]) -> ValidationResult<Failure> {
+    static func buildArray(_ results: [ValidationResult]) -> ValidationResult {
         return results.evaluateAll { $0 }
     }
     
-    static func buildOptional(_ result: ValidationResult<Failure>?) -> ValidationResult<Failure> {
+    static func buildOptional(_ result: ValidationResult?) -> ValidationResult {
         return result ?? .valid
     }
     
-    static func buildEither(first result: ValidationResult<Failure>) -> ValidationResult<Failure> {
+    static func buildEither(first result: ValidationResult) -> ValidationResult {
         return result
     }
     
-    static func buildEither(second result: ValidationResult<Failure>) -> ValidationResult<Failure> {
+    static func buildEither(second result: ValidationResult) -> ValidationResult {
         return result
     }
 }

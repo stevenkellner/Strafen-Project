@@ -31,6 +31,9 @@ struct PersonInfoSection<Person, ExtraRows>: View where Person: PersonWithFines,
             if let extraRows = self.extraRows {
                 extraRows
             }
+            if self.person.id == self.appProperties.signedInPerson.id && fines.unpayedAmount != .zero {
+                PaypalMeButton(amount: fines.unpayedAmount)
+            }
         }.task {
             await self.imageStorage.fetch(.person(clubId: self.appProperties.club.id, personId: self.person.id))
         }

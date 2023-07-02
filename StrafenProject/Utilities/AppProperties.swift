@@ -10,7 +10,7 @@ import OSLog
 
 @MainActor
 class AppProperties: ObservableObject {
-    var signedInPerson: Settings.SignedInPerson
+    @Published var signedInPerson: Settings.SignedInPerson
     @Published var persons: IdentifiableList<Person>
     @Published var reasonTemplates: IdentifiableList<ReasonTemplate>
     @Published var fines: IdentifiableList<Fine>

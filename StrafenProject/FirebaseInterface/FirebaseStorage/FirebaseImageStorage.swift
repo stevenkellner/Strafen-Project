@@ -11,6 +11,9 @@ import FirebaseStorage
 
 @MainActor
 class FirebaseImageStorage: ObservableObject {
+    enum Error: Swift.Error {
+        case invalidJpegData
+    }
     
     static private let storageBucketUrl = "gs://strafen-project-images"
         
@@ -35,11 +38,12 @@ class FirebaseImageStorage: ObservableObject {
             return self.personImages[personId]
         }
     }
-        
+    
     func store(_ image: UIImage, for imageType: FirebaseStorageImageType) async throws {
         let compressionQuality: CGFloat = 0.85
-        guard let imageData = image.jpegData(compressionQuality: compressionQuality) else {
-            return
+        guard let image = self.resizedImage(image),
+              let imageData = image.jpegData(compressionQuality: compressionQuality) else {
+            throw Error.invalidJpegData
         }
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
@@ -48,6 +52,21 @@ class FirebaseImageStorage: ObservableObject {
             .reference(withPath: imageType.imageUrl.path())
             .putDataAsync(imageData, metadata: metadata)
         self.saveCache(image: image, for: imageType)
+    }
+    
+    private func resizedImage(_ image: UIImage) -> UIImage? {
+        let dimension: Double = 512
+        let imageSize = image.size
+        guard max(imageSize.width, imageSize.height) > dimension else {
+            return image
+        }
+        let newSize = imageSize.width > imageSize.height ? CGSize(width: dimension, height: dimension * imageSize.height / imageSize.width) : CGSize(width: dimension * imageSize.width / imageSize.height, height: dimension)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        defer {
+            UIGraphicsEndImageContext()
+        }
+        image.draw(in: CGRect(origin: .zero, size: newSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
     
     func fetch(_ imageType: FirebaseStorageImageType, useCachedImage: Bool = true) async {

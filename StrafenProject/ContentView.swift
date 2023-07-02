@@ -36,6 +36,7 @@ struct ContentView: View {
                     case .failed(reason: _):
                         if self.activeBottomBarItem == .settings {
                             SettingsEditor()
+                                .environmentObject(AppProperties.randomPlaceholder(signedInPerson: signedInPerson))
                         } else {
                             self.fetchAppPropertiesFailed(signedInPerson: signedInPerson)
                         }
@@ -48,6 +49,7 @@ struct ContentView: View {
             } else {
                 StartPageView()
                     .onAppear {
+                        self.appPropertiesConnectionState = .notStarted
                         self.imageStorage.clear()
                     }
             }

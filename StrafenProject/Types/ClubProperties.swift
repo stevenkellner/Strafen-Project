@@ -12,6 +12,7 @@ struct ClubProperties {
     
     public private(set) var id: ClubProperties.ID
     public private(set) var name: String
+    public var paypalMeLink: String?
 }
 
 extension ClubProperties: Equatable {}
@@ -26,6 +27,7 @@ extension ClubProperties: Hashable {}
 extension ClubProperties: FirebaseFunctionParameterType {
     @FirebaseFunctionParametersBuilder var parameter: FirebaseFunctionParameters {
         FirebaseFunctionParameter(self.name, for: "name")
+        FirebaseFunctionParameter(self.paypalMeLink, for: "paypalMeLink")
     }
 }
 #endif

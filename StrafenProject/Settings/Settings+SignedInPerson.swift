@@ -18,7 +18,7 @@ extension Settings {
 #endif
         public private(set) var isAdmin: Bool
         public private(set) var hashedUserId: String
-        public private(set) var club: ClubProperties
+        public var club: ClubProperties
     }
 }
 

@@ -97,7 +97,7 @@ final class FirebaseFunctionsTests: XCTestCase {
         try await Database.database(url: PrivateKeys.current.databaseUrl).reference(withPath: "clubs/\(self.clubId.uuidString)/persons/\(personId.uuidString)").setValue(crypter.encodeEncrypt(Person(id: personId, name: PersonName(first: "lkj", last: "asef"), fineIds: [], signInData: SignInData(hashedUserId: hashedUserId, signInDate: signInDate, authentication: [.clubMember], notificationTokens: [:]), isInvited: false)))
         let personGetCurrentFunction = PersonGetCurrentFunction()
         let person = try await FirebaseFunctionCaller.shared.verbose.call(personGetCurrentFunction)
-        XCTAssertEqual(person, PersonGetCurrentFunction.ReturnType(id: personId, name: PersonName(first: "lkj", last: "asef"), fineIds: [], signInData: SignInData(hashedUserId: hashedUserId, signInDate: signInDate, authentication: [.clubMember], notificationTokens: [:]), club: ClubProperties(id: self.clubId, name: "Neuer Verein")))
+        XCTAssertEqual(person, PersonGetCurrentFunction.ReturnType(id: personId, name: PersonName(first: "lkj", last: "asef"), fineIds: [], signInData: SignInData(hashedUserId: hashedUserId, signInDate: signInDate, authentication: [.clubMember], notificationTokens: [:]), club: ClubProperties(id: self.clubId, name: "Neuer Verein", paypalMeLink: "paypal.me/test")))
     }
     
     func testPersonGet() async throws {
@@ -121,7 +121,7 @@ final class FirebaseFunctionsTests: XCTestCase {
         try await Database.database(url: PrivateKeys.current.databaseUrl).reference(withPath: "clubs/\(self.clubId.uuidString)/authentication/clubManager/\(hashedUserId)").removeValue()
         let personRegisterPerson = PersonRegisterFunction(clubId: self.clubId, personId: Person.ID(uuidString: "D1852AC0-A0E2-4091-AC7E-CB2C23F708D9")!)
         let club = try await FirebaseFunctionCaller.shared.verbose.call(personRegisterPerson)
-        XCTAssertEqual(club, ClubProperties(id: self.clubId, name: "Neuer Verein"))
+        XCTAssertEqual(club, ClubProperties(id: self.clubId, name: "Neuer Verein", paypalMeLink: "paypal.me/test"))
     }
     
     func testPersonMakeManager() async throws {
@@ -171,7 +171,7 @@ final class FirebaseFunctionsTests: XCTestCase {
         let invitationLinkId = try await FirebaseFunctionCaller.shared.verbose.call(invitationLinkCreateIdFunction)
         let invitationLinkGetPersonFunction = InvitationLinkGetPersonFunction(invitationLinkId: invitationLinkId)
         let person = try await FirebaseFunctionCaller.shared.verbose.call(invitationLinkGetPersonFunction)
-        XCTAssertEqual(person, InvitationLinkGetPersonFunction.ReturnType(id: personId, name: PersonName(first: "Jane", last: "Doe"), fineIds: [], club: ClubProperties(id: self.clubId, name: "Neuer Verein")))
+        XCTAssertEqual(person, InvitationLinkGetPersonFunction.ReturnType(id: personId, name: PersonName(first: "Jane", last: "Doe"), fineIds: [], club: ClubProperties(id: self.clubId, name: "Neuer Verein", paypalMeLink: "paypal.me/test")))
     }
     
     func testNotificationRegister() async throws {
@@ -184,5 +184,10 @@ final class FirebaseFunctionsTests: XCTestCase {
         let personId = Person.ID(uuidString: "76025DDE-6893-46D2-BC34-9864BB5B8DAD")!
         let notificationPushFunction = NotificationPushFunction(clubId: self.clubId, personId: personId, payload: NotificationPayload(title: "A title", body: "The body"))
         try await FirebaseFunctionCaller.shared.verbose.call(notificationPushFunction)
+    }
+    
+    func testPaypalMeSet() async throws {
+        let paypalMeSetFunction = PaypalMeSetFunction(clubId: self.clubId, paypalMeLink: "paypal.me/asdf")
+        try await FirebaseFunctionCaller.shared.verbose.call(paypalMeSetFunction)
     }
 }

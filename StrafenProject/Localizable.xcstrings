@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ ändern" : {
+
+    },
+    "Abbrechen" : {
+
+    },
     "agree-terms-privacy-by-continue|by-continue-agree" : {
       "comment" : "Starting part of 'By continuing you agree to Terms, Conditions and Privacy Policy', i.e. 'By continuing you agree to'. Don't add trailing space as it's splitted between two lines.",
       "localizations" : {
@@ -1074,6 +1080,9 @@
         }
       }
     },
+    "Füge einen PayPal.me Link hinzu, um Strafen mit PayPal zu zahlen." : {
+
+    },
     "got-it-button" : {
       "comment" : "Text of a 'got it' button.",
       "localizations" : {
@@ -1515,6 +1524,9 @@
           }
         }
       }
+    },
+    "Jetzt zahlen mit PayPal" : {
+
     },
     "login|custom-error-alert|login|not-registerd-message" : {
       "comment" : "Login failed alert if person try to login is not registered.",
@@ -1974,6 +1986,21 @@
           }
         }
       }
+    },
+    "paypal.me" : {
+
+    },
+    "Paypal.me ändern" : {
+
+    },
+    "Paypal.me entfernen" : {
+
+    },
+    "paypal.me hinzufügen" : {
+
+    },
+    "Paypal.me hinzufügen" : {
+
     },
     "person-add-and-edit|add-button" : {
       "comment" : "Add person button in person add and edit.",
@@ -3169,6 +3196,9 @@
           }
         }
       }
+    },
+    "Speichern" : {
+
     },
     "start-page|buttons|login" : {
       "comment" : "Login button on start page to get to login page.",
