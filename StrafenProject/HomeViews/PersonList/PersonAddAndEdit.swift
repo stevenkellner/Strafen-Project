@@ -98,7 +98,7 @@ struct PersonAddAndEdit: View {
                 self.isMakePersonAdminAlertShown = true
             }.loading(self.isAddAndEditButtonLoading)
         }
-        ToolbarButton(placement: .topBarLeading, localized: self.personToEdit == nil ? LocalizedStringResource("person-add-and-edit|add-button", comment: "Add person button in person add and edit.") : LocalizedStringResource("person-add-and-edit|save-button", comment: "Save person button in person add and edit.")) {
+        ToolbarButton(placement: .topBarTrailing, localized: self.personToEdit == nil ? LocalizedStringResource("person-add-and-edit|add-button", comment: "Add person button in person add and edit.") : LocalizedStringResource("person-add-and-edit|save-button", comment: "Save person button in person add and edit.")) {
             await self.savePerson()
         }.loading(self.isAddAndEditButtonLoading)
             .disabled(self.firstName == "")

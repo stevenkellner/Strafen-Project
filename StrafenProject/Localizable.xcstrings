@@ -3228,6 +3228,12 @@
             "state" : "translated",
             "value" : "paypal.me"
           }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "paypal.me"
+          }
         }
       }
     },
