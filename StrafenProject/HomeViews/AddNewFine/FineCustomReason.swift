@@ -16,13 +16,15 @@ struct FineCustomReason: View {
     
     private let completionHandler: (_ reasonMessage: String, _ amount: Amount) -> Void
     
-    @State private var reasonMessage = ""
+    @State private var reasonMessage: String = ""
     
     @State private var amount: Amount = .zero
     
     @FocusState private var inputFocus: InputFocus?
     
-    init(handler completionHandler: @escaping (_ reasonMessage: String, _ amount: Amount) -> Void) {
+    init(initialReasonMessage reasonMessage: String, initialAmount amount: Amount, handler completionHandler: @escaping (_ reasonMessage: String, _ amount: Amount) -> Void) {
+        self._reasonMessage = State(initialValue: reasonMessage)
+        self._amount = State(initialValue: amount)
         self.completionHandler = completionHandler
     }
     

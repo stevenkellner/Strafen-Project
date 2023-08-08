@@ -16,7 +16,7 @@ struct Person: Identifiable {
     public var fineIds: [Fine.ID]
 #endif
     public var signInData: SignInData?
-    public var isInvited: Bool
+    public var invitationLinkId: String?
 }
 
 extension Person: Equatable {}
@@ -39,8 +39,24 @@ extension Person: RandomPlaceholder {
     static var randomPlaceholderFineIds: [Fine.ID] = []
     
     static func randomPlaceholder(using generator: inout some RandomNumberGenerator) -> Person {
-        return Person(id: ID(), name: PersonName.randomPlaceholder(using: &generator), fineIds: Person.randomPlaceholderFineIds, signInData: nil, isInvited: Bool.random(using: &generator))
+        return Person(id: ID(), name: PersonName.randomPlaceholder(using: &generator), fineIds: Person.randomPlaceholderFineIds, signInData: nil, invitationLinkId: Bool.random(using: &generator) ? "" : nil)
     }
+}
+
+extension Person: ChangeObservable {
+    
+    typealias GetSingleFunction = PersonGetSingleFunction
+    
+    static let changesKey = "persons"
+}
+
+extension Person: ListCachable {
+    static let cacheFilePath = "persons"
+}
+
+extension Person: AppPropertiesList {
+    typealias GetFunction = PersonGetFunction
+    typealias GetChangesFunction = PersonGetChangesFunction
 }
 #endif
 

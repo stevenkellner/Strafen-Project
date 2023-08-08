@@ -6,10 +6,14 @@
 //
 
 import Foundation
-import StrafenProjectMacros
 
-@DefaultDecodable
-struct Settings: Encodable {
+struct Settings: Codable {    
+    private struct OptionalSettings: Decodable {
+        let appearance: Settings.Appearance?
+        let sorting: Settings.Sorting?
+        let signedInPerson: Settings.SignedInPerson?
+    }
+    
     static let `default` = Settings(appearance: .system, sorting: Settings.Sorting.default, signedInPerson: nil)
     
     public var appearance: Settings.Appearance
@@ -20,5 +24,12 @@ struct Settings: Encodable {
         self.appearance = appearance
         self.sorting = sorting
         self.signedInPerson = signedInPerson
+    }
+    
+    init(from decoder: Decoder) throws {
+        let optionalSettings = try? OptionalSettings(from: decoder)
+        self.appearance = optionalSettings?.appearance ?? Settings.default.appearance
+        self.sorting = optionalSettings?.sorting ?? Settings.default.sorting
+        self.signedInPerson = optionalSettings?.signedInPerson ?? Settings.default.signedInPerson
     }
 }

@@ -41,7 +41,7 @@ struct FinePickReasonTemplate: View {
                         Text("fine-pick-reason-template|custom-reason-button", comment: "Custom reason button of fine pick reason template.")
                     }
                 }.sheet(isPresented: self.$isCustomReasonSheetShown) {
-                    FineCustomReason { reasonMessage, amount in
+                    FineCustomReason(initialReasonMessage: self.formattedReasonMessage, initialAmount: self.amount ?? .zero) { reasonMessage, amount in
                         self.reasonMessage = reasonMessage
                         self.counts = nil
                         self.amount = amount
@@ -78,5 +78,9 @@ struct FinePickReasonTemplate: View {
                 self.dismiss()
             }
         }
+    }
+    
+    private var formattedReasonMessage: String {
+        return ReasonTemplate(id: ReasonTemplate.ID(), reasonMessage: self.reasonMessage ?? "", amount: self.amount ?? .zero, counts: self.counts).formatted
     }
 }

@@ -27,6 +27,7 @@ struct SettingsEditor: View {
                 self.appearancePicker
                 self.sortingPicker
                 self.paypalMeInput
+                self.deleteCacheButton
                 self.signOutButton
             }.navigationTitle(String(localized: "settings|title", comment: "Navigation title of the settings."))
                 .onAppear {
@@ -119,6 +120,25 @@ struct SettingsEditor: View {
                 }
             } message: {
                 Text("settings|paypal-me|alert-message")
+            }
+        }
+    }
+    
+    @ViewBuilder private var deleteCacheButton: some View {
+        Section {
+            Button(role: .destructive) {
+                do {
+                    try AppPropertiesCache.shared.removeList(type: Person.self)
+                    try AppPropertiesCache.shared.removeList(type: ReasonTemplate.self)
+                    try AppPropertiesCache.shared.removeList(type: Fine.self)
+                } catch {
+                    print(error)
+                }
+            } label: {
+                HStack {
+                    Image(systemName: "trash")
+                    Text("settings|delete-cache", comment: "Delete cache button in settings editor.")
+                }
             }
         }
     }

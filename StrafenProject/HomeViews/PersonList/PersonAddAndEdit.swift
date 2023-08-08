@@ -140,7 +140,7 @@ struct PersonAddAndEdit: View {
         do {
             let personId = self.personToEdit?.id ?? Person.ID()
             let personName = PersonName(first: self.firstName, last: self.lastName == "" ? nil : self.lastName)
-            let person = Person(id: personId, name: personName, fineIds: [], isInvited: false)
+            let person = Person(id: personId, name: personName, fineIds: [], invitationLinkId: nil)
             if self.personToEdit == nil {
                 let personAddFunction = PersonAddFunction(clubId: self.appProperties.club.id, person: person)
                 try await FirebaseFunctionCaller.shared.call(personAddFunction)

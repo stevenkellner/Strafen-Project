@@ -14,7 +14,7 @@ struct SignInData {
     }
     
     public private(set) var hashedUserId: String
-    public private(set) var signInDate: Date
+    public private(set) var signInDate: UtcDate
     public var authentication: [UserAuthenticationType]
     public var notificationTokens: [String: String]
 }
@@ -27,14 +27,7 @@ extension SignInData.UserAuthenticationType: Sendable {}
 
 extension SignInData.UserAuthenticationType: Hashable {}
 
-extension SignInData: Equatable {
-    static func ==(lhs: SignInData, rhs: SignInData) -> Bool {
-        return lhs.hashedUserId == rhs.hashedUserId &&
-            lhs.signInDate.timeIntervalSinceReferenceDate.rounded(.down) == rhs.signInDate.timeIntervalSinceReferenceDate.rounded(.down) && 
-            lhs.authentication == rhs.authentication &&
-            lhs.notificationTokens == rhs.notificationTokens
-    }
-}
+extension SignInData: Equatable {}
 
 extension SignInData: Codable {}
 

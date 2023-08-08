@@ -8,6 +8,31 @@
 import SwiftUI
 import OSLog
 
+protocol FirebaseGetFunction: FirebaseFunction {
+    
+    associatedtype Element: Identifiable where Element: Identifiable, Element.ID: Hashable
+    
+    associatedtype ReturnType = IdentifiableList<Element>
+    
+    init(clubId: ClubProperties.ID)
+}
+
+protocol FirebaseGetChangesFunction: FirebaseFunction {
+    
+    associatedtype Element: Identifiable
+    
+    associatedtype ReturnType = [Deletable<Element>]
+        
+    init(clubId: ClubProperties.ID)
+}
+
+protocol AppPropertiesList: Identifiable, ListCachable {
+    
+    associatedtype GetFunction: FirebaseGetFunction where GetFunction.Element == Self
+    
+    associatedtype GetChangesFunction: FirebaseGetChangesFunction where GetChangesFunction.Element == Self
+}
+
 @MainActor
 class AppProperties: ObservableObject {
     @Published var signedInPerson: Settings.SignedInPerson
@@ -29,27 +54,64 @@ class AppProperties: ObservableObject {
         self.fines = fines
     }
     
-    static func fetch(with signedInPerson: Settings.SignedInPerson) async throws -> AppProperties {
+    static func fetchList<Element>(clubId: ClubProperties.ID, getCache: Bool) async throws -> IdentifiableList<Element> where Element: AppPropertiesList {
+        let cachedList: IdentifiableList<Element>? = try? AppPropertiesCache.shared.getList()
+        if var cachedList {
+            if getCache {
+                let getChangesFunction = Element.GetChangesFunction(clubId: clubId)
+                let changes = try await FirebaseFunctionCaller.shared.call(getChangesFunction) as! [Deletable<Element>]
+                cachedList.update(changes)
+                try? AppPropertiesCache.shared.saveList(list: cachedList)
+            }
+            return cachedList
+        } else {
+            let getFunction = Element.GetFunction(clubId: clubId)
+            let list = try await FirebaseFunctionCaller.shared.call(getFunction) as! IdentifiableList<Element>
+            try? AppPropertiesCache.shared.saveList(list: list)
+            return list
+        }
+    }
+
+    static func fetch(with signedInPerson: Settings.SignedInPerson, getCache: Bool = false) async throws -> AppProperties {
         AppProperties.logger.log("Fetch app properties for \(signedInPerson.club.name, privacy: .public) (\(signedInPerson.club.id, privacy: .public)).")
         let clubId = signedInPerson.club.id
-        let personGetFunction = PersonGetFunction(clubId: clubId)
-        let reasonTemplateGetFunction = ReasonTemplateGetFunction(clubId: clubId)
-        let fineGetFunction = FineGetFunction(clubId: clubId)
-        async let persons = FirebaseFunctionCaller.shared.call(personGetFunction)
-        async let reasonTemplates = FirebaseFunctionCaller.shared.call(reasonTemplateGetFunction)
-        async let fines = FirebaseFunctionCaller.shared.call(fineGetFunction)
+        async let persons: IdentifiableList<Person> = AppProperties.fetchList(clubId: clubId, getCache: getCache)
+        async let reasonTemplates: IdentifiableList<ReasonTemplate> = AppProperties.fetchList(clubId: clubId, getCache: getCache)
+        async let fines: IdentifiableList<Fine> = AppProperties.fetchList(clubId: clubId, getCache: getCache)
         do {
-            let appProperties = try await AppProperties(
-                signedInPerson: signedInPerson,
-                persons: persons,
-                reasonTemplates: reasonTemplates,
-                fines: fines
-            )
+            let appProperties = try await AppProperties(signedInPerson: signedInPerson, persons: persons, reasonTemplates: reasonTemplates, fines: fines)
             AppProperties.logger.log("Fetch app properties succeeded.")
             return appProperties
         } catch {
             AppProperties.logger.log(level: .error, "Fetch app properties failed: \(error.localizedDescription, privacy: .public).")
             throw error
+        }
+    }
+    
+    func observe() {
+        FirebaseObserver.shared.observeChanges(clubId: self.club.id, type: Person.self) { deletablePerson in
+            Task {
+                await MainActor.run {
+                    self.persons.update(deletablePerson)
+                    try? AppPropertiesCache.shared.saveList(list: self.persons)
+                }
+            }
+        }
+        FirebaseObserver.shared.observeChanges(clubId: self.club.id, type: ReasonTemplate.self) { @MainActor deletableReasonTemplate in
+            Task {
+                await MainActor.run {
+                    self.reasonTemplates.update(deletableReasonTemplate)
+                    try? AppPropertiesCache.shared.saveList(list: self.reasonTemplates)
+                }
+            }
+        }
+        FirebaseObserver.shared.observeChanges(clubId: self.club.id, type: Fine.self) { @MainActor deletableFine in
+            Task {
+                await MainActor.run {
+                    self.fines.update(deletableFine)
+                    try? AppPropertiesCache.shared.saveList(list: self.fines)
+                }
+            }
         }
     }
     
@@ -61,7 +123,7 @@ class AppProperties: ObservableObject {
             self.signedInPerson = currentPerson.settingsPerson
             let settingsManager = SettingsManager()
             try settingsManager.save(self.signedInPerson, at: \.signedInPerson)
-            let appProperties = try await AppProperties.fetch(with: self.signedInPerson)
+            let appProperties = try await AppProperties.fetch(with: self.signedInPerson, getCache: true)
             self.persons = appProperties.persons
             self.reasonTemplates = appProperties.reasonTemplates
             self.fines = appProperties.fines
@@ -154,12 +216,7 @@ extension AppProperties {
         let persons = IdentifiableList<Person>.randomPlaceholder(using: &generator)
         let reasonTemplates = IdentifiableList<ReasonTemplate>.randomPlaceholder(using: &generator)
         let fines = IdentifiableList<Fine>.randomPlaceholder(using: &generator)
-        return AppProperties(
-            signedInPerson: signedInPerson,
-            persons: persons,
-            reasonTemplates: reasonTemplates,
-            fines: fines
-        )
+        return AppProperties(signedInPerson: signedInPerson, persons: persons, reasonTemplates: reasonTemplates, fines: fines)
     }
     
     static func randomPlaceholder(signedInPerson: Settings.SignedInPerson) -> AppProperties {

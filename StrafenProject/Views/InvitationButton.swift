@@ -17,11 +17,9 @@ struct InvitationButton: ToolbarContent {
     
     @State private var invitationLink: String?
     
-    @State private var isInvitationAlertShown = false
+    @State private var isCreatedInvitationAlertShown = false
     
     @State private var isInvitationWithdrawAlertShown = false
-    
-    @State private var isCreatedInvitationAlertShown = false
     
     @State private var isLoading = false
     
@@ -38,10 +36,13 @@ struct InvitationButton: ToolbarContent {
                         .progressViewStyle(.circular)
                 } else {
                     Button {
-                        if self.person.isInvited {
-                            self.isInvitationWithdrawAlertShown = true
+                        if let invitationLinkId = self.person.invitationLinkId {
+                            await MainActor.run {
+                                UIPasteboard.general.string = self.invitationLink(id: invitationLinkId)
+                                self.isInvitationWithdrawAlertShown = true
+                            }
                         } else {
-                            self.isInvitationAlertShown = true
+                            await self.invitePerson()
                         }
                     } label: {
                         Text("invitation-button|title", comment: "Title of the person invitation button.")
@@ -54,14 +55,13 @@ struct InvitationButton: ToolbarContent {
     @ModifierBuilder private var rootModifiers: some ViewModifier {
         let title = String(localized: "invitation-button|alert-title?name=\(self.person.name.formatted())", comment: "Title of the invitation alert that is shown after the invite button is pressed. 'name' parameter is the name of the person to invite.")
         let invitationCreatedTitle = String(localized: "invitation-button|created-alert-title?name=\(self.person.name.formatted())", comment: "Title of the alert that is shown after a new invitation link is created, so this link can be pass to that person. 'name' parameter is the name of the person that is invited.")
-        AlertModifier(title, isPresented: self.$isInvitationAlertShown) {
-            Button {
-                await self.invitePerson()
-            } label: {
-                Text("invitation-button|alert-invite-button", comment: "Invite button of the invitation alert that is shown after the invite button is pressed.")
+        AlertModifier(invitationCreatedTitle, isPresented: self.$isCreatedInvitationAlertShown) {
+            Button {} label: {
+                Text("got-it-button", comment: "Text of a 'got it' button.")
             }
-            Button(role: .cancel) {} label: {
-                Text("cancel-button", comment: "Text of cancel button.")
+        } message: {
+            if let invitationLink = self.invitationLink {
+                Text("invitation-button|created-alert-message?invitaion-link=\(invitationLink)", comment: "Message of the alert that is shown after a new invitation link is created. It also says that the link is copied to the paste board. 'invitation-link' parameter is the link of the invitation.")
             }
         }
         AlertModifier(title, isPresented: self.$isInvitationWithdrawAlertShown) {
@@ -76,15 +76,10 @@ struct InvitationButton: ToolbarContent {
         } message: {
             Text("invitation-button|alert-already-invited", comment: "Message of the invitation alert that is shown after the invite button is pressed and the person is already invited.")
         }
-        AlertModifier(invitationCreatedTitle, isPresented: self.$isCreatedInvitationAlertShown) {
-            Button {} label: {
-                Text("got-it-button", comment: "Text of a 'got it' button.")
-            }
-        } message: {
-            if let invitationLink = self.invitationLink {
-                Text("invitation-button|created-alert-message?invitaion-link=\(invitationLink)", comment: "Message of the alert that is shown after a new invitation link is created. It also says that the link is copied to the paste board. 'invitation-link' parameter is the link of the invitation.")
-            }
-        }
+    }
+    
+    private func invitationLink(id invitationLinkId: String) -> String {
+        return "invitation/\(invitationLinkId)"
     }
     
     private func withdrawInvitation() async {
@@ -95,7 +90,7 @@ struct InvitationButton: ToolbarContent {
         do {
             let invitationLinkWithdrawFunction = InvitationLinkWithdrawFunction(clubId: self.appProperties.club.id, personId: self.person.id)
             try await FirebaseFunctionCaller.shared.call(invitationLinkWithdrawFunction)
-            self.appProperties.persons[self.person.id]?.isInvited = false
+            self.appProperties.persons[self.person.id]?.invitationLinkId = nil
         } catch {}
     }
     
@@ -107,10 +102,14 @@ struct InvitationButton: ToolbarContent {
         do {
             let invitationLinkCreateIdFunction = InvitationLinkCreateIdFunction(clubId: self.appProperties.club.id, personId: self.person.id)
             let invitationLinkId = try await FirebaseFunctionCaller.shared.call(invitationLinkCreateIdFunction)
-            self.invitationLink = "invitation/\(invitationLinkId)"
+            self.invitationLink = self.invitationLink(id: invitationLinkId)
             UIPasteboard.general.string = self.invitationLink
-            self.appProperties.persons[self.person.id]?.isInvited = true
-            self.isCreatedInvitationAlertShown = true
+            self.appProperties.persons[self.person.id]?.invitationLinkId = invitationLinkId
+            Task {
+                await MainActor.run {
+                    self.isCreatedInvitationAlertShown = true                    
+                }
+            }
         } catch {}
     }
 }

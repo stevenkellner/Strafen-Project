@@ -146,6 +146,24 @@ extension ReasonTemplate: RandomPlaceholder {
     }
 }
 
+#if !NOTIFICATION_SERVICE_EXTENSION && !WIDGET_EXTENSION
+extension ReasonTemplate: ChangeObservable {
+    
+    typealias GetSingleFunction = ReasonTemplateGetSingleFunction
+    
+    static let changesKey = "reasonTemplates"
+}
+
+extension ReasonTemplate: ListCachable {
+    static let cacheFilePath = "reasonTemplates"
+}
+
+extension ReasonTemplate: AppPropertiesList {
+    typealias GetFunction = ReasonTemplateGetFunction
+    typealias GetChangesFunction = ReasonTemplateGetChangesFunction
+}
+#endif
+
 extension ReasonTemplate: Sortable {
     enum SortingKey: String, SortingKeyProtocol {
         case reasonMessage

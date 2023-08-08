@@ -11,6 +11,8 @@ import FirebaseMessaging
 
 struct ContentView: View {
     
+    @Environment(\.scenePhase) private var scenePhase
+    
     @StateObject private var settingsManager = SettingsManager()
     
     @StateObject private var imageStorage = FirebaseImageStorage()
@@ -32,6 +34,13 @@ struct ContentView: View {
                             .redacted(reason: .placeholder)
                     case .passed(value: let appProperties):
                         self.mainPages
+                            .onChange(of: self.scenePhase) { scenePhase in
+                                if scenePhase == .active {
+                                    Task {
+                                        await appProperties.refresh()
+                                    }
+                                }
+                            }
                             .environmentObject(appProperties)
                     case .failed(reason: _):
                         if self.activeBottomBarItem == .settings {
@@ -114,6 +123,7 @@ struct ContentView: View {
         }
         do {
             let appProperties = try await AppProperties.fetch(with: signedInPerson)
+            appProperties.observe()
             self.appPropertiesConnectionState.passed(value: appProperties)
         } catch {
             self.appPropertiesConnectionState.failed()

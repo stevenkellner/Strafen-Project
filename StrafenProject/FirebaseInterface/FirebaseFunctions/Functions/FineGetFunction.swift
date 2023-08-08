@@ -18,3 +18,7 @@ struct FineGetFunction: FirebaseFunction {
         FirebaseFunctionParameter(self.clubId, for: "clubId")
     }
 }
+
+extension FineGetFunction: FirebaseGetFunction {
+    typealias Element = Fine    
+}

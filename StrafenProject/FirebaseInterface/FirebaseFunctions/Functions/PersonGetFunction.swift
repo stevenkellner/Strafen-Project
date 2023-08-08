@@ -18,3 +18,7 @@ struct PersonGetFunction: FirebaseFunction {
         FirebaseFunctionParameter(self.clubId, for: "clubId")
     }
 }
+
+extension PersonGetFunction: FirebaseGetFunction {
+    typealias Element = Person
+}

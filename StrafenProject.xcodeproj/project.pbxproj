@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,9 +18,6 @@
 		B029F8A42A31E71200A5B5FF /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B029F8A32A31E71200A5B5FF /* Localizable.xcstrings */; };
 		B029F8A62A31E71200A5B5FF /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B029F8A52A31E71200A5B5FF /* InfoPlist.xcstrings */; };
 		B02E5D242A2879FB007584F3 /* DismissHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02E5D232A2879FA007584F3 /* DismissHandler.swift */; };
-		B02F4FDD2A3363DC00767ACA /* StrafenProjectMacros in Frameworks */ = {isa = PBXBuildFile; productRef = B02F4FDC2A3363DC00767ACA /* StrafenProjectMacros */; };
-		B02F4FDF2A33651F00767ACA /* StrafenProjectMacros in Frameworks */ = {isa = PBXBuildFile; productRef = B02F4FDE2A33651F00767ACA /* StrafenProjectMacros */; };
-		B02F4FE12A33652500767ACA /* StrafenProjectMacros in Frameworks */ = {isa = PBXBuildFile; productRef = B02F4FE02A33652500767ACA /* StrafenProjectMacros */; };
 		B0300E7E2A51A97600984127 /* PaypalMeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0300E7D2A51A97600984127 /* PaypalMeButton.swift */; };
 		B03563C029DEE215000BB7AD /* StrafenProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03563BF29DEE215000BB7AD /* StrafenProjectApp.swift */; };
 		B03563C229DEE215000BB7AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03563C129DEE215000BB7AD /* ContentView.swift */; };
@@ -192,6 +189,20 @@
 		B0A3F0C02A010E3600160C0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0A3F0BF2A010E3600160C0D /* Assets.xcassets */; };
 		B0A3F0CA2A010E5100160C0D /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B0A3F0C92A010E5100160C0D /* CryptoSwift */; };
 		B0AF11212A347BF50062561B /* ModifierBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AF11202A347BF50062561B /* ModifierBuilder.swift */; };
+		B0C5FE562A7E3BC800C506AC /* UtcDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5FE552A7E3BC800C506AC /* UtcDate.swift */; };
+		B0C5FE582A7E451100C506AC /* UtcDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5FE572A7E451100C506AC /* UtcDateTests.swift */; };
+		B0C5FE592A7E54D500C506AC /* UtcDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5FE552A7E3BC800C506AC /* UtcDate.swift */; };
+		B0C5FE5A2A7E55AA00C506AC /* UtcDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5FE552A7E3BC800C506AC /* UtcDate.swift */; };
+		B0C5FE5C2A7E5A5B00C506AC /* PersonGetSingleFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5FE5B2A7E5A5B00C506AC /* PersonGetSingleFunction.swift */; };
+		B0C5FE5E2A7E5AAC00C506AC /* ReasonTemplateGetSingleFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5FE5D2A7E5AAC00C506AC /* ReasonTemplateGetSingleFunction.swift */; };
+		B0C5FE602A7E5ADC00C506AC /* FineGetSingleFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5FE5F2A7E5ADC00C506AC /* FineGetSingleFunction.swift */; };
+		B0C5FE622A7E5B0F00C506AC /* PersonGetChangesFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5FE612A7E5B0F00C506AC /* PersonGetChangesFunction.swift */; };
+		B0C5FE642A7E5B5300C506AC /* Deletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5FE632A7E5B5300C506AC /* Deletable.swift */; };
+		B0C5FE662A7E5D9B00C506AC /* ReasonTemplateGetChangesFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5FE652A7E5D9B00C506AC /* ReasonTemplateGetChangesFunction.swift */; };
+		B0C5FE682A7E5DBA00C506AC /* FineGetChangesFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5FE672A7E5DBA00C506AC /* FineGetChangesFunction.swift */; };
+		B0C5FE692A7E65E900C506AC /* Deletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5FE632A7E5B5300C506AC /* Deletable.swift */; };
+		B0C5FE6B2A7E678100C506AC /* FirebaseObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5FE6A2A7E678100C506AC /* FirebaseObserver.swift */; };
+		B0C5FE6D2A7E9E4600C506AC /* AppPropertiesCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5FE6C2A7E9E4600C506AC /* AppPropertiesCache.swift */; };
 		B0C75A0B29EACCC6004650BA /* UIApplication+rootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75A0A29EACCC6004650BA /* UIApplication+rootViewController.swift */; };
 		B0C75A0D29EACFF4004650BA /* String+randomNonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75A0C29EACFF4004650BA /* String+randomNonce.swift */; };
 		B0CB453B29FD8D5200F39404 /* PersonName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB453A29FD8D5200F39404 /* PersonName.swift */; };
@@ -238,7 +249,6 @@
 		B0E8217A2A000F8E0093070D /* NotificationPushFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E821792A000F8E0093070D /* NotificationPushFunction.swift */; };
 		B0E8217C2A000FB10093070D /* NotificationPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E8217B2A000FB10093070D /* NotificationPayload.swift */; };
 		B0ED7DFD29E57DD900685778 /* StartPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ED7DFC29E57DD900685778 /* StartPageView.swift */; };
-		B0EF5DC82A335EC10088C35B /* StrafenProjectMacros in Frameworks */ = {isa = PBXBuildFile; productRef = B0EF5DC72A335EC10088C35B /* StrafenProjectMacros */; };
 		B0F598D529E6CC650056B871 /* TermsAndPrivacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F598D429E6CC650056B871 /* TermsAndPrivacyView.swift */; };
 		B0F598D729E6FEB00056B871 /* InvitationLinkAndCreateClubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F598D629E6FEB00056B871 /* InvitationLinkAndCreateClubView.swift */; };
 		B0F598D929E976810056B871 /* FirebaseFunctionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F598D829E976810056B871 /* FirebaseFunctionError.swift */; };
@@ -306,7 +316,6 @@
 		B0089A0729F2AC910062054E /* FirebaseImageStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImageStorage.swift; sourceTree = "<group>"; };
 		B0089A0929F2AD670062054E /* FirebaseStorageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageCache.swift; sourceTree = "<group>"; };
 		B0089A0B29F2C32B0062054E /* View+if.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+if.swift"; sourceTree = "<group>"; };
-		B018B6CB2A331B1A00B3218B /* StrafenProjectMacros */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = StrafenProjectMacros; path = ../../StrafenProjectMacros; sourceTree = "<group>"; };
 		B029F8A32A31E71200A5B5FF /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		B029F8A52A31E71200A5B5FF /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		B02E5D232A2879FA007584F3 /* DismissHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissHandler.swift; sourceTree = "<group>"; };
@@ -400,6 +409,17 @@
 		B0A3F0BF2A010E3600160C0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0A3F0C12A010E3600160C0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0AF11202A347BF50062561B /* ModifierBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierBuilder.swift; sourceTree = "<group>"; };
+		B0C5FE552A7E3BC800C506AC /* UtcDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtcDate.swift; sourceTree = "<group>"; };
+		B0C5FE572A7E451100C506AC /* UtcDateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtcDateTests.swift; sourceTree = "<group>"; };
+		B0C5FE5B2A7E5A5B00C506AC /* PersonGetSingleFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonGetSingleFunction.swift; sourceTree = "<group>"; };
+		B0C5FE5D2A7E5AAC00C506AC /* ReasonTemplateGetSingleFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonTemplateGetSingleFunction.swift; sourceTree = "<group>"; };
+		B0C5FE5F2A7E5ADC00C506AC /* FineGetSingleFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineGetSingleFunction.swift; sourceTree = "<group>"; };
+		B0C5FE612A7E5B0F00C506AC /* PersonGetChangesFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonGetChangesFunction.swift; sourceTree = "<group>"; };
+		B0C5FE632A7E5B5300C506AC /* Deletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deletable.swift; sourceTree = "<group>"; };
+		B0C5FE652A7E5D9B00C506AC /* ReasonTemplateGetChangesFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonTemplateGetChangesFunction.swift; sourceTree = "<group>"; };
+		B0C5FE672A7E5DBA00C506AC /* FineGetChangesFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineGetChangesFunction.swift; sourceTree = "<group>"; };
+		B0C5FE6A2A7E678100C506AC /* FirebaseObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseObserver.swift; sourceTree = "<group>"; };
+		B0C5FE6C2A7E9E4600C506AC /* AppPropertiesCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPropertiesCache.swift; sourceTree = "<group>"; };
 		B0C75A0A29EACCC6004650BA /* UIApplication+rootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+rootViewController.swift"; sourceTree = "<group>"; };
 		B0C75A0C29EACFF4004650BA /* String+randomNonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+randomNonce.swift"; sourceTree = "<group>"; };
 		B0CB453A29FD8D5200F39404 /* PersonName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonName.swift; sourceTree = "<group>"; };
@@ -472,7 +492,6 @@
 				B03563F929DEEDC6000BB7AD /* FirebaseCrashlytics in Frameworks */,
 				B0F598E229EAC2660056B871 /* GoogleSignInSwift in Frameworks */,
 				B035640729DEEDC6000BB7AD /* FirebaseFunctionsCombine-Community in Frameworks */,
-				B02F4FDD2A3363DC00767ACA /* StrafenProjectMacros in Frameworks */,
 				B035640D29DEEDC6000BB7AD /* FirebasePerformance in Frameworks */,
 				B03563ED29DEEDC5000BB7AD /* FirebaseAnalytics in Frameworks */,
 				B035640F29DEEDC6000BB7AD /* FirebaseStorage in Frameworks */,
@@ -484,7 +503,6 @@
 				B03563F329DEEDC5000BB7AD /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				B05F991829FFDF5900B877D1 /* FirebaseMessaging in Frameworks */,
 				B035640329DEEDC6000BB7AD /* FirebaseFirestoreSwift in Frameworks */,
-				B0EF5DC82A335EC10088C35B /* StrafenProjectMacros in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +525,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0A3F08D2A004CB600160C0D /* CryptoSwift in Frameworks */,
-				B02F4FDF2A33651F00767ACA /* StrafenProjectMacros in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,7 +532,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B02F4FE12A33652500767ACA /* StrafenProjectMacros in Frameworks */,
 				B0A3F0B62A010E3100160C0D /* SwiftUI.framework in Frameworks */,
 				B09C695A2A012EAA00930BCB /* FirebaseAuth in Frameworks */,
 				B0A3F0B52A010E3100160C0D /* WidgetKit.framework in Frameworks */,
@@ -577,7 +593,6 @@
 		B03563BE29DEE215000BB7AD /* StrafenProject */ = {
 			isa = PBXGroup;
 			children = (
-				B018B6CB2A331B1A00B3218B /* StrafenProjectMacros */,
 				B05AF43729E2FDF500BA15F0 /* Info.plist */,
 				B05AF43829E2FE2400BA15F0 /* StrafenProject.entitlements */,
 				B03563C329DEE21A000BB7AD /* Assets.xcassets */,
@@ -614,6 +629,7 @@
 				B035642629DF078A000BB7AD /* CrypterTests.swift */,
 				B0E6A5D629E070A80095471B /* Utilities.swift */,
 				B05AF43529E2FDB700BA15F0 /* SettingsTests.swift */,
+				B0C5FE572A7E451100C506AC /* UtcDateTests.swift */,
 			);
 			path = StrafenProjectTests;
 			sourceTree = "<group>";
@@ -810,6 +826,8 @@
 				B0CB453A29FD8D5200F39404 /* PersonName.swift */,
 				B0CB453C29FD8D5D00F39404 /* SignInData.swift */,
 				B0E8217B2A000FB10093070D /* NotificationPayload.swift */,
+				B0C5FE552A7E3BC800C506AC /* UtcDate.swift */,
+				B0C5FE632A7E5B5300C506AC /* Deletable.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -828,6 +846,7 @@
 				B00899FF29F1C6360062054E /* AppProperties.swift */,
 				B051020429FBAFA3003FA9F6 /* SortedSearchableListGroups.swift */,
 				B05FC73A2A28A98800736370 /* Sortable.swift */,
+				B0C5FE6C2A7E9E4600C506AC /* AppPropertiesCache.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -839,6 +858,7 @@
 				B0E6A5B029E051C50095471B /* FirebaseFunctions */,
 				B0E6A5CB29E06C150095471B /* FirebaseConfigurator.swift */,
 				B0E6A5CD29E06D410095471B /* FirebaseAuthenticator.swift */,
+				B0C5FE6A2A7E678100C506AC /* FirebaseObserver.swift */,
 			);
 			path = FirebaseInterface;
 			sourceTree = "<group>";
@@ -876,13 +896,19 @@
 				B06E9FFE29E1D34D0034B178 /* FineEditFunction.swift */,
 				B06EA00229E1DA610034B178 /* FineEditPayedFunction.swift */,
 				B06EA00429E1DFCD0034B178 /* FineGetFunction.swift */,
+				B0C5FE672A7E5DBA00C506AC /* FineGetChangesFunction.swift */,
+				B0C5FE5F2A7E5ADC00C506AC /* FineGetSingleFunction.swift */,
 				B05AF41A29E2ADB000BA15F0 /* PersonEditFunction.swift */,
 				B0D6B19729FD6B1C002295F7 /* PersonMakeManagerFunction.swift */,
 				B05AF41C29E2B1C500BA15F0 /* PersonGetCurrentFunction.swift */,
 				B05AF41E29E2B94300BA15F0 /* PersonGetFunction.swift */,
+				B0C5FE612A7E5B0F00C506AC /* PersonGetChangesFunction.swift */,
+				B0C5FE5B2A7E5A5B00C506AC /* PersonGetSingleFunction.swift */,
 				B05AF42029E2BB5500BA15F0 /* PersonRegisterFunction.swift */,
 				B05AF42229E2E3B300BA15F0 /* ReasonTemplateEditFunction.swift */,
 				B05AF42429E2E6D300BA15F0 /* ReasonTemplateGetFunction.swift */,
+				B0C5FE652A7E5D9B00C506AC /* ReasonTemplateGetChangesFunction.swift */,
+				B0C5FE5D2A7E5AAC00C506AC /* ReasonTemplateGetSingleFunction.swift */,
 				B0F5FAA629E55299008C0380 /* InvitationLinkCreateIdFunction.swift */,
 				B0F5FAA829E55334008C0380 /* InvitationLinkWithdrawFunction.swift */,
 				B0F5FAAA29E5535B008C0380 /* InvitationLinkGetPersonFunction.swift */,
@@ -971,8 +997,6 @@
 				B0F598DF29EAC2660056B871 /* GoogleSignIn */,
 				B0F598E129EAC2660056B871 /* GoogleSignInSwift */,
 				B05F991729FFDF5900B877D1 /* FirebaseMessaging */,
-				B0EF5DC72A335EC10088C35B /* StrafenProjectMacros */,
-				B02F4FDC2A3363DC00767ACA /* StrafenProjectMacros */,
 			);
 			productName = StrafenProject;
 			productReference = B03563BC29DEE215000BB7AD /* StrafenProject.app */;
@@ -1031,7 +1055,6 @@
 			name = NotificationService;
 			packageProductDependencies = (
 				B0A3F08C2A004CB600160C0D /* CryptoSwift */,
-				B02F4FDE2A33651F00767ACA /* StrafenProjectMacros */,
 			);
 			productName = NotificationService;
 			productReference = B0A3F06C2A0040B700160C0D /* NotificationService.appex */;
@@ -1055,7 +1078,6 @@
 				B09C69502A0126DD00930BCB /* FirebaseFunctions */,
 				B09C69592A012EAA00930BCB /* FirebaseAuth */,
 				B09C69642A03977700930BCB /* FirebaseStorage */,
-				B02F4FE02A33652500767ACA /* StrafenProjectMacros */,
 			);
 			productName = WidgetExtension;
 			productReference = B0A3F0B42A010E3100160C0D /* WidgetExtension.appex */;
@@ -1103,8 +1125,6 @@
 				B03563EB29DEEDC5000BB7AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				B035642129DEFB5F000BB7AD /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 				B0F598DE29EAC2660056B871 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
-				B0EF5DC62A335EC10088C35B /* XCLocalSwiftPackageReference "../StrafenProjectMacros" */,
-				B02F4FDB2A3363DC00767ACA /* XCLocalSwiftPackageReference "../StrafenProjectMacros" */,
 			);
 			productRefGroup = B03563BD29DEE215000BB7AD /* Products */;
 			projectDirPath = "";
@@ -1178,6 +1198,7 @@
 				B0E8217C2A000FB10093070D /* NotificationPayload.swift in Sources */,
 				B06E9FFB29E1BDCC0034B178 /* CubNewFunction.swift in Sources */,
 				B05AF41B29E2ADB000BA15F0 /* PersonEditFunction.swift in Sources */,
+				B0C5FE6B2A7E678100C506AC /* FirebaseObserver.swift in Sources */,
 				B0E6A5B429E052630095471B /* FirebaseFunctionParameters.swift in Sources */,
 				B0089A0829F2AC910062054E /* FirebaseImageStorage.swift in Sources */,
 				B051021729FBFE59003FA9F6 /* SettingsEditor.swift in Sources */,
@@ -1186,6 +1207,7 @@
 				B0719B3D2A385B55005971CD /* Button+init.swift in Sources */,
 				B0D188452A34D6700087DF84 /* SheetModifier.swift in Sources */,
 				B051021229FBED9C003FA9F6 /* FinePickReasonTemplate.swift in Sources */,
+				B0C5FE682A7E5DBA00C506AC /* FineGetChangesFunction.swift in Sources */,
 				B0E6A5C529E061CE0095471B /* CallSecret.swift in Sources */,
 				B051020529FBAFA3003FA9F6 /* SortedSearchableListGroups.swift in Sources */,
 				B0089A0A29F2AD670062054E /* FirebaseStorageCache.swift in Sources */,
@@ -1194,6 +1216,7 @@
 				B0E6A59429E03D040095471B /* Tagged.swift in Sources */,
 				B051020729FBBA75003FA9F6 /* ReasonTemplateAddAndEdit.swift in Sources */,
 				B05FC7392A28A13100736370 /* Settings+Sorting.swift in Sources */,
+				B0C5FE662A7E5D9B00C506AC /* ReasonTemplateGetChangesFunction.swift in Sources */,
 				B05AF42E29E2F56100BA15F0 /* Settings.swift in Sources */,
 				B0E6A58629E035C80095471B /* Amount.swift in Sources */,
 				B039A6572A51D7C9006A6A1C /* AsyncButton.swift in Sources */,
@@ -1203,12 +1226,14 @@
 				B08C851629FA5DC20051473E /* FineDetail.swift in Sources */,
 				B00899FE29F002AA0062054E /* BottomBar.swift in Sources */,
 				B0E16D512A34DCB20083A98E /* ToolbarModifier.swift in Sources */,
+				B0C5FE5C2A7E5A5B00C506AC /* PersonGetSingleFunction.swift in Sources */,
 				B08182972A4D9E0800B3CF7E /* Data+base64UrlEscaped.swift in Sources */,
 				B0E16D582A34ED330083A98E /* RefreshableModifier.swift in Sources */,
 				B035641A29DEF82C000BB7AD /* PseudoRandom.swift in Sources */,
 				B0719B432A389F8B005971CD /* ReasonTemplateListView.swift in Sources */,
 				B05AF41D29E2B1C500BA15F0 /* PersonGetCurrentFunction.swift in Sources */,
 				B0719B3F2A387D2E005971CD /* InvitationButton.swift in Sources */,
+				B0C5FE6D2A7E9E4600C506AC /* AppPropertiesCache.swift in Sources */,
 				B0679DDC29EE8BC1005A4109 /* CreateClubView.swift in Sources */,
 				B00899FB29EFD8830062054E /* Text+describing.swift in Sources */,
 				B0E6A5A629E0447D0095471B /* Fine.swift in Sources */,
@@ -1219,6 +1244,7 @@
 				B0AF11212A347BF50062561B /* ModifierBuilder.swift in Sources */,
 				B08C850E29F934B70051473E /* PersonAddAndEdit.swift in Sources */,
 				B02E5D242A2879FB007584F3 /* DismissHandler.swift in Sources */,
+				B0C5FE562A7E3BC800C506AC /* UtcDate.swift in Sources */,
 				B051021429FBEFC6003FA9F6 /* FineCustomReason.swift in Sources */,
 				B035641C29DEF912000BB7AD /* RandomBitIterator.swift in Sources */,
 				B0CB453D29FD8D5D00F39404 /* SignInData.swift in Sources */,
@@ -1244,17 +1270,21 @@
 				B0E6A5AE29E049960095471B /* ReasonTemplate.swift in Sources */,
 				B05AF43029E2F5CA00BA15F0 /* Settings+Appearance.swift in Sources */,
 				B0F5FAA729E55299008C0380 /* InvitationLinkCreateIdFunction.swift in Sources */,
+				B0C5FE642A7E5B5300C506AC /* Deletable.swift in Sources */,
 				B0E6A58329DF22750095471B /* Array+randomBytes.swift in Sources */,
 				B035641829DEF71F000BB7AD /* CombineIterator.swift in Sources */,
+				B0C5FE5E2A7E5AAC00C506AC /* ReasonTemplateGetSingleFunction.swift in Sources */,
 				B0089A0629F2AB010062054E /* FirebaseStorageImageType.swift in Sources */,
 				B035641429DEF2A5000BB7AD /* Bit.swift in Sources */,
 				B05FC73B2A28A98800736370 /* Sortable.swift in Sources */,
+				B0C5FE622A7E5B0F00C506AC /* PersonGetChangesFunction.swift in Sources */,
 				B06EA00529E1DFCE0034B178 /* FineGetFunction.swift in Sources */,
 				B0E6A5CC29E06C150095471B /* FirebaseConfigurator.swift in Sources */,
 				B0D6B19529FD3102002295F7 /* ProfileChangeImage.swift in Sources */,
 				B05AF42529E2E6D300BA15F0 /* ReasonTemplateGetFunction.swift in Sources */,
 				B0E6A5CE29E06D410095471B /* FirebaseAuthenticator.swift in Sources */,
 				B0E8217A2A000F8E0093070D /* NotificationPushFunction.swift in Sources */,
+				B0C5FE602A7E5ADC00C506AC /* FineGetSingleFunction.swift in Sources */,
 				B035641629DEF45A000BB7AD /* DataToBitIterator.swift in Sources */,
 				B06E9FFF29E1D34D0034B178 /* FineEditFunction.swift in Sources */,
 				B06EA00729E1EC7D0034B178 /* IdentifiableList.swift in Sources */,
@@ -1294,6 +1324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B05AF43629E2FDB700BA15F0 /* SettingsTests.swift in Sources */,
+				B0C5FE582A7E451100C506AC /* UtcDateTests.swift in Sources */,
 				B0E6A5D129E06DEF0095471B /* DeleteAllDataFunction.swift in Sources */,
 				B0E6A5D529E06FA00095471B /* FirebaseFunctionsTests.swift in Sources */,
 				B035642729DF078A000BB7AD /* CrypterTests.swift in Sources */,
@@ -1337,6 +1368,7 @@
 				B05FC73E2A28AA7B00736370 /* Settings+Sorting.swift in Sources */,
 				B08182982A4D9F8A00B3CF7E /* Data+base64UrlEscaped.swift in Sources */,
 				B0A3F0852A004C7100160C0D /* PseudoRandom.swift in Sources */,
+				B0C5FE5A2A7E55AA00C506AC /* UtcDate.swift in Sources */,
 				B0A3F0892A004C7F00160C0D /* FixedLength.swift in Sources */,
 				B0A3F0812A004C6100160C0D /* PrivateKeys.swift in Sources */,
 			);
@@ -1356,10 +1388,12 @@
 				B09C69372A01238100930BCB /* FixedLength.swift in Sources */,
 				B08182992A4D9F8A00B3CF7E /* Data+base64UrlEscaped.swift in Sources */,
 				B09C69412A01253F00930BCB /* Amount.swift in Sources */,
+				B0C5FE592A7E54D500C506AC /* UtcDate.swift in Sources */,
 				B09C69332A01237400930BCB /* RandomBitIterator.swift in Sources */,
 				B09C693D2A0124F400930BCB /* PersonName.swift in Sources */,
 				B09C694E2A0126BC00930BCB /* CallSecret.swift in Sources */,
 				B09C694A2A01265C00930BCB /* FirebaseFunctionParameterType.swift in Sources */,
+				B0C5FE692A7E65E900C506AC /* Deletable.swift in Sources */,
 				B05FC73D2A28A9FF00736370 /* Sortable.swift in Sources */,
 				B09C69492A01265900930BCB /* FirebaseFunctionParameters.swift in Sources */,
 				B09C696B2A03C2B500930BCB /* LargeWidgetView.swift in Sources */,
@@ -1883,17 +1917,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		B02F4FDB2A3363DC00767ACA /* XCLocalSwiftPackageReference "../StrafenProjectMacros" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../StrafenProjectMacros;
-		};
-		B0EF5DC62A335EC10088C35B /* XCLocalSwiftPackageReference "../StrafenProjectMacros" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../StrafenProjectMacros;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
 		B03563EB29DEEDC5000BB7AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -1922,18 +1945,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B02F4FDC2A3363DC00767ACA /* StrafenProjectMacros */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = StrafenProjectMacros;
-		};
-		B02F4FDE2A33651F00767ACA /* StrafenProjectMacros */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = StrafenProjectMacros;
-		};
-		B02F4FE02A33652500767ACA /* StrafenProjectMacros */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = StrafenProjectMacros;
-		};
 		B03563EC29DEEDC5000BB7AD /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B03563EB29DEEDC5000BB7AD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -2058,10 +2069,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B035642129DEFB5F000BB7AD /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
-		};
-		B0EF5DC72A335EC10088C35B /* StrafenProjectMacros */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = StrafenProjectMacros;
 		};
 		B0F598DF29EAC2660056B871 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;

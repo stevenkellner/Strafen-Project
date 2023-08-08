@@ -1148,30 +1148,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diese Person ist bereits eingeladen."
+            "value" : "Diese Person ist bereits eingeladen. Der Link ist auch in deine Zwischenablage kopiert."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This person is already invited."
-          }
-        }
-      }
-    },
-    "invitation-button|alert-invite-button" : {
-      "comment" : "Invite button of the invitation alert that is shown after the invite button is pressed.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jetzt einladen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Invite now"
+            "value" : "This person is already invited. The link is also copied to the clipboard."
           }
         }
       }
@@ -3115,6 +3098,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Appearance"
+          }
+        }
+      }
+    },
+    "settings|delete-cache" : {
+      "comment" : "Delete cache button in settings editor.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cache löschen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete cache"
           }
         }
       }

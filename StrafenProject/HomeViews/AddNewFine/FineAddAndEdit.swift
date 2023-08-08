@@ -54,7 +54,7 @@ struct FineAddAndEdit: View {
         if let fineToEdit {
             self._personIds = State(initialValue: [fineToEdit.personId])
             self._payedState = State(initialValue: fineToEdit.payedState)
-            self._date = State(initialValue: fineToEdit.date)
+            self._date = State(initialValue: fineToEdit.date.date)
             self._reasonMessage = State(initialValue: fineToEdit.reasonMessage)
             self._amount = State(initialValue: fineToEdit.amount)
         }
@@ -214,7 +214,7 @@ struct FineAddAndEdit: View {
     
     private func saveFine(personId: Person.ID, reasonMessage: String, amount: Amount) async throws {
         let fineId = self.fineToEdit?.id ?? Fine.ID()
-        let fine = Fine(id: fineId, personId: personId, payedState: self.payedState, date: self.date, reasonMessage: reasonMessage, amount: amount)
+        let fine = Fine(id: fineId, personId: personId, payedState: self.payedState, date: UtcDate(self.date), reasonMessage: reasonMessage, amount: amount)
         if self.fineToEdit == nil {
             let fineAddFunction = FineAddFunction(clubId: self.appProperties.club.id, fine: fine)
             try await FirebaseFunctionCaller.shared.call(fineAddFunction)

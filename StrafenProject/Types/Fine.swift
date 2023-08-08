@@ -13,21 +13,12 @@ struct Fine: Identifiable {
     public private(set) var id: ID
     public private(set) var personId: Person.ID
     public var payedState: PayedState
-    public private(set) var date: Date
+    public private(set) var date: UtcDate
     public private(set) var reasonMessage: String
     public private(set) var amount: Amount
 }
 
-extension Fine: Equatable {
-    public static func ==(lhs: Fine, rhs: Fine) -> Bool {
-        return lhs.id == rhs.id &&
-            lhs.personId == rhs.personId &&
-            lhs.payedState == rhs.payedState &&
-            lhs.date.timeIntervalSinceReferenceDate.rounded(.down) == rhs.date.timeIntervalSinceReferenceDate.rounded(.down) && 
-            lhs.reasonMessage == rhs.reasonMessage &&
-            lhs.amount == rhs.amount
-    }
-}
+extension Fine: Equatable {}
 
 extension Fine: Codable {}
 
@@ -71,12 +62,30 @@ extension Fine: RandomPlaceholder {
             id: ID(),
             personId: Fine.randomPlaceholderPersonIds.randomElement(using: &generator) ?? Person.ID(),
             payedState: PayedState.randomPlaceholder(using: &generator),
-            date: Date(timeIntervalSinceNow: TimeInterval.random(in: -31536000..<0, using: &generator)),
+            date: UtcDate.randomPlaceholder(using: &generator),
             reasonMessage: Fine.randomPlaceholderReasonMessages.randomElement(using: &generator)!,
             amount: Amount.randomPlaceholder(using: &generator)
         )
     }
 }
+
+#if !NOTIFICATION_SERVICE_EXTENSION && !WIDGET_EXTENSION
+extension Fine: ChangeObservable {
+    
+    typealias GetSingleFunction = FineGetSingleFunction
+    
+    static let changesKey = "fines"
+}
+
+extension Fine: ListCachable {
+    static let cacheFilePath = "fines"
+}
+
+extension Fine: AppPropertiesList {
+    typealias GetFunction = FineGetFunction
+    typealias GetChangesFunction = FineGetChangesFunction
+}
+#endif
 
 extension Fine: Sortable {
     enum SortingKey: String, SortingKeyProtocol {

@@ -18,3 +18,7 @@ struct ReasonTemplateGetFunction: FirebaseFunction {
         FirebaseFunctionParameter(self.clubId, for: "clubId")
     }
 }
+
+extension ReasonTemplateGetFunction: FirebaseGetFunction {
+    typealias Element = ReasonTemplate
+}

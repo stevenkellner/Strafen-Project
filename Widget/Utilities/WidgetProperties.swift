@@ -8,6 +8,15 @@
 import Foundation
 import UIKit.UIImage
 
+protocol FirebaseGetFunction: FirebaseFunction {
+    
+    associatedtype Element: Identifiable where Element: Identifiable, Element.ID: Hashable
+    
+    associatedtype ReturnType = IdentifiableList<Element>
+    
+    init(clubId: ClubProperties.ID)
+}
+
 struct WidgetProperties {
     let signedInPerson: Settings.SignedInPerson
     let sorting: Settings.Sorting
@@ -54,6 +63,8 @@ struct WidgetProperties {
 }
 
 extension WidgetProperties {
+    
+    @MainActor
     var sortedFinesGroups: SortedSearchableListGroups<PayedState, Fine> {
         return SortedSearchableListGroups(self.fines, groupBy: { fine in
             return fine.payedState

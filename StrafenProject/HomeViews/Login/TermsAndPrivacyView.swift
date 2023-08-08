@@ -9,6 +9,6 @@ import SwiftUI
 
 struct TermsAndPrivacyView: View {
     var body: some View {
-        EmptyView() // TODO
+        Text(verbatim: "AGBs und Datenschutz") // TODO
     }
 }
