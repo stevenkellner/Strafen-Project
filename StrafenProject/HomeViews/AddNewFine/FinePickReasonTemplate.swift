@@ -19,13 +19,13 @@ struct FinePickReasonTemplate: View {
     
     @Binding private var counts: ReasonTemplate.Counts?
     
-    @Binding private var amount: Amount?
+    @Binding private var amount: FineAmount?
     
     @State private var searchText = ""
     
     @State private var isCustomReasonSheetShown = false
     
-    init(reasonMessage: Binding<String?>, amount: Binding<Amount?>, counts: Binding<ReasonTemplate.Counts?>) {
+    init(reasonMessage: Binding<String?>, amount: Binding<FineAmount?>, counts: Binding<ReasonTemplate.Counts?>) {
         self._reasonMessage = reasonMessage
         self._counts = counts
         self._amount = amount
@@ -41,7 +41,7 @@ struct FinePickReasonTemplate: View {
                         Text("fine-pick-reason-template|custom-reason-button", comment: "Custom reason button of fine pick reason template.")
                     }
                 }.sheet(isPresented: self.$isCustomReasonSheetShown) {
-                    FineCustomReason(initialReasonMessage: self.formattedReasonMessage, initialAmount: self.amount ?? .zero) { reasonMessage, amount in
+                    FineCustomReason(initialReasonMessage: self.formattedReasonMessage, initialAmount: self.amount ?? .amount(.zero)) { reasonMessage, amount in
                         self.reasonMessage = reasonMessage
                         self.counts = nil
                         self.amount = amount
@@ -81,6 +81,6 @@ struct FinePickReasonTemplate: View {
     }
     
     private var formattedReasonMessage: String {
-        return ReasonTemplate(id: ReasonTemplate.ID(), reasonMessage: self.reasonMessage ?? "", amount: self.amount ?? .zero, counts: self.counts).formatted
+        return ReasonTemplate(id: ReasonTemplate.ID(), reasonMessage: self.reasonMessage ?? "", amount: self.amount ?? .amount(.zero), counts: self.counts).formatted
     }
 }

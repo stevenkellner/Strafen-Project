@@ -683,8 +683,8 @@
         }
       }
     },
-    "fine-custom-reason|amount-textfield" : {
-      "comment" : "Amount textfield placeholder in fine custom reason.",
+    "fine-amount-input|amount-textfield" : {
+      "comment" : "Amount textfield placeholder in fine amount input.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -695,7 +695,128 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Amount"
+          }
+        }
+      }
+    },
+    "fine-amount-input|count-stepper?count=%lld" : {
+      "comment" : "Count stepper in fine amount input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anzahl %lld"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Count %lld"
+          }
+        }
+      }
+    },
+    "fine-amount-input|item-picker" : {
+      "comment" : "Item picker in fine amount input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kosten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Costs"
+          }
+        }
+      }
+    },
+    "fine-amount-input|item-picker-amount" : {
+      "comment" : "Amount item of item picker in fine amount input.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "Betrag"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amount"
+          }
+        }
+      }
+    },
+    "fine-amount-item|crate-of-beer" : {
+      "comment" : "Crate of beer description of fine amount item.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kasten Bier"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crate of beer"
+          }
+        }
+      }
+    },
+    "fine-amount-item|crate-of-beer?count=%lld" : {
+      "comment" : "Crate of beer description of fine amount item.",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "1 Kasten Bier"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Kästen Bier"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "0 Kästen Bier"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "1 crate of beer"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld crates of beer"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "0 crates of beer"
+                }
+              }
+            }
           }
         }
       }
@@ -2503,23 +2624,6 @@
         }
       }
     },
-    "reason-template-add-and-edit|amount-textfield" : {
-      "comment" : "Amount textfield placeholder in reason template add and edit.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Betrag"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Amount"
-          }
-        }
-      }
-    },
     "reason-template-add-and-edit|counts-item-none" : {
       "comment" : "Counts item option for no repetition in reason template add and edit.",
       "localizations" : {
@@ -2853,13 +2957,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Betrag"
+            "value" : "Kosten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Amount"
+            "value" : "Costs"
           }
         }
       }

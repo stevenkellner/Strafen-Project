@@ -24,7 +24,7 @@ struct ReasonTemplateAddAndEdit: View {
     
     @State private var maxCount: Int = 0
     
-    @State private var amount: Amount = .zero
+    @State private var amount: FineAmount = .amount(.zero)
         
     @State private var showUnknownErrorAlert = false
     
@@ -63,9 +63,7 @@ struct ReasonTemplateAddAndEdit: View {
                         Stepper(self.maxCount == 0 ? String(localized: "reason-template-add-and-edit|max-counts-none", comment: "No max count is specified for reason template counts in reason template add and edit.") : String(localized: "reason-template-add-and-edit|max-count-desciption?max-count=\(self.maxCount)", comment: "Max count description for reason template counts in reason template add and edit. 'max-count' parameter is the max count."), value: self.$maxCount, in: 0...1000)
                     }
                 }
-                Section {
-                    TextField(String(localized: "reason-template-add-and-edit|amount-textfield", comment: "Amount textfield placeholder in reason template add and edit."), value: self.$amount, format: .amount(.short))
-                }
+                FineAmountInput(fineAmount: self.$amount)
             }.modifier(self.rootModifiers)
         }
     }
@@ -90,9 +88,9 @@ struct ReasonTemplateAddAndEdit: View {
         ToolbarButton(placement: .topBarTrailing, localized: self.reasonTemplateToEdit == nil ? LocalizedStringResource("reason-template-add-and-edit|add-button", comment: "Add reason template button in reason template add and edit.") : LocalizedStringResource("reason-template-add-and-edit|save-button", comment: "Save reason template button in reason template add and edit.")) {
             await self.saveReasonTemplate()
         }.loading(self.isAddAndEditButtonLoading)
-            .disabled(self.reasonMessage == "" || self.amount == .zero)
+            .disabled(self.reasonMessage == "" || self.amount.isZero)
     }
-            
+    
     private func saveReasonTemplate() async {
         self.isAddAndEditButtonLoading = true
         defer {
@@ -123,6 +121,6 @@ struct ReasonTemplateAddAndEdit: View {
     
     private func reset() {
         self.reasonMessage = ""
-        self.amount = .zero
+        self.amount = .amount(.zero)
     }
 }

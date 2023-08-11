@@ -141,7 +141,6 @@
 		B09C69462A01261D00930BCB /* SortedSearchableListGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051020429FBAFA3003FA9F6 /* SortedSearchableListGroups.swift */; };
 		B09C69472A01263A00930BCB /* FineGetFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06EA00429E1DFCD0034B178 /* FineGetFunction.swift */; };
 		B09C69482A01264200930BCB /* FirebaseFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5B129E051DC0095471B /* FirebaseFunction.swift */; };
-		B09C69492A01265900930BCB /* FirebaseFunctionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5B329E052620095471B /* FirebaseFunctionParameters.swift */; };
 		B09C694A2A01265C00930BCB /* FirebaseFunctionParameterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5B729E0537B0095471B /* FirebaseFunctionParameterType.swift */; };
 		B09C694B2A01266000930BCB /* FirebaseFunctionInternalParameterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5B529E052BA0095471B /* FirebaseFunctionInternalParameterType.swift */; };
 		B09C694C2A01266300930BCB /* FirebaseFunctionParametersBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5BA29E0565B0095471B /* FirebaseFunctionParametersBuilder.swift */; };
@@ -208,6 +207,12 @@
 		B0CB453B29FD8D5200F39404 /* PersonName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB453A29FD8D5200F39404 /* PersonName.swift */; };
 		B0CB453D29FD8D5D00F39404 /* SignInData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB453C29FD8D5D00F39404 /* SignInData.swift */; };
 		B0D188452A34D6700087DF84 /* SheetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D188442A34D6700087DF84 /* SheetModifier.swift */; };
+		B0D5FCB82A863CDC00CF6B7D /* FineAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5FCB72A863CDC00CF6B7D /* FineAmount.swift */; };
+		B0D5FCBA2A86613200CF6B7D /* FirebaseFunctionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5FCB92A86613200CF6B7D /* FirebaseFunctionParameters.swift */; };
+		B0D5FCBB2A86613200CF6B7D /* FirebaseFunctionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5FCB92A86613200CF6B7D /* FirebaseFunctionParameters.swift */; };
+		B0D5FCBC2A86632300CF6B7D /* FineAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5FCB72A863CDC00CF6B7D /* FineAmount.swift */; };
+		B0D5FCBE2A8670A200CF6B7D /* FineAmountInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5FCBD2A8670A200CF6B7D /* FineAmountInput.swift */; };
+		B0D5FCBF2A8670A200CF6B7D /* FineAmountInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5FCBD2A8670A200CF6B7D /* FineAmountInput.swift */; };
 		B0D6B19529FD3102002295F7 /* ProfileChangeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D6B19429FD3101002295F7 /* ProfileChangeImage.swift */; };
 		B0D6B19829FD6B1C002295F7 /* PersonMakeManagerFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D6B19729FD6B1C002295F7 /* PersonMakeManagerFunction.swift */; };
 		B0E16D4F2A34DAC70083A98E /* TaskModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E16D4E2A34DAC70083A98E /* TaskModifier.swift */; };
@@ -229,7 +234,6 @@
 		B0E6A5AA29E046D80095471B /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5A929E046D80095471B /* Person.swift */; };
 		B0E6A5AE29E049960095471B /* ReasonTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5AD29E049960095471B /* ReasonTemplate.swift */; };
 		B0E6A5B229E051DC0095471B /* FirebaseFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5B129E051DC0095471B /* FirebaseFunction.swift */; };
-		B0E6A5B429E052630095471B /* FirebaseFunctionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5B329E052620095471B /* FirebaseFunctionParameters.swift */; };
 		B0E6A5B629E052BA0095471B /* FirebaseFunctionInternalParameterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5B529E052BA0095471B /* FirebaseFunctionInternalParameterType.swift */; };
 		B0E6A5B829E0537B0095471B /* FirebaseFunctionParameterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5B729E0537B0095471B /* FirebaseFunctionParameterType.swift */; };
 		B0E6A5BB29E0565B0095471B /* FirebaseFunctionParametersBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A5BA29E0565B0095471B /* FirebaseFunctionParametersBuilder.swift */; };
@@ -425,6 +429,9 @@
 		B0CB453A29FD8D5200F39404 /* PersonName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonName.swift; sourceTree = "<group>"; };
 		B0CB453C29FD8D5D00F39404 /* SignInData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInData.swift; sourceTree = "<group>"; };
 		B0D188442A34D6700087DF84 /* SheetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetModifier.swift; sourceTree = "<group>"; };
+		B0D5FCB72A863CDC00CF6B7D /* FineAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineAmount.swift; sourceTree = "<group>"; };
+		B0D5FCB92A86613200CF6B7D /* FirebaseFunctionParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseFunctionParameters.swift; sourceTree = "<group>"; };
+		B0D5FCBD2A8670A200CF6B7D /* FineAmountInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineAmountInput.swift; sourceTree = "<group>"; };
 		B0D6B19429FD3101002295F7 /* ProfileChangeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChangeImage.swift; sourceTree = "<group>"; };
 		B0D6B19729FD6B1C002295F7 /* PersonMakeManagerFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonMakeManagerFunction.swift; sourceTree = "<group>"; };
 		B0E16D4E2A34DAC70083A98E /* TaskModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModifier.swift; sourceTree = "<group>"; };
@@ -446,7 +453,6 @@
 		B0E6A5A929E046D80095471B /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		B0E6A5AD29E049960095471B /* ReasonTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonTemplate.swift; sourceTree = "<group>"; };
 		B0E6A5B129E051DC0095471B /* FirebaseFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunction.swift; sourceTree = "<group>"; };
-		B0E6A5B329E052620095471B /* FirebaseFunctionParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctionParameters.swift; sourceTree = "<group>"; };
 		B0E6A5B529E052BA0095471B /* FirebaseFunctionInternalParameterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctionInternalParameterType.swift; sourceTree = "<group>"; };
 		B0E6A5B729E0537B0095471B /* FirebaseFunctionParameterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctionParameterType.swift; sourceTree = "<group>"; };
 		B0E6A5BA29E0565B0095471B /* FirebaseFunctionParametersBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFunctionParametersBuilder.swift; sourceTree = "<group>"; };
@@ -809,6 +815,7 @@
 				B0300E7D2A51A97600984127 /* PaypalMeButton.swift */,
 				B039A6542A51BD8D006A6A1C /* WebView.swift */,
 				B039A6562A51D7C9006A6A1C /* AsyncButton.swift */,
+				B0D5FCBD2A8670A200CF6B7D /* FineAmountInput.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -821,6 +828,7 @@
 				B0E6A59129E03CE50095471B /* ClubProperties.swift */,
 				B0E6A5A129E042BB0095471B /* PayedState.swift */,
 				B0E6A5A529E0447D0095471B /* Fine.swift */,
+				B0D5FCB72A863CDC00CF6B7D /* FineAmount.swift */,
 				B0E6A5A929E046D80095471B /* Person.swift */,
 				B0E6A5AD29E049960095471B /* ReasonTemplate.swift */,
 				B0CB453A29FD8D5200F39404 /* PersonName.swift */,
@@ -880,7 +888,7 @@
 		B0E6A5B929E053960095471B /* Parameters */ = {
 			isa = PBXGroup;
 			children = (
-				B0E6A5B329E052620095471B /* FirebaseFunctionParameters.swift */,
+				B0D5FCB92A86613200CF6B7D /* FirebaseFunctionParameters.swift */,
 				B0E6A5B729E0537B0095471B /* FirebaseFunctionParameterType.swift */,
 				B0E6A5B529E052BA0095471B /* FirebaseFunctionInternalParameterType.swift */,
 				B0E6A5BA29E0565B0095471B /* FirebaseFunctionParametersBuilder.swift */,
@@ -1193,13 +1201,13 @@
 				B0F598DB29EA9FEF0056B871 /* InvitationLinkWelcomePersonView.swift in Sources */,
 				B039A6552A51BD8D006A6A1C /* WebView.swift in Sources */,
 				B0E6A5AA29E046D80095471B /* Person.swift in Sources */,
+				B0D5FCB82A863CDC00CF6B7D /* FineAmount.swift in Sources */,
 				B0E16D4F2A34DAC70083A98E /* TaskModifier.swift in Sources */,
 				B05AF42929E2F2E400BA15F0 /* OperationResult.swift in Sources */,
 				B0E8217C2A000FB10093070D /* NotificationPayload.swift in Sources */,
 				B06E9FFB29E1BDCC0034B178 /* CubNewFunction.swift in Sources */,
 				B05AF41B29E2ADB000BA15F0 /* PersonEditFunction.swift in Sources */,
 				B0C5FE6B2A7E678100C506AC /* FirebaseObserver.swift in Sources */,
-				B0E6A5B429E052630095471B /* FirebaseFunctionParameters.swift in Sources */,
 				B0089A0829F2AC910062054E /* FirebaseImageStorage.swift in Sources */,
 				B051021729FBFE59003FA9F6 /* SettingsEditor.swift in Sources */,
 				B0E16D562A34E86B0083A98E /* ToolbarButton.swift in Sources */,
@@ -1278,6 +1286,7 @@
 				B035641429DEF2A5000BB7AD /* Bit.swift in Sources */,
 				B05FC73B2A28A98800736370 /* Sortable.swift in Sources */,
 				B0C5FE622A7E5B0F00C506AC /* PersonGetChangesFunction.swift in Sources */,
+				B0D5FCBA2A86613200CF6B7D /* FirebaseFunctionParameters.swift in Sources */,
 				B06EA00529E1DFCE0034B178 /* FineGetFunction.swift in Sources */,
 				B0E6A5CC29E06C150095471B /* FirebaseConfigurator.swift in Sources */,
 				B0D6B19529FD3102002295F7 /* ProfileChangeImage.swift in Sources */,
@@ -1307,6 +1316,7 @@
 				B0E821782A000F4E0093070D /* NotificationRegisterFunction.swift in Sources */,
 				B0089A0329F27BDB0062054E /* PersonList.swift in Sources */,
 				B04C7A362A38438300133731 /* SearchableModifier.swift in Sources */,
+				B0D5FCBE2A8670A200CF6B7D /* FineAmountInput.swift in Sources */,
 				B0E6A5B829E0537B0095471B /* FirebaseFunctionParameterType.swift in Sources */,
 				B0E16D5A2A34F8660083A98E /* PersonInfoSection.swift in Sources */,
 				B08C851429F9860F0051473E /* PersonDetail.swift in Sources */,
@@ -1395,7 +1405,6 @@
 				B09C694A2A01265C00930BCB /* FirebaseFunctionParameterType.swift in Sources */,
 				B0C5FE692A7E65E900C506AC /* Deletable.swift in Sources */,
 				B05FC73D2A28A9FF00736370 /* Sortable.swift in Sources */,
-				B09C69492A01265900930BCB /* FirebaseFunctionParameters.swift in Sources */,
 				B09C696B2A03C2B500930BCB /* LargeWidgetView.swift in Sources */,
 				B09C692D2A01236100930BCB /* Settings+Appearance.swift in Sources */,
 				B09C69222A01218A00930BCB /* Provider.swift in Sources */,
@@ -1404,8 +1413,10 @@
 				B09C69312A01236F00930BCB /* CombineIterator.swift in Sources */,
 				B09C69392A01238700930BCB /* PrivateKeys.swift in Sources */,
 				B09C69442A0125BE00930BCB /* Tagged.swift in Sources */,
+				B0D5FCBB2A86613200CF6B7D /* FirebaseFunctionParameters.swift in Sources */,
 				B09C69452A0125ED00930BCB /* SignInData.swift in Sources */,
 				B09C69322A01237200930BCB /* PseudoRandom.swift in Sources */,
+				B0D5FCBF2A8670A200CF6B7D /* FineAmountInput.swift in Sources */,
 				B09C693A2A0123C600930BCB /* IdentifiableList.swift in Sources */,
 				B09C69432A0125AD00930BCB /* Clamping.swift in Sources */,
 				B09C692B2A01235700930BCB /* SettingsManager.swift in Sources */,
@@ -1417,6 +1428,7 @@
 				B09C694F2A0126C400930BCB /* FirebaseFunctionCaller.swift in Sources */,
 				B09C69402A01253000930BCB /* PayedState.swift in Sources */,
 				B09C692A2A01224200930BCB /* WidgetProperties.swift in Sources */,
+				B0D5FCBC2A86632300CF6B7D /* FineAmount.swift in Sources */,
 				B09C69632A0396C100930BCB /* ImageFetcher.swift in Sources */,
 				B09C692E2A01236400930BCB /* Settings.swift in Sources */,
 				B09C694B2A01266000930BCB /* FirebaseFunctionInternalParameterType.swift in Sources */,

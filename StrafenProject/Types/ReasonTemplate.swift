@@ -45,7 +45,7 @@ struct ReasonTemplate: Identifiable {
     
     public private(set) var id: ID
     public private(set) var reasonMessage: String
-    public private(set) var amount: Amount
+    public private(set) var amount: FineAmount
     public private(set) var counts: Counts?
     
     var formatted: String {
@@ -140,7 +140,7 @@ extension ReasonTemplate: RandomPlaceholder {
         return ReasonTemplate(
             id: ID(),
             reasonMessage: ReasonTemplate.randomPlaceholderReasonMessages.randomElement(using: &generator)!,
-            amount: Amount.randomPlaceholder(using: &generator),
+            amount: FineAmount.randomPlaceholder(using: &generator),
             counts: Bool.random(using: &generator) ? nil : ReasonTemplate.Counts.randomPlaceholder(using: &generator)
         )
     }
@@ -174,7 +174,19 @@ extension ReasonTemplate: Sortable {
             case .reasonMessage:
                 return lhsReasonTemplate.formatted.lowercased() < rhsReasonTemplate.formatted.lowercased()
             case .amount:
-                return lhsReasonTemplate.amount < rhsReasonTemplate.amount
+                switch (lhsReasonTemplate.amount, rhsReasonTemplate.amount) {
+                case (.amount(let lhsAmount), .amount(let rhsAmount)):
+                    return lhsAmount < rhsAmount
+                case (.item(let lhsItem, count: let lhsCount), .item(let rhsItem, count: let rhsCount)):
+                    guard lhsItem == rhsItem else {
+                        return lhsItem < rhsItem
+                    }
+                    return lhsCount < rhsCount
+                case (.amount(_), .item(_, count: _)):
+                    return true
+                case (.item(_, count: _), .amount(_)):
+                    return false
+                }
             }
         }
         

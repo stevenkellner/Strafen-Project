@@ -18,6 +18,10 @@ extension FirebaseFunctionParameterType {
     var internalParameter: FirebaseFunctionInternalParameterType {
         return self.parameter.internalParameter
     }
+    
+    var firebaseFunctionParameter: Any {
+        return self.internalParameter.firebaseFunctionParameter
+    }
 }
 
 extension Bool: FirebaseFunctionParameterType {

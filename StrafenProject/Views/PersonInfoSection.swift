@@ -31,8 +31,8 @@ struct PersonInfoSection<Person, ExtraRows>: View where Person: PersonWithFines,
             if let extraRows = self.extraRows {
                 extraRows
             }
-            if self.person.id == self.appProperties.signedInPerson.id && fines.unpayedAmount != .zero {
-                PaypalMeButton(amount: fines.unpayedAmount)
+            if self.person.id == self.appProperties.signedInPerson.id && fines.unpayedAmount.amount != .zero {
+                PaypalMeButton(amount: fines.unpayedAmount.amount)
             }
         }.task {
             await self.imageStorage.fetch(.person(clubId: self.appProperties.club.id, personId: self.person.id))
@@ -53,7 +53,7 @@ struct PersonInfoSection<Person, ExtraRows>: View where Person: PersonWithFines,
         }
     }
     
-    @ViewBuilder private func amountRow(_ amount: Amount, title: LocalizedStringResource, color: Color) -> some View {
+    @ViewBuilder private func amountRow(_ amount: TotalFineAmount, title: LocalizedStringResource, color: Color) -> some View {
         HStack {
             Text(title)
                 .unredacted()

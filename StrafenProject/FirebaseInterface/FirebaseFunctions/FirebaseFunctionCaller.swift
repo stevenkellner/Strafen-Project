@@ -46,7 +46,7 @@ struct FirebaseFunctionCaller {
     func call<Function>(_ function: Function) async throws -> Function.ReturnType where Function: FirebaseFunction {
         FirebaseFunctionCaller.logger.log("Call firebase function \(Function.functionName, privacy: .public).")
         do {
-            let parameters = try self.createParameters(of: function).firebaseFunctionParameters
+            let parameters = try self.createParameters(of: function).firebaseFunctionParameter
             let httpsResult = try await Functions
                 .functions(region: "europe-west1")
                 .httpsCallable(self.functionName(of: function))

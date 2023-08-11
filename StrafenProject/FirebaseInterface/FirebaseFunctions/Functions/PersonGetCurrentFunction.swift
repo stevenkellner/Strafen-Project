@@ -19,7 +19,7 @@ struct PersonGetCurrentFunction: FirebaseFunction {
     static let functionName = "person-getCurrent"
     
     var parameters: FirebaseFunctionParameters {
-        return FirebaseFunctionParameters()
+        return .unknown
     }
 }
 

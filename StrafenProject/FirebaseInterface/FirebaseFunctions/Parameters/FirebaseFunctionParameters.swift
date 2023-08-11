@@ -7,51 +7,36 @@
 
 import Foundation
 
-struct FirebaseFunctionParameters {
-    
-    private var parameters: [String: FirebaseFunctionInternalParameterType]
-    
-    init() {
-        self.parameters = [:]
-    }
-    
-    init(_ parameters: [String: FirebaseFunctionInternalParameterType]) {
-        self.parameters = parameters
-    }
-    
-    init(_ parameters: [String: any FirebaseFunctionParameterType]) {
-        self.parameters = parameters.mapValues(\.internalParameter)
-    }
-        
-    var firebaseFunctionParameters: [String: Any] {
-        return self.parameters.mapValues(\.firebaseFunctionParameter)
-    }
-    
-    mutating func append(_ parameter: some FirebaseFunctionParameterType, for key: String) {
-        self.parameters[key] = parameter.internalParameter
-    }
-    
-    mutating func append(contentsOf parameters: some Sequence<(key: String, value: any FirebaseFunctionParameterType)>) {
-        for (key, parameter) in parameters {
-            self.append(parameter, for: key)
-        }
-    }
-    
-    mutating func remove(with key: String) {
-        self.parameters.removeValue(forKey: key)
-    }
+enum FirebaseFunctionParameters {
+    case unknown
+    case single(FirebaseFunctionInternalParameterType)
+    case keyed([String: FirebaseFunctionInternalParameterType])
 }
 
 extension FirebaseFunctionParameters: Encodable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        try container.encode(self.parameters)
+        switch self {
+        case .unknown:
+            try container.encode([:] as [String: FirebaseFunctionInternalParameterType])
+        case .single(let parameter):
+            try container.encode(parameter)
+        case .keyed(let parameters):
+            try container.encode(parameters)
+        }
     }
 }
 
 extension FirebaseFunctionParameters: FirebaseFunctionParameterType {
     var internalParameter: FirebaseFunctionInternalParameterType {
-        return .dictionary(self.parameters)
+        switch self {
+        case .unknown:
+            return .optional(nil)
+        case .single(let parameter):
+            return parameter
+        case .keyed(let parameters):
+            return .dictionary(parameters)
+        }
     }
     
     var parameter: FirebaseFunctionParameters {

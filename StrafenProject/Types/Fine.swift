@@ -15,7 +15,7 @@ struct Fine: Identifiable {
     public var payedState: PayedState
     public private(set) var date: UtcDate
     public private(set) var reasonMessage: String
-    public private(set) var amount: Amount
+    public private(set) var amount: FineAmount
 }
 
 extension Fine: Equatable {}
@@ -64,7 +64,7 @@ extension Fine: RandomPlaceholder {
             payedState: PayedState.randomPlaceholder(using: &generator),
             date: UtcDate.randomPlaceholder(using: &generator),
             reasonMessage: Fine.randomPlaceholderReasonMessages.randomElement(using: &generator)!,
-            amount: Amount.randomPlaceholder(using: &generator)
+            amount: FineAmount.randomPlaceholder(using: &generator)
         )
     }
 }
@@ -100,7 +100,19 @@ extension Fine: Sortable {
             case .reasonMessage:
                 return lhsFine.reasonMessage.lowercased() < rhsFine.reasonMessage.lowercased()
             case .amount:
-                return lhsFine.amount < rhsFine.amount
+                switch (lhsFine.amount, rhsFine.amount) {
+                case (.amount(let lhsAmount), .amount(let rhsAmount)):
+                    return lhsAmount < rhsAmount
+                case (.item(let lhsItem, count: let lhsCount), .item(let rhsItem, count: let rhsCount)):
+                    guard lhsItem == rhsItem else {
+                        return lhsItem < rhsItem
+                    }
+                    return lhsCount < rhsCount
+                case (.amount(_), .item(_, count: _)):
+                    return true
+                case (.item(_, count: _), .amount(_)):
+                    return false
+                }
             }
         }
         
@@ -132,13 +144,13 @@ extension Fine.SortingKey: Hashable {}
 extension Fine.SortingKey: Codable {}
 
 extension Sequence where Element == Fine {
-    var totalAmount: Amount {
+    var totalAmount: TotalFineAmount {
         return self.reduce(into: .zero) { result, fine in
             result += fine.amount
         }
     }
     
-    var payedAmount: Amount {
+    var payedAmount: TotalFineAmount {
         return self.reduce(into: .zero) { result, fine in
             guard fine.payedState == .payed else {
                 return
@@ -147,7 +159,7 @@ extension Sequence where Element == Fine {
         }
     }
     
-    var unpayedAmount: Amount {
+    var unpayedAmount: TotalFineAmount {
         return self.reduce(into: .zero) { result, fine in
             guard fine.payedState == .unpayed else {
                 return

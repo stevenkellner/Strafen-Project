@@ -49,7 +49,6 @@ struct FineDetail: View {
                     Text("fine-detail|date", comment: "Text before the date of the fine.")
                     Spacer()
                     Text(self.fine.date.formatted(date: .long, time: .omitted))
-                        .foregroundColor(.secondary)
                 }
             }
             if self.appProperties.signedInPerson.isAdmin {

@@ -14,15 +14,15 @@ struct FineCustomReason: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    private let completionHandler: (_ reasonMessage: String, _ amount: Amount) -> Void
+    private let completionHandler: (_ reasonMessage: String, _ amount: FineAmount) -> Void
     
     @State private var reasonMessage: String = ""
     
-    @State private var amount: Amount = .zero
+    @State private var amount: FineAmount = .amount(.zero)
     
     @FocusState private var inputFocus: InputFocus?
     
-    init(initialReasonMessage reasonMessage: String, initialAmount amount: Amount, handler completionHandler: @escaping (_ reasonMessage: String, _ amount: Amount) -> Void) {
+    init(initialReasonMessage reasonMessage: String, initialAmount amount: FineAmount, handler completionHandler: @escaping (_ reasonMessage: String, _ amount: FineAmount) -> Void) {
         self._reasonMessage = State(initialValue: reasonMessage)
         self._amount = State(initialValue: amount)
         self.completionHandler = completionHandler
@@ -38,9 +38,7 @@ struct FineCustomReason: View {
                             self.reasonMessage = self.reasonMessage.trimmingCharacters(in: .whitespacesAndNewlines)
                         }
                 }
-                Section {
-                    TextField(String(localized: "fine-custom-reason|amount-textfield", comment: "Amount textfield placeholder in fine custom reason."), value: self.$amount, format: .amount(.short))
-                }
+                FineAmountInput(fineAmount: self.$amount)
             }.modifier(self.rootModifiers)
         }
     }
@@ -58,6 +56,6 @@ struct FineCustomReason: View {
             self.dismiss()
             self.reasonMessage = self.reasonMessage.trimmingCharacters(in: .whitespacesAndNewlines)
             self.completionHandler(self.reasonMessage, self.amount)
-        }.disabled(self.reasonMessage == "" || self.amount == .zero)
+        }.disabled(self.reasonMessage == "" || self.amount.isZero)
     }
 }

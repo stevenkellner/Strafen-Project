@@ -38,7 +38,7 @@ struct FineAddAndEdit: View {
     
     @State private var count = 1
     
-    @State private var amount: Amount?
+    @State private var amount: FineAmount?
     
     @State private var isPickPersonSheetShown = false
     
@@ -166,7 +166,7 @@ struct FineAddAndEdit: View {
         ToolbarButton(placement: .topBarTrailing, localized: self.fineToEdit == nil ? LocalizedStringResource("fine-add-and-edit|add-button", comment: "Add fine button in fine add and edit.") : LocalizedStringResource("fine-add-and-edit|save-button", comment: "Save fine button in fine add and edit.")) {
             await self.saveFine()
         }.loading(self.isAddAndEditButtonLoading)
-            .disabled(self.redactionReasons.contains(.placeholder) || self.personIds == [] || self.reasonMessage?.isEmpty ?? true || self.amount == nil || self.amount == .zero)
+            .disabled(self.redactionReasons.contains(.placeholder) || self.personIds == [] || self.reasonMessage?.isEmpty ?? true || self.amount?.isZero ?? true)
             .unredacted
     }
     
@@ -212,7 +212,7 @@ struct FineAddAndEdit: View {
         }
     }
     
-    private func saveFine(personId: Person.ID, reasonMessage: String, amount: Amount) async throws {
+    private func saveFine(personId: Person.ID, reasonMessage: String, amount: FineAmount) async throws {
         let fineId = self.fineToEdit?.id ?? Fine.ID()
         let fine = Fine(id: fineId, personId: personId, payedState: self.payedState, date: UtcDate(self.date), reasonMessage: reasonMessage, amount: amount)
         if self.fineToEdit == nil {
