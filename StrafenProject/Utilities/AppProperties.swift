@@ -95,9 +95,10 @@ class AppProperties: ObservableObject {
                     self.persons.update(deletablePerson)
                     try? AppPropertiesCache.shared.saveList(list: self.persons)
                 }
+                await FirebaseImageStorage.shared.fetch(.person(clubId: self.club.id, personId: deletablePerson.id), useCachedImage: false)
             }
         }
-        FirebaseObserver.shared.observeChanges(clubId: self.club.id, type: ReasonTemplate.self) { @MainActor deletableReasonTemplate in
+        FirebaseObserver.shared.observeChanges(clubId: self.club.id, type: ReasonTemplate.self) { deletableReasonTemplate in
             Task {
                 await MainActor.run {
                     self.reasonTemplates.update(deletableReasonTemplate)
@@ -105,7 +106,7 @@ class AppProperties: ObservableObject {
                 }
             }
         }
-        FirebaseObserver.shared.observeChanges(clubId: self.club.id, type: Fine.self) { @MainActor deletableFine in
+        FirebaseObserver.shared.observeChanges(clubId: self.club.id, type: Fine.self) { deletableFine in
             Task {
                 await MainActor.run {
                     self.fines.update(deletableFine)

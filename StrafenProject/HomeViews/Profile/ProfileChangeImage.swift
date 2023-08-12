@@ -54,6 +54,8 @@ struct ProfileChangeImage: View {
         } else {
             await self.imageStorage.delete(.person(clubId: self.appProperties.club.id, personId: self.appProperties.signedInPerson.id))
         }
+        let personImageChangeFunction = PersonImageChangeFunction(clubId: self.appProperties.club.id, personId: self.appProperties.signedInPerson.id)
+        try? await FirebaseFunctionCaller.shared.call(personImageChangeFunction)
         self.dismiss()
     }
 }

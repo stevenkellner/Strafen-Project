@@ -13,7 +13,7 @@
 		B0089A0329F27BDB0062054E /* PersonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0089A0229F27BDB0062054E /* PersonList.swift */; };
 		B0089A0629F2AB010062054E /* FirebaseStorageImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0089A0529F2AB010062054E /* FirebaseStorageImageType.swift */; };
 		B0089A0829F2AC910062054E /* FirebaseImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0089A0729F2AC910062054E /* FirebaseImageStorage.swift */; };
-		B0089A0A29F2AD670062054E /* FirebaseStorageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0089A0929F2AD670062054E /* FirebaseStorageCache.swift */; };
+		B0089A0A29F2AD670062054E /* FirebaseImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0089A0929F2AD670062054E /* FirebaseImageCache.swift */; };
 		B0089A0C29F2C32C0062054E /* View+if.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0089A0B29F2C32B0062054E /* View+if.swift */; };
 		B029F8A42A31E71200A5B5FF /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B029F8A32A31E71200A5B5FF /* Localizable.xcstrings */; };
 		B029F8A62A31E71200A5B5FF /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B029F8A52A31E71200A5B5FF /* InfoPlist.xcstrings */; };
@@ -221,6 +221,7 @@
 		B0E16D582A34ED330083A98E /* RefreshableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E16D572A34ED330083A98E /* RefreshableModifier.swift */; };
 		B0E16D5A2A34F8660083A98E /* PersonInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E16D592A34F8660083A98E /* PersonInfoSection.swift */; };
 		B0E1A6DB2A5167F800C79D4C /* PaypalMeSetFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E1A6DA2A5167F800C79D4C /* PaypalMeSetFunction.swift */; };
+		B0E410262A87704E00CF0152 /* PersonImageChangeFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E410252A87704E00CF0152 /* PersonImageChangeFunction.swift */; };
 		B0E6A57F29DF1C080095471B /* JSONDecoder+iso8601WithMilliseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A57E29DF1C080095471B /* JSONDecoder+iso8601WithMilliseconds.swift */; };
 		B0E6A58129DF1C9B0095471B /* FixedLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A58029DF1C9B0095471B /* FixedLength.swift */; };
 		B0E6A58329DF22750095471B /* Array+randomBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6A58229DF22750095471B /* Array+randomBytes.swift */; };
@@ -318,7 +319,7 @@
 		B0089A0229F27BDB0062054E /* PersonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonList.swift; sourceTree = "<group>"; };
 		B0089A0529F2AB010062054E /* FirebaseStorageImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageImageType.swift; sourceTree = "<group>"; };
 		B0089A0729F2AC910062054E /* FirebaseImageStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImageStorage.swift; sourceTree = "<group>"; };
-		B0089A0929F2AD670062054E /* FirebaseStorageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageCache.swift; sourceTree = "<group>"; };
+		B0089A0929F2AD670062054E /* FirebaseImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImageCache.swift; sourceTree = "<group>"; };
 		B0089A0B29F2C32B0062054E /* View+if.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+if.swift"; sourceTree = "<group>"; };
 		B029F8A32A31E71200A5B5FF /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		B029F8A52A31E71200A5B5FF /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -440,6 +441,7 @@
 		B0E16D572A34ED330083A98E /* RefreshableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableModifier.swift; sourceTree = "<group>"; };
 		B0E16D592A34F8660083A98E /* PersonInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoSection.swift; sourceTree = "<group>"; };
 		B0E1A6DA2A5167F800C79D4C /* PaypalMeSetFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaypalMeSetFunction.swift; sourceTree = "<group>"; };
+		B0E410252A87704E00CF0152 /* PersonImageChangeFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonImageChangeFunction.swift; sourceTree = "<group>"; };
 		B0E6A57E29DF1C080095471B /* JSONDecoder+iso8601WithMilliseconds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+iso8601WithMilliseconds.swift"; sourceTree = "<group>"; };
 		B0E6A58029DF1C9B0095471B /* FixedLength.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedLength.swift; sourceTree = "<group>"; };
 		B0E6A58229DF22750095471B /* Array+randomBytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+randomBytes.swift"; sourceTree = "<group>"; };
@@ -566,7 +568,7 @@
 			children = (
 				B0089A0529F2AB010062054E /* FirebaseStorageImageType.swift */,
 				B0089A0729F2AC910062054E /* FirebaseImageStorage.swift */,
-				B0089A0929F2AD670062054E /* FirebaseStorageCache.swift */,
+				B0089A0929F2AD670062054E /* FirebaseImageCache.swift */,
 			);
 			path = FirebaseStorage;
 			sourceTree = "<group>";
@@ -852,9 +854,9 @@
 				B05AF42829E2F2E400BA15F0 /* OperationResult.swift */,
 				B05AF42A29E2F43E00BA15F0 /* ValidationResult.swift */,
 				B00899FF29F1C6360062054E /* AppProperties.swift */,
+				B0C5FE6C2A7E9E4600C506AC /* AppPropertiesCache.swift */,
 				B051020429FBAFA3003FA9F6 /* SortedSearchableListGroups.swift */,
 				B05FC73A2A28A98800736370 /* Sortable.swift */,
-				B0C5FE6C2A7E9E4600C506AC /* AppPropertiesCache.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -907,6 +909,7 @@
 				B0C5FE672A7E5DBA00C506AC /* FineGetChangesFunction.swift */,
 				B0C5FE5F2A7E5ADC00C506AC /* FineGetSingleFunction.swift */,
 				B05AF41A29E2ADB000BA15F0 /* PersonEditFunction.swift */,
+				B0E410252A87704E00CF0152 /* PersonImageChangeFunction.swift */,
 				B0D6B19729FD6B1C002295F7 /* PersonMakeManagerFunction.swift */,
 				B05AF41C29E2B1C500BA15F0 /* PersonGetCurrentFunction.swift */,
 				B05AF41E29E2B94300BA15F0 /* PersonGetFunction.swift */,
@@ -1218,7 +1221,7 @@
 				B0C5FE682A7E5DBA00C506AC /* FineGetChangesFunction.swift in Sources */,
 				B0E6A5C529E061CE0095471B /* CallSecret.swift in Sources */,
 				B051020529FBAFA3003FA9F6 /* SortedSearchableListGroups.swift in Sources */,
-				B0089A0A29F2AD670062054E /* FirebaseStorageCache.swift in Sources */,
+				B0089A0A29F2AD670062054E /* FirebaseImageCache.swift in Sources */,
 				B05AF42329E2E3B300BA15F0 /* ReasonTemplateEditFunction.swift in Sources */,
 				B0E6A5C329E05F2A0095471B /* PrivateKeys.swift in Sources */,
 				B0E6A59429E03D040095471B /* Tagged.swift in Sources */,
@@ -1245,6 +1248,7 @@
 				B0679DDC29EE8BC1005A4109 /* CreateClubView.swift in Sources */,
 				B00899FB29EFD8830062054E /* Text+describing.swift in Sources */,
 				B0E6A5A629E0447D0095471B /* Fine.swift in Sources */,
+				B0E410262A87704E00CF0152 /* PersonImageChangeFunction.swift in Sources */,
 				B0E6A5C129E05E680095471B /* DatabaseType.swift in Sources */,
 				B05AF41F29E2B94300BA15F0 /* PersonGetFunction.swift in Sources */,
 				B0300E7E2A51A97600984127 /* PaypalMeButton.swift in Sources */,

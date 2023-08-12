@@ -10,6 +10,15 @@ import Foundation
 enum Deletable<T> where T: Identifiable {
     case deleted(id: T.ID)
     case value(T)
+    
+    var id: T.ID {
+        switch self {
+        case .deleted(id: let id):
+            return id
+        case .value(let value):
+            return value.id
+        }
+    }
 }
 
 extension Deletable: Decodable where T: Decodable, T.ID: Decodable {

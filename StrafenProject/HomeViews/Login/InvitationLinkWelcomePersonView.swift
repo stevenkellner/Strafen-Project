@@ -15,7 +15,7 @@ struct InvitationLinkWelcomePersonView: View {
     
     private var isSignInNavigationActive: Binding<Bool>
     
-    @StateObject private var imageStorage = FirebaseImageStorage()
+    @StateObject private var imageStorage = FirebaseImageStorage.shared
         
     init(_ person: InvitationLinkGetPersonFunction.ReturnType, isSignInNavigationActive: Binding<Bool>) {
         self.person = person

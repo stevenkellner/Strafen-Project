@@ -17,25 +17,29 @@ class FirebaseImageStorage: ObservableObject {
     
     static private let storageBucketUrl = "gs://strafen-project-images"
         
-    @Published public private(set) var clubImage: UIImage?
+    @Published public private(set) var clubImageState: CacheState = .notCached
     
-    @Published public private(set) var personImages = FirebaseStorageCache<Person.ID, UIImage>(max: 50)
+    @Published public private(set) var personImages = FirebaseImageCache<Person.ID>()
     
-    private func saveCache(image: UIImage?, for imageType: FirebaseStorageImageType) {
+    static let shared = FirebaseImageStorage()
+    
+    private init() {}
+    
+    private func saveCache(state: CacheState, for imageType: FirebaseStorageImageType) {
         switch imageType {
         case .club(_):
-            self.clubImage = image
+            self.clubImageState = state
         case .person(_, let personId):
-            self.personImages[personId] = image
+            self.personImages.setCache(state: state, key: personId)
         }
     }
     
-    private func getCache(for imageType: FirebaseStorageImageType) -> UIImage? {
+    private func getCache(for imageType: FirebaseStorageImageType) -> CacheState {
         switch imageType {
         case .club(_):
-            return self.clubImage
+            return self.clubImageState
         case .person(_, let personId):
-            return self.personImages[personId]
+            return self.personImages.getCache(key: personId)
         }
     }
     
@@ -51,7 +55,7 @@ class FirebaseImageStorage: ObservableObject {
             .storage(url: FirebaseImageStorage.storageBucketUrl)
             .reference(withPath: imageType.imageUrl.path())
             .putDataAsync(imageData, metadata: metadata)
-        self.saveCache(image: image, for: imageType)
+        self.saveCache(state: .image(image), for: imageType)
     }
     
     private func resizedImage(_ image: UIImage) -> UIImage? {
@@ -70,7 +74,7 @@ class FirebaseImageStorage: ObservableObject {
     }
     
     func fetch(_ imageType: FirebaseStorageImageType, useCachedImage: Bool = true) async {
-        guard !useCachedImage || self.getCache(for: imageType) == nil else {
+        guard !useCachedImage, case .notCached = self.getCache(for: imageType) else {
             return
         }
         let maxSize: Int64 = 1024 * 1024 // 1MB
@@ -82,8 +86,10 @@ class FirebaseImageStorage: ObservableObject {
             guard let image = UIImage(data: imageData) else {
                 return
             }
-            self.saveCache(image: image, for: imageType)
-        } catch {}
+            self.saveCache(state: .image(image), for: imageType)
+        } catch {
+            self.saveCache(state: .noImage, for: imageType)
+        }
     }
     
     func delete(_ imageType: FirebaseStorageImageType) async {
@@ -92,12 +98,12 @@ class FirebaseImageStorage: ObservableObject {
                 .storage(url: FirebaseImageStorage.storageBucketUrl)
                 .reference(withPath: imageType.imageUrl.path())
                 .delete()
-            self.saveCache(image: nil, for: imageType)
+            self.saveCache(state: .notCached, for: imageType)
         } catch {}
     }
     
     func clear() {
-        self.clubImage = nil
+        self.clubImageState = .notCached
         self.personImages.clear()
     }
 }

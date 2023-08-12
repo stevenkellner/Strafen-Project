@@ -15,7 +15,7 @@ struct ContentView: View {
     
     @StateObject private var settingsManager = SettingsManager()
     
-    @StateObject private var imageStorage = FirebaseImageStorage()
+    @StateObject private var imageStorage = FirebaseImageStorage.shared
     
     @StateObject private var dismissHandler = DismissHandler()
         
