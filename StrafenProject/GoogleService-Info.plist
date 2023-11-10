@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>40602488214-kq7gaktm1hvohhhgqtvl16cnckrdlv4i.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.40602488214-kq7gaktm1hvohhhgqtvl16cnckrdlv4i</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBXw_1Fvq2gPueTZ8ouwZPEHaSIocIEI8o</string>
+	<key>GCM_SENDER_ID</key>
+	<string>40602488214</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>stevenkellner.StrafenProject</string>
+	<key>PROJECT_ID</key>
+	<string>strafen-project</string>
+	<key>STORAGE_BUCKET</key>
+	<string>strafen-project.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:40602488214:ios:bf20b0287d7156f045e1b7</string>
+	<key>DATABASE_URL</key>
+	<string>https://strafen-project-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>
